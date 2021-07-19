@@ -1,0 +1,840 @@
+*{
+  font-family: "Rubik", Arial, Helvetica, "Noto Sans Devanagari", "Noto Sans CJK SC Thin", "Noto Sans SC", "Noto Sans Hebrew", sans-serif !important;
+}
+.outerContainter
+{
+    background-color: #f3f3f3;
+    /* border: 1px solid; */
+    display: flex;
+    /* height: 700px; */
+    justify-content: center;
+    border: 2px solid black;
+}
+.InnerContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px;
+  margin: 7% 0% 7% 0%;
+  box-shadow: 0 7px 10px rgb(0 0 0 / 60%);
+  border: 2px solid red;
+  position: relative;
+}
+.app {
+  /* margin: -15px 0px -13px 0px; */
+}
+input{
+  outline: none;
+  border: none;
+  background-color: unset;
+}
+.outerWraperEditor {
+  /* border: 1px solid; */
+  /* margin: 0px 481px -12px 0px; */
+}
+.outerWraperBox{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  transition: background .3s;
+  padding: 15px;
+  z-index: 1;
+  border-radius: 5px;
+}
+.outerWraperBox:hover{
+  border: 1px solid #60d5ba;
+}
+.outerWraperBoxTechStockSection{
+    flex-wrap: wrap;
+    transition: background .3s;
+    padding: 15px;
+    z-index: 1;
+}
+.outerWraperGroupTitle{
+color:#008CFF !important;
+font-size: 18px;
+width: 100%;
+}
+.input[range]{
+width: 372px;
+}
+.outerWraperCompleteBox{
+    /* border: 1px solid; */
+    border-radius: 12px;
+    z-index: 3;
+}
+
+.outerWraperListIcon{
+  border: 3px solid rgba(0, 0, 0, .4);
+  border-radius: 5px;
+  width: 261px;
+  height: 350px;
+  position: absolute;
+  overflow-y: scroll;
+  z-index: 5;
+  display: flex;
+  padding: 24px 0 0 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 16px 0px 0px 351px;
+}
+
+.iconsList{
+  width: 70%;
+  background: white;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid green;
+  color: green;
+  text-align: center;
+  font-size: 40px;
+  cursor: pointer;
+}
+.Icon{
+margin: 10px 10px 0 0;
+font-size: 33px;
+color: #008CFF !important;
+}
+.iconsList:hover{
+color:#00c091;
+border: 1px solid #00c091;
+}
+.outerWraperInputFieldHaider{
+display: flex;
+flex-direction: column;
+/* border: 1px solid firebrick; */
+}
+.outerWraperBoxHeaderButton{
+  position: absolute;
+  background-color: white;
+  z-index: 2;
+  padding: 4px;
+  margin: -20px 0 0 0;
+  border-radius: 22px;
+}
+.inconCamer{
+  cursor: pointer;
+  color: #384347;
+  font-size: 26px;
+  margin: 4px;
+}
+.inconCamer:hover{
+color: #00c091;
+}
+.outerWraperTwoSectionExperienceAndTechstock{
+display: flex;
+flex-wrap: wrap;
+gap: 36px;
+}
+.HeadingNameBox{
+  font-size: 28px;
+  font-weight: 700;
+  border-radius:5px;
+  padding-top: 12px;
+  padding-bottom:12px;
+  padding-left: 14px;
+  width: 780px;
+  padding-right: 14px;
+  z-index: 1;
+}
+.HeadingNameBoxStockSection{
+  font-size: 28px;
+  font-weight: 700;
+  border-radius:5px;
+  padding-top: 12px;
+  padding-bottom:12px;
+  padding-left: 14px;
+  width: 384px;
+  padding-right: 14px;
+  z-index: 1;
+}
+.HeadingNameBoxStockSection:hover{
+  border: 1px solid #60d5ba;
+}
+.HeadingNameBox:hover{
+  border: 1px solid #60d5ba;
+}
+.headingOptionBox{
+/* border: 2px solid; */
+position: absolute;
+z-index: 4;
+margin: -39px 0px 0px 286px;
+box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+background-color: white;
+border-radius: 24px;
+}
+.headingOptionBoxTechStockSection{
+  /* border: 2px solid; */
+  position: absolute;
+  z-index: 2;
+  margin: -35px 0px 0 87px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+  background-color: white;
+  border-radius: 24px;
+  }
+  .headingOptionAchievementsSection{
+    position: absolute;
+    z-index: 2;
+    margin: -35px 0px 0 287px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+    background-color: white;
+    border-radius: 24px;
+  }
+
+.headingOptionUnderBox{
+  /* border: 2px solid; */
+  z-index: 2;
+  position: absolute;
+  margin: -46px 0px -8px 234px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+  background-color: white;
+  border-radius: 24px;
+  }
+  .Bulets{
+    color:rgba(71, 72, 75, 0.81)
+
+  }
+  .headingOptionUnderBoxTechStock{
+    /* border: 2px solid; */
+    position: absolute;
+    z-index: 2;
+    margin: -42px 0px 0px 46px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+    background-color: white;
+    border-radius: 24px;
+    }
+    .headingOptionUnderAchievementSection{
+      position: absolute;
+      z-index: 2;
+      margin: -42px 0px 0px 260px;
+      box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+      background-color: white;
+      border-radius: 24px;
+    }
+    .headingOptionUnderLanguageSection{
+      position: absolute;
+      z-index: 2;
+      margin: -30px 0px 0px 65px;
+      width: 311px;
+      box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+      background-color: white;
+      border-radius: 24px;
+    }
+    .headingOptionUnderPAssionSection{
+      position: absolute;
+      z-index: 2;
+      margin: -30px 0px 0px 18px;
+      width: 359px;
+      box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+      background-color: white;
+      border-radius: 24px;
+    }
+    .ToolAndTechnologyTechStockSection{
+    /* border: 2px solid red; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.582);
+    font-size: 20px;
+    width: 45%;
+    margin: 9px 15px 0 0;
+    }
+.newEntryPlusIcon{
+  margin: 12px 0px 0px 17px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.DeleteIcon{
+  /* border: 1px solid; */
+  padding: 10px;
+  font-size: 30px;
+  height: 33px;
+  border-right: 2px solid rgba(0, 0, 0, 0.473);
+  cursor: pointer;
+}
+.outerWraperTextFormateLinks{
+  display: flex;
+  /* border: 1px solid; */
+  width: 184px;
+  border-radius: 30px;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+  background-color: white;
+  margin: -49px 0px -8px 293px;
+  z-index: 2;
+}
+.TextFormateIcon{
+  transition: color .2s ease-in-out,background-color .2s ease-in-out;
+  cursor: pointer;
+  color: #384347;
+  margin: 0px 9px 0px 7px;
+  font-size: 30px!important;
+  border-radius: 5px;
+}
+.TextFormateIcon:hover{
+color: #60d5ba;
+}
+.DeleteIcon:hover{
+  color: red;
+}
+.rangeslider-horizontal .rangeslider__fill {
+  height: 100%;
+  background-color: aquamarine;
+  border-radius: 10px;
+  top: 0;
+}
+.ArrangeIcon{
+  /* border: 1px solid; */
+  padding: 10px;
+  height: 28px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.ArrowIcon{
+  /* border: 1px solid; */
+  height: 28px;
+  margin: 12px 0px 0px 5px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.ArrowIcon:hover{
+  color: rgb(0, 192, 145);;
+  }
+.ArrangeIcon:hover{
+color: rgb(0, 192, 145);;
+}
+.outerWraperPlusAndNewEntry{
+  display: flex;
+    color: white;
+    background-color: rgb(0, 192, 145);
+    border-right: 1px solid;
+    font-size: 14px;
+    /* border-radius: 22px; */
+    border-radius: 24px 0px 0 24px;
+    cursor: pointer;
+}
+.outerWraperPlusAndNewEntry:hover{
+ background-color:#009c76;
+}
+.outerWraperAdress{
+/* border: 1px solid; */
+margin: 10px 0 0 0;
+display: flex;
+}
+.outerContainerAdressHeader{
+/* border: 1px solid red; */
+margin: 38px 0 0 0;
+}
+.AdressIconHeader{
+color: #008CFF;
+margin: 0px 9px 0 0;
+font-size: 20px;
+}
+.adressText{
+  font-size: 15px;
+}
+.InnerHeadingText{
+  color:#008CFF !important;
+  font-size:21px;
+  margin: 8px 0 0 0;
+  font-weight:"700";
+}
+.newEntryText{
+  margin: 4px 0 0 0;
+  font-size: 20px;
+  padding: 10px;
+}
+.UserImg{
+  height: 189px;
+  width: 183px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.UserImg:hover{
+color: blue;
+}
+.outerWraperUserImgHover{
+  background-color:rgba(0, 0, 0, 0.568);
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:5px;
+  transition: all 1.3s ease !important;
+  cursor: pointer;
+  border-radius: 9px;
+}
+.UploadIconUserImg{
+  color: #fff;
+  font-size: 35px;
+  margin: 1px 24px 0 0;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: #00c091;
+}
+.UploadIconUserImg:hover{
+  background-color: #008d6a;
+}
+.EyeIconUserImg{
+  color: #fff;
+  font-size: 35px;
+  margin: 1px 24px 0 0;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: #ff576f;
+}
+.EyeIconUserImg:hover{
+  background-color: #ff2443;
+}
+
+.outerWraperIconUserImag{
+  margin: 70px 0px 0px 34px;
+}
+.OuterWraperToggleButtons{
+  position: absolute;
+  z-index: 99999999;
+  background-color: white;
+  padding: 18px;
+  border-radius: 4px;
+  top: 59px;
+  left: 34%;
+  box-shadow: 0 7px 10px rgb(0 0 0 / 60%);
+}
+.OuterWraperToggleButtonsExperienceSection{
+  position: absolute;
+  z-index: 99999999;
+  background-color: white;
+  padding: 18px;
+  border-radius: 4px;
+  margin: 0px 0px 0px 325px;
+  box-shadow: 0 7px 10px rgb(0 0 0 / 60%);
+}
+.InnerWraperToggleButtons{
+display: flex;
+}
+.ToggleButtonsLabel{
+  /* border: 1px solid; */
+  transition: color .2s ease-in-out;
+  font-size: 17px;
+  color: #384347;
+  width: 171px;
+  margin: 19px 0 0 0;
+  cursor: pointer;
+  font-weight: 400;
+  font-family: "Inter UI", Arial, Helvetica, "Noto Sans Devanagari", "Noto Sans CJK SC Thin", "Noto Sans SC", "Noto Sans Hebrew", sans-serif !important;
+}
+.ToggleButtonsLabel:hover{
+  color:#008d6a;
+}
+.outerWraperSwitchClass{
+/* border: 1px solid; */
+margin: 15px 0 0 0;
+}
+.BottomLineTogleButtons{
+  border-bottom:1px solid #ddd;
+  margin: 15px 0px 0px 0;
+}
+.RadioButtonsToggleButtons{
+  display: block;
+  cursor: pointer;
+  width: 19px;
+  height: 19px;
+  margin: 17px 5px 0px 0px;
+  border-radius: 19px;
+ 
+}
+.RadioButtonsToggleButtons:hover{
+  color: #999;
+}
+input[type='radio']:checked:before {
+  background:green;
+}
+input[type='radio']:after {
+  color: #999;
+  background-color: gold;
+}
+
+input[type='radio']:checked:after {
+  color: #999;
+  background-color: gold;
+}
+.outerWraperModal{
+  /* border: 2px solid;  */
+  position: absolute;
+    z-index: 4;
+    width: 26%;
+    left: 32%;
+    padding: 0px 46px 0px 46px;
+    top: -96px;
+    border-radius: 10px;
+    height: 122%;
+    background-color: white;
+}
+.outerWraperModalHover{
+  /* border: 2px solid; */
+  position: absolute;
+  z-index: 3;
+  left: -41px;
+  right: -42px;
+  background:#535064cc;
+  top: -107px;
+  bottom: -108px;
+}
+.outerWraperCloseIconeModal{
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid tan; */
+  margin: 47px 0 0 0;
+}
+.closeModal{
+/* border: 2px solid red; */
+cursor: pointer;
+color: #b2b4b6;
+font-size: 30px;
+transition: all 0.5s ease-in-out;
+}
+.closeModal:hover{
+transform: rotate(90deg);
+/* transform: rotate(0deg); */
+-webkit-transition: -webkit-transform .4s ease-in-out;
+transition: -webkit-transform .4s ease-in-out;
+transition: transform .4s ease-in-out;
+transition: transform .4s ease-in-out,-webkit-transform .4s ease-in-out;
+
+}
+.PhotoLabelModal{
+color: #b2b4b6;
+font-size: 18px;
+font-weight: 400;
+font-family: Inter UI;
+}
+.outerWraperModalImg{
+/* border:1px solid red; */
+position: relative;
+margin: 29px 0px 0px 99px;
+}
+.outerWraperTextLabelImportPhoto{
+/* border:1px solid ; */
+color: #b2b4b6;
+font-size: 18px;
+margin: 17px 0 0 0;
+}
+.outerWraperFromComputer{
+  border: 1px solid #8c7cdb;
+  font-size: 19px;
+  padding: 14px;
+  border-radius: 9px;
+  color: #8c7cdb;
+  margin: 8px 0px 11px 0;
+  display:  block;
+  cursor: pointer;
+}
+.outerWraperFromComputer:hover{
+color: #00c091;
+border-color: #00c091;
+}
+.outerWraperSocialMediaModal{
+display: flex;
+justify-content: space-between;
+}
+.outerWraperOKButtonModal{
+  border: 1px solid;
+  padding: 0px 47px 0px 48px;
+  line-height: 69px;
+  border-radius: 9px;
+  margin: 31px 0px 42px 0px;
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+  background-color: #8c7cdb;
+}
+.outerWraperOKButtonModal:hover{
+background-color: #624cce;
+color: white;
+}
+
+.facebookIconModal{
+/* border: 1px solid; */
+margin: 0px 0px 0px 11px;
+}
+.oterWraperNotesLabelModal{
+/* border:1px solid; */
+position: absolute;
+    bottom: -116px;
+    left: 0;
+    z-index: 0;
+    background-color: #e6e6e6;
+    font-size: 17px;
+    line-height: 22px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 50px 40px 30px;
+    color: rgba(0, 0, 0, 0.527);
+}
+input[type="file"]{
+  display: none;
+}
+.outerWraperBackButtonsUserUploadPhoto{
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: center;
+  margin: 19px 0 0 0;
+  gap: 18px;
+}
+.backButtonsUserUploadPhoto{
+  border: 1px solid #8c7cdb;
+    color: #8c7cdb;
+    font-size: 21px;
+    padding: 9px 25px 9px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.AcceptButtonsUserUploadPhoto{
+  /* border: 1px solid yellow; */
+  color: white;
+  font-size: 21px;
+  padding: 9px 25px 9px 25px;
+  border-radius: 5px;
+  background-color: #8c7cdb;
+  cursor: pointer;
+}
+.backButtonsUserUploadPhoto:hover{
+  background-color: #fff;
+    border-color: #00c091;
+    color: #00c091;
+}
+.AcceptButtonsUserUploadPhoto:hover{
+  color: #fff;
+  background-color: #624cce;
+}
+.UserImgHover{
+  /* border: 1px solid;  */
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  left: 143px;
+  right: 119px;
+  top: 105px;
+  bottom: 189px;
+  color: aliceblue;
+  border-radius: 96px;
+}
+.datePicker{
+/* border: 1px solid; */
+width: 85px;
+font-size: 16px;
+cursor: pointer;
+margin: 0px 7px 0 0;
+color: rgba(71, 72, 75, 0.81);
+}
+.deleteIconUserImage{
+/* border: 2px solid; */
+color: rgb(255, 255, 255);
+background-color: rgb(0, 192, 145);
+font-size: 35px;
+padding: 7px;
+border-radius: 5px;
+margin: 66px 0 0 0;
+cursor: pointer;
+}
+.deleteIconUserImage:hover{
+background-color:  rgb(0, 141, 106);
+color: rgb(255, 255, 255);
+}
+.outerWraperAvatar{
+margin: 12px 0px 0px 41px;
+}
+.avatarbuttons{
+/* border:1px solid; */
+margin: 8px 0px 0px 15px;
+}
+.dateIcone{
+/* border: 2px solid; */
+font-size: 18px;
+margin: -1px 6px 0px 0px;
+}
+.outerWraperDateExperienceSection{
+/* border: 2px solid; */
+display: flex;
+cursor: pointer;
+color: rgba(71, 72, 75, 0.81);
+margin: 7px 13px 4px 0px;
+}
+.outerWraperIputFieldGPA{
+  /* border: 1px solid red; */
+  width: 33px;
+  font-size: 18px;
+}
+.medium-editor-element {
+  word-wrap: break-word;
+  min-height: 30px;
+  margin: 0;
+  padding: 0px;
+  overflow: hidden;
+  width: 334px;
+ padding:0px;
+  color: rgba(71, 72, 75, 0.81);
+}
+.outerWraperRichText{
+/* border: 1px solid; */
+}
+::marker {
+  color: rgba(71, 72, 75, 0.81);
+}
+/* .p{
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  width: 422px;
+  border: 1px solid black;
+  z-index: 999999;
+  background-color: blue;
+} */
+.medium-editor-placeholder:after {
+  color: unset !important;
+  font-style: unset !important;
+  pointer-events: none;
+  font-size: 16px;
+}
+.TexrHolderexperience{
+  outline: none;
+}
+.EditorText{
+  margin: -11px 0px 0px 25px;
+}
+.outerWraperEditor {
+  /* border: 1px solid; */
+  margin: 5px 0px -8px 0px;
+}
+.RichText{
+  content:"\A";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background: rgba(0, 0, 0, 0.479);
+  margin-right: 5px;
+  display:inline-block;
+  margin: 4px 13px 0px 4px;
+}
+.medium-editor-element:focus{
+  outline: none;
+}
+
+.outerWraperInputFieldKnowledgeAndExperience{
+  /* border: 1px solid; */
+  width: 256px;
+  font-size: 16px;
+  margin: 0px 6px 0 0;
+}
+.outerWraperTextHolderGPAField{
+/* border: 1px solid green; */
+display: flex;
+margin: -14px 0 0 0;
+}
+.GPA{
+  /* border: 1px solid yellow; */
+    font-size: 20px;
+    margin: 6px 0px 20px 38px;
+    color: rgba(71, 72, 75, 0.81);
+}
+.outerWraperGPAField{
+/* border: 1px solid teal; */
+width: 166px;
+border-left: 2px solid rgba(0, 0, 0, 0.459);
+margin: 18px 0px 19px 8px;
+height: 101px;
+padding: 0px 0px 0px 13px;
+}
+.Slash{
+/* border: 1px solid; */
+    font-size: 41px;
+    margin: 1px 12px 0px 0;
+    color: rgba(71, 72, 75, 0.81);
+}
+.companyNameTitleExperienceSection{
+color:  #008CFF !important;
+font-size: 16px;
+}
+.companyNameTitleExperienceSection::placeholder{
+  color:  #008CFF !important;
+}
+.companyTitleExperienceSection{
+/* border: 1px solid; */
+font-size: 20px;
+}
+.outerWraperContainerDateLocationExperienceSection{
+  display: flex;
+  /* border: 1px solid; */
+}
+.outerWraperCompanyDescriptionExperienceSection{
+/* border: 1px solid; */
+font-size: 19px;
+width: 50%;
+color: rgba(56, 67, 71, 0.747);
+}
+.PlusIconStockSection{
+/* border: 1px solid; */
+font-size: 21px;
+color: #384347;
+margin: 15px 9px 0px 8px;
+cursor: pointer;
+}
+.PlusIconStockSection:hover{
+color: #00c091;
+}
+.outerWraperToolAndTechnology{
+display: flex;
+flex-wrap: wrap;
+border: 1px solid;
+}
+.outerWraperULTag{
+  margin: 8px 0px -7px 0;
+}
+.outerWraperLinkBox{
+  border: 1px solid #384347a6;
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: white;
+  margin: -50px 0px 0 277px;
+}
+.outerWraperOKButtonLinkBox{
+  transition: color .2s ease-out,background-color .2s;
+  color: #fff;
+  background-color: #00c091;
+  font-size: 21px;
+  border-radius: 5px;
+  margin: 0px 15px 0px 15px;
+  padding: 6px;
+  cursor: pointer;
+}
+.outerWraperOKButtonLinkBox:hover{
+  color: #fff;
+  background-color: #017e5e;
+}
+.outerWraperDeleteIconLinkBox{
+      transition: color .2s ease-out,background-color .2s;
+      color: #fff;
+      background-color: #ff2443;
+      font-size: 21px;
+      border-radius: 5px;
+      padding: 8px;
+      cursor: pointer;
+  }
+ .outerWraperDeleteIconLinkBox:hover {
+    color: #fff;
+    background-color: #fd0627;
+  }
+.inputFieldLinkBox{
+  border: 1px solid #384347a6;
+    height: 26px;
+    color: #384347;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 5px 0px 5px 11px;
+}
+.inputFieldLinkBox:focus{
+  border: 1px solid #00c091;
+ 
+}

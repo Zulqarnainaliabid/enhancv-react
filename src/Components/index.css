@@ -1,0 +1,31 @@
+.rangeslider-horizontal .rangeslider__fill {
+    height: 100%;
+    background-color: #008CFF !important;
+    border-radius: 10px;
+    top: 0;
+}
+.rangeslider-horizontal {
+    height: 9px;
+    border-radius: 10px;
+}
+.rangeslider, .rangeslider .rangeslider__fill {
+    display: block;
+    box-shadow: unset;
+}
+.rangeslider {
+    margin: 20px 0;
+    position: relative;
+    background: black;
+    touch-action: none;
+}
+.outerWraperTextHolder{
+    /* border: 1px solid; */
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 21px 0px 21px;
+        font-size: 23px;
+        color:#65696d;
+    }
+    .rangeslider-horizontal .rangeslider__handle {
+        display: none;
+    }
