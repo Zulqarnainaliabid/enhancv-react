@@ -1,5 +1,6 @@
 *{
   font-family: "Rubik", Arial, Helvetica, "Noto Sans Devanagari", "Noto Sans CJK SC Thin", "Noto Sans SC", "Noto Sans Hebrew", sans-serif !important;
+     transition: background 1.3s;
 }
 .outerContainter
 {
@@ -14,32 +15,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 56px;
+  width: 75%;
+  padding: 5% 0px 5% 0px;
   margin: 7% 0% 7% 0%;
   box-shadow: 0 7px 10px rgb(0 0 0 / 60%);
   border: 2px solid red;
   position: relative;
-}
-.app {
-  /* margin: -15px 0px -13px 0px; */
 }
 input{
   outline: none;
   border: none;
   background-color: unset;
 }
-.outerWraperEditor {
-  /* border: 1px solid; */
-  /* margin: 0px 481px -12px 0px; */
-}
 .outerWraperBox{
   display: flex;
+  position: relative;
   flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
   transition: background .3s;
   padding: 15px;
+  border: 1px solid transparent;
   z-index: 1;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 .outerWraperBox:hover{
   border: 1px solid #60d5ba;
@@ -54,6 +53,12 @@ input{
 color:#008CFF !important;
 font-size: 18px;
 width: 100%;
+}
+.outerWraperGroupTitle::placeholder{
+  color: #008CFF !important;
+}
+.outerWraperGroupTitle:focus::placeholder{
+  color: #008cff7c !important;
 }
 .input[range]{
 width: 372px;
@@ -104,6 +109,8 @@ border: 1px solid #00c091;
 .outerWraperInputFieldHaider{
 display: flex;
 flex-direction: column;
+width: 100%;
+line-height: 16px;
 /* border: 1px solid firebrick; */
 }
 .outerWraperBoxHeaderButton{
@@ -123,19 +130,132 @@ flex-direction: column;
 .inconCamer:hover{
 color: #00c091;
 }
-.outerWraperTwoSectionExperienceAndTechstock{
-display: flex;
-flex-wrap: wrap;
-gap: 36px;
+.outerWraperTwoSections{
+  display: flex;
+  grid-gap: 4%;
+  /* border: 1px solid; */
+  padding: 12px;
+  justify-content: space-between;
+  margin: 0px 0 0 0;
+  width: 90%;
+  z-index: 4;
 }
+.SectionLeft {
+  border: 1px solid blue;
+  width: 37%;
+}
+.SectionRight {
+  border: 1px solid red;
+  width: 64%;
+  /* display: flex;
+  flex-direction: column;
+  gap: 12px; */
+}
+.FirstSection{
+  /* border: 1px solid; */
+  background: rgb(243, 243, 243);
+  width: 70%;
+  height: 400px;
+  text-align: center;
+}
+.AddnewSection {
+  color: #fff;
+  background-color: #8c7cdb;
+  border-color: transparent;
+  padding: 12px;
+  margin: -20px 0 0 0;
+  display: inline;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.outerContainerSection{
+  border: 1px solid;
+  background-color: white;
+  z-index: 5;
+   width: 98%;
+  padding: 40px 76px 25px 76px;
+  border-radius: 6px;
+  top: -86px;
+  position: absolute;
+  height: 573px;
+}
+.AddtoResume{
+    text-align: center;
+    color: #fff;
+    background-color: #8c7cdb;
+    border-color: transparent;
+    display: inline;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0px 6px 5px 6px;
+    position: absolute;
+    text-align: center;
+    top: 77px;
+    border-radius: 6px;
+    right: 69px
+}
+.HoverImage1 {
+  border: 1px solid;
+  position: absolute;
+  top: 0;
+  left: 9px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.493);
+  bottom: 39px;
+}
+.HoverBackground{
+  position: absolute;
+  top: -109px;
+  bottom: -228px;
+  left: -191px;
+  right: -188px;
+  background-color: rgba(0, 0, 0, 0.61);
+  z-index: 4;
+}
+.subHeadingSection {
+  text-align: center;
+  font-size: 20px;
+  margin: 5px 0px 10px 0;
+}
+.HeadingSection {
+  text-align: center;
+  font-size: 33px;
+}
+.outerWraperSection{
+  background-color: white;
+  padding: 25px 0px 25px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: 104%;
+  margin: 0px 0px 0px -16px;
+  overflow-y: scroll;
+  justify-content: space-between;
+  height: 457px;
+  /* border: 1px solid red; */
+}
+.AddnewSection:hover{
+  background-color: #684df1;
+}
+.SecondSection{
+  background: rgb(243, 243, 243);
+  width: 30%;
+  height: 400px;
+  text-align: center;
+}
+
 .HeadingNameBox{
+  position: relative;
+  display: flex;
+  justify-content: center;
   font-size: 28px;
   font-weight: 700;
   border-radius:5px;
   padding-top: 12px;
   padding-bottom:12px;
+  border: 1px solid transparent;
   padding-left: 14px;
-  width: 780px;
   padding-right: 14px;
   z-index: 1;
 }
@@ -156,15 +276,24 @@ gap: 36px;
 .HeadingNameBox:hover{
   border: 1px solid #60d5ba;
 }
-.headingOptionBox{
+.headingOptionBoxRight{
 /* border: 2px solid; */
 position: absolute;
+top: -50px;
 z-index: 4;
-margin: -39px 0px 0px 286px;
 box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
 background-color: white;
 border-radius: 24px;
 }
+.headingOptionBoxEducation{
+  /* border: 2px solid; */
+  position: absolute;
+  z-index: 4;
+  top: -50px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+  background-color: white;
+  border-radius: 24px;
+  }
 .headingOptionBoxTechStockSection{
   /* border: 2px solid; */
   position: absolute;
@@ -187,10 +316,18 @@ border-radius: 24px;
   /* border: 2px solid; */
   z-index: 2;
   position: absolute;
-  margin: -46px 0px -8px 234px;
+  top: -50px;
   box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
   background-color: white;
   border-radius: 24px;
+  }
+  .headingOptionUnderBoxEducation{
+    z-index: 2;
+    position: absolute;
+    top: -50px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+    background-color: white;
+    border-radius: 24px;
   }
   .Bulets{
     color:rgba(71, 72, 75, 0.81)
@@ -234,19 +371,23 @@ border-radius: 24px;
     .ToolAndTechnologyTechStockSection{
     /* border: 2px solid red; */
     border-bottom: 1px solid rgba(0, 0, 0, 0.582);
-    font-size: 20px;
+    font-size: 15px;
     width: 45%;
-    margin: 9px 15px 0 0;
+    padding: 0px 0px 4px 0;
+    margin: 7px 26px 17px 0px
+    }
+    .ToolAndTechnologyTechStockSection:focus::placeholder{
+      color: rgba(0, 0, 0, 0.192);
     }
 .newEntryPlusIcon{
-  margin: 12px 0px 0px 17px;
-  font-size: 25px;
+  margin: 15px 0px 0px 17px;
+  font-size: 20px;
   cursor: pointer;
 }
 .DeleteIcon{
   /* border: 1px solid; */
-  padding: 10px;
-  font-size: 30px;
+  padding: 8px;
+  font-size: 25px;
   height: 33px;
   border-right: 2px solid rgba(0, 0, 0, 0.473);
   cursor: pointer;
@@ -284,9 +425,9 @@ color: #60d5ba;
 }
 .ArrangeIcon{
   /* border: 1px solid; */
-  padding: 10px;
-  height: 28px;
-  font-size: 30px;
+  padding: 8px;
+  height: 29px;
+  font-size: 25px;
   cursor: pointer;
 }
 .ArrowIcon{
@@ -304,13 +445,11 @@ color: rgb(0, 192, 145);;
 }
 .outerWraperPlusAndNewEntry{
   display: flex;
-    color: white;
-    background-color: rgb(0, 192, 145);
-    border-right: 1px solid;
-    font-size: 14px;
-    /* border-radius: 22px; */
-    border-radius: 24px 0px 0 24px;
-    cursor: pointer;
+  color: white;
+  background-color: rgb(0, 192, 145);
+  border-right: 1px solid;
+  border-radius: 24px 0px 0 24px;
+  cursor: pointer;
 }
 .outerWraperPlusAndNewEntry:hover{
  background-color:#009c76;
@@ -332,20 +471,32 @@ font-size: 20px;
 .adressText{
   font-size: 15px;
 }
+.adressText:focus::placeholder{
+  color: #3843475e;
+}
 .InnerHeadingText{
-  color:#008CFF !important;
+  
   font-size:21px;
-  margin: 8px 0 0 0;
   font-weight:"700";
 }
+.InnerHeadingText::placeholder{
+  color:#008CFF !important;
+}
+.InnerHeadingText:focus::placeholder{
+  color:#008cff81 !important;
+}
+.input:focus{
+  color: #008d6a;
+  background-color: #008d6a;
+}
 .newEntryText{
-  margin: 4px 0 0 0;
-  font-size: 20px;
+  margin: 5px 0 0 0;
+  font-size: 17px;
   padding: 10px;
 }
 .UserImg{
-  height: 189px;
-  width: 183px;
+  height: 170px;
+  width: 169px;
   object-fit: cover;
   cursor: pointer;
 }
@@ -460,7 +611,7 @@ input[type='radio']:checked:after {
 .outerWraperModal{
   /* border: 2px solid;  */
   position: absolute;
-    z-index: 4;
+    z-index: 5;
     width: 26%;
     left: 32%;
     padding: 0px 46px 0px 46px;
@@ -628,12 +779,10 @@ color: rgba(71, 72, 75, 0.81);
 }
 .deleteIconUserImage{
 /* border: 2px solid; */
-color: rgb(255, 255, 255);
-background-color: rgb(0, 192, 145);
-font-size: 35px;
-padding: 7px;
-border-radius: 5px;
-margin: 66px 0 0 0;
+padding: 10px;
+font-size: 25px;
+height: 25px;
+border-right: 2px solid rgba(0, 0, 0, 0.473);
 cursor: pointer;
 }
 .deleteIconUserImage:hover{
@@ -659,6 +808,15 @@ cursor: pointer;
 color: rgba(71, 72, 75, 0.81);
 margin: 7px 13px 4px 0px;
 }
+.outerWraperDateExperienceSectionDatePeriod{
+  display: flex;
+  cursor: pointer;
+  color: rgba(71, 72, 75, 0.81);
+  margin: 7px 13px 4px 0px;
+}
+.outerWraperDateExperienceSectionDatePeriod:hover{
+  color: rgba(71, 72, 75, 0.308);
+}
 .outerWraperIputFieldGPA{
   /* border: 1px solid red; */
   width: 33px;
@@ -668,27 +826,55 @@ margin: 7px 13px 4px 0px;
   word-wrap: break-word;
   min-height: 30px;
   margin: 0;
+  width: 229px;
   padding: 0px;
   overflow: hidden;
-  width: 334px;
- padding:0px;
+  padding:0px;
   color: rgba(71, 72, 75, 0.81);
 }
-.outerWraperRichText{
-/* border: 1px solid; */
+
+.OuterwrpaerGPA{
+  font-size: 16px;
+  margin: 0px 0px 0px 59px;
+}
+.OuterwrpaerGPA:focus::placeholder{
+  color: rgba(71, 72, 75, 0.514);
+}
+.GPASlash{
+  font-size: 24px;
+  margin: 4px 5px 0px 5px;
+}
+.GPARight{
+  font-size: 16px;
+}
+.GPARight:focus::placeholder{
+  color: rgba(71, 72, 75, 0.514);
+}
+.GPALeft{
+  /* border: 1px solid; */
+  width: 24px;
+  font-size: 16px;
+}
+
+.GPALeft::placeholder{
+  color: #008CFF;
+}
+.GPALeft:focus::placeholder{
+  color: #008cff9a;
 }
 ::marker {
   color: rgba(71, 72, 75, 0.81);
 }
-/* .p{
+.BackGroundHoverEffectDate{
+  /* border: 1px solid; */
   position: absolute;
-  padding: 0px;
-  margin: 0px;
-  width: 422px;
-  border: 1px solid black;
-  z-index: 999999;
-  background-color: blue;
-} */
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.274);
+}
 .medium-editor-placeholder:after {
   color: unset !important;
   font-style: unset !important;
@@ -696,8 +882,22 @@ margin: 7px 13px 4px 0px;
   font-size: 16px;
 }
 .TexrHolderexperience{
-  outline: none;
+  font-size: 29px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 0px 9px 0px;
+  margin: 0px 0px -15px 4px;
+  font-weight: 600;
 }
+.TexrHolderexperience::placeholder
+{
+  color: black;
+}
+.TexrHolderexperience:focus::placeholder
+{
+  color:rgba(71, 72, 75, 0.89);
+}
+
 .EditorText{
   margin: -11px 0px 0px 25px;
 }
@@ -707,8 +907,8 @@ margin: 7px 13px 4px 0px;
 }
 .RichText{
   content:"\A";
-  width:8px;
-  height:8px;
+  width: 7px;
+  height: 7px;
   border-radius:50%;
   background: rgba(0, 0, 0, 0.479);
   margin-right: 5px;
@@ -750,20 +950,49 @@ padding: 0px 0px 0px 13px;
     margin: 1px 12px 0px 0;
     color: rgba(71, 72, 75, 0.81);
 }
+.Username:focus::placeholder{
+color:rgba(71, 72, 75, 0.37);;
+}
 .companyNameTitleExperienceSection{
-color:  #008CFF !important;
-font-size: 16px;
+font-size: 17px;
 }
 .companyNameTitleExperienceSection::placeholder{
   color:  #008CFF !important;
 }
+.companyNameTitleExperienceSection:focus::placeholder{
+  color:   #008cff6e !important;
+}
 .companyTitleExperienceSection{
 /* border: 1px solid; */
-font-size: 20px;
+font-size: 23px;
+}
+.companyTitlePassionsSection:focus::placeholder{
+color:rgba(71, 72, 75, 0.37);;
+}
+.companyTitleExperienceSection::placeholder{
+  color:  #008CFF !important;
+}
+.companyTitleExperienceSection:focus::placeholder{
+  color:   #008cff6e !important;
+}
+.companyTitleExperienceSection:focus::placeholder{
+  color:rgba(71, 72, 75, 0.329);
 }
 .outerWraperContainerDateLocationExperienceSection{
   display: flex;
   /* border: 1px solid; */
+}
+.LocationExperienceSection{
+font-size: 15px;
+}
+.URLExperienceSection{
+  font-size: 15px;
+}
+.URLExperienceSection:focus::placeholder{
+  color:rgba(71, 72, 75, 0.37);;
+}
+.LocationExperienceSection:focus::placeholder{
+  color:rgba(71, 72, 75, 0.37);;
 }
 .outerWraperCompanyDescriptionExperienceSection{
 /* border: 1px solid; */
@@ -836,5 +1065,4 @@ border: 1px solid;
 }
 .inputFieldLinkBox:focus{
   border: 1px solid #00c091;
- 
 }

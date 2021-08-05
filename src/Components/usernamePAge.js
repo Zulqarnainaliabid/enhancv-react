@@ -13,6 +13,8 @@ import AvatarEditor from "react-avatar-editor";
 import { GrFormClose } from "react-icons/gr";
 import { ImFacebook2 } from "react-icons/im";
 import { RiDeleteBinLine } from "react-icons/ri";
+import {INCREMENTDATA} from './Redux/actions/indux'
+import {useSelector, useDispatch} from 'react-redux'
 export default function Header(props) {
   const [Border, setBorder] = useState(null);
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -45,7 +47,11 @@ export default function Header(props) {
   const [UserLink, setUserLink] = useState(null);
   const [Circle, setCircle] = useState("#00c091");
   const [Square, setSquare] = useState("#ccc");
+  const counter = useSelector(state => state.counter)
+  const dispatch = useDispatch();
   function HandleBoarder() {
+    dispatch(INCREMENTDATA())
+    console.log("onclick1234;;")
     props.button();
     setBorder("1px solid #60d5ba");
     setbackgroundColor("white");
@@ -58,6 +64,13 @@ export default function Header(props) {
     setShowHeaderButton("none");
     setToggleButton(false);
   }, [props.data]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setBorder(null);
+    setShowHeaderButton("none");
+    setToggleButton(false);
+  }, [counter]);
 
   function HandleCloseUserImage() {
     setDisplayUserImage("none");
@@ -114,7 +127,6 @@ export default function Header(props) {
       )
     ) {
     } else {
-      console.log(fileChangeEvent.target.files);
       setSelectedImage(fileChangeEvent.target.files[0]);
       setCheckIfImag(true);
       setFacekoobButtons("none");
@@ -122,7 +134,6 @@ export default function Header(props) {
     }
   };
   const onCrop = () => {
-    console.log(editor, "onCrop");
     if (editor !== null) {
       const url = editor.getImageScaledToCanvas().toDataURL();
       setdisplayFinalImage(true);
@@ -333,13 +344,16 @@ export default function Header(props) {
           border: Border,
           backgroundColor: backgroundColor,
           borderRadius: "5px",
-          width: "1227px",
+          width:"90%",
+          alignItems:"unset"
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
             <div className="outerWraperInputFieldHaider">
               <input
+                tabindex="0"
+                className="Username"
                 value={UserName}
                 type="text"
                 style={{
@@ -349,6 +363,12 @@ export default function Header(props) {
                 }}
                 placeholder="YOUR NAME"
                 onChange={HandleUserName}
+                onFocus={()=>{
+                 console.log("io focus")
+                }}
+                onBlur={()=>{
+                  console.log("io blur")
+                 }}
               />
               <input
                 type="text"
@@ -504,7 +524,6 @@ export default function Header(props) {
             )}
             {CheckIfImag && (
               <div>
-                {console.log("boolean working")}
                 <div className="outerWraperAvatar">
                   <AvatarEditor
                     scale={scaleValue}

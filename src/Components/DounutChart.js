@@ -5,7 +5,6 @@ class ApexChart extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       options: {},
       series: [44, 55],
@@ -13,10 +12,7 @@ class ApexChart extends Component {
     }
    
   }
-
-
   render() {
-
     return (
       <div className="donut">
         <Chart options={this.state.options} series={this.state.series}  type="donut" width="380" />

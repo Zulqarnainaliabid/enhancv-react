@@ -12,12 +12,15 @@
     display: block;
     box-shadow: unset;
 }
+
 .rangeslider {
     margin: 20px 0;
     position: relative;
     background: black;
     touch-action: none;
+    cursor: pointer;
 }
+
 .outerWraperTextHolder{
     /* border: 1px solid; */
         display: flex;

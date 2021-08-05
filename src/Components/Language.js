@@ -1,177 +1,169 @@
-import React, { useState, useEffect } from 'react';
-import './HomePage.css';
-import { CgArrangeFront } from 'react-icons/cg';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-import { FaPlus } from 'react-icons/fa';
-import { RiSettings5Fill } from 'react-icons/ri';
-import { CgFormatUppercase } from 'react-icons/cg';
-import SwitchButtons from './toggleButtons';
-import SliderComponent from './Slider';
-export function ToolAndTechnology() {
-	return <input type="text" placeholder="Tool/Tecnology" className="ToolAndTechnologyTechStockSection" />;
-}
-
-export function TechStockAddSection(props) {
-	const [Border, setBorder] = useState(null);
-	const [ShowHeaderUnderButton, setShowHeaderUnderButton] = useState('none');
-	const [backgroundColor, setbackgroundColor] = useState(null);
-	const [ToggleButtons, setToggleButtons] = useState(false);
-	const [ShowSlider, setShowSlider] = useState('block');
-	const [ShowProfenciency, setShowProfenciency] = useState('flex');
-	function HandleBoarderUnder() {
-		props.button();
-		setToggleButtons(false);
-		setBorder('1px solid #60d5ba');
-		setbackgroundColor('white');
-		setShowHeaderUnderButton('flex');
-	}
-	useEffect(() => {
-		setbackgroundColor(null);
-		setBorder(null);
-		setToggleButtons(false);
-		setShowHeaderUnderButton('none');
-	}, [props.data]);
-	function HandleShowSlider(toggle) {
-		if (toggle) {
-			setShowSlider('block');
-		} else {
-			setShowSlider('none');
-		}
-	}
-	function HandleShowProfenciency(toggle) {
-		if (toggle) {
-			setShowProfenciency('flex');
-		} else {
-			setShowProfenciency('none');
-		}
-	}
-	return (
-		<>
-			<div style={{ position: 'relative' }}>
-				<div style={{ display: ShowHeaderUnderButton }} className="headingOptionUnderLanguageSection">
-					<div
-						className="outerWraperPlusAndNewEntry"
-						onClick={() => {
-							props.handlerAddingToolAndTechnologySection();
-						}}
-					>
-						<FaPlus className="newEntryPlusIcon" />
-						<div className="newEntryText">New Entry</div>
-					</div>
-
-					<RiDeleteBin6Line
-						className="ArrangeIcon"
-						style={{ borderRight: '1px solid rgba(0, 0, 0, 0.26)' }}
-						onClick={() => {
-							props.handlerDeletingToolAndTechnologySection();
-						}}
-					/>
-					<CgFormatUppercase
-						className="ArrangeIcon"
-						style={{ borderRight: '1px solid rgba(0, 0, 0, 0.26)' }}
-					/>
-					<RiSettings5Fill
-						onClick={() => {
-							setToggleButtons(!ToggleButtons);
-						}}
-						style={{ borderLeft: '1px solid rgba(0, 0, 0, 0.26)' }}
-						className="ArrangeIcon"
-					/>
-				</div>
-			</div>
-			<div style={{ position: 'relative' }}>
-				{ToggleButtons && (
-					<div style={{ marginLeft: '110px' }} className="OuterWraperToggleButtonsExperienceSection">
-						<div className="InnerWraperToggleButtons">
-							<div className="ToggleButtonsLabel">Show Slider</div>
-							<div className="outerWraperSwitchClass">
-								<SwitchButtons name={'ShowSlider'} function={HandleShowSlider} />
-							</div>
-						</div>
-						<div className="InnerWraperToggleButtons">
-							<div className="ToggleButtonsLabel">Profenciency</div>
-							<div className="outerWraperSwitchClass">
-								<SwitchButtons name={'ShowProfenciency'} function={HandleShowProfenciency} />
-							</div>
-						</div>
-					</div>
-				)}
-			</div>
-			<div
-				className="outerWraperBoxTechStockSection"
-				onClick={HandleBoarderUnder}
-				style={{ border: Border, backgroundColor: backgroundColor, borderRadius: '5px',width:"373px"}}
-			>
-				<input className="outerWraperGroupTitle" placeholder="Area of expertise" />
-				<div style={{ display: ShowSlider }}>
-					<SliderComponent data={ShowProfenciency} />
-				</div>
-			</div>
-		</>
-	);
-}
+import React, { useState, useEffect } from "react";
+import "./HomePage.css";
+import { FaPlus } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { CgArrangeFront } from "react-icons/cg";
+import Boxfunction from "./LanguageBox";
+import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch, useSelector } from "react-redux";
+import { INCREMENT } from "./Redux/actions/indux";
 export default function Language(props) {
-	const [Border, setBorder] = useState(null);
-	const [ArrayadingToolAndTechnologySection, setArrayadingToolAndTechnologySection] = useState([]);
-	const [ShowHeaderButton, setShowHeaderButton] = useState('none');
-	const [BackGroundColor, setBackGroundColor] = useState(null);
-	function HandleBoarder() {
-		props.button();
-		setBorder('1px solid #60d5ba');
-		setShowHeaderButton('flex');
-		setBackGroundColor('white');
-	}
-	useEffect(() => {
-		setBorder(null);
-		setShowHeaderButton('none');
-		setBackGroundColor(null);
-	}, [props.data]);
-	function handlerAddingToolAndTechnologySection() {
-		ArrayadingToolAndTechnologySection.push(1);
-		setArrayadingToolAndTechnologySection([...ArrayadingToolAndTechnologySection]);
-	}
-	function handlerDeletingToolAndTechnologySection() {
-		ArrayadingToolAndTechnologySection.pop(1);
-		setArrayadingToolAndTechnologySection([...ArrayadingToolAndTechnologySection]);
-	}
-	return (
-		<>
-			<div style={{ position: 'relative' }}>
-				<div style={{ display: ShowHeaderButton }} className="headingOptionAchievementsSection">
-					<div className="outerWraperPlusAndNewEntry" onClick={handlerAddingToolAndTechnologySection}>
-						<FaPlus className="newEntryPlusIcon" />
-						<div className="newEntryText">New Entry</div>
-					</div>
-					<RiDeleteBin6Line className="DeleteIcon" onClick={handlerDeletingToolAndTechnologySection} />
-					<CgArrangeFront className="ArrangeIcon" />
-				</div>
-				<div style={{ display: 'flex', flexDirection: 'column' }}>
-					<div
-						style={{ border: Border, backgroundColor: BackGroundColor, width: '780px' }}
-						className="HeadingNameBoxStockSection"
-						onClick={HandleBoarder}
-					>
-						<div style={{ borderBottom: '4px solid' }}>LANGUAGE</div>
-					</div>
-					<div style={{zIndex:"3",width:"812px"}}>
-					<div style={{ display: 'flex',flexWrap: "wrap"}}>
-						{ArrayadingToolAndTechnologySection &&
-							ArrayadingToolAndTechnologySection.map((number) => {
-								return (
-									<TechStockAddSection
-										data={props.data}
-										button={props.button}
-										handlerDeletingToolAndTechnologySection={
-											handlerDeletingToolAndTechnologySection
-										}
-										handlerAddingToolAndTechnologySection={handlerAddingToolAndTechnologySection}
-									/>
-								);
-							})}
-					</div>
-					</div>
-				</div>
-			</div>
-		</>
-	);
+  const [ShowHeaderButton, setShowHeaderButton] = useState("none");
+  const [backgroundColor, setbackgroundColor] = useState(null);
+  const [array, setState] = useState([]);
+  const [borderBottm, setborderBottm] = useState("none");
+  const [UpdateState, setUpdateState] = useState(0);
+  const [ToggleArrowDown, setToggleArrowDown] = useState(true);
+  const [ToggleArrowUp, setToggleArrowUp] = useState(true);
+  const dispatch = useDispatch();
+  const CounterData = useSelector((state) => state.CounterData);
+  function HandleCompleteBoarderSelected() {
+    props.button();
+    console.log("oooo");
+    setbackgroundColor("white");
+    setShowHeaderButton("flex");
+    setborderBottm("1px dashed rgba(0, 0, 0, 0.548)");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }
+  function HandleCompleteBoarderUnSelected() {
+    setbackgroundColor(null);
+    setShowHeaderButton("none");
+  }
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+  }, [props.data]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+  }, [CounterData]);
+
+  function HandlerAddItemInArray() {
+    array.push({
+      selected: false,
+      toggleButton: { showSlider: true, showProficiency: true },
+      togglebuttonlist: [
+        { name: "Show Slider", selectedToggleButton: true },
+        { name: "Show Proficiency", selectedToggleButton: true },
+      ],
+      value: {
+        LanguageTextholder: "",
+        proficiencyTextHolder: "",
+        SliderValueTextHolder: "",
+      },
+    });
+    setState([...array]);
+    localStorage.setItem("arrayLanguage", JSON.stringify(array));
+  }
+  function HanderDeleteItemInArray() {
+    array.pop({
+      selected: false,
+      toggleButton: { showSlider: true, showProficiency: true },
+      togglebuttonlist: [
+        { name: "Show Slider", selectedToggleButton: true },
+        { name: "Show Proficiency", selectedToggleButton: true },
+      ],
+      value: {
+        LanguageTextholder: "",
+        proficiencyTextHolder: "",
+      },
+    });
+    setState([...array]);
+    localStorage.setItem("arrayLanguage", JSON.stringify(array));
+  }
+  useEffect(() => {
+    if (localStorage.getItem("arrayLanguage") !== null) {
+      let value = localStorage.getItem("arrayLanguage");
+      setState(JSON.parse(value));
+    }
+  }, []);
+  function IsActive(Isactive) {
+    if (Isactive) {
+      setToggleArrowDown(Isactive);
+    } else {
+      setToggleArrowDown(Isactive);
+    }
+  }
+  function IsActiveUp(Isactive) {
+    if (Isactive) {
+      setToggleArrowUp(Isactive);
+    } else {
+      setToggleArrowUp(Isactive);
+    }
+  }
+  return (
+    <>
+      <div
+        className="outerWraperCompleteBox"
+        style={{ backgroundColor: backgroundColor }}
+        onClick={() => {}}
+      >
+        <div
+          style={{ backgroundColor: backgroundColor }}
+          className="HeadingNameBox"
+          onClick={HandleCompleteBoarderSelected}
+        >
+          <input
+            tabindex="0"
+            className="TexrHolderexperience"
+            style={{ borderBottom: "4px solid" }}
+            placeholder="LANGUAGE"
+            onClick={() => {
+              setUpdateState(UpdateState + 1);
+              dispatch(INCREMENT());
+            }}
+          />
+          <div
+            style={{ display: ShowHeaderButton }}
+            className="headingOptionBoxEducation"
+          >
+            <div
+              onClick={HandlerAddItemInArray}
+              className="outerWraperPlusAndNewEntry"
+            >
+              <FaPlus className="newEntryPlusIcon" />
+              <div className="newEntryText">New Entry</div>
+            </div>
+            <RiDeleteBin6Line
+              onClick={HanderDeleteItemInArray}
+              className="DeleteIcon"
+            />
+            <CgArrangeFront className="ArrangeIcon" />
+          </div>
+        </div>
+        {array &&
+          array.map((item, index) => {
+            return (
+              <Boxfunction
+                UpdateState={UpdateState}
+                HeaderButton={"flex"}
+                data={props.data}
+                borderbotm={borderBottm}
+                button={props.button}
+                item={item}
+                IsActive={IsActive}
+                IsActiveUp={IsActiveUp}
+                ToggleArrowDown={ToggleArrowDown}
+                ToggleArrowUp={ToggleArrowUp}
+                index={index}
+                list={array}
+                setList={setState}
+                HandleCompleteBoarderUnSelected={
+                  HandleCompleteBoarderUnSelected
+                }
+                HandlerAddItemInArrayfun={HandlerAddItemInArray}
+                HanderDeleteItemInArrayfun={HanderDeleteItemInArray}
+              />
+            );
+          })}
+      </div>
+    </>
+  );
 }

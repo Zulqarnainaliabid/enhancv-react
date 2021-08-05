@@ -5,6 +5,9 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch, useSelector } from "react-redux";
+import { ExperienceSectionData } from "../Components/DatePicker/JasonData";
+import { INCREMENT } from "./Redux/actions/indux";
 export default function ExperienceSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -13,6 +16,8 @@ export default function ExperienceSection(props) {
   const [UpdateState, setUpdateState] = useState(0);
   const [ToggleArrowDown, setToggleArrowDown] = useState(true);
   const [ToggleArrowUp, setToggleArrowUp] = useState(true);
+  const dispatch = useDispatch();
+  const CounterData = useSelector((state) => state.CounterData);
   function HandleCompleteBoarderSelected() {
     props.button();
     setbackgroundColor("white");
@@ -33,15 +38,90 @@ export default function ExperienceSection(props) {
     setborderBottm("none");
     setShowHeaderButton("none");
   }, [props.data]);
-  
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+  }, [CounterData]);
 
   function HandlerAddItemInArray() {
-    array.push({ selected: false,value:{title:"",companyname:"",date:"",location:"",companydiscription:"",bullots:"",url:""}});
+    array.push({
+      selected: false,
+      togglebuttonlist: [
+        { name: "Show Title", selected: "true" },
+        { name: "Show Company Name", selected: "true" },
+        { name: "Show Discription", selected: "true" },
+        { name: "Show Bullets", selected: "true" },
+        { name: "Show Period", selected: "true" },
+        { name: "Show Location", selected: "true" },
+        { name: "Show Link", selected: "true" },
+      ],
+      toggleButton: {
+        showtitle: true,
+        showcompayname: true,
+        showdiscription: true,
+        showbullets: true,
+        showlocation: true,
+        showperiod: true,
+        showlink: true,
+      },
+      value: {
+        title: "",
+        companyname: "",
+        location: "",
+        date: {
+          yearfrom: null,
+          monthfrom: null,
+          monthto: null,
+          ongoing: true,
+          yearto: null,
+        },
+        companydiscription: "",
+        bullots: "",
+        url: "",
+      },
+    });
     setState([...array]);
     localStorage.setItem("arrayExperience", JSON.stringify(array));
   }
   function HanderDeleteItemInArray() {
-    array.pop({ selected: false,value:{title:"",companyname:"",date:"",location:"",companydiscription:"",bullots:"",url:""}});
+    array.pop({
+      selected: false,
+      togglebuttonlist: [
+        { name: "Show Title", selected: "true" },
+        { name: "Show Company Name", selected: "true" },
+        { name: "Show Discription", selected: "true" },
+        { name: "Show Bullets", selected: "true" },
+        { name: "Show Period", selected: "true" },
+        { name: "Show Location", selected: "true" },
+        { name: "Show Link", selected: "true" },
+      ],
+      toggleButton: {
+        showtitle: true,
+        showcompayname: true,
+        showdiscription: true,
+        showbullets: true,
+        showlocation: true,
+        showperiod: true,
+        showlink: true,
+      },
+      value: {
+        title: "",
+        companyname: "",
+        location: "",
+        date: {
+          yearfrom: null,
+          monthfrom: null,
+          monthto: null,
+          ongoing: true,
+          yearto: null,
+        },
+        companydiscription: "",
+        bullots: "",
+        url: "",
+      },
+    });
     setState([...array]);
     localStorage.setItem("arrayExperience", JSON.stringify(array));
   }
@@ -52,22 +132,46 @@ export default function ExperienceSection(props) {
     }
   }, []);
   function IsActive(Isactive) {
-    if(Isactive){
-      setToggleArrowDown(Isactive)
-    }else{
-      setToggleArrowDown(Isactive)
+    if (Isactive) {
+      setToggleArrowDown(Isactive);
+    } else {
+      setToggleArrowDown(Isactive);
     }
   }
   function IsActiveUp(Isactive) {
-    if(Isactive){
-      setToggleArrowUp(Isactive)
-    }else{
-      setToggleArrowUp(Isactive)
+    if (Isactive) {
+      setToggleArrowUp(Isactive);
+    } else {
+      setToggleArrowUp(Isactive);
     }
   }
   return (
     <>
-      <div style={{ display: ShowHeaderButton }} className="headingOptionBox">
+     
+      <div
+        className="outerWraperCompleteBox"
+        style={{ backgroundColor: backgroundColor }}
+        onClick={() => {}}
+      >
+        <div
+          style={{ backgroundColor: backgroundColor }}
+          className="HeadingNameBox"
+          onClick={HandleCompleteBoarderSelected}
+        >
+          <input
+            tabindex="0"
+            className="TexrHolderexperience"
+            style={{ borderBottom: "4px solid" }}
+            placeholder="EXPERIENCE"
+            onClick={() => {
+              setUpdateState(UpdateState + 1);
+              dispatch(INCREMENT());
+            }}
+          />
+           <div
+        style={{ display: ShowHeaderButton }}
+        className="headingOptionBoxRight"
+      >
         <div
           onClick={HandlerAddItemInArray}
           className="outerWraperPlusAndNewEntry"
@@ -81,26 +185,6 @@ export default function ExperienceSection(props) {
         />
         <CgArrangeFront className="ArrangeIcon" />
       </div>
-      <div
-        className="outerWraperCompleteBox"
-        style={{ backgroundColor: backgroundColor }}
-        onClick={() => {}}
-      >
-        <div
-          style={{ backgroundColor: backgroundColor }}
-          className="HeadingNameBox"
-          onClick={HandleCompleteBoarderSelected}
-        >
-          <div
-          contentEditable
-          className="TexrHolderexperience"
-            style={{ borderBottom: "4px solid" }}
-            onClick={() => {
-              setUpdateState(UpdateState + 1);
-            }}
-          >
-            Experience
-          </div>
         </div>
         {array &&
           array.map((item, index) => {
