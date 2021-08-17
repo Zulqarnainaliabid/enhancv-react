@@ -8,6 +8,8 @@ import CountingUpdateNumber from './CountingUpdateNumber'
 import IncrementState from './Incrementstate'
 import UpdateYearFrom from './UpdateYearFrom'
 import { combineReducers } from "redux" 
+import Section from './SectionArray'
+import UpdateAchievement from './UpdateAchievement'
 const allReducers = combineReducers({
 counter:counterReducer,
 CounterData:IncrementData,
@@ -18,5 +20,7 @@ UpdateNumber:UpdateNumber,
 CountingUpdateNumber,CountingUpdateNumber,
 IncrementState:IncrementState,
 UpdateYearFrom:UpdateYearFrom,
+Section:Section,
+UpdateAchievement:UpdateAchievement
 });
 export default allReducers

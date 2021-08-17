@@ -11,380 +11,527 @@ import SectionImg10 from "./sections/section10.PNG";
 import SectionImg11 from "./sections/section11.PNG";
 import SectionImg12 from "./sections/section12.PNG";
 import SectionImg13 from "./sections/Section13.PNG";
-import React from 'react'
+import SectionImg14 from "./sections/Section14.PNG";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowUp } from "react-icons/md";
+import React, { useEffect } from "react";
+import HomaPageSabSection from './HomePageSabSection'
 import { useState } from "react";
-export default function Sections(props) {
-    const [HoverEffectImage1, setHoverEffectImage1] = useState(false);
-    const [HoverEffectImage2, setHoverEffectImage2] = useState(false);
-    const [HoverEffectImage3, setHoverEffectImage3] = useState(false);
-    const [HoverEffectImage4, setHoverEffectImage4] = useState(false);
-    const [HoverEffectImage5, setHoverEffectImage5] = useState(false);
-    const [HoverEffectImage6, setHoverEffectImage6] = useState(false);
-    const [HoverEffectImage7, setHoverEffectImage7] = useState(false);
-    const [HoverEffectImage8, setHoverEffectImage8] = useState(false);
-    const [HoverEffectImage9, setHoverEffectImage9] = useState(false);
-    const [HoverEffectImage10, setHoverEffectImage10] = useState(false);
-    const [HoverEffectImage11, setHoverEffectImage11] = useState(false);
-    const [HoverEffectImage12, setHoverEffectImage12] = useState(false);
-    const [HoverEffectImage13, setHoverEffectImage13] = useState(false);
+export function Section2ndBox(props) {
+
+  function HandleRemoveSubSection() {
+    let temp = [];
+    temp = props.ArrayLower;
+    let tempbox = temp[props.index];
+    let namesection = temp[props.index].name
+    props.ArrayUper.push(tempbox);
+    props.setArrayUper([...props.ArrayUper]);
+    localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+    temp.splice(props.index, 1);
+    props.setArrayLower([...temp]);
+    localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    props.HandleRemoveSection(namesection);
+  }
+  return (
+    <div style={{ position: "relative" }} className="Section">
+      <div
+        onMouseEnter={() => {
+          let temp = [];
+          temp = props.ArrayLower;
+          temp[props.index].Hover = true;
+          props.setArrayLower([...temp]);
+        }}
+      >
+        <img src={props.item.imag} />
+        {props.item.Hover && (
+          <div
+            onMouseLeave={() => {
+              let temp = [];
+              temp = props.ArrayLower;
+              temp[props.index].Hover = false;
+              props.setArrayLower([...temp]);
+            }}
+            className="HoverImage1"
+          >
+            <div className="AddtoResume" onClick={HandleRemoveSubSection}>
+              {props.item.labelLowerArray}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+export function SectionBox(props) {
+  function HandlePopEvent() {
+    let temp = props.ArrayUper;
+    let ArrayLower = props.ArrayLower;
+    ArrayLower.push(props.ArrayUper[props.index]);
+    props.setArrayLower([...ArrayLower]);
+    temp.splice(props.index, 1);
+    props.setArrayUper([...temp]);
+    localStorage.setItem("ArrayUper", JSON.stringify(temp));
+    localStorage.setItem("ArrayLower", JSON.stringify(ArrayLower));
+  }
+  return (
+    <div style={{ position: "relative" }} className="Section">
+      <div
+        onMouseEnter={() => {
+          let temp = [];
+          temp = props.ArrayUper;
+          temp[props.index].Hover = true;
+          props.setArrayUper([...temp]);
+        }}
+      >
+        <img src={props.item.imag} />
+        {props.item.Hover && (
+          <div
+          key={props.item}
+            onMouseLeave={() => {
+              let temp = [];
+              temp = props.ArrayUper;
+              temp[props.index].Hover = false;
+              props.setArrayUper([...temp]);
+            }}
+            className="HoverImage1"
+          >
+            <div
+              className="AddtoResume"
+              onClick={() => {
+                props.funHandleSection(props.item.name);
+                props.SetToggleAddnewSection(false);
+                props.functionHandleAddNewSection();
+                HandlePopEvent();
+              }}
+            >
+              {props.item.label}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const { forwardRef, useRef, useImperativeHandle } = React;
+
+export  const Sections = forwardRef((props, ref) => {
+
+  let data = [
+    {
+      labelLowerArray: "Remove Achievement resume",
+      label: "Add Achievement resume",
+      Hover: false,
+      imag: SectionImg1,
+      name: "Achievement",
+    },
+    {
+      labelLowerArray: "Remove to skill resume",
+      label: "Add to skill resume",
+      Hover: false,
+      imag: SectionImg2,
+      name: "Skill",
+    },
+    {
+      labelLowerArray: "Remove project resume",
+      label: "Add to project resume",
+      Hover: false,
+      imag: SectionImg3,
+      name: "Project",
+    },
+    {
+      labelLowerArray: "Remove training resume",
+      label: "Add to training resume",
+      Hover: false,
+      imag: SectionImg4,
+      name: "Training",
+    },
+    {
+      labelLowerArray: "Remove mytime resume",
+      label: "Add to mytime resume",
+      Hover: false,
+      imag: SectionImg5,
+      name: "MyTime",
+    },
+    {
+      labelLowerArray: "Remove language resume",
+      label: "Add to language resume",
+      Hover: false,
+      imag: SectionImg6,
+      name: "Langue",
+    },
+    {
+      labelLowerArray: "Remove profesion resume",
+      label: "Add to profesion resume",
+      Hover: false,
+      imag: SectionImg7,
+      name: "Profesion",
+    },
+    {
+      labelLowerArray: "Remove industry resume",
+      label: "Add to industry resume",
+      Hover: false,
+      imag: SectionImg8,
+      name: "Indestry",
+    },
+    {
+      labelLowerArray: "Remove  find me online  resume",
+      label: "Add to find me online resume",
+      Hover: false,
+      imag: SectionImg9,
+      name: "Find Me",
+    },
+    {
+      labelLowerArray: "Remove summary resume",
+      label: "Add to summary resume",
+      Hover: false,
+      imag: SectionImg10,
+      name: "Summary",
+    },
+    {
+      labelLowerArray: "Remove strength resume",
+      label: "Add to strength resume",
+      Hover: false,
+      imag: SectionImg11,
+      name: "Strength",
+    },
+    {
+      labelLowerArray: "Remove volunterying resume",
+      label: "Add to volunterying resume",
+      Hover: false,
+      imag: SectionImg12,
+      name: "Volunteering",
+    },
+    {
+      labelLowerArray: "Remove Experience resume",
+      label: "Add to Experience resume",
+      Hover: false,
+      imag: SectionImg13,
+      name: "Experience",
+    },
+    {
+      labelLowerArray: "Remove Education resume",
+      label: "Add to Education resume",
+      Hover: false,
+      imag: SectionImg14,
+      name: "Education",
+    },
+  ];
+  const [ArrayUper, setArrayUper] = useState(data);
+  const [ArrayLower, setArrayLower] = useState([]);
+  const [ShowText, setShowText] = useState("Show Used Sections");
+  const [ShowTextLowerIcon, setShowTextLowerIcon] = useState(
+    <MdKeyboardArrowDown />
+  );
+  const [Toggle, setToggle] = useState(false);
+  const [MidButton, setMidButton] = useState(true);
+  useEffect(() => {
+    if (localStorage.getItem("ArrayUper") !== null) {
+      let value = localStorage.getItem("ArrayUper");
+      value = JSON.parse(value);
+      setArrayUper(value);
+    }
+    if (localStorage.getItem("ArrayLower") !== null) {
+      let value = localStorage.getItem("ArrayLower");
+      value = JSON.parse(value);
+      setArrayLower(value);
+    }
+    if (ArrayLower.length === 0) {
+      setMidButton(false);
+    }
+    {
+      setMidButton(true);
+    }
+  }, []);
+
+ 
+  useImperativeHandle(ref, () => ({
+     HandleRemoveSectionRearrange(name){
+       console.log("name = =p",name)
+      let temp = [];
+      temp = ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name===name){
+          let name = item;
+          temp.splice(index,1)
+          setArrayLower(temp)
+          ArrayUper.push(name)
+          setArrayUper([...ArrayUper])
+        }
+      })
+      localStorage.setItem("ArrayUper", JSON.stringify(ArrayUper));
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+
+  }));
   return (
     <>
       <div className="outerContainerSection">
-      <div className="HeadingSection">Add new section</div>
-      <div className="subHeadingSection">
-        Click on a section to add it to your resume
-      </div>
-      <div className="outerWraperSection">
-        <div style={{ position: "relative" }} className="Section">
+        <div className="HeadingSection">Add new section</div>
+        <div className="subHeadingSection">
+          Click on a section to add it to your resume
+        </div>
+        <div className="outerWraperSection">
+          {ArrayUper.map((item, index) => {
+            return (
+              <SectionBox
+                key={index}
+                index={index}
+                item={item}
+                ArrayLower={ArrayLower}
+                ArrayUper={ArrayUper}
+                setArrayUper={setArrayUper}
+                setArrayLower={setArrayLower}
+                funHandleSection={props.HandleSections}
+                SetToggleAddnewSection={props.setToggleAddNewSection}
+                functionHandleAddNewSection={props.HandleAddNewSection}
+              />
+            );
+          })}
+        </div>
+        <div className="outerWraperLowerSection" style={{ display: "block" }}>
           <div
-            onMouseEnter={() => {
-              setHoverEffectImage1(true);
+            className="outerWraperMidButtons"
+            style={{ display: MidButton ? "flex" : "none" }}
+            onClick={() => {
+              setToggle(!Toggle);
+              if (Toggle) {
+                setShowText("Show Used Section");
+                setShowTextLowerIcon(<MdKeyboardArrowDown />);
+              } else {
+                setShowText("Hide Used Section");
+                setShowTextLowerIcon(<MdKeyboardArrowUp />);
+              }
             }}
           >
-            <img src={SectionImg1} />
+            <div className="MidButtons">{ShowText}</div>
+            <div className="UperAwwor">{ShowTextLowerIcon}</div>
           </div>
-          {HoverEffectImage1 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage1(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume"  onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-                props.setachievement()
-             }} >Add  Achievement resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
           <div
-            onMouseEnter={() => {
-              setHoverEffectImage2(true);
-            }}
+            className="outerWraperSectionmidbuttons"
+            style={{ display: Toggle ? "flex" : "none" }}
           >
-            <img src={SectionImg2} />
+            {ArrayLower &&
+              ArrayLower.map((item, index) => {
+                return (
+                  <Section2ndBox
+                    key={index}
+                    item={item}
+                    ArrayLower={ArrayLower}
+                    setArrayLower={setArrayLower}
+                    setArrayUper={setArrayUper}
+                    ArrayUper={ArrayUper}
+                    item={item}
+                    index={index}
+                    HandleRemoveSection={props.HandleRemoveSection}
+                  />
+                );
+              })}
           </div>
-          {HoverEffectImage2 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage2(true);
-              }}
-              className="HoverImage1"
-            >
-              <div onClick={()=>{
-                   if(props.LeftCount==="Left"){
-                    props.HandleLeftSection()
-                  }else{
-                    props.HandleSection()
-                  }
-              }} className="AddtoResume">Add to skill resume</div>
-            </div>
-          )}
         </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage3(true);
-            }}
-          >
-            <img src={SectionImg3} />
-          </div>
-          {HoverEffectImage3 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage3(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" onClick={()=>{
-                 if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-                props.setproject()
-              }}>Add to projects resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage4(true);
-            }}
-          >
-            <img src={SectionImg4} />
-          </div>
-          {HoverEffectImage4 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage4(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume"
-              onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-              }}
-              >Add to training resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage5(true);
-            }}
-          >
-            <img src={SectionImg5} />
-          </div>
-          {HoverEffectImage5 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage5(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" 
-              onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-              }}
-              >Add to mytime resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage6(true);
-            }}
-          >
-            <img src={SectionImg6} />
-          </div>
-          {HoverEffectImage6 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage6(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" 
-              onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-              }}
-              >Add to language resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage7(true);
-            }}
-          >
-            <img src={SectionImg7} />
-          </div>
-          {HoverEffectImage7 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage7(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" onClick={()=>{
-                 if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-                props.setpassion()
-              }}>Add to profesion resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage8(true);
-            }}
-          >
-            <img src={SectionImg8} />
-          </div>
-          {HoverEffectImage8 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage8(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" 
-              onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-                props.setindustryExperience(true)
-              }}
-              >Add to industry resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage9(true);
-            }}
-          >
-            <img src={SectionImg9} />
-          </div>
-          {HoverEffectImage9 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage9(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" 
-              onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-                props.setfindmeonline(true)
-              }}
-              >Add to find me online resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage10(true);
-            }}
-          >
-            <img src={SectionImg10} />
-          </div>
-          {HoverEffectImage10 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage10(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" 
-              onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-              }}
-              >Add to summary resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage11(true);
-            }}
-          >
-            <img src={SectionImg11} />
-          </div>
-          {HoverEffectImage11 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage11(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" 
-              onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-              }}
-              >Add to strength resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage12(true);
-            }}
-          >
-            <img src={SectionImg12} />
-          </div>
-          {HoverEffectImage12 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage12(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" 
-              onClick={()=>{
-                if(props.LeftCount==="Left"){
-                  props.HandleLeftSection()
-                }else{
-                  props.HandleSection()
-                }
-                props.setvolunteering(true)
-              }}
-              >Add to volunterying resume</div>
-            </div>
-          )}
-        </div>
-        <div style={{ position: "relative" }} className="Section">
-          <div
-            onMouseEnter={() => {
-              setHoverEffectImage13(true);
-            }}
-          >
-            <img src={SectionImg13} />
-          </div>
-          {HoverEffectImage13 && (
-            <div
-              onMouseLeave={() => {
-                setHoverEffectImage13(true);
-              }}
-              className="HoverImage1"
-            >
-              <div className="AddtoResume" onClick={()=>{
-                  if(props.LeftCount==="Left"){
-                    props.HandleLeftSection()
-                  }else{
-                    props.HandleSection()
-                  }
-                 props.setExperience(true)
-              }}>Add to Experience resume</div>
-            </div>
-          )}
-        </div>
-      </div>
       </div>
     </>
   );
-}
+});
+
+
+
+
+// export default function Sections(props) {
+//   let data = [
+//     {
+//       labelLowerArray: "Remove Achievement resume",
+//       label: "Add Achievement resume",
+//       Hover: false,
+//       imag: SectionImg1,
+//       name: "Achievement",
+//     },
+//     {
+//       labelLowerArray: "Remove to skill resume",
+//       label: "Add to skill resume",
+//       Hover: false,
+//       imag: SectionImg2,
+//       name: "Skill",
+//     },
+//     {
+//       labelLowerArray: "Remove project resume",
+//       label: "Add to project resume",
+//       Hover: false,
+//       imag: SectionImg3,
+//       name: "Project",
+//     },
+//     {
+//       labelLowerArray: "Remove training resume",
+//       label: "Add to training resume",
+//       Hover: false,
+//       imag: SectionImg4,
+//       name: "Training",
+//     },
+//     {
+//       labelLowerArray: "Remove mytime resume",
+//       label: "Add to mytime resume",
+//       Hover: false,
+//       imag: SectionImg5,
+//       name: "MyTime",
+//     },
+//     {
+//       labelLowerArray: "Remove language resume",
+//       label: "Add to language resume",
+//       Hover: false,
+//       imag: SectionImg6,
+//       name: "Langue",
+//     },
+//     {
+//       labelLowerArray: "Remove profesion resume",
+//       label: "Add to profesion resume",
+//       Hover: false,
+//       imag: SectionImg7,
+//       name: "Profesion",
+//     },
+//     {
+//       labelLowerArray: "Remove industry resume",
+//       label: "Add to industry resume",
+//       Hover: false,
+//       imag: SectionImg8,
+//       name: "Indestry",
+//     },
+//     {
+//       labelLowerArray: "Remove  find me online  resume",
+//       label: "Add to find me online resume",
+//       Hover: false,
+//       imag: SectionImg9,
+//       name: "Find Me",
+//     },
+//     {
+//       labelLowerArray: "Remove summary resume",
+//       label: "Add to summary resume",
+//       Hover: false,
+//       imag: SectionImg10,
+//       name: "Summary",
+//     },
+//     {
+//       labelLowerArray: "Remove strength resume",
+//       label: "Add to strength resume",
+//       Hover: false,
+//       imag: SectionImg11,
+//       name: "Strength",
+//     },
+//     {
+//       labelLowerArray: "Remove volunterying resume",
+//       label: "Add to volunterying resume",
+//       Hover: false,
+//       imag: SectionImg12,
+//       name: "Volunteering",
+//     },
+//     {
+//       labelLowerArray: "Remove Experience resume",
+//       label: "Add to Experience resume",
+//       Hover: false,
+//       imag: SectionImg13,
+//       name: "Experience",
+//     },
+//     {
+//       labelLowerArray: "Remove Education resume",
+//       label: "Add to Education resume",
+//       Hover: false,
+//       imag: SectionImg14,
+//       name: "Education",
+//     },
+//   ];
+//   const [ArrayUper, setArrayUper] = useState(data);
+//   const [ArrayLower, setArrayLower] = useState([]);
+//   const [ShowText, setShowText] = useState("Show Used Sections");
+//   const [ShowTextLowerIcon, setShowTextLowerIcon] = useState(
+//     <MdKeyboardArrowDown />
+//   );
+//   const [Toggle, setToggle] = useState(false);
+//   const [MidButton, setMidButton] = useState(true);
+//   useEffect(() => {
+//     if (localStorage.getItem("ArrayUper") !== null) {
+//       let value = localStorage.getItem("ArrayUper");
+//       value = JSON.parse(value);
+//       setArrayUper(value);
+//     }
+//     if (localStorage.getItem("ArrayLower") !== null) {
+//       let value = localStorage.getItem("ArrayLower");
+//       value = JSON.parse(value);
+//       setArrayLower(value);
+//     }
+//     if (ArrayLower.length === 0) {
+//       setMidButton(false);
+//     }
+//     {
+//       setMidButton(true);
+//     }
+//   }, []);
+
+ 
+ 
+//   return (
+//     <>
+//       <div className="outerContainerSection">
+//         <div className="HeadingSection">Add new section</div>
+//         <div className="subHeadingSection">
+//           Click on a section to add it to your resume
+//         </div>
+//         <div className="outerWraperSection">
+//           {ArrayUper.map((item, index) => {
+//             return (
+//               <SectionBox
+//                 index={index}
+//                 item={item}
+//                 ArrayLower={ArrayLower}
+//                 ArrayUper={ArrayUper}
+//                 setArrayUper={setArrayUper}
+//                 setArrayLower={setArrayLower}
+//                 funHandleSection={props.HandleSections}
+//                 SetToggleAddnewSection={props.setToggleAddNewSection}
+//                 functionHandleAddNewSection={props.HandleAddNewSection}
+//               />
+//             );
+//           })}
+//         </div>
+//         <div className="outerWraperLowerSection" style={{ display: "block" }}>
+//           <div
+//             className="outerWraperMidButtons"
+//             style={{ display: MidButton ? "flex" : "none" }}
+//             onClick={() => {
+//               setToggle(!Toggle);
+//               if (Toggle) {
+//                 setShowText("Show Used Section");
+//                 setShowTextLowerIcon(<MdKeyboardArrowDown />);
+//               } else {
+//                 setShowText("Hide Used Section");
+//                 setShowTextLowerIcon(<MdKeyboardArrowUp />);
+//               }
+//             }}
+//           >
+//             <div className="MidButtons">{ShowText}</div>
+//             <div className="UperAwwor">{ShowTextLowerIcon}</div>
+//           </div>
+//           <div
+//             className="outerWraperSectionmidbuttons"
+//             style={{ display: Toggle ? "flex" : "none" }}
+//           >
+//             {ArrayLower &&
+//               ArrayLower.map((item, index) => {
+//                 return (
+//                   <Section2ndBox
+//                     item={item}
+//                     ArrayLower={ArrayLower}
+//                     setArrayLower={setArrayLower}
+//                     setArrayUper={setArrayUper}
+//                     ArrayUper={ArrayUper}
+//                     item={item}
+//                     index={index}
+//                     HandleRemoveSection={props.HandleRemoveSection}
+//                   />
+//                 );
+//               })}
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+
+// }

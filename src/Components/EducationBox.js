@@ -58,7 +58,6 @@ export default function Boxfunction(props) {
     useState("#38434744");
   const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] =
     useState("no-drop");
-  const [LinkTextBox, setLinkTextBox] = useState("none");
   const [ToggleButtons, setToggleButtons] = useState(false);
   const [UpdateNumber, setUpdateNumber] = useState(0);
   const [ShowDate, setShowDate] = useState(false);
@@ -647,7 +646,6 @@ export default function Boxfunction(props) {
           </div>
           <div
             className="RichText"
-            style={{ display: "block" }}
             style={{ display: ShowBullets ? "block" : "none" }}
           ></div>
           <div className="outerWraperGPA" style={{ display: "flex" }}>

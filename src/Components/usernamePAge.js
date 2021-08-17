@@ -39,12 +39,12 @@ export default function Header(props) {
   const [userProfileImage, setUserProfileImage] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [editor, setEditor] = useState(null);
-  const [UserName, setUserName] = useState(null);
-  const [UserTitle, setUserTitle] = useState(null);
-  const [UserPhone, setUserPhone] = useState(null);
-  const [UserEmail, setUserEmail] = useState(null);
-  const [UserLocation, setUserLocation] = useState(null);
-  const [UserLink, setUserLink] = useState(null);
+  const [UserName, setUserName] = useState('');
+  const [UserTitle, setUserTitle] = useState("");
+  const [UserPhone, setUserPhone] = useState("");
+  const [UserEmail, setUserEmail] = useState("");
+  const [UserLocation, setUserLocation] = useState("");
+  const [UserLink, setUserLink] = useState("");
   const [Circle, setCircle] = useState("#00c091");
   const [Square, setSquare] = useState("#ccc");
   const counter = useSelector(state => state.counter)
@@ -323,13 +323,13 @@ export default function Header(props) {
           <div className="InnerWraperToggleButtons">
             <div className="ToggleButtonsLabel">Photo Style</div>
             <div
-              className="outerWraperSwitchClass"
+              // className="outerWraperSwitchClass"
               className="RadioButtonsToggleButtons"
               style={{ backgroundColor: Circle }}
               onClick={HandleBorderRadiusCircle}
             ></div>
             <div
-              className="outerWraperSwitchClass"
+              // className="outerWraperSwitchClass"
               className="RadioButtonsToggleButtons"
               style={{ backgroundColor: Square }}
               onClick={HandleBorderRadiusVerticle}
@@ -352,7 +352,6 @@ export default function Header(props) {
           <div>
             <div className="outerWraperInputFieldHaider">
               <input
-                tabindex="0"
                 className="Username"
                 value={UserName}
                 type="text"
@@ -450,6 +449,7 @@ export default function Header(props) {
             <img
               className="UserImg"
               id="intro"
+              alt={"intro"}
               src={UploadedImag}
               style={{ borderRadius: BorderRadius }}
             />
@@ -504,6 +504,7 @@ export default function Header(props) {
                 <img
                   className="UserImg"
                   src={userProfileImage}
+                  alt={"intro"}
                   style={{ borderRadius: "112px" }}
                   onMouseEnter={() => {
                     setCheckFinalUserImag("block");
@@ -517,6 +518,7 @@ export default function Header(props) {
               >
                 <img
                   className="UserImg"
+                  alt={"intro"}
                   src={UserImg}
                   style={{ borderRadius: "112px" }}
                 />

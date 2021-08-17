@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import Switch from 'react-switch';
 
 export default function SwitchButtons(props) {
@@ -7,13 +7,13 @@ export default function SwitchButtons(props) {
 		setchecked(value);
 	    props.handleToggglebutton(props.index,value)
 	}
-	useEffect(() => {
-		if (localStorage.getItem("arrayAchievement") !== null) {
-			let value = localStorage.getItem("arrayAchievement")
-			    value = JSON.parse(value)
-				setchecked(value[props.indexouterarray].togglebuttonlist[props.index].selected)
-		}	
-	},[]);
+	// useEffect(() => {
+	// 	if (localStorage.getItem("arrayAchievement") !== null) {
+	// 		let value = localStorage.getItem("arrayAchievement")
+	// 		    value = JSON.parse(value)
+	// 			setchecked(value[props.indexouterarray].togglebuttonlist[props.index].selected)
+	// 	}	
+	// },[]);
 	return (
 		<label htmlFor="normal-switch">
 			<Switch

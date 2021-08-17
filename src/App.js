@@ -1,22 +1,169 @@
 import Home from "./Components/HomePage";
-import {
-  transitions,
-  positions,
-  types,
-  Provider as AlertProvider,
-} from "react-alert";
-import React from 'react'
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import React, { useState, useEffect } from "react";
+import "./index.css";
 import AlertTemplate from "react-alert-template-basic";
-import { useSelector, useDispatch } from "react-redux";
-import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
-import ReactToPdf from "react-to-pdf";
-import { INCREMENT, INCREMENTDATA } from "./Components/Redux/actions/indux";
-import { useRef } from "react";
+import {Sections} from "./Components/Section";
+import { HiPlusCircle } from "react-icons/hi";
+import HomaPageSabSection from "./Components/HomePageSabSection";
+import { CgArrangeFront } from "react-icons/cg";
+import Achievements from "./Components/Achivement";
+import TechStockSection from "./Components/TechStockSection";
+import Projects from "./Components/Projects";
+import TrainingCourse from "./Components/TrainingCourse";
+import MyTime from "./Components/MyTime";
+import Language from "./Components/Language";
+import Passions from "./Components/Passions";
+import IndustryExperience from "./Components/IndustryExperience";
+import FindMeOnline from "./Components/FindMeOnline";
+import Summry from "./Components/Summry";
+import Strength from "./Components/Strength";
+import Volunteering from "./Components/Volunteering";
+import ExperienceSection from "./Components/ExperienceSection";
+import Education from "./Components/Education";
+
 function App() {
-  const counter = useSelector((state) => state.counter);
-  const CounterData = useSelector((state) => state.CounterData);
-  const dispatch = useDispatch();
+  const [ToggleRearrangeSection, setToggleRearrangeSection] = useState(null);
+  const [ToggleAddNewSection, setToggleAddNewSection] = useState(false);
+  const [ToggleAddNewSectionLeft, setToggleAddNewSectionLeft] = useState(false);
+  const [ToggleAddNewSectionRight, setToggleAddNewSectionRight] =
+    useState(false);
+  const [Array, setArray] = useState([]);
   const ref = React.createRef();
+
+  function HandleSections(data) {
+    if (data !== undefined && data !== null) {
+      if (data === "Achievement") {
+        Array.push({
+          name: "Achievement",
+          section: <Achievements />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Skill") {
+        Array.push({
+          name: "Skill",
+          section: <TechStockSection />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Project") {
+        Array.push({
+          name: "Project",
+          section: <Projects />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Training") {
+        Array.push({
+          name: "Training",
+          section: <TrainingCourse />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "MyTime") {
+        Array.push({
+          name: "MyTime",
+          section: <MyTime />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Langue") {
+        Array.push({
+          name: "Langue",
+          section: <Language />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Profesion") {
+        Array.push({
+          name: "Profesion",
+          section: <Passions />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Indestry") {
+        Array.push({
+          name: "Indestry",
+          section: <IndustryExperience />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Find Me") {
+        Array.push({
+          name: "Find Me",
+          section: <FindMeOnline />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Summary") {
+        Array.push({
+          name: "Summary",
+          section: <Summry />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Strength") {
+        Array.push({
+          name: "Strength",
+          section: <Strength />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Volunteering") {
+        Array.push({
+          name: "Volunteering",
+          section: <Volunteering />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Experience") {
+        Array.push({
+          name: "Experience",
+          section: <ExperienceSection />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      } else if (data === "Education") {
+        Array.push({
+          name: "Education",
+          section: <Education />,
+          margen: "",
+          BoxShedow: "",
+          Left: true,
+        });
+        setArray([...Array]);
+      }
+      localStorage.setItem("Section", JSON.stringify(Array));
+    }
+  }
+
   const options = {
     position: positions.TOP_CENTER,
     timeout: 5000,
@@ -25,33 +172,209 @@ function App() {
   const types = {
     ERROR: "error",
   };
-  const optionsxyz = {
-    orientation: 'portrait',
-    unit: 'in',
-    format: [8,8]
-};
 
-  return (
-    <>
-      <AlertProvider template={AlertTemplate} {...types} {...options} >
-        <div ref={ref}>
-          <Home />
-        </div>
-        <button onClick={() => dispatch(INCREMENT())}>+</button>
-        <button onClick={() => dispatch(INCREMENTDATA())}>+datahelo</button>
-        <div>counter = {counter}</div>
-        <div>Helo Pdf</div>
-        <div>counter = {CounterData}</div>
-        <ReactToPdf targetRef={ref} filename="div-blue.pdf"  options={optionsxyz} scale={.58}>
-          {({ toPdf }) => (
-            <>
-              <button onClick={toPdf}>Generate pdf</button>
-            </>
-          )}
-        </ReactToPdf>
-      </AlertProvider>
-    </>
-  );
+  function HandleAddNewSection() {
+    let temp = [];
+    temp = Array;
+    if (Array === null && Array === undefined) {
+      setToggleAddNewSectionRight(false);
+      setToggleAddNewSectionLeft(false);
+    } else {
+      if (Array.length === 1) {
+        temp.map((item, index) => {
+          if (item.Left === true) {
+            setToggleAddNewSectionLeft(true);
+            setToggleAddNewSectionRight(false);
+          }
+        });
+        temp.map((item, index) => {
+          if (item.Left === false) {
+            setToggleAddNewSectionLeft(false);
+            setToggleAddNewSectionRight(true);
+          }
+        });
+      } else {
+        let flagRight = true;
+        let FlagLeft = true;
+        let bothLeft = true;
+        let bothRight = true;
+        temp.map((item, index) => {
+          if (item.Left === false) {
+            bothLeft = false;
+            flagRight = false;
+          } else {
+            bothRight = false;
+            FlagLeft = false;
+          }
+        });
+        if (bothRight === false && bothLeft === false) {
+          setToggleAddNewSectionLeft(true);
+          setToggleAddNewSectionRight(true);
+        } else {
+          if (flagRight === false) {
+            setToggleAddNewSectionRight(true);
+            setToggleAddNewSectionLeft(false);
+          } else {
+            if (FlagLeft === false) {
+              setToggleAddNewSectionRight(false);
+              setToggleAddNewSectionLeft(true);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  useEffect(() => {
+    let temp = [];
+    temp = Array;
+    if (Array === null && Array === undefined) {
+      setToggleAddNewSectionRight(false);
+      setToggleAddNewSectionLeft(false);
+    } else {
+      if (Array.length === 1) {
+        temp.map((item, index) => {
+          if (item.Left === true) {
+            setToggleAddNewSectionLeft(true);
+            setToggleAddNewSectionRight(false);
+          }
+        });
+        temp.map((item, index) => {
+          if (item.Left === false) {
+            setToggleAddNewSectionLeft(false);
+            setToggleAddNewSectionRight(true);
+          }
+        });
+      } else {
+        let flagRight = true;
+        let FlagLeft = true;
+        let bothLeft = true;
+        let bothRight = true;
+        temp.map((item, index) => {
+          if (item.Left === false) {
+            bothLeft = false;
+            flagRight = false;
+          } else {
+            bothRight = false;
+            FlagLeft = false;
+          }
+        });
+        if (bothRight === false && bothLeft === false) {
+          setToggleAddNewSectionLeft(true);
+          setToggleAddNewSectionRight(true);
+        } else {
+          if (flagRight === false) {
+            setToggleAddNewSectionRight(true);
+            setToggleAddNewSectionLeft(false);
+          } else {
+            if (FlagLeft === false) {
+              setToggleAddNewSectionRight(false);
+              setToggleAddNewSectionLeft(true);
+            }
+          }
+        }
+      }
+    }
+
+    if (localStorage.getItem("Section") !== null) {
+      let value = localStorage.getItem("Section");
+      value = JSON.parse(value);
+      let temp = value;
+      temp.map((item, index) => {
+        let section = temp[index].name;
+        HandleSections(section);
+        HandleAddNewSection();
+      });
+    }
+  }, []);
+  console.log("array,,12", Array);
+
+ function HandleRemoveSection(name){
+ console.log("remove me",name)
+    let temp = []
+    temp = Array
+    temp.map((item,index)=>{
+      if(item.name===name){
+      console.log("find")
+      temp.splice(index,1)
+      }
+    })
+    setArray([...temp]);
+    localStorage.setItem("Section", JSON.stringify(temp));
+  }
+  if (ToggleRearrangeSection === true) {
+    return (
+      <div>
+        <HomaPageSabSection
+          setToggleRearrangeSection={setToggleRearrangeSection}
+          setArray={setArray}
+          Array={Array}
+          HandleAddNewSection={HandleAddNewSection}
+          HandleRemoveSection={HandleRemoveSection}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <AlertProvider template={AlertTemplate} {...types} {...options}>
+          <div style={{ position: "relative" }} ref={ref}>
+            <div className="outerContainerButtons">
+              <div
+                className="OuterWraperAddNewSectionButton"
+                onClick={() => {
+                  setToggleAddNewSection(true);
+                }}
+              >
+                <HiPlusCircle className="RearrangeIcon" />
+                Add Section
+              </div>
+              <div
+                className="OuterWraperReArrangeButton"
+                onClick={() => {
+                  setToggleRearrangeSection(true);
+                }}
+              >
+                <CgArrangeFront className="RearrangeIcon" />
+                Rearrange Sections
+              </div>
+            </div>
+            <div style={{ position: "absolute", zIndex: "-2" }}>
+              <HomaPageSabSection
+                setArray={setArray}
+                Array={Array}
+                HandleAddNewSection={HandleAddNewSection}
+                HandleRemoveSection={HandleRemoveSection}
+              />
+            </div>
+            {ToggleAddNewSection && (
+              <div
+                className="SetBackGroundAddNewSection"
+                onClick={() => {
+                  setToggleAddNewSection(false);
+                }}
+              ></div>
+            )}
+            <Home
+              Array={Array}
+              ToggleAddNewSectionRight={ToggleAddNewSectionRight}
+              ToggleAddNewSectionLeft={ToggleAddNewSectionLeft}
+            />
+            {ToggleAddNewSection && (
+              <>
+                <Sections
+                  HandleSections={HandleSections}
+                  setToggleAddNewSection={setToggleAddNewSection}
+                  HandleAddNewSection={HandleAddNewSection}
+                  HandleRemoveSection={HandleRemoveSection}
+                />
+              </>
+            )}
+          </div>
+        </AlertProvider>
+      </>
+    );
+  }
 }
 
 export default App;

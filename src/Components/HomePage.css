@@ -136,9 +136,9 @@ color: #00c091;
   /* border: 1px solid; */
   padding: 12px;
   justify-content: space-between;
-  margin: 0px 0 0 0;
+  margin: 90px 0 0 0;
   width: 90%;
-  z-index: 4;
+  z-index: 3;
 }
 .SectionLeft {
   border: 1px solid blue;
@@ -172,12 +172,13 @@ color: #00c091;
   border: 1px solid;
   background-color: white;
   z-index: 5;
-   width: 98%;
+  width: 71%;
   padding: 40px 76px 25px 76px;
   border-radius: 6px;
-  top: -86px;
+  top: 91px;
+  left: 160px;
   position: absolute;
-  height: 573px;
+  /* height: 573px; */
 }
 .AddtoResume{
     text-align: center;
@@ -203,6 +204,19 @@ color: #00c091;
   right: 10px;
   background-color: rgba(0, 0, 0, 0.493);
   bottom: 39px;
+  transition: all 0.5s ease ease-out,
+}
+.outerContainerSectionMidButtons {
+  border: 1px solid;
+  background-color: white;
+  z-index: 5;
+  width: 86%;
+  padding: 40px 76px 25px 76px;
+  border-radius: 6px;
+  top: 19px;
+  left: 27px;
+  position: absolute;
+  /* height: 573px; */
 }
 .HoverBackground{
   position: absolute;
@@ -234,6 +248,63 @@ color: #00c091;
   justify-content: space-between;
   height: 457px;
   /* border: 1px solid red; */
+}
+.outerWraperSectionmidbuttons{
+  background-color: white;
+  padding: 25px 0px 25px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: 104%;
+  margin: 0px 0px 0px -16px;
+  /* overflow-y: scroll; */
+  justify-content: space-between;
+  /* height: 457px; */
+  /* border: 1px solid red; */
+}
+.outerContainerButtons{
+  /* border: 1px solid rgb(0, 141, 106); */
+  position: absolute;
+  top: 78px;
+  left: 188px;
+  gap: 21px;
+  font-size: 18px;
+  display: flex;
+  cursor: pointer;
+}
+.OuterWraperAddNewSectionButton{
+  color: #8c7cdb;
+  display: flex;
+  gap: 9px;
+  margin: 0px 0px 0px 0px;
+}
+.RearrangeIcon {
+  /* border: 1px solid red; */
+  font-size: 21px;
+}
+.OuterWraperAddNewSectionButton:hover{
+  color: #8c7cdb83;
+}
+.OuterWraperReArrangeButton {
+  color: black;
+  display: flex;
+  gap: 9px;
+}
+.OuterWraperReArrangeButton:hover{
+  color: rgba(0, 0, 0, 0.589);
+}
+
+.outerWraperMidButtons{
+/* border: 1px solid red; */
+display: flex;
+justify-content: center;
+gap: 5px;
+font-size: 19px;
+color: rgba(71,72,75,.81);
+cursor: pointer;
+}
+.UperAwwor {
+  font-size: 27px;
 }
 .AddnewSection:hover{
   background-color: #684df1;

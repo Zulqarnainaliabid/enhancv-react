@@ -1,4 +1,3 @@
-import Rect, { useState } from "react";
 import "./DatePicker.css";
 export default function ItemFunction(props) {
   function HandleIcon() {

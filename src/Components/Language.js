@@ -111,7 +111,6 @@ export default function Language(props) {
           onClick={HandleCompleteBoarderSelected}
         >
           <input
-            tabindex="0"
             className="TexrHolderexperience"
             style={{ borderBottom: "4px solid" }}
             placeholder="LANGUAGE"

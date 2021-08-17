@@ -98,7 +98,6 @@ export default function Summry(props) {
           onClick={HandleCompleteBoarderSelected}
         >
           <input
-            tabindex="0"
             className="TexrHolderexperience"
             style={{ borderBottom: "4px solid" }}
             placeholder="SUMMARY"

@@ -1,4 +1,3 @@
-import Rect, { useState } from "react";
 import "./DatePicker.css";
 export default function MonthOngoingFun(props) {
   function HandleIcon() {

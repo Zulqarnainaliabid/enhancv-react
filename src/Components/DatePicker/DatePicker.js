@@ -309,7 +309,7 @@ function DatePicker(props) {
         setDateToArray(DateTo_9);
       }
     } else {
-      if (DateToArray == SubArray1) {
+      if (DateToArray === SubArray1) {
         setDateToArray(SubArray2);
       } else if (DateToArray === SubArray2) {
         setDateToArray(SubArray3);

@@ -3,7 +3,6 @@ import { RiSettings5Fill } from "react-icons/ri";
 import { useAlert } from "react-alert";
 import { FaPlus } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { BiText } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
@@ -49,13 +48,9 @@ export function SwitchButtons(props) {
   );
 }
 export default function Boxfunction(props) {
-  const inputref = useRef();
-  const alert = useAlert();
-
   const [ToggleButtons, setToggleButtons] = useState(false);
   const [UpdateNumber, setUpdateNumber] = useState(0);
   const [Counter, setCounter] = useState(0);
-
   const CounterData = useSelector((state) => state.CounterData);
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);

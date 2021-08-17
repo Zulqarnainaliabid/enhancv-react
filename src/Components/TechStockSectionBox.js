@@ -92,7 +92,7 @@ export default function Boxfunction(props) {
   const [pointEvent, setpointEvent] = useState(null);
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
-  const [GroupTitlrTextHolder, setGroupTitlrTextHolder] = useState([]);
+  const [GroupTitlrTextHolder, setGroupTitlrTextHolder] = useState('');
   
   useEffect(() => {
     setToggleButtons(false);

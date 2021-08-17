@@ -20,12 +20,11 @@ export default function Volunteering(props) {
   const CounterData = useSelector((state) => state.CounterData);
   function HandleCompleteBoarderSelected() {
     props.button();
-    console.log("oooo");
     setbackgroundColor("white");
     setShowHeaderButton("flex");
     setborderBottm("1px dashed rgba(0, 0, 0, 0.548)");
     let temp = array;
-    array.map((item, index) => {
+     array.map((item, index) => {
       temp[index].selected = false;
     });
     setState([...temp]);
@@ -145,7 +144,6 @@ export default function Volunteering(props) {
           onClick={HandleCompleteBoarderSelected}
         >
           <input
-            tabindex="0"
             className="TexrHolderexperience"
             style={{ borderBottom: "4px solid" }}
             placeholder="VOLUNTEERING"

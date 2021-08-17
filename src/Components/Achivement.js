@@ -6,7 +6,6 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./AchievementsBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { AchievementSectionData } from "./DatePicker/JasonData";
 import { INCREMENT } from "./Redux/actions/indux";
 export default function Achievements(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -104,7 +103,6 @@ export default function Achievements(props) {
           onClick={HandleCompleteBoarderSelected}
         >
           <input
-            tabindex="0"
             className="TexrHolderexperience"
             style={{ borderBottom: "4px solid" }}
             placeholder="Achievements"

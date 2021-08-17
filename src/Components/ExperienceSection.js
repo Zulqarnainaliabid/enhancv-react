@@ -6,7 +6,6 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { ExperienceSectionData } from "../Components/DatePicker/JasonData";
 import { INCREMENT } from "./Redux/actions/indux";
 export default function ExperienceSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -159,7 +158,6 @@ export default function ExperienceSection(props) {
           onClick={HandleCompleteBoarderSelected}
         >
           <input
-            tabindex="0"
             className="TexrHolderexperience"
             style={{ borderBottom: "4px solid" }}
             placeholder="EXPERIENCE"

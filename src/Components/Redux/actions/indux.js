@@ -30,6 +30,11 @@ export  const  INCREMENTMONTH=()=>{
         type:'INCREMENTMONTH',
     }
 }
+export  const  INCREMENTACHIEVEMENT=()=>{
+    return{
+        type:'INCREMENTACHIEVEMENT',
+    }
+}
 export  const  UPDATEMONTHFROMCROSSICON=(item)=>{
     return{
         type:'UPDATEMONTHFROMCROSSICON',
@@ -45,6 +50,12 @@ export  const  UPDATEINDEX=(item)=>{
 export  const  UPDATENUMBER=(item)=>{
     return{
         type:'UPDATENUMBER',
+        payload:item
+    }
+}
+export  const  UPDATESECTIONARRAY=(item)=>{
+    return{
+        type:'UPDATESECTIONARRAY',
         payload:item
     }
 }

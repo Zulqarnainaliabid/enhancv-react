@@ -63,7 +63,7 @@ export default function Boxfunction(props) {
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [listIcon, setlistIcon] = useState(false);
   const [Icon, setIcon] = useState(<GrDiamond />);
-  const [Title, setTitle] = useState(null);
+  const [Title, setTitle] = useState('');
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [ShowIcon, setShowIcon] = useState(true);

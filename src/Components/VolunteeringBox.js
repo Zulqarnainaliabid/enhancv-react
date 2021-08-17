@@ -34,6 +34,7 @@ export function SwitchButtons(props) {
       setchecked(true);
     }
   }, []);
+ 
   return (
     <label htmlFor="normal-switch">
       <Switch
@@ -676,7 +677,6 @@ export default function Boxfunction(props) {
           </div>
           <div
             className="RichText"
-            style={{ display: "block" }}
             style={{ display: ShowBullets ? "block" : "none" }}
           ></div>
           <div

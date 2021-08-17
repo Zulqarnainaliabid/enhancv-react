@@ -60,7 +60,7 @@ export default function Boxfunction(props) {
   const [LinkTextBox, setLinkTextBox] = useState("none");
   const [ToggleButtons, setToggleButtons] = useState(false);
   const [UpdateNumber, setUpdateNumber] = useState(0);
-  const [Bullots, setBullots] = useState("");
+  
   const [Counter, setCounter] = useState(0);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [listIcon, setlistIcon] = useState(false);

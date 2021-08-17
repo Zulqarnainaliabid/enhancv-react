@@ -107,7 +107,6 @@ export default function TrainingCourse(props) {
           onClick={HandleCompleteBoarderSelected}
         >
           <input
-            tabindex="0"
             className="TexrHolderexperience"
             style={{ borderBottom: "4px solid" }}
             placeholder="TAINING / COURSES"
