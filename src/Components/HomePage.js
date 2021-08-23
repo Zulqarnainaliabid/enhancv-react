@@ -2,18 +2,16 @@ import React from "react";
 import "./HomePage.css";
 import img from "./Backgroundimg/backgroundimg.png";
 import Header from "../Components/usernamePAge";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
-
+import { INCREMENTBACKGROUNDNULL } from "./Redux/actions/indux";
 export default function Home(props) {
-  const [HoverEffect, SetHoverEffect] = useState(null);
-  const [True, SetTrue] = useState(null);
-
-  function HandleSetHoverEffect() {
-    SetHoverEffect("rgba(80,77,98,.2)");
-  }
+  const [Count, setCount] = useState(null);
+  const dispatch = useDispatch();
   function HandleHoverEffect() {
-    SetHoverEffect(null);
-    SetTrue(True + 1);
+    props.SetHoverEffect(null);
+    setCount(Count+1)
+    dispatch(INCREMENTBACKGROUNDNULL());
   }
   return (
       <div className="outerContainter">
@@ -24,7 +22,8 @@ export default function Home(props) {
             backgroundImage: `url(${img})`,
           }}
         >
-          <Header button={HandleSetHoverEffect} data={True} />
+          <Header button={props.HandleSetHoverEffect} data={Count} />
+
           <div className="outerWraperTwoSections">
             {props.ToggleAddNewSectionLeft ? (
                <div className="SectionRight">
@@ -37,11 +36,10 @@ export default function Home(props) {
                    }
                  )}
              </div>
-             
             ) : (
               <div className="FirstSection"
               onClick={()=>{
-                console.log("click op Left")
+                props.setToggleAddNewSection(true)
               }}
               >
                 <div className="AddnewSection" 
@@ -61,7 +59,8 @@ export default function Home(props) {
             ) : (
               <div className="SecondSection"
               onClick={()=>{
-                console.log("click op Left")
+                props.setToggleAddNewSection(true)
+                props.setFlagRight(true)
               }}
               >
                 <div className="AddnewSection"
@@ -75,7 +74,7 @@ export default function Home(props) {
             onClick={HandleHoverEffect}
             style={{
               position: "absolute",
-              backgroundColor: HoverEffect,
+              backgroundColor: props.HoverEffect,
               left: 0,
               right: 0,
               top: 0,
@@ -85,53 +84,5 @@ export default function Home(props) {
           ></div>
         </div>
       </div>
-    
   );
 }
-
-{
-  /* <div style={{marginBottom:"12px"}}>
-{Experience &&  <ExperienceSection button={HandleSetHoverEffect} data={True}/>}
-  </div>
-  <div style={{marginBottom:"12px"}}>
-{achievement &&  <Achievements button={HandleSetHoverEffect}  data={True} />}
-  </div>
-  <div style={{marginBottom:"12px"}}>
- {project && <Projects button={HandleSetHoverEffect}  data={True} />}
-  </div>
-  <div style={{marginBottom:"12px"}}>
- {passion && <Passions button={HandleSetHoverEffect}  data={True} />}
-  </div>
-  <div style={{marginBottom:"12px"}}>
- {findmeonline && <FindMeOnline button={HandleSetHoverEffect}  data={True} />}
-  </div>
-  <div style={{marginBottom:"12px"}}>
-{volunteering &&  <Volunteering button={HandleSetHoverEffect} data={True}/> }
-  </div>
-  <div style={{marginBottom:"12px"}}>
- {industryExperience && <IndustryExperience button={HandleSetHoverEffect}  data={True} />}
-  </div> */
-}
-
-// <div style={{marginBottom:"12px"}}>
-//               <Education button={HandleSetHoverEffect}  data={True} />
-//               </div>
-//               <div style={{marginBottom:"12px"}}>
-//               <TechStockSection  button={HandleSetHoverEffect}  data={True}/>
-//               </div>
-//               <div style={{marginBottom:"12px"}}>
-//               <TrainingCourse button={HandleSetHoverEffect}  data={True} />
-//               </div>
-//               <div style={{marginBottom:"12px"}}>
-//               <Summry button={HandleSetHoverEffect}  data={True} />
-//               </div>
-//               <div style={{marginBottom:"12px"}}>
-//               <Strength button={HandleSetHoverEffect}  data={True} />
-//               </div>
-//               <div style={{marginBottom:"12px"}}>
-//               <Language button={HandleSetHoverEffect}  data={True} />
-//               </div>
-//               <div style={{marginBottom:"12px"}}>
-//               <MyTime button={HandleSetHoverEffect}  data={True} />
-//               </div>
-//               </div>

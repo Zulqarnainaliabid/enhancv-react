@@ -51,7 +51,6 @@ export default function Header(props) {
   const dispatch = useDispatch();
   function HandleBoarder() {
     dispatch(INCREMENTDATA())
-    console.log("onclick1234;;")
     props.button();
     setBorder("1px solid #60d5ba");
     setbackgroundColor("white");
@@ -98,15 +97,6 @@ export default function Header(props) {
     const scaleValue = parseFloat(scaleChangeEvent.target.value);
     setScaleValue(scaleValue);
   };
-  let data = [
-    { lebel: "Show Link", name: "showlink", set: HandleLinks },
-    { lebel: "Show Title", name: "showtitle", set: HandleTitle },
-    { lebel: "Show Email", name: "showemail", set: HandleEmail },
-    { lebel: "Show Location", name: "showlocation", set: HandleLocation },
-    { lebel: "UpperCase Name", name: "upperCasename", set: HandleUperCase },
-    { lebel: "Show Photo", name: "showphoto", set: HandleUserImage },
-    { lebel: "Show Phone", name: "showphone", set: HandlePhone },
-  ];
   function HandlerBackButtons() {
     setCheckIfImag(false);
     setFacekoobButtons("flex");
@@ -145,27 +135,27 @@ export default function Header(props) {
   };
   function HandleUserName(e) {
     setUserName(e.target.value);
-    localStorage.setItem("userProfilename", JSON.stringify(UserName));
+    localStorage.setItem("userProfilename", JSON.stringify(e.target.value));
   }
   function HnadleUserTitle(e) {
     setUserTitle(e.target.value);
-    localStorage.setItem("userTitle", JSON.stringify(UserTitle));
+    localStorage.setItem("userTitle", JSON.stringify(e.target.value));
   }
   function HnadleUserPhone(e) {
     setUserPhone(e.target.value);
-    localStorage.setItem("userPhone", JSON.stringify(UserPhone));
+    localStorage.setItem("userPhone", JSON.stringify(e.target.value));
   }
   function HnadleUserEmail(e) {
     setUserEmail(e.target.value);
-    localStorage.setItem("userEmail", JSON.stringify(UserEmail));
+    localStorage.setItem("userEmail", JSON.stringify(e.target.value));
   }
   function HnadleUserLocation(e) {
     setUserLocation(e.target.value);
-    localStorage.setItem("userLocation", JSON.stringify(UserLocation));
+    localStorage.setItem("userLocation", JSON.stringify(e.target.value));
   }
   function HnadleUserLink(e) {
     setUserLink(e.target.value);
-    localStorage.setItem("userLink", JSON.stringify(UserLink));
+    localStorage.setItem("userLink", JSON.stringify(e.target.value));
   }
 
   function HandleUserImage(toggle) {
@@ -291,7 +281,15 @@ export default function Header(props) {
       setDisplayUserImage(JSON.parse(value));
     }
   }, []);
-
+  let data = [
+    { lebel: "Show Link", name: "showlink", set: HandleLinks },
+    { lebel: "Show Title", name: "showtitle", set: HandleTitle },
+    { lebel: "Show Email", name: "showemail", set: HandleEmail },
+    { lebel: "Show Location", name: "showlocation", set: HandleLocation },
+    { lebel: "UpperCase Name", name: "upperCasename", set: HandleUperCase },
+    { lebel: "Show Photo", name: "showphoto", set: HandleUserImage },
+    { lebel: "Show Phone", name: "showphone", set: HandlePhone },
+  ];
   return (
     <>
       <div
@@ -323,13 +321,11 @@ export default function Header(props) {
           <div className="InnerWraperToggleButtons">
             <div className="ToggleButtonsLabel">Photo Style</div>
             <div
-              // className="outerWraperSwitchClass"
               className="RadioButtonsToggleButtons"
               style={{ backgroundColor: Circle }}
               onClick={HandleBorderRadiusCircle}
             ></div>
             <div
-              // className="outerWraperSwitchClass"
               className="RadioButtonsToggleButtons"
               style={{ backgroundColor: Square }}
               onClick={HandleBorderRadiusVerticle}
@@ -358,16 +354,10 @@ export default function Header(props) {
                 style={{
                   fontSize: "42px",
                   fontWeight: "700",
-                  textTransform: UperCase ? "upercase" : "lowercase",
+                  textTransform: UperCase ? "uppercase" : "lowercase",
                 }}
                 placeholder="YOUR NAME"
                 onChange={HandleUserName}
-                onFocus={()=>{
-                 console.log("io focus")
-                }}
-                onBlur={()=>{
-                  console.log("io blur")
-                 }}
               />
               <input
                 type="text"
@@ -582,7 +572,7 @@ export default function Header(props) {
                   }}
                 />
                 <label
-                  for="uploadfile"
+                  
                   style={{ display: FacekoobButtons }}
                   className="outerWraperFromComputer"
                 >

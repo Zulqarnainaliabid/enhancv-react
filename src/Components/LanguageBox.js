@@ -10,7 +10,7 @@ import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -33,7 +33,7 @@ export function SwitchButtons(props) {
     }
   }, []);
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -52,24 +52,19 @@ export function SwitchButtons(props) {
 export default function Boxfunction(props) {
   const inputref = useRef();
   const alert = useAlert();
-
   const [ToggleButtons, setToggleButtons] = useState(false);
   const [UpdateNumber, setUpdateNumber] = useState(0);
-
   const [Counter, setCounter] = useState(0);
   const [ShowSlider, setShowSlider] = useState(true);
   const [ShowProficiency, setShowProficiency] = useState(true);
-
   const [value, setvalue] = useState(0);
   const [Language, setLanguage] = useState("Begineer");
-
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
-
   const [LanguageTextholder, setLanguageTextholder] = useState("");
-  
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   useEffect(() => {
     setToggleButtons(false);
     let temp = props.list;
@@ -90,12 +85,13 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
   function HandleSetBackGroundColor() {
-    dispatch(INCREMENT());
+    dispatch(INCREMENTBACKGROUNDCOLORLANGUAGE());
+    // dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -259,14 +255,7 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-        }}
-      >
+      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
          <div
         style={{ display: props.item.selected ? "flex" : "none" }}
         className="headingOptionUnderBoxEducation"
@@ -302,6 +291,16 @@ export default function Boxfunction(props) {
           className="ArrangeIcon"
         />
       </div>
+      </div>
+       
+      <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+        }}
+      > 
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
@@ -317,6 +316,7 @@ export default function Boxfunction(props) {
               style={{ display: ShowProficiency ? "flex" : "none" }}
             >
               <input
+                type="text"
                 className="language"
                 style={{ fontSize: "16px" }}
                 placeholder="Language"
@@ -329,7 +329,7 @@ export default function Boxfunction(props) {
                 }}
               />
               <div className="value">
-                <input style={{ fontSize: "16px" }} placeholder={Language} />
+                <input type="text" style={{ fontSize: "16px" }} placeholder={Language} />
               </div>
             </div>
             <div style={{ display: ShowSlider ? "block" : "none" }}>
@@ -337,7 +337,7 @@ export default function Boxfunction(props) {
                 min={1}
                 max={5}
                 tooltip={false}
-                value={value}
+                // value={value}
                 onChange={handleChange}
               />
             </div>

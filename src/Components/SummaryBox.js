@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORSUMMARY } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -25,6 +25,7 @@ export default function Boxfunction(props) {
 
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   useEffect(() => {
     let temp = props.list;
     props.list.map((item, index) => {
@@ -43,7 +44,7 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {}, [props.UpdateState]);
   function HandleTextDecoration() {
     if (
@@ -57,6 +58,7 @@ export default function Boxfunction(props) {
   }
 
   function HandleSetBackGroundColor() {
+    dispatch(INCREMENTBACKGROUNDCOLORSUMMARY());
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
@@ -141,14 +143,7 @@ export default function Boxfunction(props) {
   }, []);
   return (
     <>
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-        }}
-      >
+        <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
         <div
           style={{ display: props.item.selected ? "flex" : "none" }}
           className="headingOptionUnderBoxEducation"
@@ -183,8 +178,17 @@ export default function Boxfunction(props) {
             className="DeleteIcon"
           />
         </div>
+     </div>
+     <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+        }}
+      >
         <div className="outerWraperInputFieldHaider" style={style}>
-          <div onClick={handleText} className="EditorText">
+          <div onClick={handleText} className="EditorText" style={{margin:"unset"}}>
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (

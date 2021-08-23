@@ -8,11 +8,14 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiText } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
-import Switch from 'react-switch';
+import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import DatePicker from "./DatePicker/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import {
+  INCREMENT,
+  INCREMENTBACKGROUNDCOLOREDUCATION,
+} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -35,7 +38,7 @@ export function SwitchButtons(props) {
     }
   }, []);
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -85,10 +88,12 @@ export default function Boxfunction(props) {
   const [BullotsTestHolder, setBullotsTestHolder] = useState("");
   const [GPAFullTestHolder, setGPAFullTestHolder] = useState("");
   const [GPAObtainTestHolder, setGPAObtainTestHolder] = useState("");
+  const [ArrayTemp, setArrayTemp] = useState([]);
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -226,12 +231,12 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
   function HandleTextDecoration() {
-    setToggleButtons(false)
+    setToggleButtons(false);
     if (
       EnabledFontFormatColor === "#38434744" ||
       EnabledFontFormatNoDrop === "no-drop "
@@ -242,7 +247,7 @@ export default function Boxfunction(props) {
     }
   }
   function HandleSetBackGroundColor() {
-    setToggleButtons(false)
+    dispatch(INCREMENTBACKGROUNDCOLOREDUCATION());
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
@@ -278,7 +283,7 @@ export default function Boxfunction(props) {
     borderBottom: props.borderbotm,
   };
   function HandleArrowDown() {
-    setToggleButtons(false)
+    setToggleButtons(false);
     props.IsActiveUp(true);
     let temp = props.list;
     if (temp[props.index].selected) {
@@ -292,8 +297,8 @@ export default function Boxfunction(props) {
       props.IsActive(true);
     }
   }
-  const HandleArrowUP = () => {
-    setToggleButtons(false)
+  function HandleArrowUP() {
+    setToggleButtons(false);
     props.IsActive(true);
     let temp = props.list;
     if (temp[props.index].selected) {
@@ -301,6 +306,7 @@ export default function Boxfunction(props) {
     }
     temp[props.index].selected = false;
     props.setList([...temp]);
+    setArrayTemp([...temp])
     if (props.index === 1) {
       props.IsActiveUp(false);
     } else {
@@ -308,7 +314,7 @@ export default function Boxfunction(props) {
     }
   };
   function HandleDelete() {
-    setToggleButtons(false)
+    setToggleButtons(false);
     props.HanderDeleteItemInArrayfun();
     let array = props.list;
     if (array.length === 1) {
@@ -417,7 +423,6 @@ export default function Boxfunction(props) {
   }, []);
   return (
     <>
-     
       <div style={{ position: "relative" }}>
         {ToggleButtons && (
           <div className="OuterWraperToggleButtonsExperienceSection">
@@ -444,6 +449,66 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
+      <div style={{ display: "flex", justifyContent: "center",position:"relative" }}>
+          <div
+            style={{ display: props.item.selected ? "flex" : "none" }}
+            className="headingOptionUnderBoxEducation"
+            onClick={() => {
+              setShowDate(false);
+            }}
+          >
+            <div
+              className="outerWraperPlusAndNewEntry"
+              onClick={() => {
+                props.HandlerAddItemInArrayfun();
+                setCounter(Counter + 1);
+                setToggleButtons(false);
+              }}
+            >
+              <FaPlus className="newEntryPlusIcon" />
+              <div className="newEntryText">New Entry</div>
+            </div>
+            {props.ToggleArrowUp && (
+              <MdKeyboardArrowUp
+                onClick={HandleArrowUP}
+                className="ArrowIcon"
+              />
+            )}
+            {props.ToggleArrowDown && (
+              <MdKeyboardArrowDown
+                onClick={HandleArrowDown}
+                className="ArrowIcon"
+              />
+            )}
+            <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
+            <BiText
+              onClick={HandleTextDecoration}
+              style={{
+                color: EnabledFontFormatColor,
+                cursor: EnabledFontFormatNoDrop,
+              }}
+              className="DeleteIcon"
+            />
+            <label
+              onClick={() => {
+                setToggleButtons(false);
+                setShowDate(true);
+              }}
+            >
+              <MdDateRange className="ArrangeIcon" />
+            </label>
+            <RiSettings5Fill
+              onClick={() => {
+                setToggleButtons(!ToggleButtons);
+                let temp = [];
+                temp = TogglebuttonsName;
+                let togglebuttonarray = temp[props.index].togglebuttonlist;
+                settogglebuttonarrayList([...togglebuttonarray]);
+              }}
+              className="ArrangeIcon"
+            />
+          </div>
+        </div>
       <div
         onClick={HandleSetBackGroundColor}
         className="outerWraperBox"
@@ -452,61 +517,7 @@ export default function Boxfunction(props) {
           border: props.item.selected ? "1px solid #60d5ba" : "",
         }}
       >
-         <div
-        style={{ display: props.item.selected ? "flex" : "none" }}
-        className="headingOptionUnderBoxEducation"
-        onClick={() => {
-          setShowDate(false);
-        }}
-      >
-        <div
-          className="outerWraperPlusAndNewEntry"
-          onClick={() => {
-            props.HandlerAddItemInArrayfun();
-            setCounter(Counter + 1);
-            setToggleButtons(false)
-          }}
-        >
-          <FaPlus className="newEntryPlusIcon" />
-          <div className="newEntryText">New Entry</div>
-        </div>
-        {props.ToggleArrowUp && (
-          <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
-        )}
-        {props.ToggleArrowDown && (
-          <MdKeyboardArrowDown
-            onClick={HandleArrowDown}
-            className="ArrowIcon"
-          />
-        )}
-        <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
-        <BiText
-          onClick={HandleTextDecoration}
-          style={{
-            color: EnabledFontFormatColor,
-            cursor: EnabledFontFormatNoDrop,
-          }}
-          className="DeleteIcon"
-        />
-        <label for={props.index} 
-         onClick={()=>{
-          setToggleButtons(false)
-          setShowDate(true)
-         }}
-        >
-          <MdDateRange className="ArrangeIcon" />
-        </label>
-        <RiSettings5Fill
-          onClick={() => {
-            setToggleButtons(!ToggleButtons);
-            let temp = [];
-            temp = TogglebuttonsName;
-            let togglebuttonarray = temp[props.index].togglebuttonlist;
-            settogglebuttonarrayList([...togglebuttonarray]);
-          }}
-          className="ArrangeIcon"
-        />
-      </div>
+        
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
@@ -529,7 +540,7 @@ export default function Boxfunction(props) {
               localStorage.setItem("arrayEducation", JSON.stringify(array));
             }}
             className="companyTitleExperienceSection"
-            style={{fontSize: "20px " }}
+            style={{ fontSize: "20px " }}
             placeholder="Degree And Field Of Study"
           />
           <input
@@ -562,8 +573,8 @@ export default function Boxfunction(props) {
               style={{ display: ShowPeriod ? "flex" : "none" }}
               className="outerWraperDateExperienceSectionDatePeriod"
             >
-              <label for={props.index}>
-                <MdDateRange for="date" className="dateIcone" />
+              <label>
+                <MdDateRange  className="dateIcone" />
               </label>
 
               <div style={{ display: DislayDatePeriod ? "block" : "none" }}>
@@ -635,57 +646,49 @@ export default function Boxfunction(props) {
                 onChange={(e) => {
                   let array = props.list;
                   array[props.index].value.locationTestHolder = e.target.value;
-                  localStorage.setItem(
-                    "arrayEducation",
-                    JSON.stringify(array)
-                  );
+                  localStorage.setItem("arrayEducation", JSON.stringify(array));
                   setLocationTestHolder(e.target.value);
                 }}
               />
             </div>
           </div>
-          <div
-            className="RichText"
-            style={{ display: ShowBullets ? "block" : "none" }}
-          ></div>
-          <div className="outerWraperGPA" style={{ display: "flex" }}>
-            <div
-              onClick={handleText}
-              className="EditorText"
-              style={{ display: ShowBullets ? "block" : "none" }}
-            >
-              {checkplacehoderBollets ? (
-                <div>jj</div>
-              ) : (
-                <div style={{ display: "flex", gap: "12px", width: "138px" }}>
-                  <Editor
-                    text={BullotsTestHolder}
-                    onChange={(text) => {
-                      setBullotsTestHolder(text);
+          <div className="outerWraperGPA" style={{display:"flex"}}>
+            <div>
+              <div
+                className="RichText"
+                style={{ display: ShowBullets ? "block" : "none" }}
+              ></div>
+              <div
+                onClick={handleText}
+                className="EditorText"
+                style={{ display: ShowBullets ? "block" : "none" }}
+              >
+                {checkplacehoderBollets ? (
+                  <div>jj</div>
+                ) : (
+                  <textarea
+                    value={BullotsTestHolder}
+                    placeholder="What knowledge or experience did you acquire during your studeis there?"
+                    onChange={(e) => {
+                      setBullotsTestHolder(e.target.value);
                       let array = props.list;
-                      array[props.index].value.bullotsTestHolder = text
+                      array[props.index].value.bullotsTestHolder = e.target.value;
                       localStorage.setItem(
                         "arrayEducation",
                         JSON.stringify(array)
                       );
                     }}
-                    tag="pre"
-                    options={{
-                      placeholder: {
-                        text: "What knowledge or experience did you acquire during your studeis there?(e.g. delievered a comprehensive marketing strategy)",
-                        hideOnClick: true,
-                      },
-                    }}
                   />
-                </div>
-              )}
+                )}
+              </div>
             </div>
             <div
               style={{
-                borderLeft: "1px solid",
-                marginTop: "-19px",
+
+                borderLeft: ShowBullets? "1px solid":"none",
                 height: "67px",
                 marginLeft: "25px",
+                marginBottom: "12px",
                 display: ShowGPA ? "block" : "none",
               }}
             >
@@ -697,10 +700,7 @@ export default function Boxfunction(props) {
                   setGPAFullTestHolder(e.target.value);
                   let array = props.list;
                   array[props.index].value.GPAFullTestHolder = e.target.value;
-                  localStorage.setItem(
-                    "arrayEducation",
-                    JSON.stringify(array)
-                  );
+                  localStorage.setItem("arrayEducation", JSON.stringify(array));
                 }}
               />
               <div
@@ -712,6 +712,7 @@ export default function Boxfunction(props) {
               >
                 <input
                   value={GPAObtainTestHolder}
+                  type="number"
                   className="GPALeft"
                   placeholder="4.0"
                   onChange={(e) => {
@@ -726,7 +727,7 @@ export default function Boxfunction(props) {
                   }}
                 />
                 <div className="GPASlash">/</div>
-                <input className="GPARight" placeholder="4.0" />
+                <input type="number" className="GPARight" placeholder="4.0" />
               </div>
             </div>
           </div>

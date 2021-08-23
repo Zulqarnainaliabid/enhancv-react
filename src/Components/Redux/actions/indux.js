@@ -4,6 +4,92 @@ export const INCREMENT=()=>{
         type:'INCREMENT',
     }
 }
+export const INCREMENTBACKGROUNDCOLORPASSION=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORPASSION',
+    }
+}
+export const INCREMENTBACKGROUNDCOLORTRAINING=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORTRAINING',
+    }
+}
+export const INCREMENTBACKGROUNDCOLOREXPERIENCE=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLOREXPERIENCE',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLORACHIEVEMENT=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORACHIEVEMENT',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLORSKILL=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORSKILL',
+    }
+}
+export const INCREMENTBACKGROUNDCOLORPROJECT=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORPROJECT',
+    }
+}
+export const INCREMENTBACKGROUNDCOLOMYTIME=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLOMYTIME',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLOFINDMEONLINE=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLOFINDMEONLINE',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLORLANGUAGE=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORLANGUAGE',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLORSUMMARY=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORSUMMARY',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLORSTRENGTH=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORSTRENGTH',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLORVOLUNTEERING=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORVOLUNTEERING',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLOREDUCATION=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLOREDUCATION',
+    }
+}
+
+export const INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE',
+    }
+}
+
+export const INCREMENTBACKGROUNDNULL=()=>{
+    return{
+        type:'INCREMENTBACKGROUNDNULL',
+    }
+}
+
 export const INCREMENTSTATE=()=>{
     return{
         type:'INCREMENTSTATE',

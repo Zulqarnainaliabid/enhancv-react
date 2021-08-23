@@ -9,9 +9,11 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORACHIEVEMENT } from "./Redux/actions/indux";
 import { GrDiamond } from "react-icons/gr";
 import { iconListData } from "../Components/DatePicker/JasonData";
+import MyComponent from './InputField'
+import InputEditor from './ReactRichtext'
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -32,7 +34,7 @@ export function SwitchButtons(props) {
     }
   }, []);
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -68,10 +70,10 @@ export default function Boxfunction(props) {
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [ShowIcon, setShowIcon] = useState(true);
   const [ShowBullets, setShowBullets] = useState(true);
-
+  
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
-
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   useEffect(() => {
     setToggleButtons(false);
     let temp = props.list;
@@ -93,7 +95,7 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
@@ -110,7 +112,7 @@ export default function Boxfunction(props) {
     }
   }
   function HandleSetBackGroundColor() {
-    dispatch(INCREMENT());
+    dispatch(INCREMENTBACKGROUNDCOLORACHIEVEMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -187,9 +189,9 @@ export default function Boxfunction(props) {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
-  useEffect(() => {
-    inputref.current.focus();
-  }, [Counter]);
+  // useEffect(() => {
+  //   inputref.current.focus();
+  // }, [Counter]);
 
   function handleToggglebutton(index, toggle) {
     let array = [];
@@ -216,7 +218,6 @@ export default function Boxfunction(props) {
       let array = [];
       array = value[props.index].togglebuttonlist;
       array.map((item, index) => {
-        console.log("new array . ", item.selected);
         if (item.name === "Show icone") {
           setShowIcon(item.selected);
         } else {
@@ -225,9 +226,14 @@ export default function Boxfunction(props) {
       });
     }
   }, []);
+  function InputTextField(text){
+    let array = props.list;
+                array[props.index].value.title = text
+                localStorage.setItem("arrayAchievement", JSON.stringify(array));
+    setTitle(text)
+  }
   return (
     <>
-    
       <div style={{ position: "relative" }}>
         {ToggleButtons && (
           <div className="OuterWraperToggleButtonsExperienceSection">
@@ -254,15 +260,7 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-          alignItems:"unset"
-        }}
-      >
+      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
           <div
         style={{ display: props.item.selected ? "flex" : "none" }}
         className="headingOptionUnderBox"
@@ -334,11 +332,16 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-
-
-
-
-
+         </div>
+      <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+          alignItems:"unset"
+        }}
+      >
         <div style={{ display: "flex", borderBottom: props.borderbotm }}>
           <div
             onClick={() => {
@@ -357,23 +360,11 @@ export default function Boxfunction(props) {
               setlistIcon(false);
             }}
           >
-            <input
-              ref={inputref}
-              type="text"
-              value={Title}
-              onClick={() => {
-                setEnabledFontFormatColor("#38434744");
-                setEnabledFontFormatNoDrop("no-drop");
-              }}
-              onChange={(e) => {
-                setTitle(e.target.value);
-                let array = props.list;
-                array[props.index].value.title = e.target.value;
-                localStorage.setItem("arrayAchievement", JSON.stringify(array));
-              }}
-              className="companyTitleExperienceSection"
-              style={{ display: "block ", fontSize: "20px " }}
-              placeholder="Why you are most proud of?"
+            <MyComponent
+             placeholder={"Why you are most proud of?"}
+             setFunction={InputTextField}
+             InputText={Title}
+             ref={inputref}
             />
             <div
               onClick={handleText}
@@ -386,6 +377,7 @@ export default function Boxfunction(props) {
               {checkplacehoderBollets ? (
                 <div>jj</div>
               ) : (
+                <div className="app">
                 <Editor
                   text={Bullots}
                   onChange={(text) => {
@@ -397,7 +389,6 @@ export default function Boxfunction(props) {
                       JSON.stringify(array)
                     );
                   }}
-                  tag="pre"
                   options={{
                     placeholder: {
                       text: "Why are you proud of this achievement?",
@@ -405,6 +396,7 @@ export default function Boxfunction(props) {
                     },
                   }}
                 />
+                </div>
               )}
             </div>
           </div>

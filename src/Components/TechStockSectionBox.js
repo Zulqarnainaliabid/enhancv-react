@@ -10,7 +10,7 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Switch from "react-switch";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORSKILL } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -56,7 +56,7 @@ export function SwitchButtons(props) {
     }
   }, []);
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -73,7 +73,6 @@ export function SwitchButtons(props) {
   );
 }
 export default function Boxfunction(props) {
-  console.log("isyte,,",props.list[props.index].togglebuttonlist);
   const inputref = useRef();
   const alert = useAlert();
   const [EnabledFontFormatColor, setEnabledFontFormatColor] =
@@ -82,7 +81,6 @@ export default function Boxfunction(props) {
     useState("no-drop");
   const [ToggleButtons, setToggleButtons] = useState(false);
   const [UpdateNumber, setUpdateNumber] = useState(0);
-  const [Bullots, setBullots] = useState("");
   const [Counter, setCounter] = useState(0);
   const [ShowGroupName, setShowGroupName] = useState("block");
   const dispatch = useDispatch();
@@ -93,7 +91,7 @@ export default function Boxfunction(props) {
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [GroupTitlrTextHolder, setGroupTitlrTextHolder] = useState('');
-  
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   useEffect(() => {
     setToggleButtons(false);
     let temp = props.list;
@@ -114,7 +112,7 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
@@ -129,7 +127,8 @@ export default function Boxfunction(props) {
     }
   }
   function HandleSetBackGroundColor() {
-    dispatch(INCREMENT());
+    // dispatch(INCREMENT());
+    dispatch(INCREMENTBACKGROUNDCOLORSKILL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -141,7 +140,7 @@ export default function Boxfunction(props) {
       temp[props.index].selected = true;
       props.setList([...temp]);
     }
-    props.button();
+    // props.button();
     setUpdateNumber(UpdateNumber + 1);
     let array = props.list;
     if (array.length !== 1) {
@@ -218,11 +217,9 @@ export default function Boxfunction(props) {
   }, [Counter]);
 
   function HandlerAddingToolAndTechnology() {
-   console.log("ooa12 = oo",props.list[props.index].Texttoolandtechnology)
    let temp = []
     temp = props.list
    temp[props.index].Texttoolandtechnology.push({Text:"null"})
-   console.log("new array temp",temp);
     setArrayTechnology([...temp]);
     localStorage.setItem("arrayTechStock", JSON.stringify(temp));
     setpointEvent(null);
@@ -236,7 +233,6 @@ export default function Boxfunction(props) {
       setCursurPointer("not-allowed");
     } else {
       temp[props.index].Texttoolandtechnology.pop({Text:"null"})
-      console.log("new array temp",temp);
        setArrayTechnology([...temp]);
        localStorage.setItem("arrayTechStock", JSON.stringify(temp));
     }
@@ -279,14 +275,7 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-        }}
-      >
+      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
          <div
         style={{ display: props.item.selected ? "flex" : "none" }}
         className="headingOptionUnderBox"
@@ -341,6 +330,15 @@ export default function Boxfunction(props) {
           className="ArrangeIcon"
         />
       </div>
+        </div>
+      <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+        }}
+      >
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
@@ -359,7 +357,6 @@ export default function Boxfunction(props) {
               }}
               onChange={(e) => {
                 let array = props.list;
-                console.log("group title,,",e.target.value)
                 array[props.index].value.grouptitle = e.target.value;
                 setGroupTitlrTextHolder(e.target.value);
                 localStorage.setItem("arrayTechStock", JSON.stringify(array));
@@ -371,6 +368,7 @@ export default function Boxfunction(props) {
           <div style={{ display: "flex", flexWrap: "wrap" }}>
              {ArrayTechnology[props.index].Texttoolandtechnology.map((item,index) => {
                 return <ToolAndTechnology 
+                key={index}
                 index={index}
                 list={ArrayTechnology}
                 setArrayTechnology={setArrayTechnology}

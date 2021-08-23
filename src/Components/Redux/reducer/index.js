@@ -8,6 +8,21 @@ import CountingUpdateNumber from './CountingUpdateNumber'
 import IncrementState from './Incrementstate'
 import UpdateYearFrom from './UpdateYearFrom'
 import { combineReducers } from "redux" 
+import IncrementBackgroundColorPassion from './IncrementBackgroundcolorPassion'
+import IncrementBackgroundColorTraining from './IncrementBackgroundcolorTraining'
+import IncrementBackgroundColorExperience from './IncrementBackgroundcolorExperience'
+import IncrementBackgroundColorAchievement from './IncrementBackgroundcolorAchievement'
+import IncrementBackgroundColorSkill from './IncrementBackgroundcolorSkill'
+import IncrementBackgroundColorProject from './IncrementBackgroundcolorProject'
+import IncrementBackgroundColorMyTime from './IncrementBackgroundcolorMyTime'
+import IncrementBackgroundColorLanguage from './IncrementBackgroundcolorLanguage'
+import IncrementBackgroundColorFindMeOnline from './IncrementBackgroundcolorFindmeOnline'
+import IncrementBackgroundColorSummary from './IncrementBackgroundcolorsummary'
+import IncrementBackgroundColorStrength from './IncrementBackgroundcolorStrength'
+import IncrementBackgroundColorVolunteering from './IncrementBackgroundcolorVolunteering'
+import IncrementBackgroundColorEducation from './IncrementBackgroundcolorEducation'
+import IncrementBackgroundColorIndusteryExperience from './IncrementBackgroundcolorIndusteryExperience'
+import IncrementNull from './IncrementNull'
 import Section from './SectionArray'
 import UpdateAchievement from './UpdateAchievement'
 const allReducers = combineReducers({
@@ -21,6 +36,21 @@ CountingUpdateNumber,CountingUpdateNumber,
 IncrementState:IncrementState,
 UpdateYearFrom:UpdateYearFrom,
 Section:Section,
-UpdateAchievement:UpdateAchievement
+UpdateAchievement:UpdateAchievement,
+IncrementBackgroundColorPassion:IncrementBackgroundColorPassion,
+IncrementBackgroundColorTraining:IncrementBackgroundColorTraining,
+IncrementBackgroundColorExperience:IncrementBackgroundColorExperience,
+IncrementBackgroundColorAchievement:IncrementBackgroundColorAchievement,
+IncrementBackgroundColorSkill:IncrementBackgroundColorSkill,
+IncrementBackgroundColorProject:IncrementBackgroundColorProject,
+IncrementBackgroundColorMyTime:IncrementBackgroundColorMyTime,
+IncrementBackgroundColorLanguage:IncrementBackgroundColorLanguage,
+IncrementBackgroundColorFindMeOnline:IncrementBackgroundColorFindMeOnline,
+IncrementBackgroundColorSummary:IncrementBackgroundColorSummary,
+IncrementBackgroundColorStrength:IncrementBackgroundColorStrength,
+IncrementBackgroundColorVolunteering:IncrementBackgroundColorVolunteering,
+IncrementBackgroundColorEducation:IncrementBackgroundColorEducation,
+IncrementBackgroundColorIndusteryExperience:IncrementBackgroundColorIndusteryExperience,
+IncrementNull:IncrementNull
 });
 export default allReducers

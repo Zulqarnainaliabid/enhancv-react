@@ -45,7 +45,6 @@ function HomaPageSabSection(props) {
       (position === "Left" && left === true) ||
       (position === "Right" && left === false)
     ) {
-      console.log("IF part");
       if (position === "Right") {
         for (var i = 0; i < temp.length; i++) {
           if (temp[i].Left === false) {
@@ -53,7 +52,6 @@ function HomaPageSabSection(props) {
             if (Id_Start < 0) {
               actual_Id_Start = i;
               temp[i].Left = left;
-              console.log("8");
               break;
             }
           }
@@ -62,7 +60,6 @@ function HomaPageSabSection(props) {
       Id_Start = actual_Id_Start;
       temp[index].Left = left;
     } else {
-      console.log("Else part");
       actual_Id_Start = 0;
       for (var i = 0; i < temp.length; i++) {
         if (position === "Left") {
@@ -91,6 +88,8 @@ function HomaPageSabSection(props) {
     temp.splice(Id_Start, 1);
     temp.splice(index, 0, startFunction);
     props.setArray([...temp]);
+    console.log("aray..",temp[index].Left)
+    props.checkLeft(temp[index].Left,temp[index].name)
     localStorage.setItem("Section", JSON.stringify(temp));
   }
   function HandleDRagStart(index, position, e) {
@@ -112,6 +111,8 @@ function HomaPageSabSection(props) {
     }
     props.setArray([...temp]);
     localStorage.setItem("Section", JSON.stringify(temp));
+    console.log("aray..left",temp[0].Left)
+    props.checkLeft(temp[0].Left,temp[0].name)
   }
   function HandleRightContainer() {
     let temp = props.Array;
@@ -128,6 +129,8 @@ function HomaPageSabSection(props) {
     }
     props.setArray([...temp]);
     localStorage.setItem("Section", JSON.stringify(temp));
+    console.log("aray..Right",temp[0].Left)
+    props.checkLeft(temp[0].Left,temp[0].name)
   }
   return (
     <>
@@ -191,9 +194,7 @@ function HomaPageSabSection(props) {
                               display: true ? "block" : "none",
                             }}
                             onClick={()=>{
-                              console.log("remove Closs IconeLeft")
                               let nameSection = item.name
-                              console.log("nameSectionBox,,",nameSection)
                               props.HandleRemoveSection(nameSection)
                               childRef.current.HandleRemoveSectionRearrange(nameSection)
                             }}
@@ -255,9 +256,7 @@ function HomaPageSabSection(props) {
                               display: true ? "block" : "none",
                             }}
                             onClick={()=>{
-                              console.log("remove Closs Icone Right")
                               let nameSection = item.name
-                              console.log("nameSectionBox,,",nameSection)
                               props.HandleRemoveSection(nameSection)
                               props.HandleRemoveSectionRearrange(nameSection)
                             }}

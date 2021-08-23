@@ -12,7 +12,10 @@ import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import DatePicker from "./DatePicker/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import {
+  INCREMENT,
+  INCREMENTBACKGROUNDCOLORVOLUNTEERING,
+} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -34,9 +37,9 @@ export function SwitchButtons(props) {
       setchecked(true);
     }
   }, []);
- 
+
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -79,16 +82,15 @@ export default function Boxfunction(props) {
     setcheckplacehodercompanydiscription,
   ] = useState(true);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
-
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
-
   const [ShowDescription, setShowDescription] = useState(true);
   const [ShowBullets, setShowBullets] = useState(true);
   const [ShowLocation, setShowLocation] = useState(true);
   const [ShowPeriod, setShowPeriod] = useState(true);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -196,7 +198,7 @@ export default function Boxfunction(props) {
       setYearOnGoing(date);
       let array = props.list;
       array[props.index].value.date.yearto = date;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem("arrayVolunteering", JSON.stringify(array));
     }
     if (date !== null || YearOnGoing !== null) {
       setDiplayMinus(true);
@@ -213,10 +215,8 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [CounterData]);
-
+  }, [Incrementnull]);
   useEffect(() => {
-    setToggleButtons(false);
     let temp = props.list;
     props.list.map((item, index) => {
       if (item.selected) {
@@ -224,10 +224,8 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
-  useEffect(() => {
-    setToggleButtons(false);
-  }, [props.UpdateState]);
+  }, [CounterData]);
+
   function HandleTextDecoration() {
     setToggleButtons(false);
     if (
@@ -240,7 +238,7 @@ export default function Boxfunction(props) {
     }
   }
   function HandleSetBackGroundColor() {
-    setToggleButtons(false);
+    dispatch(INCREMENTBACKGROUNDCOLORVOLUNTEERING());
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
@@ -451,11 +449,10 @@ export default function Boxfunction(props) {
         )}
       </div>
       <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
         style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
+          display: "flex",
+          justifyContent: "center",
+          position: "relative",
         }}
       >
         <div
@@ -492,7 +489,6 @@ export default function Boxfunction(props) {
             className="DeleteIcon"
           />
           <label
-            for={props.index}
             onClick={() => {
               setToggleButtons(false);
               setShowDate(true);
@@ -511,6 +507,15 @@ export default function Boxfunction(props) {
             className="ArrangeIcon"
           />
         </div>
+      </div>
+      <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+        }}
+      >
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
@@ -565,8 +570,8 @@ export default function Boxfunction(props) {
               style={{ display: ShowPeriod ? "flex" : "none" }}
               className="outerWraperDateExperienceSectionDatePeriod"
             >
-              <label for={props.index}>
-                <MdDateRange for="date" className="dateIcone" />
+              <label >
+                <MdDateRange  className="dateIcone" />
               </label>
 
               <div style={{ display: DislayDatePeriod ? "block" : "none" }}>

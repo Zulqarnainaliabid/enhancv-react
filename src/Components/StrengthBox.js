@@ -9,7 +9,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORSTRENGTH } from "./Redux/actions/indux";
 import { GrDiamond } from "react-icons/gr";
 import { iconListData } from "./DatePicker/JasonData";
 import "./HomePage.css";
@@ -34,7 +34,7 @@ export function SwitchButtons(props) {
     }
   }, []);
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -74,6 +74,7 @@ export default function Boxfunction(props) {
 
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   useEffect(() => {
     setToggleButtons(false);
     setlistIcon(false);
@@ -96,7 +97,7 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
     setlistIcon(false);
@@ -114,7 +115,7 @@ export default function Boxfunction(props) {
     }
   }
   function HandleSetBackGroundColor() {
-    setToggleButtons(false);
+    dispatch(INCREMENTBACKGROUNDCOLORSTRENGTH());
     setlistIcon(false);
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
@@ -259,15 +260,7 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-          alignItems:"unset"
-        }}
-      >
+      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
         <div
           style={{ display: props.item.selected ? "flex" : "none" }}
           className="headingOptionUnderBoxEducation"
@@ -340,6 +333,17 @@ export default function Boxfunction(props) {
             </div>
           )}
         </div>
+        </div>
+    
+      <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+          alignItems:"unset"
+        }}
+      >
         <div style={{ display: "flex" }}>
           <div
             onClick={() => {

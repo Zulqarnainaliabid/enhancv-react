@@ -13,7 +13,7 @@ import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import DatePicker from "./DatePicker/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORPROJECT } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -36,7 +36,7 @@ export function SwitchButtons(props) {
     }
   }, []);
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -93,7 +93,7 @@ export default function Boxfunction(props) {
   const CounterData = useSelector((state) => state.CounterData);
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
-
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -231,7 +231,7 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
@@ -248,7 +248,7 @@ export default function Boxfunction(props) {
   }
 
   function HandleSetBackGroundColor() {
-    setToggleButtons(false);
+    dispatch(INCREMENTBACKGROUNDCOLORPROJECT());
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
@@ -462,14 +462,7 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-        }}
-      >
+      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
         <div
           style={{ display: props.item.selected ? "flex" : "none" }}
           className="headingOptionUnderBoxEducation"
@@ -504,7 +497,6 @@ export default function Boxfunction(props) {
             className="DeleteIcon"
           />
           <label
-            for={props.index}
             onClick={() => {
               setToggleButtons(false);
               setShowDate(true);
@@ -523,7 +515,16 @@ export default function Boxfunction(props) {
             className="ArrangeIcon"
           />
         </div>
-
+        </div>
+    
+      <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+        }}
+      >
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
@@ -630,7 +631,7 @@ export default function Boxfunction(props) {
                 className="LocationExperienceSection"
                 type="text"
                 placeholder="Location"
-                value={Location}
+                value={LocationTextHolder}
                 onChange={(e) => {
                   setLocationTextHolder(e.target.value);
                   let array = props.list;

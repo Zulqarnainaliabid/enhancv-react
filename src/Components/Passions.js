@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import PassionBoxfunction from "./PassionsBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION } from "./Redux/actions/indux";
 export default function Passions(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -17,7 +17,22 @@ export default function Passions(props) {
   const [ToggleArrowUp, setToggleArrowUp] = useState(true);
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
+  const nullBackgroundcolorTraining = useSelector((state) => state.IncrementBackgroundColorTraining);
+  const nullBackgroundcolorExperience = useSelector((state) => state.IncrementBackgroundColorExperience);
+  const nullBackgroundcolorAchievement = useSelector((state) => state.IncrementBackgroundColorAchievement);
+  const nullBackgroundcolorSkill = useSelector((state) => state.IncrementBackgroundColorSkill);
+  const nullBackgroundcolorProject = useSelector((state) => state.IncrementBackgroundColorProject);
+  const nullBackgroundcolorMyTime = useSelector((state) => state.IncrementBackgroundColorMyTime);
+  const nullBackgroundcolorLanguage = useSelector((state) => state.IncrementBackgroundColorLanguage);
+  const nullBackgroundcolorFindMeOnline = useSelector((state) => state.IncrementBackgroundColorFindMeOnline);
+  const nullBackgroundcolorSummary = useSelector((state) => state.IncrementBackgroundColorSummary);
+  const nullBackgroundcolorStrength = useSelector((state) => state.IncrementBackgroundColorStrength);
+  const nullBackgroundcolorVolunteering = useSelector((state) => state.IncrementBackgroundColorVolunteering);
+  const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
+  const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   function HandleCompleteBoarderSelected() {
+    dispatch(INCREMENTBACKGROUNDCOLORPASSION());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -36,7 +51,150 @@ export default function Passions(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
-  }, [props.data]);
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorTraining]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorExperience]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorAchievement]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorSkill]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorProject]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorMyTime]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorLanguage]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorFindMeOnline]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorSummary]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorStrength]);
+ 
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorVolunteering]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorEducation]);
+
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+    let temp = array;
+    array.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
+  }, [nullBackgroundcolorIndustryExperience]);
+  
+  useEffect(() => {
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
+  }, [Incrementnull]);
 
   useEffect(() => {
     setbackgroundColor(null);
@@ -96,6 +254,7 @@ export default function Passions(props) {
       setToggleArrowUp(Isactive);
     }
   }
+
   return (
     <>
       <div
@@ -109,6 +268,7 @@ export default function Passions(props) {
           onClick={HandleCompleteBoarderSelected}
         >
           <input
+            type="text"
             className="TexrHolderexperience"
             style={{ borderBottom: "4px solid" }}
             placeholder="PASSIONS"
@@ -139,6 +299,7 @@ export default function Passions(props) {
           array.map((item, index) => {
             return (
               <PassionBoxfunction
+                key={index}
                 UpdateState={UpdateState}
                 HeaderButton={"flex"}
                 data={props.data}

@@ -28,136 +28,307 @@ function App() {
   const [ToggleAddNewSectionLeft, setToggleAddNewSectionLeft] = useState(false);
   const [ToggleAddNewSectionRight, setToggleAddNewSectionRight] =
     useState(false);
+  const [HoverEffect, SetHoverEffect] = useState(null);
   const [Array, setArray] = useState([]);
+  const [FlagRight, setFlagRight] = useState(false);
+  
   const ref = React.createRef();
+  function HandleSetHoverEffect() {
+    SetHoverEffect("rgba(80,77,98,.2)");
+  }
 
+  function checkLeft(toggleLeft,name){
+  console.log("Lft,",toggleLeft,"=name =",name)
+  }
   function HandleSections(data) {
     if (data !== undefined && data !== null) {
       if (data === "Achievement") {
-        Array.push({
+         if(FlagRight===true){
+          Array.push({
+            name: "Achievement",
+            section: <Achievements button={HandleSetHoverEffect}  />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+         }else{Array.push({
           name: "Achievement",
-          section: <Achievements />,
+          section: <Achievements button={HandleSetHoverEffect}  />,
           margen: "",
           BoxShedow: "",
           Left: true,
-        });
+        });}
         setArray([...Array]);
+        setFlagRight(false)
       } else if (data === "Skill") {
-        Array.push({
-          name: "Skill",
-          section: <TechStockSection />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+         if(FlagRight===true){
+          Array.push({
+            name: "Skill",
+            section: <TechStockSection button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+         }else{
+          Array.push({
+            name: "Skill",
+            section: <TechStockSection button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+         }
+         setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Project") {
-        Array.push({
-          name: "Project",
-          section: <Projects />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Project",
+            section: <Projects button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Project",
+            section: <Projects button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Training") {
-        Array.push({
-          name: "Training",
-          section: <TrainingCourse />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Training",
+            section: <TrainingCourse button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Training",
+            section: <TrainingCourse button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "MyTime") {
-        Array.push({
-          name: "MyTime",
-          section: <MyTime />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "MyTime",
+            section: <MyTime button={HandleSetHoverEffect}  />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "MyTime",
+            section: <MyTime button={HandleSetHoverEffect}  />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Langue") {
-        Array.push({
-          name: "Langue",
-          section: <Language />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Langue",
+            section: <Language button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Langue",
+            section: <Language button={HandleSetHoverEffect}  />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Profesion") {
-        Array.push({
+        if(FlagRight===true){
+          Array.push({
+            name: "Profesion",
+            section: <Passions button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{ Array.push({
           name: "Profesion",
-          section: <Passions />,
+          section: <Passions button={HandleSetHoverEffect} />,
           margen: "",
           BoxShedow: "",
           Left: true,
-        });
+        });}
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Indestry") {
-        Array.push({
-          name: "Indestry",
-          section: <IndustryExperience />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Indestry",
+            section: <IndustryExperience button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Indestry",
+            section: <IndustryExperience button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Find Me") {
-        Array.push({
+        if(FlagRight===true){
+          Array.push({
+            name: "Find Me",
+            section: <FindMeOnline button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{ Array.push({
           name: "Find Me",
-          section: <FindMeOnline />,
+          section: <FindMeOnline button={HandleSetHoverEffect}  />,
           margen: "",
           BoxShedow: "",
           Left: true,
-        });
+        });}
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Summary") {
-        Array.push({
-          name: "Summary",
-          section: <Summry />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Summary",
+            section: <Summry button={HandleSetHoverEffect}  />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Summary",
+            section: <Summry button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Strength") {
-        Array.push({
-          name: "Strength",
-          section: <Strength />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Strength",
+            section: <Strength button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Strength",
+            section: <Strength button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Volunteering") {
-        Array.push({
-          name: "Volunteering",
-          section: <Volunteering />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Volunteering",
+            section: <Volunteering button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Volunteering",
+            section: <Volunteering button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Experience") {
-        Array.push({
-          name: "Experience",
-          section: <ExperienceSection />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Experience",
+            section: <ExperienceSection  button={HandleSetHoverEffect}/>,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Experience",
+            section: <ExperienceSection button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       } else if (data === "Education") {
-        Array.push({
-          name: "Education",
-          section: <Education />,
-          margen: "",
-          BoxShedow: "",
-          Left: true,
-        });
+        if(FlagRight===true){
+          Array.push({
+            name: "Education",
+            section: <Education button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: false,
+          });
+          HandleAddNewSection()
+        }else{
+          Array.push({
+            name: "Education",
+            section: <Education button={HandleSetHoverEffect} />,
+            margen: "",
+            BoxShedow: "",
+            Left: true,
+          });
+        }
+        setFlagRight(false)
         setArray([...Array]);
       }
       localStorage.setItem("Section", JSON.stringify(Array));
@@ -287,15 +458,12 @@ function App() {
       });
     }
   }, []);
-  console.log("array,,12", Array);
 
  function HandleRemoveSection(name){
- console.log("remove me",name)
     let temp = []
     temp = Array
     temp.map((item,index)=>{
       if(item.name===name){
-      console.log("find")
       temp.splice(index,1)
       }
     })
@@ -311,6 +479,7 @@ function App() {
           Array={Array}
           HandleAddNewSection={HandleAddNewSection}
           HandleRemoveSection={HandleRemoveSection}
+          checkLeft={checkLeft}
         />
       </div>
     );
@@ -345,6 +514,7 @@ function App() {
                 Array={Array}
                 HandleAddNewSection={HandleAddNewSection}
                 HandleRemoveSection={HandleRemoveSection}
+                checkLeft={checkLeft}
               />
             </div>
             {ToggleAddNewSection && (
@@ -359,6 +529,11 @@ function App() {
               Array={Array}
               ToggleAddNewSectionRight={ToggleAddNewSectionRight}
               ToggleAddNewSectionLeft={ToggleAddNewSectionLeft}
+              setToggleAddNewSection={setToggleAddNewSection}
+              setFlagRight={setFlagRight}
+              HandleSetHoverEffect={HandleSetHoverEffect}
+              HoverEffect={HoverEffect}
+              SetHoverEffect={SetHoverEffect}
             />
             {ToggleAddNewSection && (
               <>

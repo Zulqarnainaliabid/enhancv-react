@@ -369,7 +369,6 @@ function DatePicker(props) {
   }
   function HandleToggle(value) {
     props.HandleOngoing(value);
-    console.log("button",value)
     localStorage.setItem("DatePickerToggleButton", JSON.stringify(value));
     setchecked(value);
     if (checked) {

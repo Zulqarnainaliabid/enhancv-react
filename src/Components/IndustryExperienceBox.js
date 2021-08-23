@@ -8,7 +8,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import { useDispatch, useSelector } from "react-redux";
 import { RangeStepInput } from "react-range-step-input";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -31,7 +31,7 @@ export function SwitchButtons(props) {
     }
   }, []);
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -56,7 +56,7 @@ export default function Boxfunction(props) {
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [ShowSlider, setShowSlider] = useState(true);
   const [TitleTestHolder, setTitleTestHolder] = useState("");
-
+  const Incrementnull = useSelector((state) => state.IncrementNull);
   const dispatch = useDispatch();
   useEffect(() => {
     setToggleButtons(false);
@@ -78,12 +78,12 @@ export default function Boxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
   function HandleSetBackGroundColor() {
-    setToggleButtons(false);
+    dispatch(INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE());
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
@@ -210,14 +210,7 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-        }}
-      >
+      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
          <div
         style={{ display: props.item.selected ? "flex" : "none" }}
         className="headingOptionUnderBox"
@@ -254,6 +247,16 @@ export default function Boxfunction(props) {
           className="ArrangeIcon"
         />
       </div>
+       </div>
+     
+      <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+        }}
+      >
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
@@ -262,6 +265,7 @@ export default function Boxfunction(props) {
           style={style}
         >
           <input
+            type="text"
             className="outerWraperGroupTitle"
             placeholder="Area of expertise"
             value={TitleTestHolder}

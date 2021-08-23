@@ -8,7 +8,6 @@ function MyStatefulEditor(props) {
   const [text, settext] = useState(props.data);
   function handleChange(text) {
     settext(text);
-    console.log("jj = ",text)
     if(text)
     props.HandleText(true)
     else{

@@ -9,9 +9,10 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT } from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION } from "./Redux/actions/indux";
 import { GrDiamond } from "react-icons/gr";
 import { iconListData } from "./DatePicker/JasonData";
+
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -34,7 +35,7 @@ export function SwitchButtons(props) {
     }
   }, []);
   return (
-    <label htmlFor="normal-switch">
+    <label>
       <Switch
         height={25}
         width={45}
@@ -73,6 +74,11 @@ export default function PassionBoxfunction(props) {
   const [BulletsTextHolder, setBulletsTextHolder] = useState("");
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
+  const CounterBackgroundcolor = useSelector((state) => state.counter);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  useEffect(() => {
+  }, [CounterBackgroundcolor]);
+
   useEffect(() => {
     setToggleButtons(false);
     let temp = props.list;
@@ -93,7 +99,7 @@ export default function PassionBoxfunction(props) {
       }
     });
     props.setList([...temp]);
-  }, [props.data]);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
@@ -110,7 +116,7 @@ export default function PassionBoxfunction(props) {
     }
   }
   function HandleSetBackGroundColor() {
-    setToggleButtons(false);
+    dispatch(INCREMENTBACKGROUNDCOLORPASSION());
     setlistIcon(false);
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
@@ -218,6 +224,7 @@ export default function PassionBoxfunction(props) {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
+
   useEffect(() => {
     inputref.current.focus();
   }, [Counter]);
@@ -249,15 +256,7 @@ export default function PassionBoxfunction(props) {
           </div>
         )}
       </div>
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-          alignItems:"unset"
-        }}
-      >
+      <div style={{display:"flex",justifyContent:"center",position:"relative"}} >
         <div
           style={{ display: props.item.selected ? "flex" : "none" }}
           className="headingOptionUnderBox"
@@ -329,6 +328,17 @@ export default function PassionBoxfunction(props) {
             </div>
           )}
         </div>
+        </div>
+     
+      <div
+        onClick={HandleSetBackGroundColor}
+        className="outerWraperBox"
+        style={{
+          backgroundColor: props.item.selected ? "white" : "",
+          border: props.item.selected ? "1px solid #60d5ba" : "",
+          alignItems:"unset"
+        }}
+      >
         <div style={{ display: "flex", borderBottom: props.borderbotm }}>
           <div
             onClick={() => {
@@ -387,7 +397,7 @@ export default function PassionBoxfunction(props) {
                   tag="pre"
                   options={{
                     placeholder: {
-                      text: "What are you looking for in your next company?",
+                      text: "What are you looking  for in your next company?",
                       hideOnClick: true,
                     },
                   }}
