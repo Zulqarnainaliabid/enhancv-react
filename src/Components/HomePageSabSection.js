@@ -89,7 +89,6 @@ function HomaPageSabSection(props) {
     temp.splice(index, 0, startFunction);
     props.setArray([...temp]);
     console.log("aray..",temp[index].Left)
-    props.checkLeft(temp[index].Left,temp[index].name)
     localStorage.setItem("Section", JSON.stringify(temp));
   }
   function HandleDRagStart(index, position, e) {
@@ -111,8 +110,6 @@ function HomaPageSabSection(props) {
     }
     props.setArray([...temp]);
     localStorage.setItem("Section", JSON.stringify(temp));
-    console.log("aray..left",temp[0].Left)
-    props.checkLeft(temp[0].Left,temp[0].name)
   }
   function HandleRightContainer() {
     let temp = props.Array;
@@ -130,7 +127,6 @@ function HomaPageSabSection(props) {
     props.setArray([...temp]);
     localStorage.setItem("Section", JSON.stringify(temp));
     console.log("aray..Right",temp[0].Left)
-    props.checkLeft(temp[0].Left,temp[0].name)
   }
   return (
     <>

@@ -52,6 +52,7 @@ export function SwitchButtons(props) {
 }
 
 export default function Boxfunction(props) {
+  console.log("kkleft = ",props.Left)
   const inputref = useRef();
   const alert = useAlert();
   const [EnabledFontFormatColor, setEnabledFontFormatColor] =
@@ -377,7 +378,7 @@ export default function Boxfunction(props) {
               {checkplacehoderBollets ? (
                 <div>jj</div>
               ) : (
-                <div className="app">
+                <div className="app" style={{width:"300px"}}>
                 <Editor
                   text={Bullots}
                   onChange={(text) => {

@@ -337,7 +337,7 @@ export default function Boxfunction(props) {
                 min={1}
                 max={5}
                 tooltip={false}
-                // value={value}
+                value={value}
                 onChange={handleChange}
               />
             </div>

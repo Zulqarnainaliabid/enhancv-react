@@ -330,6 +330,7 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
+              <div className="app" style={{width:"300px"}}>
               <Editor
                 text={BullotsTextHolder}
                 onChange={(text) => {
@@ -338,7 +339,6 @@ export default function Boxfunction(props) {
                   array[props.index].value.bullotsTextHolder = text;
                   localStorage.setItem("arrayTraining", JSON.stringify(array));
                 }}
-                tag="pre"
                 options={{
                   placeholder: {
                     text: "Which institude provided the course?",
@@ -346,6 +346,7 @@ export default function Boxfunction(props) {
                   },
                 }}
               />
+              </div>
             )}
           </div>
         </div>

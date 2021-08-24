@@ -9,7 +9,7 @@
     display: flex;
     /* height: 700px; */
     justify-content: center;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 .InnerContainer{
   display: flex;
@@ -19,7 +19,7 @@
   padding: 5% 0px 5% 0px;
   margin: 7% 0% 7% 0%;
   box-shadow: 0 7px 10px rgb(0 0 0 / 60%);
-  border: 2px solid red;
+  /* border: 2px solid red; */
   position: relative;
 }
 input{
@@ -140,11 +140,11 @@ color: #00c091;
   z-index: 3;
 }
 .SectionLeft {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 37%;
 }
 .SectionRight {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 64%;
   /* display: flex;
   flex-direction: column;
@@ -287,6 +287,13 @@ color: #00c091;
   font-size: 18px;
   display: flex;
   cursor: pointer;
+}
+.Download:hover{
+  color: #8c7cdb88;
+}
+.Download {
+  color: #8c7cdb;
+  margin: -1px 2px 0px -19px;
 }
 .OuterWraperAddNewSectionButton{
   color: #8c7cdb;
@@ -913,7 +920,7 @@ margin: 7px 13px 4px 0px;
   word-wrap: break-word;
   min-height: 30px;
   margin: 0;
-  /* width: 229px; */
+  /* width: 300px; */
   padding: 0px;
   overflow: hidden;
   padding:0px;
@@ -943,6 +950,9 @@ textarea {
 }
 .GPARight{
   font-size: 16px;
+  font-size: 16px;
+    width: 41px;
+    overflow: hidden;
 }
 .GPARight:focus::placeholder{
   color: rgba(71, 72, 75, 0.514);
@@ -1061,6 +1071,7 @@ font-size: 17px;
 }
 .companyTitleExperienceSection{
 /* border: 1px solid; */
+font-size: 20px;
 
 }
 .test[placeholder]:empty:before {

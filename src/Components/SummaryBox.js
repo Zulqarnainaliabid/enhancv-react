@@ -192,6 +192,7 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
+              <div className="app" style={{width:"300px"}}>
               <Editor
                 text={SummaryTextHolder}
                 onChange={(text) => {
@@ -200,7 +201,6 @@ export default function Boxfunction(props) {
                   array[props.index].value.titleSummaryTextHolder = text;
                   localStorage.setItem("arraySummary", JSON.stringify(array));
                 }}
-                tag="pre"
                 options={{
                   placeholder: {
                     text: "What's the one thing you want someone to remember after reading your resume",
@@ -208,6 +208,7 @@ export default function Boxfunction(props) {
                   },
                 }}
               />
+              </div>
             )}
           </div>
         </div>

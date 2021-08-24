@@ -701,6 +701,7 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
+              <div className="app" style={{width:"300px"}}>
               <Editor
                 text={BullotsTextHolder}
                 onChange={(text) => {
@@ -709,7 +710,6 @@ export default function Boxfunction(props) {
                   array[props.index].value.bullotsTextHolder = text;
                   localStorage.setItem("arrayProject", JSON.stringify(array));
                 }}
-                tag="pre"
                 options={{
                   placeholder: {
                     text: "What was a successful outcome of your work?",
@@ -717,6 +717,7 @@ export default function Boxfunction(props) {
                   },
                 }}
               />
+              </div>
             )}
           </div>
         </div>

@@ -659,8 +659,8 @@ export default function Boxfunction(props) {
             {checkplacehodercompanydiscription ? (
               <div>hh</div>
             ) : (
+              <div className="app" style={{width:"300px"}}>
               <Editor
-                tag="pre"
                 text={CompanyDiscriptionTextHolder}
                 onChange={(text) => {
                   let array = props.list;
@@ -678,6 +678,7 @@ export default function Boxfunction(props) {
                   },
                 }}
               />
+              </div>
             )}
           </div>
           <div
@@ -692,6 +693,7 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
+              <div className="app" style={{width:"300px"}}>
               <Editor
                 text={BullotsTextHolder}
                 onChange={(text) => {
@@ -703,7 +705,6 @@ export default function Boxfunction(props) {
                   );
                   setBullotsTextHolder(text);
                 }}
-                tag="pre"
                 options={{
                   placeholder: {
                     text: "What was the impact of your efforts?",
@@ -711,6 +712,7 @@ export default function Boxfunction(props) {
                   },
                 }}
               />
+              </div>
             )}
           </div>
         </div>

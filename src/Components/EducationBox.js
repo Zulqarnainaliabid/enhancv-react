@@ -666,25 +666,31 @@ export default function Boxfunction(props) {
                 {checkplacehoderBollets ? (
                   <div>jj</div>
                 ) : (
-                  <textarea
-                    value={BullotsTestHolder}
-                    placeholder="What knowledge or experience did you acquire during your studeis there?"
-                    onChange={(e) => {
-                      setBullotsTestHolder(e.target.value);
+                  <div style={{width:"176px"}}>
+                  <Editor
+                   text={BullotsTestHolder}
+                    onChange={(text) => {
+                      setBullotsTestHolder(text);
                       let array = props.list;
-                      array[props.index].value.bullotsTestHolder = e.target.value;
+                      array[props.index].value.bullotsTestHolder = text;
                       localStorage.setItem(
                         "arrayEducation",
                         JSON.stringify(array)
                       );
                     }}
+                    options={{
+                      placeholder: {
+                        text: "What knowledge did you acquire?",
+                        hideOnClick: true,
+                      },
+                    }}
                   />
+                  </div>
                 )}
               </div>
             </div>
             <div
               style={{
-
                 borderLeft: ShowBullets? "1px solid":"none",
                 height: "67px",
                 marginLeft: "25px",

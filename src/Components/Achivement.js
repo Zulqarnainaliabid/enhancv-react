@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { INCREMENT ,INCREMENTBACKGROUNDCOLORACHIEVEMENT } from "./Redux/actions/indux";
 export default function Achievements(props) {
+  console.log("ii io io io",props.Left)
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
   const [array, setState] = useState([]);
@@ -312,6 +313,7 @@ export default function Achievements(props) {
                 }
                 HandlerAddItemInArrayfun={HandlerAddItemInArray}
                 HanderDeleteItemInArrayfun={HanderDeleteItemInArray}
+                Left={props.Left}
               />
             );
           })}

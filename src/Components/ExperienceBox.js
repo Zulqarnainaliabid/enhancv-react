@@ -515,8 +515,6 @@ export default function Boxfunction(props) {
         />
       </div>
       </div>
-      
-
       <div
         onClick={HandleSetBackGroundColor}
         className="outerWraperBox"
@@ -726,6 +724,7 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
+              <div className="app" style={{width:"300px"}}>
               <Editor
                 text={Bullots}
                 onChange={(text) => {
@@ -737,7 +736,6 @@ export default function Boxfunction(props) {
                     JSON.stringify(array)
                   );
                 }}
-                tag="pre"
                 options={{
                   placeholder: {
                     text: "What did you want in this role?",
@@ -745,6 +743,7 @@ export default function Boxfunction(props) {
                   },
                 }}
               />
+              </div>
             )}
           </div>
         </div>

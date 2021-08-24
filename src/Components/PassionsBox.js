@@ -386,6 +386,7 @@ export default function PassionBoxfunction(props) {
               {checkplacehoderBollets ? (
                 <div>jj</div>
               ) : (
+                <div className="app" style={{width:"300px"}}>
                 <Editor
                   text={BulletsTextHolder}
                   onChange={(text) => {
@@ -394,7 +395,6 @@ export default function PassionBoxfunction(props) {
                     array[props.index].value.bullots = text;
                     localStorage.setItem("arrayPassion", JSON.stringify(array));
                   }}
-                  tag="pre"
                   options={{
                     placeholder: {
                       text: "What are you looking  for in your next company?",
@@ -402,6 +402,7 @@ export default function PassionBoxfunction(props) {
                     },
                   }}
                 />
+                </div>
               )}
             </div>
           </div>
