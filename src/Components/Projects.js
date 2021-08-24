@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ProjectBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORPROJECT } from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORPROJECT , PROJECTYES } from "./Redux/actions/indux";
 export default function Projects(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -239,41 +239,11 @@ export default function Projects(props) {
     setState([...array]);
     localStorage.setItem("arrayProject", JSON.stringify(array));
   }
+
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: {
-        showDiscription: true,
-        showBullets: true,
-        showLocation: true,
-        showPeriod: true,
-        showLink: true,
-      },
-      togglebuttonlist: [
-        { name: "Show Discription", selectedToggleButton: true },
-        { name: "Show Bullets", selectedToggleButton: true },
-        { name: "Show Location", selectedToggleButton: true },
-        { name: "Show Period", selectedToggleButton: true },
-        { name: "Show Link", selectedToggleButton: true },
-      ],
-      value: {
-        titleTextHolder: "",
-        locationTextHolder: "",
-        SummaryWorkTextHolder: "",
-        bullotsTextHolder: "",
-        urlTextHolder: "",
-        date: {
-          yearfrom: null,
-          monthfrom: null,
-          monthto: null,
-          ongoing: true,
-          yearto: null,
-        },
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayProject", JSON.stringify(array));
+    dispatch(PROJECTYES());
   }
+
   useEffect(() => {
     if (localStorage.getItem("arrayProject") !== null) {
       let value = localStorage.getItem("arrayProject");

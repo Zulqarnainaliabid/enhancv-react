@@ -7,7 +7,7 @@ import Boxfunction from "./IndustryExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 
-import { INCREMENT , INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE ,INDUSTRYEXPERINECEYES} from "./Redux/actions/indux";
 export default function IndustryExperience(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -216,18 +216,11 @@ export default function IndustryExperience(props) {
     setState([...array]);
     localStorage.setItem("arrayIndustryExperienxe", JSON.stringify(array));
   }
+
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: { showSlider: true },
-      togglebuttonlist: [{ name: "Show Slider", selectedToggleButton: true }],
-      value: {
-        titleTextHolder: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayIndustryExperienxe", JSON.stringify(array));
+    dispatch(INDUSTRYEXPERINECEYES(true));
   }
+
   useEffect(() => {
     if (localStorage.getItem("arrayIndustryExperienxe") !== null) {
       let value = localStorage.getItem("arrayIndustryExperienxe");

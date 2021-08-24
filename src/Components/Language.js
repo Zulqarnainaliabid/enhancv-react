@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./LanguageBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , LANGUAGEYES} from "./Redux/actions/indux";
 export default function Language(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -219,22 +219,11 @@ export default function Language(props) {
     setState([...array]);
     localStorage.setItem("arrayLanguage", JSON.stringify(array));
   }
+
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: { showSlider: true, showProficiency: true },
-      togglebuttonlist: [
-        { name: "Show Slider", selectedToggleButton: true },
-        { name: "Show Proficiency", selectedToggleButton: true },
-      ],
-      value: {
-        LanguageTextholder: "",
-        proficiencyTextHolder: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayLanguage", JSON.stringify(array));
+    dispatch(LANGUAGEYES(true));
   }
+
   useEffect(() => {
     if (localStorage.getItem("arrayLanguage") !== null) {
       let value = localStorage.getItem("arrayLanguage");

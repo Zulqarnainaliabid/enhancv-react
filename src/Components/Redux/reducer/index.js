@@ -22,9 +22,24 @@ import IncrementBackgroundColorStrength from './IncrementBackgroundcolorStrength
 import IncrementBackgroundColorVolunteering from './IncrementBackgroundcolorVolunteering'
 import IncrementBackgroundColorEducation from './IncrementBackgroundcolorEducation'
 import IncrementBackgroundColorIndusteryExperience from './IncrementBackgroundcolorIndusteryExperience'
+import RemoveAchievement from './RemoveAchievement'
+import Achievementyes from './AchievementYes'
 import IncrementNull from './IncrementNull'
 import Section from './SectionArray'
 import UpdateAchievement from './UpdateAchievement'
+import EducationYes from './EducationYes'
+import ExperienceYes from './ExperienceYes'
+import FindmeOnlineYes from './FindmeonlineYes'
+import IndustryExperienceYes from './IndusteryExperienceYes'
+import LanguageYes from './LanguageYes'
+import MytimeYes from './MyTimeYes'
+import PassionYes from './PassionYes'
+import VolunteeringYes from './VolunteeringYes'
+import TrainingYes from './TrainingYes'
+import TechstockYes from './TechStockYes'
+import SummaryYes from './SummaryYes'
+import StrengthYes from './StrengthYes'
+import ProjectYes from './ProjectYes'
 const allReducers = combineReducers({
 counter:counterReducer,
 CounterData:IncrementData,
@@ -51,6 +66,21 @@ IncrementBackgroundColorStrength:IncrementBackgroundColorStrength,
 IncrementBackgroundColorVolunteering:IncrementBackgroundColorVolunteering,
 IncrementBackgroundColorEducation:IncrementBackgroundColorEducation,
 IncrementBackgroundColorIndusteryExperience:IncrementBackgroundColorIndusteryExperience,
-IncrementNull:IncrementNull
+IncrementNull:IncrementNull,
+RemoveAchievement:RemoveAchievement,
+Achievementyes:Achievementyes,
+EducationYes:EducationYes,
+ExperienceYes:ExperienceYes,
+FindmeOnlineYes:FindmeOnlineYes,
+IndustryExperienceYes:IndustryExperienceYes,
+LanguageYes:LanguageYes,
+MytimeYes:MytimeYes,
+PassionYes:PassionYes,
+VolunteeringYes,VolunteeringYes,
+TrainingYes:TrainingYes,
+TechstockYes:TechstockYes,
+SummaryYes:SummaryYes,
+ProjectYes:ProjectYes,
+StrengthYes:StrengthYes
 });
 export default allReducers

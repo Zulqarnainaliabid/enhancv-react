@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./EducationBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLOREDUCATION } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLOREDUCATION,EDUCATIONYES } from "./Redux/actions/indux";
 export default function Education(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -231,35 +231,12 @@ export default function Education(props) {
     setState([...array]);
     localStorage.setItem("arrayEducation", JSON.stringify(array));
   }
+
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: { showGPA: true, showLocation: true , showPeriod:true,showBullets:true},
-      togglebuttonlist: [
-        { name: "Show GPA", selectedToggleButton: true },
-        { name: "Show Location", selectedToggleButton: true },
-        { name: "Show Period", selectedToggleButton: true },
-        { name: "Show Bullets", selectedToggleButton: true },
-      ],
-      value: {
-        titleTextHolder: "",
-        InstitudeNameTestHolder: "",
-        locationTestHolder: "",
-        bullotsTestHolder: "",
-        GPAFullTestHolder:"",
-        GPAObtainTestHolder:"",
-        date: {
-          yearfrom: null,
-          monthfrom: null,
-          monthto: null,
-          ongoing: true,
-          yearto: null,
-        },
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayEducation", JSON.stringify(array));
+   console.log("Delete Education")
+   dispatch(EDUCATIONYES(true));
   }
+
   useEffect(() => {
     if (localStorage.getItem("arrayEducation") !== null) {
       let value = localStorage.getItem("arrayEducation");

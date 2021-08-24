@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./TrainingCourseBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLORTRAINING } from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORTRAINING , TRAININGYES} from "./Redux/actions/indux";
 export default function TrainingCourse(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -230,21 +230,11 @@ export default function TrainingCourse(props) {
     setState([...array]);
     localStorage.setItem("arrayTraining", JSON.stringify(array));
   }
+
   function HanderDeleteItemInArray() {
-    array.push({
-      selected: false,
-      toggleButton: { showDiscription: true },
-      togglebuttonlist: [
-        { name: "Show Description", selectedToggleButton: true },
-      ],
-      value: {
-        titleTextHolder: "",
-        bullotsTextHolder: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayTraining", JSON.stringify(array));
+    dispatch(TRAININGYES(true));
   }
+
   useEffect(() => {
     if (localStorage.getItem("arrayTraining") !== null) {
       let value = localStorage.getItem("arrayTraining");

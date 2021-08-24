@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./SummaryBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORSUMMARY } from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORSUMMARY , SUMMARYYES} from "./Redux/actions/indux";
 export default function Summry(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -212,16 +212,11 @@ export default function Summry(props) {
     setState([...array]);
     localStorage.setItem("arraySummary", JSON.stringify(array));
   }
+
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      value: {
-        titleSummaryTextHolder: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arraySummary", JSON.stringify(array));
+    dispatch(SUMMARYYES(true));
   }
+
   useEffect(() => {
     if (localStorage.getItem("arraySummary") !== null) {
       let value = localStorage.getItem("arraySummary");

@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./TechStockSectionBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT, INCREMENTBACKGROUNDCOLORSKILL } from "./Redux/actions/indux";
+import { INCREMENT, INCREMENTBACKGROUNDCOLORSKILL ,TECHSTOCKYES} from "./Redux/actions/indux";
 
 export default function TechStockSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -220,19 +220,8 @@ export default function TechStockSection(props) {
     localStorage.setItem("arrayTechStock", JSON.stringify(array));
   }
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: { showGroupName: true },
-      togglebuttonlist: [
-        { name: "Show Group Name", selectedToggleButton: true },
-      ],
-      Texttoolandtechnology: [{ text: "" }],
-      value: {
-        grouptitle: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayTechStock", JSON.stringify(array));
+    dispatch(TECHSTOCKYES(true));
+    
   }
   useEffect(() => {
     if (localStorage.getItem("arrayTechStock") !== null) {

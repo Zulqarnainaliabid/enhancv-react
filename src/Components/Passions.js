@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import PassionBoxfunction from "./PassionsBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION } from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION , PASSIONYES } from "./Redux/actions/indux";
 export default function Passions(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -218,22 +218,11 @@ export default function Passions(props) {
     setState([...array]);
     localStorage.setItem("arrayPassion", JSON.stringify(array));
   }
+
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: { showDiscription: true, showicon: true },
-      togglebuttonlist: [
-        { name: "Show Discription", selectedToggleButton: true },
-        { name: "Show Icon", selectedToggleButton: true },
-      ],
-      value: {
-        titleCareerInterest: "",
-        bullots: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayPassion", JSON.stringify(array));
+    dispatch(PASSIONYES(true));
   }
+
   useEffect(() => {
     if (localStorage.getItem("arrayPassion") !== null) {
       let value = localStorage.getItem("arrayPassion");

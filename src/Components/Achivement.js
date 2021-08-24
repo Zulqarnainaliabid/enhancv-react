@@ -6,9 +6,9 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./AchievementsBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORACHIEVEMENT } from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORACHIEVEMENT , ACHIEVEMENTYES} from "./Redux/actions/indux";
 export default function Achievements(props) {
-  console.log("ii io io io",props.Left)
+  
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
   const [array, setState] = useState([]);
@@ -219,17 +219,9 @@ export default function Achievements(props) {
     localStorage.setItem("arrayAchievement", JSON.stringify(array));
   }
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: { showIcon: true, showbullet: true },
-      togglebuttonlist: [
-        { name: "Show icone", selected: true },
-        { name: "Show Bullets", selected: true },
-      ],
-      value: { title: "", bullots: "" },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayAchievement", JSON.stringify(array));
+    console.log("click delete")
+    console.log("ii io io io",props.remove)
+    dispatch(ACHIEVEMENTYES(true));
   }
   useEffect(() => {
     if (localStorage.getItem("arrayAchievement") !== null) {

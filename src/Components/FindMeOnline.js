@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./FindMeOnlineBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE , FINDMEONLINEYES} from "./Redux/actions/indux";
 export default function FindMeOnline(props) {
 
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -220,20 +220,7 @@ export default function FindMeOnline(props) {
     localStorage.setItem("arrayFindmeOnline", JSON.stringify(array));
   }
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: { showDiscription: true, showicon: true },
-      togglebuttonlist: [
-        { name: "Show UserName", selectedToggleButton: true },
-        { name: "Show Icons", selectedToggleButton: true },
-      ],
-      value: {
-        titleSocialnetwork: "",
-        bullots: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayFindmeOnline", JSON.stringify(array));
+   dispatch(FINDMEONLINEYES(true));
   }
   useEffect(() => {
     if (localStorage.getItem("arrayFindmeOnline") !== null) {
@@ -258,7 +245,6 @@ export default function FindMeOnline(props) {
 
   return (
     <>
-      
       <div
         className="outerWraperCompleteBox"
         style={{ backgroundColor: backgroundColor }}

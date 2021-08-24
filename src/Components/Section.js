@@ -14,10 +14,26 @@ import SectionImg13 from "./sections/Section13.PNG";
 import SectionImg14 from "./sections/Section14.PNG";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
+import {ACHIEVEMENTYES,EDUCATIONYES , EXPERIENCEYES , FINDMEONLINEYES , LANGUAGEYES , MYTIMEYES , PASSIONYES , PROJECTYES , STRENGTHYES , SUMMARYYES , TRAININGYES , TECHSTOCKYES , VOLUNTEERINFYES} from "./Redux/actions/indux";
 import React, { useEffect } from "react";
-import HomaPageSabSection from './HomePageSabSection'
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 export function Section2ndBox(props) {
+  const AchievementYes = useSelector((state) => state.Achievementyes);
+  const EducationYes = useSelector((state) => state.EducationYes);
+  const ExperienceYes = useSelector((state) => state.ExperienceYes);
+  const FindmeOnlineYes = useSelector((state) => state.FindmeOnlineYes);
+  const IndustryExperienceYes = useSelector((state) => state.IndustryExperienceYes);
+  const LanguageYes = useSelector((state) => state.LanguageYes);
+  const MytimeYes = useSelector((state) => state.MytimeYes);
+  const PassionYes = useSelector((state) => state.PassionYes);
+  const ProjectYes = useSelector((state) => state.ProjectYes);
+  const StrengthYes = useSelector((state) => state.StrengthYes);
+  const SummaryYes = useSelector((state) => state.SummaryYes);
+  const TrainingYes = useSelector((state) => state.TrainingYes);
+  const VolunteeringYes = useSelector((state) => state.VolunteeringYes);
+  const TechstockYes = useSelector((state) => state.TechstockYes);
+  const dispatch = useDispatch();
 
   function HandleRemoveSubSection() {
     let temp = [];
@@ -32,6 +48,275 @@ export function Section2ndBox(props) {
     localStorage.setItem("ArrayLower", JSON.stringify(temp));
     props.HandleRemoveSection(namesection);
   }
+
+  useEffect(() => {
+    if(AchievementYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Achievement"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(ACHIEVEMENTYES(false));
+  }, [AchievementYes]);
+
+  useEffect(() => {
+    if(EducationYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Education"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(EDUCATIONYES(false));
+  }, [EducationYes]);
+
+  useEffect(() => {
+    if(ExperienceYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Experience"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(EXPERIENCEYES(false));
+  }, [ExperienceYes]);
+
+  useEffect(() => {
+    if(FindmeOnlineYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Find Me"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(FINDMEONLINEYES(false));
+  }, [FindmeOnlineYes]);
+
+  useEffect(() => {
+    if(IndustryExperienceYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Indestry"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(FINDMEONLINEYES(false));
+  }, [IndustryExperienceYes]);
+
+
+  useEffect(() => {
+    if(LanguageYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Langue"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(LANGUAGEYES(false));
+  }, [LanguageYes]);
+
+  useEffect(() => {
+    if(MytimeYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="MyTime"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(MYTIMEYES(false));
+  }, [MytimeYes]);
+
+  useEffect(() => {
+    if(PassionYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Profesion"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(PASSIONYES(false));
+  }, [PassionYes]);
+
+  useEffect(() => {
+    if(ProjectYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Project"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(PROJECTYES(false));
+  }, [ProjectYes]);
+
+  useEffect(() => {
+    if(StrengthYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Strength"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(STRENGTHYES(false));
+  }, [StrengthYes]);
+
+  useEffect(() => {
+    if(SummaryYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Summary"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(SUMMARYYES(false));
+  }, [SummaryYes]);
+
+  useEffect(() => {
+    if(TrainingYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Training"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(TRAININGYES(false));
+  }, [TrainingYes]);
+
+  useEffect(() => {
+    if(VolunteeringYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Volunteering"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(VOLUNTEERINFYES(false));
+  }, [VolunteeringYes]);
+
+  useEffect(() => {
+    if(TechstockYes){
+      let temp = [];
+      temp = props.ArrayLower;
+      temp.map((item,index)=>{
+        if(item.name==="Skill"){
+         let tempbox = item
+          temp.splice(index, 1);
+          props.ArrayUper.push(tempbox);
+          props.setArrayUper([...props.ArrayUper]);
+          localStorage.setItem("ArrayUper", JSON.stringify(props.ArrayUper));
+        }
+      })
+      props.setArrayLower([...temp]);
+      localStorage.setItem("ArrayLower", JSON.stringify(temp));
+    }
+    dispatch(TECHSTOCKYES(false));
+  }, [TechstockYes]);
+
+
   return (
     <div style={{ position: "relative" }} className="Section">
       <div
@@ -112,9 +397,7 @@ export function SectionBox(props) {
     </div>
   );
 }
-
 const { forwardRef, useRef, useImperativeHandle } = React;
-
 export  const Sections = forwardRef((props, ref) => {
 
   let data = [

@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./StrengthBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORSTRENGTH } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORSTRENGTH , STRENGTHYES} from "./Redux/actions/indux";
 export default function Strength(props) {
   
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -219,22 +219,11 @@ export default function Strength(props) {
     setState([...array]);
     localStorage.setItem("arrayStrength", JSON.stringify(array));
   }
+
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: { showDiscription: true, showicon: true },
-      togglebuttonlist: [
-        { name: "Show Description", selectedToggleButton: true },
-        { name: "Show Icons", selectedToggleButton: true },
-      ],
-      value: {
-        titleTextHolder: "",
-        DiscriptionTextHolder: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayStrength", JSON.stringify(array));
+    dispatch(STRENGTHYES(true));
   }
+
   useEffect(() => {
     if (localStorage.getItem("arrayStrength") !== null) {
       let value = localStorage.getItem("arrayStrength");

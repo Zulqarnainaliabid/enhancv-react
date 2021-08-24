@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./VolunteeringBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORVOLUNTEERING } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORVOLUNTEERING , VOLUNTEERINFYES} from "./Redux/actions/indux";
 export default function Volunteering(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -237,37 +237,7 @@ export default function Volunteering(props) {
     localStorage.setItem("arrayVolunteering", JSON.stringify(array));
   }
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      toggleButton: {
-        showDiscription: true,
-        showLocation: true,
-        showBullets: true,
-        showPeriod: true,
-      },
-      togglebuttonlist: [
-        { name: "Show Discription", selectedToggleButton: true },
-        { name: "Show Location", selectedToggleButton: true },
-        { name: "Show Bullets", selectedToggleButton: true },
-        { name: "Show Period", selectedToggleButton: true },
-      ],
-      value: {
-        titleTextHolder: "",
-        companynameTextholder: "",
-        locationTextholder: "",
-        companydiscriptionTextholder: "",
-        bullotsTextHolder: "",
-        date: {
-          yearfrom: null,
-          monthfrom: null,
-          monthto: null,
-          ongoing: true,
-          yearto: null,
-        },
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayVolunteering", JSON.stringify(array));
+    dispatch(VOLUNTEERINFYES(true));
   }
   useEffect(() => {
     if (localStorage.getItem("arrayVolunteering") !== null) {

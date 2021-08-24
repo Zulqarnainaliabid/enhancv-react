@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLOREXPERIENCE } from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLOREXPERIENCE ,EXPERIENCEYES } from "./Redux/actions/indux";
 export default function ExperienceSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -243,44 +243,8 @@ export default function ExperienceSection(props) {
     localStorage.setItem("arrayExperience", JSON.stringify(array));
   }
   function HanderDeleteItemInArray() {
-    array.pop({
-      selected: false,
-      togglebuttonlist: [
-        { name: "Show Title", selected: "true" },
-        { name: "Show Company Name", selected: "true" },
-        { name: "Show Discription", selected: "true" },
-        { name: "Show Bullets", selected: "true" },
-        { name: "Show Period", selected: "true" },
-        { name: "Show Location", selected: "true" },
-        { name: "Show Link", selected: "true" },
-      ],
-      toggleButton: {
-        showtitle: true,
-        showcompayname: true,
-        showdiscription: true,
-        showbullets: true,
-        showlocation: true,
-        showperiod: true,
-        showlink: true,
-      },
-      value: {
-        title: "",
-        companyname: "",
-        location: "",
-        date: {
-          yearfrom: null,
-          monthfrom: null,
-          monthto: null,
-          ongoing: true,
-          yearto: null,
-        },
-        companydiscription: "",
-        bullots: "",
-        url: "",
-      },
-    });
-    setState([...array]);
-    localStorage.setItem("arrayExperience", JSON.stringify(array));
+   console.log("delete Experience")
+   dispatch(EXPERIENCEYES(true));
   }
   useEffect(() => {
     if (localStorage.getItem("arrayExperience") !== null) {
@@ -305,7 +269,6 @@ export default function ExperienceSection(props) {
 
   return (
     <>
-     
       <div
         className="outerWraperCompleteBox"
         style={{ backgroundColor: backgroundColor }}

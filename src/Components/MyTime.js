@@ -5,7 +5,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import "react-datepicker/dist/react-datepicker.css";
 import ApexChart from "./DounutChart";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT, INCREMENTBACKGROUNDCOLOMYTIME } from "./Redux/actions/indux";
+import { INCREMENT, INCREMENTBACKGROUNDCOLOMYTIME , MYTIMEYES } from "./Redux/actions/indux";
 export default function MyTime(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -144,7 +144,11 @@ export default function MyTime(props) {
     setborderBottm("none");
     setShowHeaderButton("none");
   }, [CounterData]);
- 
+
+ function HandleRemoveSection(){
+dispatch(MYTIMEYES(true));
+ }
+
   return (
     <>
       <div
@@ -170,7 +174,7 @@ export default function MyTime(props) {
             style={{ display: ShowHeaderButton }}
             className="headingOptionBoxEducation"
           >
-            <RiDeleteBin6Line className="DeleteIcon" />
+            <RiDeleteBin6Line className="DeleteIcon" onClick={HandleRemoveSection} />
             <CgArrangeFront className="ArrangeIcon" />
           </div>
         </div>
