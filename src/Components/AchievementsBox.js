@@ -9,6 +9,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLORACHIEVEMENT,
@@ -19,6 +20,7 @@ import MyComponent from "./InputField";
 import Loader from "./Loader";
 import InputEditor from "./ReactRichtext";
 import "./HomePage.css";
+import { GiReloadGunBarrel } from "react-icons/gi";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
 export function SwitchButtons(props) {
@@ -81,7 +83,6 @@ export default function Boxfunction(props) {
   const [loader, setloader] = useState(false);
   const dispatch = useDispatch();
   const Incrementnull = useSelector((state) => state.IncrementNull);
-
   useEffect(() => {
     setToggleButtons(false);
     setlistIcon(false);
@@ -202,7 +203,6 @@ export default function Boxfunction(props) {
       temp.splice(indexDeleteBox, 1);
     }
     console.log("new array", temp);
-    props.setList([...temp]);
     localStorage.setItem("arrayAchievement", JSON.stringify(temp));
     setloader(true)
   }
@@ -225,6 +225,7 @@ export default function Boxfunction(props) {
   }
 
   useEffect(() => {
+    if(loader){
     const timer = setTimeout(() => {
       if (localStorage.getItem("arrayAchievement") !== null) {
         let item = localStorage.getItem("arrayAchievement");
@@ -234,6 +235,7 @@ export default function Boxfunction(props) {
       setloader(false);
     }, 1000);
     return () => clearTimeout(timer);
+  }
   }, [loader]);
 
   useEffect(() => {
