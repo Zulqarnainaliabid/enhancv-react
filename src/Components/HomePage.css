@@ -863,6 +863,9 @@ input[type="file"]{
   color: aliceblue;
   border-radius: 96px;
 }
+.OuterWraperLoader{
+  border: 1px solid;
+}
 .datePicker{
 /* border: 1px solid; */
 width: 85px;

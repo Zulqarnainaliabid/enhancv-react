@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RiSettings5Fill } from "react-icons/ri";
 import { useAlert } from "react-alert";
 import { FaPlus } from "react-icons/fa";
@@ -9,11 +9,15 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORACHIEVEMENT } from "./Redux/actions/indux";
+import {
+  INCREMENT,
+  INCREMENTBACKGROUNDCOLORACHIEVEMENT,
+} from "./Redux/actions/indux";
 import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "../Components/DatePicker/JasonData";
-import MyComponent from './InputField'
-import InputEditor from './ReactRichtext'
+import MyComponent from "./InputField";
+import Loader from "./Loader";
+import InputEditor from "./ReactRichtext";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -63,14 +67,18 @@ export default function Boxfunction(props) {
   const [Counter, setCounter] = useState(0);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [listIcon, setlistIcon] = useState(false);
-  const [Icon, setIcon] = useState(<div style={{color:"#008CFF !important"}}><BsStarHalf/></div>);
-  const [Title, setTitle] = useState('');
+  const [Icon, setIcon] = useState(
+    <div style={{ color: "#008CFF !important" }}>
+      <BsStarHalf />
+    </div>
+  );
+  const [Title, setTitle] = useState("");
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [ShowIcon, setShowIcon] = useState(true);
   const [ShowBullets, setShowBullets] = useState(true);
   const [indexDeleteBox, setindexDeleteBox] = useState(null);
-  
+  const [loader, setloader] = useState(false);
   const dispatch = useDispatch();
   const Incrementnull = useSelector((state) => state.IncrementNull);
 
@@ -116,7 +124,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
-    setindexDeleteBox(props.index)
+    setindexDeleteBox(props.index);
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -136,10 +144,10 @@ export default function Boxfunction(props) {
   }
 
   function HandleArrowDown() {
-    setindexDeleteBox(null)
-    let index = props.index+1
-    console.log("index Down",index)
-    setindexDeleteBox(index+1)
+    setindexDeleteBox(null);
+    let index = props.index + 1;
+    console.log("index Down", index);
+    setindexDeleteBox(index + 1);
 
     setlistIcon(false);
     setToggleButtons(false);
@@ -157,19 +165,19 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
-    setindexDeleteBox(null)
-    let index = null
-        index = props.index-1
-    console.log("index up",index)
-    setindexDeleteBox(index-1)
+    setindexDeleteBox(null);
+    let index = null;
+    index = props.index - 1;
+    console.log("index up", index);
+    setindexDeleteBox(index - 1);
     setToggleButtons(false);
     setlistIcon(false);
     props.IsActive(true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index - 1].selected = true;
-      let index = props.index-1
-      setindexDeleteBox(index)
+      let index = props.index - 1;
+      setindexDeleteBox(index);
     }
     temp[props.index].selected = false;
     props.setList([...temp]);
@@ -189,16 +197,14 @@ export default function Boxfunction(props) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
-    console.log("index = ",indexDeleteBox)
-    if(indexDeleteBox!==null){
-    temp.splice(indexDeleteBox,1)
+    console.log("index = ", indexDeleteBox);
+    if (indexDeleteBox !== null) {
+      temp.splice(indexDeleteBox, 1);
     }
-    console.log("new array",temp)
-    
-    // props.HandleDeletedBox(indexDeleteBox)
+    console.log("new array", temp);
     props.setList([...temp]);
-
     localStorage.setItem("arrayAchievement", JSON.stringify(temp));
+    setloader(true)
   }
 
   function handleText() {
@@ -217,6 +223,18 @@ export default function Boxfunction(props) {
       setShowBullets(toggle);
     }
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (localStorage.getItem("arrayAchievement") !== null) {
+        let item = localStorage.getItem("arrayAchievement");
+        item = JSON.parse(item);
+        props.setList([...item]);
+      }
+      setloader(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [loader]);
 
   useEffect(() => {
     if (localStorage.getItem("arrayAchievement") !== null) {
@@ -238,182 +256,208 @@ export default function Boxfunction(props) {
       });
     }
   }, []);
-  function InputTextField(text){
+  function InputTextField(text) {
     let array = props.list;
-                array[props.index].value.title = text
-                localStorage.setItem("arrayAchievement", JSON.stringify(array));
-    setTitle(text)
+    array[props.index].value.title = text;
+    localStorage.setItem("arrayAchievement", JSON.stringify(array));
+    setTitle(text);
   }
-  return (
-    <>
-      <div style={{ position: "relative" }}>
-        {ToggleButtons && (
-          <div className="OuterWraperToggleButtonsExperienceSection">
-            {togglebuttonarrayList.map((item, index) => {
-              return (
-                <>
-                  <div className="InnerWraperToggleButtons">
-                    <div className="ToggleButtonsLabel">{item.name} </div>
-                    <div className="outerWraperSwitchClass">
-                      <SwitchButtons
-                        item={item}
-                        index={index}
-                        indexouterarray={props.index}
-                        handleToggglebutton={handleToggglebutton}
-                        outerArray={TogglebuttonsName}
-                        settogglebuttonarrayList={settogglebuttonarrayList}
-                        list={togglebuttonarrayList}
-                      />
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </div>
-        )}
-      </div>
-      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
-          <div
-        style={{ display: props.item.selected ? "flex" : "none" }}
-        className="headingOptionUnderBox"
-      >
-        <div
-          className="outerWraperPlusAndNewEntry"
-          onClick={() => {
-            props.HandlerAddItemInArrayfun();
-            setlistIcon(false);
-          }}
-        >
-          <FaPlus className="newEntryPlusIcon" />
-          <div className="newEntryText">New Entry</div>
-        </div>
-        {props.ToggleArrowUp && (
-          <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
-        )}
-        {props.ToggleArrowDown && (
-          <MdKeyboardArrowDown
-            onClick={HandleArrowDown}
-            className="ArrowIcon"
-          />
-        )}
-        <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
-        <BiText
-          onClick={HandleTextDecoration}
-          style={{
-            color: EnabledFontFormatColor,
-            cursor: EnabledFontFormatNoDrop,
-          }}
-          className="DeleteIcon"
-        />
-        <div
-          className="ArrangeIcon"
-          onClick={() => {
-            setlistIcon(!listIcon);
-            setToggleButtons(false);
-          }}
-        >
-          {Icon}
-        </div>
-        <RiSettings5Fill
-          onClick={() => {
-            setlistIcon(false);
-            setToggleButtons(!ToggleButtons);
-            let temp = [];
-            temp = TogglebuttonsName;
-            let togglebuttonarray = temp[props.index].togglebuttonlist;
-            settogglebuttonarrayList([...togglebuttonarray]);
-          }}
-          className="ArrangeIcon"
-        />
-        {listIcon && (
-          <div className="outerWraperListIcon">
-            {iconListData &&
-              iconListData.map((item) => {
-                return (
-                  <div
-                    className="iconsList"
-                    onClick={() => {
-                      setIcon(item.icon);
-                    }}
-                  >
-                    {item.icon}
-                  </div>
-                );
-              })}
-          </div>
-        )}
-      </div>
-         </div>
+  if(loader){
+    return(<> {
       <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
         style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-          alignItems:"unset"
+          border: "1px solid",
+          position: "absolute",
+          left: "0px",
+          right: "0px",
+          top: "0px",
+          bottom: "0px",
+          backgroundColor: "rgb(71 72 75 / 41%)",
+          zIndex: "5",
         }}
       >
-        <div style={{ display: "flex", borderBottom: props.borderbotm }}>
+        <Loader />
+      </div>
+    }</>)
+  }else{
+    return (
+      <>
+        <div style={{ position: "relative" }}>
+          {ToggleButtons && (
+            <div className="OuterWraperToggleButtonsExperienceSection">
+              {togglebuttonarrayList.map((item, index) => {
+                return (
+                  <>
+                    <div className="InnerWraperToggleButtons">
+                      <div className="ToggleButtonsLabel">{item.name} </div>
+                      <div className="outerWraperSwitchClass">
+                        <SwitchButtons
+                          item={item}
+                          index={index}
+                          indexouterarray={props.index}
+                          handleToggglebutton={handleToggglebutton}
+                          outerArray={TogglebuttonsName}
+                          settogglebuttonarrayList={settogglebuttonarrayList}
+                          list={togglebuttonarrayList}
+                        />
+                      </div>
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            position: "relative",
+          }}
+        >
           <div
-            onClick={() => {
-              setlistIcon(!listIcon);
-              setToggleButtons(false);
-            }}
-            
-            style={{ display: ShowIcon ? "block" : "none",}}
-            className="Icon"
+            style={{ display: props.item.selected ? "flex" : "none" }}
+            className="headingOptionUnderBox"
           >
-          {Icon}
-          </div>
-          <div
-            className="outerWraperInputFieldHaider"
-            onClick={() => {
-              setToggleButtons(false);
-              setlistIcon(false);
-            }}
-          >
-            <MyComponent
-             placeholder={"Why you are most proud of?"}
-             setFunction={InputTextField}
-             InputText={Title}
-            //  textInput={textInput}
-            />
             <div
-              onClick={handleText}
-              className="EditorText"
-              style={{
-                display: ShowBullets ? "block" : "none",
-                margin: "unset",
+              className="outerWraperPlusAndNewEntry"
+              onClick={() => {
+                props.HandlerAddItemInArrayfun();
+                setlistIcon(false);
               }}
             >
-              {checkplacehoderBollets ? (
-                <div>jj</div>
-              ) : (
-                <div className="app" style={{width:"300px"}}>
-                <Editor
-                  text={Bullots}
-                  onChange={(text) => {
-                    let array = props.list;
-                    array[props.index].value.bullots = text;
-                    setBullots(text);
-                    localStorage.setItem(
-                      "arrayAchievement",
-                      JSON.stringify(array)
+              <FaPlus className="newEntryPlusIcon" />
+              <div className="newEntryText">New Entry</div>
+            </div>
+            {props.ToggleArrowUp && (
+              <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
+            )}
+            {props.ToggleArrowDown && (
+              <MdKeyboardArrowDown
+                onClick={HandleArrowDown}
+                className="ArrowIcon"
+              />
+            )}
+            <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
+            <BiText
+              onClick={HandleTextDecoration}
+              style={{
+                color: EnabledFontFormatColor,
+                cursor: EnabledFontFormatNoDrop,
+              }}
+              className="DeleteIcon"
+            />
+            <div
+              className="ArrangeIcon"
+              onClick={() => {
+                setlistIcon(!listIcon);
+                setToggleButtons(false);
+              }}
+            >
+              {Icon}
+            </div>
+            <RiSettings5Fill
+              onClick={() => {
+                setlistIcon(false);
+                setToggleButtons(!ToggleButtons);
+                let temp = [];
+                temp = TogglebuttonsName;
+                let togglebuttonarray = temp[props.index].togglebuttonlist;
+                settogglebuttonarrayList([...togglebuttonarray]);
+              }}
+              className="ArrangeIcon"
+            />
+            {listIcon && (
+              <div className="outerWraperListIcon">
+                {iconListData &&
+                  iconListData.map((item) => {
+                    return (
+                      <div
+                        className="iconsList"
+                        onClick={() => {
+                          setIcon(item.icon);
+                        }}
+                      >
+                        {item.icon}
+                      </div>
                     );
-                  }}
-                  options={{
-                    placeholder: {
-                      text: "Why are you proud of this achievement?",
-                      hideOnClick: true,
-                    },
-                  }}
-                />
-                </div>
-              )}
+                  })}
+              </div>
+            )}
+          </div>
+        </div>
+        <div
+          onClick={HandleSetBackGroundColor}
+          className="outerWraperBox"
+          style={{
+            backgroundColor: props.item.selected ? "white" : "",
+            border: props.item.selected ? "1px solid #60d5ba" : "",
+            alignItems: "unset",
+          }}
+        >
+          <div style={{ display: "flex", borderBottom: props.borderbotm }}>
+            <div
+              onClick={() => {
+                setlistIcon(!listIcon);
+                setToggleButtons(false);
+              }}
+              style={{ display: ShowIcon ? "block" : "none" }}
+              className="Icon"
+            >
+              {Icon}
+            </div>
+            <div
+              className="outerWraperInputFieldHaider"
+              onClick={() => {
+                setToggleButtons(false);
+                setlistIcon(false);
+              }}
+            >
+              <MyComponent
+                placeholder={"Why you are most proud of?"}
+                setFunction={InputTextField}
+                InputText={Title}
+                //  textInput={textInput}
+              />
+              <div
+                onClick={handleText}
+                className="EditorText"
+                style={{
+                  display: ShowBullets ? "block" : "none",
+                  margin: "unset",
+                }}
+              >
+                {checkplacehoderBollets ? (
+                  <div>jj</div>
+                ) : (
+                  <div className="app" style={{ width: "300px" }}>
+                    <Editor
+                      text={Bullots}
+                      onChange={(text) => {
+                        let array = props.list;
+                        array[props.index].value.bullots = text;
+                        setBullots(text);
+                        localStorage.setItem(
+                          "arrayAchievement",
+                          JSON.stringify(array)
+                        );
+                      }}
+                      options={{
+                        placeholder: {
+                          text: "Why are you proud of this achievement?",
+                          hideOnClick: true,
+                        },
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+   
+   );
+  }
+ 
 }

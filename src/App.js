@@ -23,7 +23,8 @@ import Volunteering from "./Components/Volunteering";
 import ExperienceSection from "./Components/ExperienceSection";
 import { useDispatch, useSelector } from "react-redux";
 import Education from "./Components/Education";
-import ReactToPdf from "react-to-pdf"
+import  Loader from './Components/Loader'
+import ReactToPdf from "react-to-pdf";
 import {
   INCREMENTBACKGROUNDCOLORVOLUNTEERING,
   INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE,
@@ -53,13 +54,15 @@ function App() {
   const [HideButtons, setHideButtons] = useState(false);
   const ref = React.createRef();
   const dispatch = useDispatch();
-  const { useRef, } = React;
+  const { useRef } = React;
   const childRef = useRef();
   const Achievementyes = useSelector((state) => state.Achievementyes);
   const EducationYes = useSelector((state) => state.EducationYes);
   const ExperienceYes = useSelector((state) => state.ExperienceYes);
   const FindmeOnlineYes = useSelector((state) => state.FindmeOnlineYes);
-  const IndustryExperienceYes = useSelector((state) => state.IndustryExperienceYes);
+  const IndustryExperienceYes = useSelector(
+    (state) => state.IndustryExperienceYes
+  );
   const LanguageYes = useSelector((state) => state.LanguageYes);
   const MytimeYes = useSelector((state) => state.MytimeYes);
   const PassionYes = useSelector((state) => state.PassionYes);
@@ -72,213 +75,213 @@ function App() {
   const TechstockYes = useSelector((state) => state.TechstockYes);
 
   useEffect(() => {
-    if(Achievementyes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Achievement") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (Achievementyes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Achievement") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [Achievementyes]);
 
   useEffect(() => {
-    if(EducationYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Education") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (EducationYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Education") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [EducationYes]);
 
   useEffect(() => {
-    if(ExperienceYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Experience") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (ExperienceYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Experience") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [ExperienceYes]);
 
   useEffect(() => {
-    if(FindmeOnlineYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Find Me") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (FindmeOnlineYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Find Me") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [FindmeOnlineYes]);
 
   useEffect(() => {
-    if(IndustryExperienceYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Indestry") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (IndustryExperienceYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Indestry") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [IndustryExperienceYes]);
 
   useEffect(() => {
-    if(LanguageYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Langue") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (LanguageYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Langue") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [LanguageYes]);
 
   useEffect(() => {
-    if(MytimeYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "MyTime") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (MytimeYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "MyTime") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [MytimeYes]);
 
   useEffect(() => {
-    if(PassionYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Profesion") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (PassionYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Profesion") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [PassionYes]);
 
   useEffect(() => {
-    if(ProjectYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Project") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (ProjectYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Project") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [ProjectYes]);
 
   useEffect(() => {
-    if(StrengthYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Strength") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (StrengthYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Strength") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [StrengthYes]);
 
   useEffect(() => {
-    if(SummaryYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Summary") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (SummaryYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Summary") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [SummaryYes]);
 
   useEffect(() => {
-    if(TrainingYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Training") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (TrainingYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Training") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [TrainingYes]);
 
   useEffect(() => {
-    if(VolunteeringYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Volunteering") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (VolunteeringYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Volunteering") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [VolunteeringYes]);
 
   useEffect(() => {
-    if(TechstockYes){
-    let temp = [];
-    temp = Array;
-    temp.map((item, index) => {
-      if (item.name === "Skill") {
-        temp.splice(index, 1);
-      }
-    });
-    setArray([...temp]);
-    localStorage.setItem("Section", JSON.stringify(temp));
-    HandleAddNewSection()
-  }
+    if (TechstockYes) {
+      let temp = [];
+      temp = Array;
+      temp.map((item, index) => {
+        if (item.name === "Skill") {
+          temp.splice(index, 1);
+        }
+      });
+      setArray([...temp]);
+      localStorage.setItem("Section", JSON.stringify(temp));
+      HandleAddNewSection();
+    }
   }, [TechstockYes]);
 
   function HandleRemoveSection(name) {
@@ -299,7 +302,7 @@ function App() {
         if (FlagRight === true) {
           Array.push({
             name: "Achievement",
-            section: <Achievements button={HandleSetHoverEffect}  />,
+            section: <Achievements button={HandleSetHoverEffect} />,
             margen: "",
             BoxShedow: "",
             Left: false,
@@ -606,7 +609,7 @@ function App() {
   function HandleAddNewSection() {
     let temp = [];
     temp = Array;
-    if (Array === null || Array === undefined || Array.length===0) {
+    if (Array === null || Array === undefined || Array.length === 0) {
       setToggleAddNewSectionRight(false);
       setToggleAddNewSectionLeft(false);
     } else {
@@ -658,11 +661,11 @@ function App() {
   useEffect(() => {
     let temp = [];
     temp = Array;
-    console.log("kkop1effect")
-    if (Array === null || Array === undefined || Array.length===0) {
+    console.log("kkop1effect");
+    if (Array === null || Array === undefined || Array.length === 0) {
       setToggleAddNewSectionRight(false);
       setToggleAddNewSectionLeft(false);
-      console.log("kkop effect")
+      console.log("kkop effect");
     } else {
       if (Array.length === 1) {
         temp.map((item, index) => {
@@ -722,15 +725,15 @@ function App() {
   function HandleSetHoverEffect() {
     SetHoverEffect("rgba(80,77,98,.2)");
   }
- function handlePdf(topdf){
-  const timer = setTimeout(() => {
-    topdf()
-  }, 1000);
-  return () => clearTimeout(timer);
- }
+  function handlePdf(topdf) {
+    const timer = setTimeout(() => {
+      topdf();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }
   useEffect(() => {
     const timer = setTimeout(() => {
-      setHideButtons(false)
+      setHideButtons(false);
     }, 1000);
     return () => clearTimeout(timer);
   }, [HideButtons]);
@@ -752,8 +755,9 @@ function App() {
       <>
         <AlertProvider template={AlertTemplate} {...types} {...options}>
           <div style={{ position: "relative" }} ref={ref}>
-            <div className="outerContainerButtons"
-            style={{display:HideButtons?"none":"flex"}}
+            <div
+              className="outerContainerButtons"
+              style={{ display: HideButtons ? "none" : "flex" }}
             >
               <div
                 className="OuterWraperAddNewSectionButton"
@@ -773,35 +777,41 @@ function App() {
                 <CgArrangeFront className="RearrangeIcon" />
                 Rearrange Sections
               </div>
-              <ReactToPdf targetRef={ref} filename="div-blue.pdf" x={.5} y={.5} scale={0.58}>
-        {({toPdf}) => (
-            <div
-                style={{ display: "flex", gap: "25px" }}
-                onClick={() => {
-                  setHideButtons(true)
-                  dispatch(INCREMENTBACKGROUNDCOLORACHIEVEMENT());
-                  dispatch(INCREMENTBACKGROUNDCOLOREDUCATION());
-                  dispatch(INCREMENTBACKGROUNDCOLORPASSION());
-                  dispatch(INCREMENTBACKGROUNDCOLORTRAINING());
-                  dispatch(INCREMENTBACKGROUNDCOLOREXPERIENCE());
-                  dispatch(INCREMENTBACKGROUNDCOLORSKILL());
-                  dispatch(INCREMENTBACKGROUNDCOLORPROJECT());
-                  dispatch(INCREMENTBACKGROUNDCOLOMYTIME());
-                  dispatch(INCREMENTBACKGROUNDCOLOFINDMEONLINE());
-                  dispatch(INCREMENTBACKGROUNDCOLORLANGUAGE());
-                  dispatch(INCREMENTBACKGROUNDCOLORSUMMARY());
-                  dispatch(INCREMENTBACKGROUNDCOLORSTRENGTH());
-                  dispatch(INCREMENTBACKGROUNDCOLORVOLUNTEERING());
-                  dispatch(INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE());
-                  childRef.current.getAlert()
-                  handlePdf(toPdf)
-                }}
+              <ReactToPdf
+                targetRef={ref}
+                filename="div-blue.pdf"
+                x={0.5}
+                y={0.5}
+                scale={0.58}
               >
-                <BiDownload />
-                <div className="Download">Download</div>
-              </div>
-        )}
-    </ReactToPdf>
+                {({ toPdf }) => (
+                  <div
+                    style={{ display: "flex", gap: "25px" }}
+                    onClick={() => {
+                      setHideButtons(true);
+                      dispatch(INCREMENTBACKGROUNDCOLORACHIEVEMENT());
+                      dispatch(INCREMENTBACKGROUNDCOLOREDUCATION());
+                      dispatch(INCREMENTBACKGROUNDCOLORPASSION());
+                      dispatch(INCREMENTBACKGROUNDCOLORTRAINING());
+                      dispatch(INCREMENTBACKGROUNDCOLOREXPERIENCE());
+                      dispatch(INCREMENTBACKGROUNDCOLORSKILL());
+                      dispatch(INCREMENTBACKGROUNDCOLORPROJECT());
+                      dispatch(INCREMENTBACKGROUNDCOLOMYTIME());
+                      dispatch(INCREMENTBACKGROUNDCOLOFINDMEONLINE());
+                      dispatch(INCREMENTBACKGROUNDCOLORLANGUAGE());
+                      dispatch(INCREMENTBACKGROUNDCOLORSUMMARY());
+                      dispatch(INCREMENTBACKGROUNDCOLORSTRENGTH());
+                      dispatch(INCREMENTBACKGROUNDCOLORVOLUNTEERING());
+                      dispatch(INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE());
+                      childRef.current.getAlert();
+                      handlePdf(toPdf);
+                    }}
+                  >
+                    <BiDownload />
+                    <div className="Download">Download</div>
+                  </div>
+                )}
+              </ReactToPdf>
             </div>
             <div style={{ position: "absolute", zIndex: "-2" }}>
               <HomaPageSabSection
@@ -820,7 +830,7 @@ function App() {
               ></div>
             )}
             <Home
-            ref={childRef}
+              ref={childRef}
               Array={Array}
               ToggleAddNewSectionRight={ToggleAddNewSectionRight}
               ToggleAddNewSectionLeft={ToggleAddNewSectionLeft}

@@ -315,7 +315,6 @@ export default function Achievements(props) {
                 HandlerAddItemInArrayfun={HandlerAddItemInArray}
                 HanderDeleteItemInArrayfun={HanderDeleteItemInArray}
                 Left={props.Left}
-                // HandleDeletedBox={HandleDeletedBox}
               />
             );
           })}
