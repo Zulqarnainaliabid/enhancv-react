@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect, useRef} from "react";
 import ContentEditable from 'react-contenteditable'
 
 function MyComponent (props) {
   const  contentEditable = React.createRef();
+  
 const  handleChange = evt => {
     props.setFunction(evt.target.value)
   };
-    return( <ContentEditable
+    return(
+      <>
+       <ContentEditable
+              ref={props.textInput}
+              innerRef={props.textInput}
               innerRef={contentEditable}
               html={props.InputText} // innerHTML of the editable div
               disabled={false}       // use true to disable editing
@@ -14,7 +19,9 @@ const  handleChange = evt => {
               tagName='article' // Use a custom HTML tag (uses a div by default)
               placeholder={props.placeholder}
               className="test"
+              
             />
+            </>
     )
 };
 export default MyComponent

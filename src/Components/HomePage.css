@@ -569,7 +569,7 @@ font-size: 20px;
   color: #3843475e;
 }
 .InnerHeadingText{
-  
+  color: #008CFF;
   font-size:21px;
   font-weight:"700";
 }
@@ -857,9 +857,9 @@ input[type="file"]{
   z-index: 1;
   text-align: center;
   left: 143px;
-  right: 119px;
+  right: 137px;
   top: 105px;
-  bottom: 189px;
+  bottom: 263px;
   color: aliceblue;
   border-radius: 96px;
 }
@@ -875,7 +875,8 @@ color: rgba(71, 72, 75, 0.81);
 /* border: 2px solid; */
 padding: 10px;
 font-size: 25px;
-height: 25px;
+height: 37px;
+margin: 50px 0px 0px 4px;
 border-right: 2px solid rgba(0, 0, 0, 0.473);
 cursor: pointer;
 }
@@ -1057,8 +1058,15 @@ padding: 0px 0px 0px 13px;
     margin: 1px 12px 0px 0;
     color: rgba(71, 72, 75, 0.81);
 }
+.companyHeaderExperienceSection{
+  color: rgba(71, 72, 75, 0.81);
+  font-size: 21px;
+}
+.companyHeaderExperienceSection:focus::placeholder{
+  color:rgba(71, 72, 75, 0.37);
+}
 .Username:focus::placeholder{
-color:rgba(71, 72, 75, 0.37);;
+color:rgba(71, 72, 75, 0.37);
 }
 .companyNameTitleExperienceSection{
 font-size: 17px;
@@ -1072,7 +1080,18 @@ font-size: 17px;
 .companyTitleExperienceSection{
 /* border: 1px solid; */
 font-size: 20px;
-
+color: #008CFF !important;
+}
+.TitleExperienceBoxSection{
+  /* border: 1px solid; */
+  font-size: 15px;
+  color: #008CFF !important;
+}
+.TitleExperienceBoxSection::placeholder{
+  color: #008CFF !important;
+}
+.TitleExperienceBoxSection:focus::placeholder{
+  color: #008cff88 !important;
 }
 .test[placeholder]:empty:before {
   content: attr(placeholder);

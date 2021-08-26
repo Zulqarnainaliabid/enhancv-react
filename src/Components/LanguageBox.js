@@ -313,7 +313,7 @@ export default function Boxfunction(props) {
           <div className="slider">
             <div
               className="outerWraperTextHolder"
-              style={{ display: ShowProficiency ? "flex" : "none" }}
+              
             >
               <input
                 type="text"
@@ -328,7 +328,7 @@ export default function Boxfunction(props) {
                   setLanguageTextholder(e.target.value)
                 }}
               />
-              <div className="value">
+              <div className="value" style={{ display: ShowProficiency ? "flex" : "none" }}>
                 <input type="text" style={{ fontSize: "16px" }} placeholder={Language} />
               </div>
             </div>

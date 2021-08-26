@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import "./HomePage.css";
 import { FaPlus } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -204,7 +204,7 @@ export default function Achievements(props) {
     setborderBottm("none");
     setShowHeaderButton("none");
   }, [CounterData]);
-
+  const textInput = useRef(null);
   function HandlerAddItemInArray() {
     array.push({
       selected: false,
@@ -219,8 +219,6 @@ export default function Achievements(props) {
     localStorage.setItem("arrayAchievement", JSON.stringify(array));
   }
   function HanderDeleteItemInArray() {
-    console.log("click delete")
-    console.log("ii io io io",props.remove)
     dispatch(ACHIEVEMENTYES(true));
   }
   useEffect(() => {
@@ -243,7 +241,18 @@ export default function Achievements(props) {
       setToggleArrowUp(Isactive);
     }
   }
-  return (
+  console.log("pakistan.",array)
+//  function HandleDeletedBox(index){
+//      console.log("dele index",index)
+//      let temp = []
+//      temp = array
+//      if(index!==null){
+//      temp.splice(index,1)
+//      }
+//      setState([...temp])
+//      localStorage.setItem("arrayAchievement", JSON.stringify(temp));
+//  }
+ return (
     <>
       <div
         className="outerWraperCompleteBox"
@@ -306,6 +315,7 @@ export default function Achievements(props) {
                 HandlerAddItemInArrayfun={HandlerAddItemInArray}
                 HanderDeleteItemInArrayfun={HanderDeleteItemInArray}
                 Left={props.Left}
+                // HandleDeletedBox={HandleDeletedBox}
               />
             );
           })}

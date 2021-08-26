@@ -545,14 +545,14 @@ export default function Boxfunction(props) {
               setTitle(e.target.value);
               localStorage.setItem("arrayExperience", JSON.stringify(array));
             }}
-            className="companyTitleExperienceSection"
+            className="companyHeaderExperienceSection"
             style={{ display: ShowTitle ? "block" : "none" }}
             placeholder="Title"
           />
           <input
             type="text"
             value={CompnyName}
-            className="companyNameTitleExperienceSection"
+            className="TitleExperienceBoxSection"
             style={{ display: ShowCompanyName ? "block" : "none" }}
             onClick={() => {
               setEnabledFontFormatColor("#38434744");

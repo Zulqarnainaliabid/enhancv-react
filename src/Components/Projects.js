@@ -241,7 +241,7 @@ export default function Projects(props) {
   }
 
   function HanderDeleteItemInArray() {
-    dispatch(PROJECTYES());
+    dispatch(PROJECTYES(true));
   }
 
   useEffect(() => {

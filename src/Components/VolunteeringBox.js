@@ -537,13 +537,14 @@ export default function Boxfunction(props) {
               localStorage.setItem("arrayVolunteering", JSON.stringify(array));
               setTitleTextHolder(e.target.value);
             }}
-            className="companyTitleExperienceSection"
+            className="companyHeaderExperienceSection"
             placeholder="Title"
           />
           <input
             type="text"
             value={CompnyNameTextHolder}
-            className="companyNameTitleExperienceSection"
+            style={{fontSize:"15px !important"}}
+            className="TitleExperienceBoxSection"
             onClick={() => {
               setEnabledFontFormatColor("#38434744");
               setEnabledFontFormatNoDrop("no-drop");

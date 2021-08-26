@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import { RiSettings5Fill } from "react-icons/ri";
 import { useAlert } from "react-alert";
 import { FaPlus } from "react-icons/fa";
@@ -10,14 +10,13 @@ import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
 import { INCREMENT , INCREMENTBACKGROUNDCOLORACHIEVEMENT } from "./Redux/actions/indux";
-import { GrDiamond } from "react-icons/gr";
+import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "../Components/DatePicker/JasonData";
 import MyComponent from './InputField'
 import InputEditor from './ReactRichtext'
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
-
 export function SwitchButtons(props) {
   const [checked, setchecked] = useState(true);
   function handleChange(value) {
@@ -52,7 +51,6 @@ export function SwitchButtons(props) {
 }
 
 export default function Boxfunction(props) {
-  console.log("kkleft = ",props.Left)
   const inputref = useRef();
   const alert = useAlert();
   const [EnabledFontFormatColor, setEnabledFontFormatColor] =
@@ -65,26 +63,16 @@ export default function Boxfunction(props) {
   const [Counter, setCounter] = useState(0);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [listIcon, setlistIcon] = useState(false);
-  const [Icon, setIcon] = useState(<GrDiamond />);
+  const [Icon, setIcon] = useState(<div style={{color:"#008CFF !important"}}><BsStarHalf/></div>);
   const [Title, setTitle] = useState('');
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [ShowIcon, setShowIcon] = useState(true);
   const [ShowBullets, setShowBullets] = useState(true);
+  const [indexDeleteBox, setindexDeleteBox] = useState(null);
   
   const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
   const Incrementnull = useSelector((state) => state.IncrementNull);
-  useEffect(() => {
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
 
   useEffect(() => {
     setToggleButtons(false);
@@ -100,6 +88,7 @@ export default function Boxfunction(props) {
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
+
   function HandleTextDecoration() {
     setlistIcon(false);
     setToggleButtons(false);
@@ -127,6 +116,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    setindexDeleteBox(props.index)
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -144,7 +134,13 @@ export default function Boxfunction(props) {
       props.IsActiveUp(false);
     }
   }
+
   function HandleArrowDown() {
+    setindexDeleteBox(null)
+    let index = props.index+1
+    console.log("index Down",index)
+    setindexDeleteBox(index+1)
+
     setlistIcon(false);
     setToggleButtons(false);
     props.IsActiveUp(true);
@@ -161,12 +157,19 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
+    setindexDeleteBox(null)
+    let index = null
+        index = props.index-1
+    console.log("index up",index)
+    setindexDeleteBox(index-1)
     setToggleButtons(false);
     setlistIcon(false);
     props.IsActive(true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index - 1].selected = true;
+      let index = props.index-1
+      setindexDeleteBox(index)
     }
     temp[props.index].selected = false;
     props.setList([...temp]);
@@ -176,23 +179,32 @@ export default function Boxfunction(props) {
       props.IsActiveUp(true);
     }
   };
+
   function HandleDelete() {
     setlistIcon(false);
     setToggleButtons(false);
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ",indexDeleteBox)
+    if(indexDeleteBox!==null){
+    temp.splice(indexDeleteBox,1)
+    }
+    console.log("new array",temp)
+    
+    // props.HandleDeletedBox(indexDeleteBox)
+    props.setList([...temp]);
+
+    localStorage.setItem("arrayAchievement", JSON.stringify(temp));
   }
+
   function handleText() {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
-  // useEffect(() => {
-  //   inputref.current.focus();
-  // }, [Counter]);
 
   function handleToggglebutton(index, toggle) {
     let array = [];
@@ -213,7 +225,6 @@ export default function Boxfunction(props) {
       item = JSON.parse(item);
       setBullots(item[props.index].value.bullots);
       setTitle(item[props.index].value.title);
-
       let value = localStorage.getItem("arrayAchievement");
       value = JSON.parse(value);
       let array = [];
@@ -270,7 +281,6 @@ export default function Boxfunction(props) {
           className="outerWraperPlusAndNewEntry"
           onClick={() => {
             props.HandlerAddItemInArrayfun();
-            setCounter(Counter + 1);
             setlistIcon(false);
           }}
         >
@@ -349,10 +359,11 @@ export default function Boxfunction(props) {
               setlistIcon(!listIcon);
               setToggleButtons(false);
             }}
-            style={{ display: ShowIcon ? "block" : "none" }}
+            
+            style={{ display: ShowIcon ? "block" : "none",}}
             className="Icon"
           >
-            {Icon}
+          {Icon}
           </div>
           <div
             className="outerWraperInputFieldHaider"
@@ -365,7 +376,7 @@ export default function Boxfunction(props) {
              placeholder={"Why you are most proud of?"}
              setFunction={InputTextField}
              InputText={Title}
-             ref={inputref}
+            //  textInput={textInput}
             />
             <div
               onClick={handleText}

@@ -517,7 +517,6 @@ export default function Boxfunction(props) {
           border: props.item.selected ? "1px solid #60d5ba" : "",
         }}
       >
-        
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
@@ -539,14 +538,14 @@ export default function Boxfunction(props) {
               array[props.index].value.titleTextHolder = e.target.value;
               localStorage.setItem("arrayEducation", JSON.stringify(array));
             }}
-            className="companyTitleExperienceSection"
+            className="companyHeaderExperienceSection"
             style={{ fontSize: "20px " }}
             placeholder="Degree And Field Of Study"
           />
           <input
             type="text"
             value={InstitudeNameTestHolder}
-            className="companyNameTitleExperienceSection"
+            className="TitleExperienceBoxSection"
             onClick={() => {
               setEnabledFontFormatColor("#38434744");
               setEnabledFontFormatNoDrop("no-drop");

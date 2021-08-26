@@ -36,7 +36,7 @@ export default function Header(props) {
   const [CheckFinalUserImag, setCheckFinalUserImag] = useState("none");
   const [displayFinalImage, setdisplayFinalImage] = useState(false);
   const [UploadedImag, setUploadedImag] = useState(UserImg);
-  const [userProfileImage, setUserProfileImage] = useState("");
+  const [userProfileImage, setUserProfileImage] = useState(UserImg);
   const [selectedImage, setSelectedImage] = useState(null);
   const [editor, setEditor] = useState(null);
   const [UserName, setUserName] = useState('');
@@ -525,7 +525,6 @@ export default function Header(props) {
                     border={50}
                     ref={(ref) => setEditor(ref)}
                   />
-
                   <input
                     className="avatarbuttons"
                     style={{ width: "80%" }}
@@ -572,7 +571,7 @@ export default function Header(props) {
                   }}
                 />
                 <label
-                  
+                 for="uploadfile"
                   style={{ display: FacekoobButtons }}
                   className="outerWraperFromComputer"
                 >

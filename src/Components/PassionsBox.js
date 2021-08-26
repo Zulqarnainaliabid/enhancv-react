@@ -10,7 +10,7 @@ import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
 import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION } from "./Redux/actions/indux";
-import { GrDiamond } from "react-icons/gr";
+import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "./DatePicker/JasonData";
 
 import "./HomePage.css";
@@ -65,7 +65,7 @@ export default function PassionBoxfunction(props) {
   const [Counter, setCounter] = useState(0);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [listIcon, setlistIcon] = useState(false);
-  const [Icon, setIcon] = useState(<GrDiamond />);
+  const [Icon, setIcon] = useState(<BsStarHalf />);
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [ShowIcon, setShowIcon] = useState(true);
