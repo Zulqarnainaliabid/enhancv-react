@@ -278,11 +278,9 @@ export default function Achievements(props) {
     if (localStorage.getItem("arrayAchievement") !== null) {
       let value = localStorage.getItem("arrayAchievement");
       value = JSON.parse(value);
-      console.log("value,", value);
       value.map((item, index) => {
         value[index].selected = false;
       });
-      console.log("selected", value);
       setState(value);
     }
   }, []);

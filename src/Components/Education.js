@@ -295,7 +295,6 @@ export default function Education(props) {
   }
 
   function HanderDeleteItemInArray() {
-    console.log("Delete Education");
     dispatch(EDUCATIONYES(true));
   }
 

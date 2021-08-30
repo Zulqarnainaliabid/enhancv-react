@@ -139,11 +139,9 @@ export default function Boxfunction(props) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
-    console.log("index = ", Indux);
     if (Indux !== null) {
       temp.splice(Indux, 1);
     }
-    console.log("new array", temp);
     localStorage.setItem("arrayLanguage", JSON.stringify(temp));
     window.location.reload(false);
   }

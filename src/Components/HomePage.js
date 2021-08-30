@@ -47,7 +47,6 @@ const Home = forwardRef((props, ref) => {
             <div className="FirstSection"
             onClick={()=>{
               props.setToggleAddNewSection(true)
-              console.log("Right")
               dispatch(TOGGLELEFT(true));
             }}
             >

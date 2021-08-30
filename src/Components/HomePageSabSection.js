@@ -88,7 +88,6 @@ function HomaPageSabSection(props) {
     temp.splice(Id_Start, 1);
     temp.splice(index, 0, startFunction);
     props.setArray([...temp]);
-    console.log("aray..",temp[index].Left)
     localStorage.setItem("Section", JSON.stringify(temp));
   }
   function HandleDRagStart(index, position, e) {

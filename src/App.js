@@ -322,9 +322,7 @@ function App() {
         }
         setArray([...Array]);
       } else if (data === "Skill") {
-        console.log("check it",ToggleLeft)
         if (!toggle) {
-          console.log("yes.....")
           Array.push({
             name: "Skill",
             section: <TechStockSection button={HandleSetHoverEffect} />,
@@ -334,7 +332,6 @@ function App() {
           });
           HandleAddNewSection();
         } else {
-          console.log("yes.2 ")
           Array.push({
             name: "Skill",
             section: <TechStockSection button={HandleSetHoverEffect} />,
