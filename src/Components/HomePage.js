@@ -14,7 +14,6 @@ const Home = forwardRef((props, ref) => {
     setCount(Count+1)
     dispatch(INCREMENTBACKGROUNDNULL());
   }
-
   useImperativeHandle(ref, () => ({
     getAlert() {
         props.SetHoverEffect(null);
@@ -58,7 +57,9 @@ const Home = forwardRef((props, ref) => {
             <div className="SectionLeft">
               {props.Array && props.Array.filter((Section) => Section.Left === false).map(
                   (item, index) => {
-                    return <>{item.section}</>;
+                    return <div
+                    key={index}
+                    >{item.section}</div>;
                   }
                 )}
             </div>
@@ -66,7 +67,6 @@ const Home = forwardRef((props, ref) => {
             <div className="SecondSection"
             onClick={()=>{
               props.setToggleAddNewSection(true)
-              // dispatch(TOGGLELEFT(true));
             }}
             >
               <div className="AddnewSection"
