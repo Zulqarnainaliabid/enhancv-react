@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import PassionBoxfunction from "./PassionsBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION , PASSIONYES ,INDUXACHIEVEMENT, INDUXPASSION} from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION , PASSIONYES ,TOGGLEREARRANGEBUTTONS, INDUXPASSION} from "./Redux/actions/indux";
 export default function Passions(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -299,7 +299,9 @@ export default function Passions(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS())
+            }} />
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}

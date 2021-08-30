@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./FindMeOnlineBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE , FINDMEONLINEYES ,INDUXACHIEVEMENT, INDUXFINDMEONLINE} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE , FINDMEONLINEYES ,TOGGLEREARRANGEBUTTONS, INDUXFINDMEONLINE} from "./Redux/actions/indux";
 export default function FindMeOnline(props) {
 
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -300,7 +300,9 @@ export default function FindMeOnline(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon"onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}

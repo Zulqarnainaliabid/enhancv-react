@@ -341,9 +341,14 @@ export  const  INDUXVOLUNTEERING=(item)=>{
 }
 
 export  const  TOGGLELEFT=(item)=>{
-    console.log("item = ",item)
     return{
         type:'TOGGLELEFT',
+        payload:item
+    }
+}
+export  const  TOGGLEREARRANGEBUTTONS=(item)=>{
+    return{
+        type:'TOGGLEREARRANGEBUTTONS',
         payload:item
     }
 }

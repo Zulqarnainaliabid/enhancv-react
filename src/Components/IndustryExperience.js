@@ -7,7 +7,7 @@ import Boxfunction from "./IndustryExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 
-import { INCREMENT , INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE ,INDUSTRYEXPERINECEYES , INDUXACHIEVEMENT,INDUXFINDUSTRYEXPERIENCE} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE ,INDUSTRYEXPERINECEYES , TOGGLEREARRANGEBUTTONS,INDUXFINDUSTRYEXPERIENCE} from "./Redux/actions/indux";
 export default function IndustryExperience(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -299,7 +299,9 @@ export default function IndustryExperience(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}

@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLOREXPERIENCE ,EXPERIENCEYES ,INDUXACHIEVEMENT, INDUXEXPERIENCE} from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLOREXPERIENCE ,EXPERIENCEYES ,TOGGLEREARRANGEBUTTONS, INDUXEXPERIENCE} from "./Redux/actions/indux";
 export default function ExperienceSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -323,7 +323,9 @@ export default function ExperienceSection(props) {
           onClick={HanderDeleteItemInArray}
           className="DeleteIcon"
         />
-        <CgArrangeFront className="ArrangeIcon" />
+        <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
       </div>
       </div>
         <div

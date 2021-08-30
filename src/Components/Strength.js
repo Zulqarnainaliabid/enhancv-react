@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./StrengthBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORSTRENGTH , STRENGTHYES , INDUXACHIEVEMENT,INDUXSTRENGTH} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORSTRENGTH , STRENGTHYES , TOGGLEREARRANGEBUTTONS,INDUXSTRENGTH} from "./Redux/actions/indux";
 export default function Strength(props) {
   
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -301,7 +301,9 @@ export default function Strength(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }}/>
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}

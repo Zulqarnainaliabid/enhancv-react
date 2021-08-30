@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./VolunteeringBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORVOLUNTEERING , VOLUNTEERINFYES,INDUXVOLUNTEERING} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORVOLUNTEERING , VOLUNTEERINFYES,INDUXVOLUNTEERING , TOGGLEREARRANGEBUTTONS} from "./Redux/actions/indux";
 export default function Volunteering(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -316,7 +316,9 @@ export default function Volunteering(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}

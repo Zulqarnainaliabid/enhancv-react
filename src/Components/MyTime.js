@@ -5,7 +5,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import "react-datepicker/dist/react-datepicker.css";
 import ApexChart from "./DounutChart";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT, INCREMENTBACKGROUNDCOLOMYTIME , MYTIMEYES } from "./Redux/actions/indux";
+import { INCREMENT, INCREMENTBACKGROUNDCOLOMYTIME , MYTIMEYES,TOGGLEREARRANGEBUTTONS } from "./Redux/actions/indux";
 export default function MyTime(props) {
   const inputref = useRef(null);
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -180,7 +180,9 @@ dispatch(MYTIMEYES(true));
             className="headingOptionBoxEducation"
           >
             <RiDeleteBin6Line className="DeleteIcon" onClick={HandleRemoveSection} />
-            <CgArrangeFront className="ArrangeIcon" />
+            <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
           </div>
         </div>
         <div

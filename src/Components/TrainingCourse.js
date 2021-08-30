@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./TrainingCourseBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLORTRAINING , TRAININGYES ,INDUXACHIEVEMENT, INDUXTRAINING} from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORTRAINING , TRAININGYES ,TOGGLEREARRANGEBUTTONS, INDUXTRAINING} from "./Redux/actions/indux";
 export default function TrainingCourse(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -312,7 +312,9 @@ export default function TrainingCourse(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}

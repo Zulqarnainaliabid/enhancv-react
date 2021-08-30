@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./LanguageBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , LANGUAGEYES , INDUXACHIEVEMENT, INDUXLANGUAGE} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , LANGUAGEYES , TOGGLEREARRANGEBUTTONS, INDUXLANGUAGE} from "./Redux/actions/indux";
 export default function Language(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -301,7 +301,9 @@ export default function Language(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}

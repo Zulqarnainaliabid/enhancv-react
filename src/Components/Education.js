@@ -11,6 +11,7 @@ import {
   INCREMENTBACKGROUNDCOLOREDUCATION,
   EDUCATIONYES,
   INDUXACHIEVEMENT,
+  TOGGLEREARRANGEBUTTONS,
 } from "./Redux/actions/indux";
 export default function Education(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -351,7 +352,9 @@ export default function Education(props) {
               onClick={HanderDeleteItemInArray}
               className="DeleteIcon"
             />
-            <CgArrangeFront className="ArrangeIcon" />
+            <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
           </div>
         </div>
         <div

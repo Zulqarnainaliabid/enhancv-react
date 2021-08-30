@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./SummaryBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORSUMMARY , SUMMARYYES , INDUXACHIEVEMENT,INDUXSUMMARY} from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORSUMMARY , SUMMARYYES , TOGGLEREARRANGEBUTTONS,INDUXSUMMARY} from "./Redux/actions/indux";
 export default function Summry(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -294,7 +294,9 @@ export default function Summry(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}

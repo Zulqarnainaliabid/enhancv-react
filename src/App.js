@@ -40,6 +40,7 @@ import {
   INCREMENTBACKGROUNDCOLORPASSION,
   INCREMENTBACKGROUNDCOLOREDUCATION,
   INCREMENTBACKGROUNDCOLORACHIEVEMENT,
+  TOGGLEREARRANGEBUTTONS,
   ACHIEVEMENTYES,
   TOGGLELEFT,
 } from "./Components/Redux/actions/indux";
@@ -74,7 +75,8 @@ function App() {
   const VolunteeringYes = useSelector((state) => state.VolunteeringYes);
   const TechstockYes = useSelector((state) => state.TechstockYes);
   const ToggleLeft = useSelector((state) => state.ToggleLeft);
-
+  const ToggleRearrangebuttons = useSelector((state) => state.ToggleRearrangebuttons);
+  
   useEffect(() => {
     if (Achievementyes) {
       let temp = [];
@@ -713,9 +715,7 @@ function App() {
       });
     }
   }, []);
-  useEffect(() => {
-   
-  });
+ 
   function HandleSetHoverEffect() {
     SetHoverEffect("rgba(80,77,98,.2)");
   }
@@ -732,6 +732,13 @@ function App() {
     return () => clearTimeout(timer);
   }, [HideButtons]);
 
+  useEffect(() => {
+    if(ToggleRearrangebuttons){
+      setToggleRearrangeSection(true);
+    }
+    dispatch(TOGGLEREARRANGEBUTTONS(false));
+  }, [ToggleRearrangebuttons]);
+ 
   if (ToggleRearrangeSection === true) {
     return (
       <div>

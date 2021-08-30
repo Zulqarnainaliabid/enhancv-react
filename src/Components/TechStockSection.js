@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./TechStockSectionBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT, INCREMENTBACKGROUNDCOLORSKILL ,TECHSTOCKYES , INDUXACHIEVEMENT,INDUXTECKSTOCK} from "./Redux/actions/indux";
+import { INCREMENT, INCREMENTBACKGROUNDCOLORSKILL ,TECHSTOCKYES ,TOGGLEREARRANGEBUTTONS,INDUXTECKSTOCK} from "./Redux/actions/indux";
 
 export default function TechStockSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -300,7 +300,9 @@ export default function TechStockSection(props) {
         onClick={HanderDeleteItemInArray}
         className="DeleteIcon"
       />
-      <CgArrangeFront className="ArrangeIcon" />
+      <CgArrangeFront className="ArrangeIcon" onClick={()=>{
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
+            }} />
     </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}
