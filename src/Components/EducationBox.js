@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLOREDUCATION,
+  INDUXEDUCATION
 } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
@@ -93,7 +94,7 @@ export default function Boxfunction(props) {
   const CounterData = useSelector((state) => state.CounterData);
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const Indux = useSelector((state) => state.InduxEducation);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -161,7 +162,6 @@ export default function Boxfunction(props) {
       setDateSlash(false);
     }
   }
-
   useEffect(() => {
     if (UpdateToggleYearFrom) {
       let array = props.list;
@@ -193,7 +193,6 @@ export default function Boxfunction(props) {
       setDisplayShashOngoing(false);
     }
   }
-
   function handleYearOngoing(date) {
     if (date === null) {
       setYearOnGoing(null);
@@ -209,32 +208,6 @@ export default function Boxfunction(props) {
       setDiplayMinus(false);
     }
   }
-  useEffect(() => {
-    setShowDate(false);
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
-
-  useEffect(() => {
-    setShowDate(false);
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
-  useEffect(() => {
-    setToggleButtons(false);
-  }, [props.UpdateState]);
   function HandleTextDecoration() {
     setToggleButtons(false);
     if (
@@ -262,6 +235,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    dispatch(INDUXEDUCATION(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -283,6 +257,8 @@ export default function Boxfunction(props) {
     borderBottom: props.borderbotm,
   };
   function HandleArrowDown() {
+    let index = props.index + 1;
+    dispatch(INDUXEDUCATION(index));
     setToggleButtons(false);
     props.IsActiveUp(true);
     let temp = props.list;
@@ -298,6 +274,9 @@ export default function Boxfunction(props) {
     }
   }
   function HandleArrowUP() {
+    let index = null;
+    index = props.index - 1;
+    dispatch(INDUXEDUCATION(index));
     setToggleButtons(false);
     props.IsActive(true);
     let temp = props.list;
@@ -315,14 +294,22 @@ export default function Boxfunction(props) {
   };
   function HandleDelete() {
     setToggleButtons(false);
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
+    }
+    console.log("new array", temp);
+    localStorage.setItem("arrayEducation", JSON.stringify(temp));
+    window.location.reload(false);
   }
   useEffect(() => {
+    inputref.current.focus();
     if (localStorage.getItem("arrayEducation") !== null) {
       setcheckplacehoderBollets(false);
       let item = localStorage.getItem("arrayEducation");
@@ -368,10 +355,6 @@ export default function Boxfunction(props) {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
-  useEffect(() => {
-    inputref.current.focus();
-  }, [Counter]);
-
   function handleToggglebutton(index, toggle) {
     let array = [];
     array = props.list;
@@ -463,6 +446,8 @@ export default function Boxfunction(props) {
                 props.HandlerAddItemInArrayfun();
                 setCounter(Counter + 1);
                 setToggleButtons(false);
+                props.IsActiveUp(true);
+                props.IsActive(false);
               }}
             >
               <FaPlus className="newEntryPlusIcon" />

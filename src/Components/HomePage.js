@@ -4,7 +4,7 @@ import img from "./Backgroundimg/backgroundimg.png";
 import Header from "../Components/usernamePAge";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { INCREMENTBACKGROUNDNULL } from "./Redux/actions/indux";
+import { INCREMENTBACKGROUNDNULL,TOGGLELEFT } from "./Redux/actions/indux";
 const { forwardRef, useRef, useImperativeHandle } = React;
 const Home = forwardRef((props, ref) => {
   const [Count, setCount] = useState(null);
@@ -47,6 +47,8 @@ const Home = forwardRef((props, ref) => {
             <div className="FirstSection"
             onClick={()=>{
               props.setToggleAddNewSection(true)
+              console.log("Right")
+              dispatch(TOGGLELEFT(true));
             }}
             >
               <div className="AddnewSection"
@@ -65,11 +67,10 @@ const Home = forwardRef((props, ref) => {
             <div className="SecondSection"
             onClick={()=>{
               props.setToggleAddNewSection(true)
-              props.setFlagRight(true)
+              // dispatch(TOGGLELEFT(true));
             }}
             >
               <div className="AddnewSection"
-               
               >Add new section</div>
             </div>
           )}

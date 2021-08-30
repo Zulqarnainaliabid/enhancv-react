@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORSUMMARY } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORSUMMARY , INDUXSUMMARY} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -22,29 +22,9 @@ export default function Boxfunction(props) {
   const [Counter, setCounter] = useState(0);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [SummaryTextHolder, setSummaryTextHolder] = useState("");
-
   const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  useEffect(() => {
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
-
-  useEffect(() => {
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
+  const Indux = useSelector((state) => state.InduxSummary);
+ 
   useEffect(() => {}, [props.UpdateState]);
   function HandleTextDecoration() {
     if (
@@ -56,7 +36,6 @@ export default function Boxfunction(props) {
       );
     }
   }
-
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORSUMMARY());
     dispatch(INCREMENT());
@@ -73,6 +52,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    dispatch(INDUXSUMMARY(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -94,6 +74,8 @@ export default function Boxfunction(props) {
     borderBottom: props.borderbotm,
   };
   function HandleArrowDown() {
+    let index = props.index + 1;
+    dispatch(INDUXSUMMARY(index));
     props.IsActiveUp(true);
     let temp = props.list;
     if (temp[props.index].selected) {
@@ -108,6 +90,9 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
+    let index = null;
+    index = props.index - 1;
+    dispatch(INDUXSUMMARY(index));
     props.IsActive(true);
     let temp = props.list;
     if (temp[props.index].selected) {
@@ -122,18 +107,26 @@ export default function Boxfunction(props) {
     }
   };
   function HandleDelete() {
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
+    }
+    console.log("new array", temp);
+    localStorage.setItem("arraySummary", JSON.stringify(temp));
+    window.location.reload(false);
   }
   function handleText() {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
   useEffect(() => {
+    // inputref.current.focus()
     if (localStorage.getItem("arraySummary") !== null) {
       setcheckplacehoderBollets(false);
       let value = localStorage.getItem("arraySummary");
@@ -153,6 +146,8 @@ export default function Boxfunction(props) {
             onClick={() => {
               props.HandlerAddItemInArrayfun();
               setCounter(Counter + 1);
+              props.IsActiveUp(true);
+              props.IsActive(false);
             }}
           >
             <FaPlus className="newEntryPlusIcon" />
@@ -194,6 +189,7 @@ export default function Boxfunction(props) {
             ) : (
               <div className="app" style={{width:"300px"}}>
               <Editor
+                // ref={inputref}
                 text={SummaryTextHolder}
                 onChange={(text) => {
                   setSummaryTextHolder(text);

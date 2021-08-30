@@ -10,7 +10,7 @@ import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , INDUXLANGUAGE} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -50,8 +50,7 @@ export function SwitchButtons(props) {
   );
 }
 export default function Boxfunction(props) {
-  const inputref = useRef();
-  const alert = useAlert();
+  const inputref = useRef(null);
   const [ToggleButtons, setToggleButtons] = useState(false);
   const [UpdateNumber, setUpdateNumber] = useState(0);
   const [Counter, setCounter] = useState(0);
@@ -63,35 +62,12 @@ export default function Boxfunction(props) {
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [LanguageTextholder, setLanguageTextholder] = useState("");
   const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  useEffect(() => {
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
-
-  useEffect(() => {
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
+  const Indux = useSelector((state) => state.InduxLanguage);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORLANGUAGE());
-    // dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -105,6 +81,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    dispatch(INDUXLANGUAGE(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -123,6 +100,8 @@ export default function Boxfunction(props) {
     }
   }
   function HandleArrowDown() {
+    let index = props.index + 1;
+    dispatch(INDUXLANGUAGE(index));
     props.IsActiveUp(true);
     let temp = props.list;
     if (temp[props.index].selected) {
@@ -137,6 +116,9 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
+    let index = null;
+    index = props.index - 1;
+    dispatch(INDUXLANGUAGE(index));
     props.IsActive(true);
     let temp = props.list;
     if (temp[props.index].selected) {
@@ -151,14 +133,20 @@ export default function Boxfunction(props) {
     }
   };
   function HandleDelete() {
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
+    }
+    console.log("new array", temp);
+    localStorage.setItem("arrayLanguage", JSON.stringify(temp));
+    window.location.reload(false);
   }
-
   function handleToggglebutton(index, toggle) {
     let array = [];
     array = props.list;
@@ -171,6 +159,7 @@ export default function Boxfunction(props) {
     }
   }
   useEffect(() => {
+    inputref.current.focus()
     if (localStorage.getItem("arrayLanguage") !== null) {
       let value = localStorage.getItem("arrayLanguage");
       value = JSON.parse(value);
@@ -228,7 +217,6 @@ export default function Boxfunction(props) {
   };
   return (
     <>
-     
       <div style={{ position: "relative" }}>
         {ToggleButtons && (
           <div className="OuterWraperToggleButtonsExperienceSection">
@@ -265,6 +253,8 @@ export default function Boxfunction(props) {
           onClick={() => {
             props.HandlerAddItemInArrayfun();
             setCounter(Counter + 1);
+            props.IsActiveUp(true);
+            props.IsActive(false);
           }}
         >
           <FaPlus className="newEntryPlusIcon" />
@@ -292,7 +282,6 @@ export default function Boxfunction(props) {
         />
       </div>
       </div>
-       
       <div
         onClick={HandleSetBackGroundColor}
         className="outerWraperBox"
@@ -313,9 +302,9 @@ export default function Boxfunction(props) {
           <div className="slider">
             <div
               className="outerWraperTextHolder"
-              
             >
               <input
+                ref={inputref}
                 type="text"
                 className="language"
                 style={{ fontSize: "16px" }}

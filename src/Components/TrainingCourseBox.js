@@ -10,7 +10,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORTRAINING } from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORTRAINING , INDUXTRAINING} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -63,30 +63,11 @@ export default function Boxfunction(props) {
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
+  const [BullotsTextHolder, setBullotsTextHolder] = useState("");
+  const [TitleTextHolder, setTitleTextHolder] = useState("");
   const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  useEffect(() => {
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
+  const Indux = useSelector((state) => state.InduxTraining);
 
-  useEffect(() => {
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
@@ -117,6 +98,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    dispatch(INDUXTRAINING(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -138,6 +120,8 @@ export default function Boxfunction(props) {
     borderBottom: props.borderbotm,
   };
   function HandleArrowDown() {
+    let index = props.index + 1;
+    dispatch(INDUXTRAINING(index));
     setToggleButtons(false);
     props.IsActiveUp(true);
     let temp = props.list;
@@ -153,6 +137,9 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
+    let index = null;
+    index = props.index - 1;
+    dispatch(INDUXTRAINING(index));
     setToggleButtons(false);
     props.IsActive(true);
     let temp = props.list;
@@ -169,21 +156,25 @@ export default function Boxfunction(props) {
   };
   function HandleDelete() {
     setToggleButtons(false);
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
+    }
+    console.log("new array", temp);
+    localStorage.setItem("arrayTraining", JSON.stringify(temp));
+    window.location.reload(false);
   }
 
   function handleText() {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
-  useEffect(() => {
-    inputref.current.focus();
-  }, [Counter]);
 
   function handleToggglebutton(index, toggle) {
     let array = [];
@@ -196,9 +187,8 @@ export default function Boxfunction(props) {
       setShowBullets(toggle);
     }
   }
-  const [BullotsTextHolder, setBullotsTextHolder] = useState("");
-  const [TitleTextHolder, setTitleTextHolder] = useState("");
   useEffect(() => {
+    inputref.current.focus();
     if (localStorage.getItem("arrayTraining") !== null) {
       setcheckplacehoderBollets(false);
       let value = localStorage.getItem("arrayTraining");
@@ -253,6 +243,8 @@ export default function Boxfunction(props) {
               props.HandlerAddItemInArrayfun();
               setCounter(Counter + 1);
               setToggleButtons(false);
+              props.IsActiveUp(true);
+              props.IsActive(false);
             }}
           >
             <FaPlus className="newEntryPlusIcon" />

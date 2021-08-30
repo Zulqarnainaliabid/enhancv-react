@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./LanguageBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , LANGUAGEYES} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , LANGUAGEYES , INDUXACHIEVEMENT, INDUXLANGUAGE} from "./Redux/actions/indux";
 export default function Language(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -194,6 +194,11 @@ export default function Language(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [Incrementnull]);
 
   useEffect(() => {
@@ -203,6 +208,18 @@ export default function Language(props) {
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
+    if (array === [] || array.length === 0) {
+      setToggleArrowDown(false);
+      setToggleArrowUp(false);
+    } else {
+      setToggleArrowDown(false);
+      setToggleArrowUp(true);
+    }
+    dispatch(INCREMENTBACKGROUNDCOLORLANGUAGE());
+    props.button();
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
     array.push({
       selected: false,
       toggleButton: { showSlider: true, showProficiency: true },
@@ -216,8 +233,16 @@ export default function Language(props) {
         SliderValueTextHolder: "",
       },
     });
-    setState([...array]);
-    localStorage.setItem("arrayLanguage", JSON.stringify(array));
+    let temp = [];
+    temp = array;
+    temp.map((item, index) => {
+      item.selected = false;
+    });
+    let index = temp.length - 1;
+    dispatch(INDUXLANGUAGE(index));
+    temp[index].selected = true;
+    setState([...temp]);
+    localStorage.setItem("arrayLanguage", JSON.stringify(temp));
   }
 
   function HanderDeleteItemInArray() {
@@ -227,7 +252,11 @@ export default function Language(props) {
   useEffect(() => {
     if (localStorage.getItem("arrayLanguage") !== null) {
       let value = localStorage.getItem("arrayLanguage");
-      setState(JSON.parse(value));
+      value = JSON.parse(value)
+      value.map((item, index) => {
+        value[index].selected = false;
+      });
+      setState(value);
     }
   }, []);
   function IsActive(Isactive) {
@@ -251,7 +280,29 @@ export default function Language(props) {
         className="outerWraperCompleteBox"
         style={{ backgroundColor: backgroundColor }}
         onClick={() => {}}
+      ><div
+        style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      ><div
+      style={{ display: ShowHeaderButton , zIndex: "5"}}
+      className="headingOptionBoxEducation"
+    >
+      <div
+        onClick={HandlerAddItemInArray}
+        className="outerWraperPlusAndNewEntry"
       >
+        <FaPlus className="newEntryPlusIcon" />
+        <div className="newEntryText">New Entry</div>
+      </div>
+      <RiDeleteBin6Line
+        onClick={HanderDeleteItemInArray}
+        className="DeleteIcon"
+      />
+      <CgArrangeFront className="ArrangeIcon" />
+    </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}
           className="HeadingNameBox"
@@ -267,23 +318,6 @@ export default function Language(props) {
               dispatch(INCREMENT());
             }}
           />
-          <div
-            style={{ display: ShowHeaderButton }}
-            className="headingOptionBoxEducation"
-          >
-            <div
-              onClick={HandlerAddItemInArray}
-              className="outerWraperPlusAndNewEntry"
-            >
-              <FaPlus className="newEntryPlusIcon" />
-              <div className="newEntryText">New Entry</div>
-            </div>
-            <RiDeleteBin6Line
-              onClick={HanderDeleteItemInArray}
-              className="DeleteIcon"
-            />
-            <CgArrangeFront className="ArrangeIcon" />
-          </div>
         </div>
         {array &&
           array.map((item, index) => {

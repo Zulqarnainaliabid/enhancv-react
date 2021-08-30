@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLOREXPERIENCE ,EXPERIENCEYES } from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLOREXPERIENCE ,EXPERIENCEYES ,INDUXACHIEVEMENT, INDUXEXPERIENCE} from "./Redux/actions/indux";
 export default function ExperienceSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -194,6 +194,11 @@ export default function ExperienceSection(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [Incrementnull]);
 
   useEffect(() => {
@@ -203,6 +208,18 @@ export default function ExperienceSection(props) {
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
+    if (array === [] || array.length === 0) {
+      setToggleArrowDown(false);
+      setToggleArrowUp(false);
+    } else {
+      setToggleArrowDown(false);
+      setToggleArrowUp(true);
+    }
+    dispatch(INCREMENTBACKGROUNDCOLOREXPERIENCE());
+    props.button();
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
     array.push({
       selected: false,
       togglebuttonlist: [
@@ -239,17 +256,28 @@ export default function ExperienceSection(props) {
         url: "",
       },
     });
-    setState([...array]);
-    localStorage.setItem("arrayExperience", JSON.stringify(array));
+    let temp = [];
+    temp = array;
+    temp.map((item, index) => {
+      item.selected = false;
+    });
+    let index = temp.length - 1;
+    dispatch(INDUXEXPERIENCE(index));
+    temp[index].selected = true;
+    setState([...temp]);
+    localStorage.setItem("arrayExperience", JSON.stringify(temp));
   }
   function HanderDeleteItemInArray() {
-   console.log("delete Experience")
    dispatch(EXPERIENCEYES(true));
   }
   useEffect(() => {
     if (localStorage.getItem("arrayExperience") !== null) {
       let value = localStorage.getItem("arrayExperience");
-      setState(JSON.parse(value));
+      value = JSON.parse(value)
+      value.map((item, index) => {
+        value[index].selected = false;
+      });
+      setState(value);
     }
   }, []);
   function IsActive(Isactive) {
@@ -266,7 +294,6 @@ export default function ExperienceSection(props) {
       setToggleArrowUp(Isactive);
     }
   }
-
   return (
     <>
       <div
@@ -274,23 +301,15 @@ export default function ExperienceSection(props) {
         style={{ backgroundColor: backgroundColor }}
         onClick={() => {}}
       >
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <div
-          style={{ backgroundColor: backgroundColor }}
-          className="HeadingNameBox"
-          onClick={HandleCompleteBoarderSelected}
-        >
-          <input
-            type="text"
-            className="TexrHolderexperience"
-            style={{ borderBottom: "4px solid" }}
-            placeholder="EXPERIENCE"
-            onClick={() => {
-              setUpdateState(UpdateState + 1);
-              dispatch(INCREMENT());
-            }}
-          />
-           <div
-        style={{ display: ShowHeaderButton }}
+        style={{ display: ShowHeaderButton , zIndex: "5"}}
         className="headingOptionBoxRight"
       >
         <div
@@ -306,6 +325,22 @@ export default function ExperienceSection(props) {
         />
         <CgArrangeFront className="ArrangeIcon" />
       </div>
+      </div>
+        <div
+          style={{ backgroundColor: backgroundColor }}
+          className="HeadingNameBox"
+          onClick={HandleCompleteBoarderSelected}
+        >
+          <input
+            type="text"
+            className="TexrHolderexperience"
+            style={{ borderBottom: "4px solid" }}
+            placeholder="EXPERIENCE"
+            onClick={() => {
+              setUpdateState(UpdateState + 1);
+              dispatch(INCREMENT());
+            }}
+          />
         </div>
         {array &&
           array.map((item, index) => {

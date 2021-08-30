@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./FindMeOnlineBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE , FINDMEONLINEYES} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE , FINDMEONLINEYES ,INDUXACHIEVEMENT, INDUXFINDMEONLINE} from "./Redux/actions/indux";
 export default function FindMeOnline(props) {
 
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -195,6 +195,11 @@ export default function FindMeOnline(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [Incrementnull]);
 
   useEffect(() => {
@@ -204,6 +209,18 @@ export default function FindMeOnline(props) {
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
+    if (array === [] || array.length === 0) {
+      setToggleArrowDown(false);
+      setToggleArrowUp(false);
+    } else {
+      setToggleArrowDown(false);
+      setToggleArrowUp(true);
+    }
+    dispatch(INCREMENTBACKGROUNDCOLOFINDMEONLINE());
+    props.button();
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
     array.push({
       selected: false,
       toggleButton: { showDiscription: true, showicon: true },
@@ -216,8 +233,16 @@ export default function FindMeOnline(props) {
         bullots: "",
       },
     });
-    setState([...array]);
-    localStorage.setItem("arrayFindmeOnline", JSON.stringify(array));
+    let temp = [];
+    temp = array;
+    temp.map((item, index) => {
+      item.selected = false;
+    });
+    let index = temp.length - 1;
+    dispatch(INDUXFINDMEONLINE(index));
+    temp[index].selected = true;
+    setState([...temp]);
+    localStorage.setItem("arrayFindmeOnline", JSON.stringify(temp));
   }
   function HanderDeleteItemInArray() {
    dispatch(FINDMEONLINEYES(true));
@@ -225,7 +250,11 @@ export default function FindMeOnline(props) {
   useEffect(() => {
     if (localStorage.getItem("arrayFindmeOnline") !== null) {
       let value = localStorage.getItem("arrayFindmeOnline");
-      setState(JSON.parse(value));
+      value = JSON.parse(value)
+      value.map((item, index) => {
+        value[index].selected = false;
+      });
+      setState(value);
     }
   }, []);
   function IsActive(Isactive) {
@@ -250,11 +279,34 @@ export default function FindMeOnline(props) {
         style={{ backgroundColor: backgroundColor }}
         onClick={() => {}}
       >
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      ><div
+      style={{ display: ShowHeaderButton , zIndex: "5"}}
+      className="headingOptionBoxRight"
+    >
+      <div
+        onClick={HandlerAddItemInArray}
+        className="outerWraperPlusAndNewEntry"
+      >
+        <FaPlus className="newEntryPlusIcon" />
+        <div className="newEntryText">New Entry</div>
+      </div>
+      <RiDeleteBin6Line
+        onClick={HanderDeleteItemInArray}
+        className="DeleteIcon"
+      />
+      <CgArrangeFront className="ArrangeIcon" />
+    </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}
           className="HeadingNameBox"
           onClick={HandleCompleteBoarderSelected}
-        >
+        > 
           <input
             type="text"
             className="TexrHolderexperience"
@@ -265,23 +317,6 @@ export default function FindMeOnline(props) {
               dispatch(INCREMENT());
             }}
           />
-          <div
-        style={{ display: ShowHeaderButton }}
-        className="headingOptionBoxRight"
-      >
-        <div
-          onClick={HandlerAddItemInArray}
-          className="outerWraperPlusAndNewEntry"
-        >
-          <FaPlus className="newEntryPlusIcon" />
-          <div className="newEntryText">New Entry</div>
-        </div>
-        <RiDeleteBin6Line
-          onClick={HanderDeleteItemInArray}
-          className="DeleteIcon"
-        />
-        <CgArrangeFront className="ArrangeIcon" />
-      </div>
         </div>
         {array &&
           array.map((item, index) => {

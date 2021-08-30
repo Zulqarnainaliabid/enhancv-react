@@ -14,7 +14,7 @@ import SectionImg13 from "./sections/Section13.PNG";
 import SectionImg14 from "./sections/Section14.PNG";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
-import {ACHIEVEMENTYES,EDUCATIONYES , EXPERIENCEYES , FINDMEONLINEYES , LANGUAGEYES , MYTIMEYES , PASSIONYES , PROJECTYES , STRENGTHYES , SUMMARYYES , TRAININGYES , TECHSTOCKYES , VOLUNTEERINFYES} from "./Redux/actions/indux";
+import {ACHIEVEMENTYES,EDUCATIONYES , EXPERIENCEYES , FINDMEONLINEYES , LANGUAGEYES , MYTIMEYES , PASSIONYES , PROJECTYES , STRENGTHYES , SUMMARYYES , TRAININGYES , TECHSTOCKYES , VOLUNTEERINFYES,TOGGLELEFT} from "./Redux/actions/indux";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -348,6 +348,8 @@ export function Section2ndBox(props) {
   );
 }
 export function SectionBox(props) {
+  const ToggleLeft = useSelector((state) => state.ToggleLeft);
+  const dispatch = useDispatch()
   function HandlePopEvent() {
     let temp = props.ArrayUper;
     let ArrayLower = props.ArrayLower;
@@ -383,10 +385,15 @@ export function SectionBox(props) {
             <div
               className="AddtoResume"
               onClick={() => {
-                props.funHandleSection(props.item.name);
+                if(ToggleLeft){
+                props.funHandleSection(props.item.name,true);
+                }else{
+                  props.funHandleSection(props.item.name,false);
+                }
                 props.SetToggleAddnewSection(false);
                 props.functionHandleAddNewSection();
                 HandlePopEvent();
+                dispatch(TOGGLELEFT(false));
               }}
             >
               {props.item.label}

@@ -11,14 +11,13 @@ const override = css`
 
 function Loader() {
   let [loading, setLoading] = useState(true);
-  let [color, setColor] = useState("#ffffff");
+  // let [color, setColor] = useState("#ffffff");
 
   return (
     <div className="sweet-loading">
-      <button onClick={() => setLoading(!loading)}>Toggle Loader</button>
-      <input value={color} onChange={(input) => setColor(input.target.value)} placeholder="Color of the loader" />
-
-      <ClipLoader color={color} loading={loading} css={override} size={150} />
+      {/* <button onClick={() => setLoading(!loading)}>Toggle Loader</button> */}
+      {/* <input value={color} onChange={(input) => setColor(input.target.value)} placeholder="Color of the loader" /> */}
+      <ClipLoader color={"red"} loading={loading} css={override} size={150} />
     </div>
   );
 }

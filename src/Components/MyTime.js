@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import "./HomePage.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CgArrangeFront } from "react-icons/cg";
@@ -7,6 +7,7 @@ import ApexChart from "./DounutChart";
 import { useDispatch, useSelector } from "react-redux";
 import { INCREMENT, INCREMENTBACKGROUNDCOLOMYTIME , MYTIMEYES } from "./Redux/actions/indux";
 export default function MyTime(props) {
+  const inputref = useRef(null);
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
   const [borderBottm, setborderBottm] = useState("none");
@@ -145,10 +146,13 @@ export default function MyTime(props) {
     setShowHeaderButton("none");
   }, [CounterData]);
 
+  useEffect(() => {
+    inputref.current.focus()
+  }, [CounterData]);
+  
  function HandleRemoveSection(){
 dispatch(MYTIMEYES(true));
  }
-
   return (
     <>
       <div
@@ -161,6 +165,7 @@ dispatch(MYTIMEYES(true));
           onClick={HandleCompleteBoarderSelected}
         >
           <input
+            ref={inputref}
             type="text"
             className="TexrHolderexperience"
             style={{ borderBottom: "4px solid" }}

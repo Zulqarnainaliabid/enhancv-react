@@ -23,7 +23,7 @@ import Volunteering from "./Components/Volunteering";
 import ExperienceSection from "./Components/ExperienceSection";
 import { useDispatch, useSelector } from "react-redux";
 import Education from "./Components/Education";
-import  Loader from './Components/Loader'
+import Loader from "./Components/Loader";
 import ReactToPdf from "react-to-pdf";
 import {
   INCREMENTBACKGROUNDCOLORVOLUNTEERING,
@@ -41,6 +41,7 @@ import {
   INCREMENTBACKGROUNDCOLOREDUCATION,
   INCREMENTBACKGROUNDCOLORACHIEVEMENT,
   ACHIEVEMENTYES,
+  TOGGLELEFT,
 } from "./Components/Redux/actions/indux";
 function App() {
   const [ToggleRearrangeSection, setToggleRearrangeSection] = useState(null);
@@ -50,7 +51,6 @@ function App() {
     useState(false);
   const [HoverEffect, SetHoverEffect] = useState(null);
   const [Array, setArray] = useState([]);
-  const [FlagRight, setFlagRight] = useState(false);
   const [HideButtons, setHideButtons] = useState(false);
   const ref = React.createRef();
   const dispatch = useDispatch();
@@ -73,6 +73,7 @@ function App() {
   const TrainingYes = useSelector((state) => state.TrainingYes);
   const VolunteeringYes = useSelector((state) => state.VolunteeringYes);
   const TechstockYes = useSelector((state) => state.TechstockYes);
+  const ToggleLeft = useSelector((state) => state.ToggleLeft);
 
   useEffect(() => {
     if (Achievementyes) {
@@ -296,10 +297,10 @@ function App() {
     localStorage.setItem("Section", JSON.stringify(temp));
   }
 
-  function HandleSections(data) {
+  function HandleSections(data,toggle) {
     if (data !== undefined && data !== null) {
       if (data === "Achievement") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Achievement",
             section: <Achievements button={HandleSetHoverEffect} />,
@@ -318,9 +319,10 @@ function App() {
           });
         }
         setArray([...Array]);
-        setFlagRight(false);
       } else if (data === "Skill") {
-        if (FlagRight === true) {
+        console.log("check it",ToggleLeft)
+        if (!toggle) {
+          console.log("yes.....")
           Array.push({
             name: "Skill",
             section: <TechStockSection button={HandleSetHoverEffect} />,
@@ -330,6 +332,7 @@ function App() {
           });
           HandleAddNewSection();
         } else {
+          console.log("yes.2 ")
           Array.push({
             name: "Skill",
             section: <TechStockSection button={HandleSetHoverEffect} />,
@@ -338,10 +341,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Project") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Project",
             section: <Projects button={HandleSetHoverEffect} />,
@@ -359,10 +361,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Training") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Training",
             section: <TrainingCourse button={HandleSetHoverEffect} />,
@@ -380,10 +381,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "MyTime") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "MyTime",
             section: <MyTime button={HandleSetHoverEffect} />,
@@ -401,10 +401,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Langue") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Langue",
             section: <Language button={HandleSetHoverEffect} />,
@@ -422,10 +421,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Profesion") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Profesion",
             section: <Passions button={HandleSetHoverEffect} />,
@@ -443,10 +441,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Indestry") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Indestry",
             section: <IndustryExperience button={HandleSetHoverEffect} />,
@@ -464,10 +461,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Find Me") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Find Me",
             section: <FindMeOnline button={HandleSetHoverEffect} />,
@@ -485,10 +481,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Summary") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Summary",
             section: <Summry button={HandleSetHoverEffect} />,
@@ -506,10 +501,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Strength") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Strength",
             section: <Strength button={HandleSetHoverEffect} />,
@@ -527,10 +521,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Volunteering") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Volunteering",
             section: <Volunteering button={HandleSetHoverEffect} />,
@@ -548,10 +541,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Experience") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Experience",
             section: <ExperienceSection button={HandleSetHoverEffect} />,
@@ -569,10 +561,9 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       } else if (data === "Education") {
-        if (FlagRight === true) {
+        if (!toggle) {
           Array.push({
             name: "Education",
             section: <Education button={HandleSetHoverEffect} />,
@@ -590,13 +581,11 @@ function App() {
             Left: true,
           });
         }
-        setFlagRight(false);
         setArray([...Array]);
       }
       localStorage.setItem("Section", JSON.stringify(Array));
     }
   }
-
   const options = {
     position: positions.TOP_CENTER,
     timeout: 5000,
@@ -661,11 +650,9 @@ function App() {
   useEffect(() => {
     let temp = [];
     temp = Array;
-    console.log("kkop1effect");
     if (Array === null || Array === undefined || Array.length === 0) {
       setToggleAddNewSectionRight(false);
       setToggleAddNewSectionLeft(false);
-      console.log("kkop effect");
     } else {
       if (Array.length === 1) {
         temp.map((item, index) => {
@@ -710,18 +697,25 @@ function App() {
         }
       }
     }
-
     if (localStorage.getItem("Section") !== null) {
       let value = localStorage.getItem("Section");
       value = JSON.parse(value);
       let temp = value;
       temp.map((item, index) => {
         let section = temp[index].name;
-        HandleSections(section);
-        HandleAddNewSection();
+        if (temp[index].Left === false) {
+          HandleSections(section,temp[index].Left);
+          HandleAddNewSection();
+        } else {
+          HandleSections(section,temp[index].Left);
+          HandleAddNewSection();
+        }
       });
     }
   }, []);
+  useEffect(() => {
+   
+  });
   function HandleSetHoverEffect() {
     SetHoverEffect("rgba(80,77,98,.2)");
   }
@@ -835,7 +829,6 @@ function App() {
               ToggleAddNewSectionRight={ToggleAddNewSectionRight}
               ToggleAddNewSectionLeft={ToggleAddNewSectionLeft}
               setToggleAddNewSection={setToggleAddNewSection}
-              setFlagRight={setFlagRight}
               HandleSetHoverEffect={HandleSetHoverEffect}
               HoverEffect={HoverEffect}
               SetHoverEffect={SetHoverEffect}

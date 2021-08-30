@@ -40,6 +40,20 @@ import TechstockYes from './TechStockYes'
 import SummaryYes from './SummaryYes'
 import StrengthYes from './StrengthYes'
 import ProjectYes from './ProjectYes'
+import InduxAchievement from './InduxAchievement'
+import InduxFindmeOnline from './IndexFindMeOnline'
+import InduxLanguage from './IndexLanguage'
+import InduxPassion from './IndexPassion'
+import InduxProject from './IndexProject'
+import InduxStrength from './IndexStrength'
+import InduxSummary from './IndexSummary'
+import InduxTechstock from './IndexTechStack'
+import InduxTraining from './IndexTraining'
+import InduxVolunteering from './IndexVolunteering'
+import InduxEducation from './InduxEducation'
+import InduxExperience from './InduxExperience'
+import InduxIndestryExperience from './InduxIndesteryErpeience'
+import ToggleLeft from './ToggleLeft'
 const allReducers = combineReducers({
 counter:counterReducer,
 CounterData:IncrementData,
@@ -81,6 +95,20 @@ TrainingYes:TrainingYes,
 TechstockYes:TechstockYes,
 SummaryYes:SummaryYes,
 ProjectYes:ProjectYes,
-StrengthYes:StrengthYes
+StrengthYes:StrengthYes,
+InduxAchievement:InduxAchievement,
+InduxFindmeOnline:InduxFindmeOnline,
+InduxLanguage:InduxLanguage,
+InduxPassion:InduxPassion,
+InduxProject:InduxProject,
+InduxStrength:InduxStrength,
+InduxSummary:InduxSummary,
+InduxTechstock:InduxTechstock,
+InduxTraining:InduxTraining,
+InduxVolunteering:InduxVolunteering,
+InduxEducation:InduxEducation,
+InduxExperience:InduxExperience,
+InduxIndestryExperience:InduxIndestryExperience,
+ToggleLeft:ToggleLeft,
 });
 export default allReducers

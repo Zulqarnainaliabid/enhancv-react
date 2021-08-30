@@ -9,18 +9,14 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-
+import ContentEditable from "react-contenteditable";
 import {
-  INCREMENT,
   INCREMENTBACKGROUNDCOLORACHIEVEMENT,
+  INDUXACHIEVEMENT,
 } from "./Redux/actions/indux";
 import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "../Components/DatePicker/JasonData";
-import MyComponent from "./InputField";
-import Loader from "./Loader";
-import InputEditor from "./ReactRichtext";
 import "./HomePage.css";
-import { GiReloadGunBarrel } from "react-icons/gi";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
 export function SwitchButtons(props) {
@@ -55,10 +51,9 @@ export function SwitchButtons(props) {
     </label>
   );
 }
-
 export default function Boxfunction(props) {
-  const inputref = useRef();
   const alert = useAlert();
+  const textInput = useRef(null);
   const [EnabledFontFormatColor, setEnabledFontFormatColor] =
     useState("#38434744");
   const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] =
@@ -66,34 +61,17 @@ export default function Boxfunction(props) {
   const [ToggleButtons, setToggleButtons] = useState(false);
   const [UpdateNumber, setUpdateNumber] = useState(0);
   const [Bullots, setBullots] = useState("");
-  const [Counter, setCounter] = useState(0);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [listIcon, setlistIcon] = useState(false);
-  const [Icon, setIcon] = useState(
-    <div style={{ color: "#008CFF !important" }}>
-      <BsStarHalf />
-    </div>
-  );
+  const [Icon, setIcon] = useState(<BsStarHalf />);
   const [Title, setTitle] = useState("");
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [ShowIcon, setShowIcon] = useState(true);
   const [ShowBullets, setShowBullets] = useState(true);
-  const [indexDeleteBox, setindexDeleteBox] = useState(null);
   const [loader, setloader] = useState(false);
   const dispatch = useDispatch();
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  useEffect(() => {
-    setToggleButtons(false);
-    setlistIcon(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
+  const Indux = useSelector((state) => state.InduxAchievement);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
@@ -125,7 +103,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
-    setindexDeleteBox(props.index);
+    dispatch(INDUXACHIEVEMENT(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -145,11 +123,8 @@ export default function Boxfunction(props) {
   }
 
   function HandleArrowDown() {
-    setindexDeleteBox(null);
     let index = props.index + 1;
-    console.log("index Down", index);
-    setindexDeleteBox(index + 1);
-
+    dispatch(INDUXACHIEVEMENT(index));
     setlistIcon(false);
     setToggleButtons(false);
     props.IsActiveUp(true);
@@ -166,19 +141,15 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
-    setindexDeleteBox(null);
     let index = null;
     index = props.index - 1;
-    console.log("index up", index);
-    setindexDeleteBox(index - 1);
+    dispatch(INDUXACHIEVEMENT(index));
     setToggleButtons(false);
     setlistIcon(false);
     props.IsActive(true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index - 1].selected = true;
-      let index = props.index - 1;
-      setindexDeleteBox(index);
     }
     temp[props.index].selected = false;
     props.setList([...temp]);
@@ -198,13 +169,13 @@ export default function Boxfunction(props) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
-    console.log("index = ", indexDeleteBox);
-    if (indexDeleteBox !== null) {
-      temp.splice(indexDeleteBox, 1);
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
     }
     console.log("new array", temp);
     localStorage.setItem("arrayAchievement", JSON.stringify(temp));
-    setloader(true)
+    setloader(true);
   }
 
   function handleText() {
@@ -225,20 +196,22 @@ export default function Boxfunction(props) {
   }
 
   useEffect(() => {
-    if(loader){
-    const timer = setTimeout(() => {
-      if (localStorage.getItem("arrayAchievement") !== null) {
-        let item = localStorage.getItem("arrayAchievement");
-        item = JSON.parse(item);
-        props.setList([...item]);
-      }
-      setloader(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }
+    if (loader) {
+      window.location.reload(false);
+      const timer = setTimeout(() => {
+        if (localStorage.getItem("arrayAchievement") !== null) {
+          let item = localStorage.getItem("arrayAchievement");
+          item = JSON.parse(item);
+          props.setList([...item]);
+        }
+        setloader(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
   }, [loader]);
 
   useEffect(() => {
+    textInput.current.focus();
     if (localStorage.getItem("arrayAchievement") !== null) {
       setcheckplacehoderBollets(false);
       let item = localStorage.getItem("arrayAchievement");
@@ -258,30 +231,27 @@ export default function Boxfunction(props) {
       });
     }
   }, []);
-  function InputTextField(text) {
-    let array = props.list;
-    array[props.index].value.title = text;
-    localStorage.setItem("arrayAchievement", JSON.stringify(array));
-    setTitle(text);
-  }
-  if(loader){
-    return(<> {
-      <div
-        style={{
-          border: "1px solid",
-          position: "absolute",
-          left: "0px",
-          right: "0px",
-          top: "0px",
-          bottom: "0px",
-          backgroundColor: "rgb(71 72 75 / 41%)",
-          zIndex: "5",
-        }}
-      >
-        <Loader />
-      </div>
-    }</>)
-  }else{
+  if (loader) {
+    return (
+      <>
+        {" "}
+        {
+          <div
+            style={{
+              border: "1px solid",
+              position: "absolute",
+              left: "0px",
+              right: "0px",
+              top: "0px",
+              bottom: "0px",
+              backgroundColor: "rgb(71 72 75 / 41%)",
+              zIndex: "5",
+            }}
+          ></div>
+        }
+      </>
+    );
+  } else {
     return (
       <>
         <div style={{ position: "relative" }}>
@@ -326,13 +296,18 @@ export default function Boxfunction(props) {
               onClick={() => {
                 props.HandlerAddItemInArrayfun();
                 setlistIcon(false);
+                props.IsActiveUp(true);
+                props.IsActive(false);
               }}
             >
               <FaPlus className="newEntryPlusIcon" />
               <div className="newEntryText">New Entry</div>
             </div>
             {props.ToggleArrowUp && (
-              <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
+              <MdKeyboardArrowUp
+                onClick={HandleArrowUP}
+                className="ArrowIcon"
+              />
             )}
             {props.ToggleArrowDown && (
               <MdKeyboardArrowDown
@@ -415,11 +390,22 @@ export default function Boxfunction(props) {
                 setlistIcon(false);
               }}
             >
-              <MyComponent
-                placeholder={"Why you are most proud of?"}
-                setFunction={InputTextField}
-                InputText={Title}
-                //  textInput={textInput}
+              <ContentEditable
+                innerRef={textInput}
+                html={Title}
+                disabled={false}
+                onChange={(e) => {
+                  let array = props.list;
+                  array[props.index].value.title = e.target.value;
+                  localStorage.setItem(
+                    "arrayAchievement",
+                    JSON.stringify(e.target.value)
+                  );
+                  setTitle(e.target.value);
+                }}
+                tagName="article"
+                placeholder="Why you are most proud of?"
+                className="test"
               />
               <div
                 onClick={handleText}
@@ -458,8 +444,6 @@ export default function Boxfunction(props) {
           </div>
         </div>
       </>
-   
-   );
+    );
   }
- 
 }

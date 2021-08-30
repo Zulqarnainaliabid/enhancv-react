@@ -9,7 +9,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from 'react-switch';
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE ,INDUXFINDMEONLINE } from "./Redux/actions/indux";
 import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "./DatePicker/JasonData";
 import "./HomePage.css";
@@ -51,7 +51,7 @@ export function SwitchButtons(props) {
   );
 }
 export default function Boxfunction(props) {
-  const inputref = useRef();
+  const inputref = useRef(null);
   const alert = useAlert();
   const [EnabledFontFormatColor, setEnabledFontFormatColor] =
     useState("#38434744");
@@ -60,46 +60,18 @@ export default function Boxfunction(props) {
   const [LinkTextBox, setLinkTextBox] = useState("none");
   const [ToggleButtons, setToggleButtons] = useState(false);
   const [UpdateNumber, setUpdateNumber] = useState(0);
-  
   const [Counter, setCounter] = useState(0);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [listIcon, setlistIcon] = useState(false);
   const [Icon, setIcon] = useState(<BsStarHalf />);
   const [ShowIcon, setShowIcon] = useState(true);
   const [ShowBullots, setShowBullots] = useState(true);
-
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [TitleTextHolder, setTitleTextHolder] = useState('');
   const [BulletsTextHolder, setBulletsTextHolder] = useState('');
-  
-
   const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  useEffect(() => {
-    setToggleButtons(false);
-    setlistIcon(false)
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
-
-  useEffect(() => {
-    setToggleButtons(false);
-    setlistIcon(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
+  const Indux = useSelector((state) => state.InduxFindmeOnline);
   useEffect(() => {
     setToggleButtons(false);
     setlistIcon(false)
@@ -134,6 +106,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    dispatch(INDUXFINDMEONLINE(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -155,6 +128,8 @@ export default function Boxfunction(props) {
     borderBottom: props.borderbotm,
   };
   function HandleArrowDown() {
+    let index = props.index + 1;
+    dispatch(INDUXFINDMEONLINE(index));
     setToggleButtons(false)
     setlistIcon(false)
     props.IsActiveUp(true);
@@ -171,6 +146,9 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
+    let index = null;
+    index = props.index - 1;
+    dispatch(INDUXFINDMEONLINE(index));
     setToggleButtons(false)
     setlistIcon(false)
     props.IsActive(true);
@@ -189,20 +167,24 @@ export default function Boxfunction(props) {
   function HandleDelete() {
     setToggleButtons(false)
     setlistIcon(false)
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
+    }
+    console.log("new array", temp);
+    localStorage.setItem("arrayFindmeOnline", JSON.stringify(temp));
+    window.location.reload(false);
   }
   function handleText() {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
-  }
-  useEffect(() => {
-    inputref.current.focus();
-  }, [Counter]);
+  };
 
   function handleToggglebutton(index, toggle) {
     let array = [];
@@ -216,6 +198,7 @@ export default function Boxfunction(props) {
     }
   }
   useEffect(() => {
+    inputref.current.focus();
     if (localStorage.getItem("arrayFindmeOnline") !== null) {
       setcheckplacehoderBollets(false);
       let value = localStorage.getItem("arrayFindmeOnline");
@@ -235,7 +218,6 @@ export default function Boxfunction(props) {
   }, []);
   return (
     <>
-      
       <div style={{ position: "relative" }}>
         {ToggleButtons && (
           <div className="OuterWraperToggleButtonsExperienceSection">
@@ -274,6 +256,8 @@ export default function Boxfunction(props) {
             setCounter(Counter + 1);
             setToggleButtons(false)
             setlistIcon(false)
+            props.IsActiveUp(true);
+            props.IsActive(false);
           }}
         >
           <FaPlus className="newEntryPlusIcon" />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./HomePage.css";
 import { FaPlus } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -6,9 +6,13 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./AchievementsBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORACHIEVEMENT , ACHIEVEMENTYES} from "./Redux/actions/indux";
+import {
+  INCREMENT,
+  INCREMENTBACKGROUNDCOLORACHIEVEMENT,
+  ACHIEVEMENTYES,
+  INDUXACHIEVEMENT,
+} from "./Redux/actions/indux";
 export default function Achievements(props) {
-  
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
   const [array, setState] = useState([]);
@@ -18,20 +22,47 @@ export default function Achievements(props) {
   const [ToggleArrowUp, setToggleArrowUp] = useState(true);
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
-  const nullBackgroundcolorPassion = useSelector((state) => state.IncrementBackgroundColorPassion);
-  const nullBackgroundcolorTraining = useSelector((state) => state.IncrementBackgroundColorTraining);
-  const nullBackgroundcolorExperience = useSelector((state) => state.IncrementBackgroundColorExperience);
-  const nullBackgroundcolorSkill = useSelector((state) => state.IncrementBackgroundColorSkill);
-  const nullBackgroundcolorProject = useSelector((state) => state.IncrementBackgroundColorProject);
-  const nullBackgroundcolorMyTime = useSelector((state) => state.IncrementBackgroundColorMyTime);
-  const nullBackgroundcolorLanguage = useSelector((state) => state.IncrementBackgroundColorLanguage);
-  const nullBackgroundcolorFindMeOnline = useSelector((state) => state.IncrementBackgroundColorFindMeOnline);
-  const nullBackgroundcolorSummary = useSelector((state) => state.IncrementBackgroundColorSummary);
-  const nullBackgroundcolorStrength = useSelector((state) => state.IncrementBackgroundColorStrength);
-  const nullBackgroundcolorVolunteering = useSelector((state) => state.IncrementBackgroundColorVolunteering);
-  const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
-  const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
+  const nullBackgroundcolorPassion = useSelector(
+    (state) => state.IncrementBackgroundColorPassion
+  );
+  const nullBackgroundcolorTraining = useSelector(
+    (state) => state.IncrementBackgroundColorTraining
+  );
+  const nullBackgroundcolorExperience = useSelector(
+    (state) => state.IncrementBackgroundColorExperience
+  );
+  const nullBackgroundcolorSkill = useSelector(
+    (state) => state.IncrementBackgroundColorSkill
+  );
+  const nullBackgroundcolorProject = useSelector(
+    (state) => state.IncrementBackgroundColorProject
+  );
+  const nullBackgroundcolorMyTime = useSelector(
+    (state) => state.IncrementBackgroundColorMyTime
+  );
+  const nullBackgroundcolorLanguage = useSelector(
+    (state) => state.IncrementBackgroundColorLanguage
+  );
+  const nullBackgroundcolorFindMeOnline = useSelector(
+    (state) => state.IncrementBackgroundColorFindMeOnline
+  );
+  const nullBackgroundcolorSummary = useSelector(
+    (state) => state.IncrementBackgroundColorSummary
+  );
+  const nullBackgroundcolorStrength = useSelector(
+    (state) => state.IncrementBackgroundColorStrength
+  );
+  const nullBackgroundcolorVolunteering = useSelector(
+    (state) => state.IncrementBackgroundColorVolunteering
+  );
+  const nullBackgroundcolorEducation = useSelector(
+    (state) => state.IncrementBackgroundColorEducation
+  );
+  const nullBackgroundcolorIndustryExperience = useSelector(
+    (state) => state.IncrementBackgroundColorIndusteryExperience
+  );
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLORACHIEVEMENT());
     props.button();
@@ -44,7 +75,6 @@ export default function Achievements(props) {
     });
     setState([...temp]);
   }
-
   function HandleCompleteBoarderUnSelected() {
     setbackgroundColor(null);
     setShowHeaderButton("none");
@@ -191,21 +221,35 @@ export default function Achievements(props) {
     });
     setState([...temp]);
   }, [nullBackgroundcolorIndustryExperience]);
-
-
   useEffect(() => {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [Incrementnull]);
-
   useEffect(() => {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
   }, [CounterData]);
-  const textInput = useRef(null);
+  
   function HandlerAddItemInArray() {
+    if (array === [] || array.length === 0) {
+      setToggleArrowDown(false);
+      setToggleArrowUp(false);
+    } else {
+      setToggleArrowDown(false);
+      setToggleArrowUp(true);
+    }
+    dispatch(INCREMENTBACKGROUNDCOLORACHIEVEMENT());
+    props.button();
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
     array.push({
       selected: false,
       toggleButton: { showIcon: true, showbullet: true },
@@ -215,8 +259,16 @@ export default function Achievements(props) {
       ],
       value: { title: "", bullots: "" },
     });
-    setState([...array]);
-    localStorage.setItem("arrayAchievement", JSON.stringify(array));
+    let temp = [];
+    temp = array;
+    temp.map((item, index) => {
+      item.selected = false;
+    });
+    let index = temp.length - 1;
+    dispatch(INDUXACHIEVEMENT(index));
+    temp[index].selected = true;
+    setState([...temp]);
+    localStorage.setItem("arrayAchievement", JSON.stringify(temp));
   }
   function HanderDeleteItemInArray() {
     dispatch(ACHIEVEMENTYES(true));
@@ -224,7 +276,13 @@ export default function Achievements(props) {
   useEffect(() => {
     if (localStorage.getItem("arrayAchievement") !== null) {
       let value = localStorage.getItem("arrayAchievement");
-      setState(JSON.parse(value));
+      value = JSON.parse(value);
+      console.log("value,", value);
+      value.map((item, index) => {
+        value[index].selected = false;
+      });
+      console.log("selected", value);
+      setState(value);
     }
   }, []);
   function IsActive(Isactive) {
@@ -241,24 +299,38 @@ export default function Achievements(props) {
       setToggleArrowUp(Isactive);
     }
   }
-  console.log("pakistan.",array)
-//  function HandleDeletedBox(index){
-//      console.log("dele index",index)
-//      let temp = []
-//      temp = array
-//      if(index!==null){
-//      temp.splice(index,1)
-//      }
-//      setState([...temp])
-//      localStorage.setItem("arrayAchievement", JSON.stringify(temp));
-//  }
- return (
+  return (
     <>
       <div
         className="outerWraperCompleteBox"
         style={{ backgroundColor: backgroundColor }}
         onClick={() => {}}
       >
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{ display: ShowHeaderButton, zIndex: "5" }}
+            className="headingOptionBoxRight"
+          >
+            <div
+              onClick={HandlerAddItemInArray}
+              className="outerWraperPlusAndNewEntry"
+            >
+              <FaPlus className="newEntryPlusIcon" />
+              <div className="newEntryText">New Entry </div>
+            </div>
+            <RiDeleteBin6Line
+              onClick={HanderDeleteItemInArray}
+              className="DeleteIcon"
+            />
+            <CgArrangeFront className="ArrangeIcon" />
+          </div>
+        </div>
         <div
           style={{ backgroundColor: backgroundColor }}
           className="HeadingNameBox"
@@ -273,23 +345,6 @@ export default function Achievements(props) {
               dispatch(INCREMENT());
             }}
           />
-           <div
-        style={{ display: ShowHeaderButton }}
-        className="headingOptionBoxRight"
-      >
-        <div
-          onClick={HandlerAddItemInArray}
-          className="outerWraperPlusAndNewEntry"
-        >
-          <FaPlus className="newEntryPlusIcon" />
-          <div className="newEntryText">New Entry</div>
-        </div>
-        <RiDeleteBin6Line
-          onClick={HanderDeleteItemInArray}
-          className="DeleteIcon"
-        />
-        <CgArrangeFront className="ArrangeIcon" />
-      </div>
         </div>
         {array &&
           array.map((item, index) => {

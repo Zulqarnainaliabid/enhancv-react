@@ -13,7 +13,7 @@ import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import DatePicker from "./DatePicker/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORPROJECT } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORPROJECT , INDUXPROJECT} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -79,21 +79,17 @@ export default function Boxfunction(props) {
     setcheckplacehodercompanydiscription,
   ] = useState(true);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
-
   const [ShowDescription, setShowDescription] = useState(true);
   const [ShowBullets, setShowBullets] = useState(true);
   const [ShowLocation, setShowLocation] = useState(true);
   const [ShowPeriod, setShowPeriod] = useState(true);
   const [ShowLinks, setShowLinks] = useState(true);
-
   const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
-
   const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const Indux = useSelector((state) => state.InduxProject);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -210,29 +206,6 @@ export default function Boxfunction(props) {
     }
   }
   useEffect(() => {
-    setShowDate(false);
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
-
-  useEffect(() => {
-    setShowDate(false);
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
-  useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
   function HandleTextDecoration() {
@@ -263,6 +236,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    dispatch(INDUXPROJECT(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -284,6 +258,8 @@ export default function Boxfunction(props) {
     borderBottom: props.borderbotm,
   };
   function HandleArrowDown() {
+    let index = props.index + 1;
+    dispatch(INDUXPROJECT(index));
     setToggleButtons(false);
     props.IsActiveUp(true);
     let temp = props.list;
@@ -299,6 +275,9 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
+    let index = null;
+    index = props.index - 1;
+    dispatch(INDUXPROJECT(index));
     setToggleButtons(false);
     props.IsActive(true);
     let temp = props.list;
@@ -315,14 +294,22 @@ export default function Boxfunction(props) {
   };
   function HandleDelete() {
     setToggleButtons(false);
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
+    }
+    console.log("new array", temp);
+    localStorage.setItem("arrayProject", JSON.stringify(temp));
+    window.location.reload(false);
   }
   useEffect(() => {
+    inputref.current.focus();
     if (localStorage.getItem("arrayProject") !== null) {
       setcheckplacehodercompanydiscription(false);
       setcheckplacehoderBollets(false);
@@ -369,9 +356,6 @@ export default function Boxfunction(props) {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
-  useEffect(() => {
-    inputref.current.focus();
-  }, [Counter]);
 
   function handleToggglebutton(index, toggle) {
     let array = [];
@@ -473,6 +457,8 @@ export default function Boxfunction(props) {
               props.HandlerAddItemInArrayfun();
               setCounter(Counter + 1);
               setToggleButtons(false);
+              props.IsActiveUp(true);
+              props.IsActive(false);
             }}
           >
             <FaPlus className="newEntryPlusIcon" />

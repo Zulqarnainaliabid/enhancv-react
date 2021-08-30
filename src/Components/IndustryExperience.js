@@ -7,7 +7,7 @@ import Boxfunction from "./IndustryExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 
-import { INCREMENT , INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE ,INDUSTRYEXPERINECEYES} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE ,INDUSTRYEXPERINECEYES , INDUXACHIEVEMENT,INDUXFINDUSTRYEXPERIENCE} from "./Redux/actions/indux";
 export default function IndustryExperience(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -196,6 +196,11 @@ export default function IndustryExperience(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [Incrementnull]);
 
   useEffect(() => {
@@ -205,6 +210,18 @@ export default function IndustryExperience(props) {
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
+    if (array === [] || array.length === 0) {
+      setToggleArrowDown(false);
+      setToggleArrowUp(false);
+    } else {
+      setToggleArrowDown(false);
+      setToggleArrowUp(true);
+    }
+    dispatch(INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE());
+    props.button();
+    setbackgroundColor(null);
+    setborderBottm("none");
+    setShowHeaderButton("none");
     array.push({
       selected: false,
       toggleButton: { showSlider: true },
@@ -213,8 +230,16 @@ export default function IndustryExperience(props) {
         titleTextHolder: "",
       },
     });
-    setState([...array]);
-    localStorage.setItem("arrayIndustryExperienxe", JSON.stringify(array));
+    let temp = [];
+    temp = array;
+    temp.map((item, index) => {
+      item.selected = false;
+    });
+    let index = temp.length - 1;
+    dispatch(INDUXFINDUSTRYEXPERIENCE(index));
+    temp[index].selected = true;
+    setState([...temp]);
+    localStorage.setItem("arrayIndustryExperienxe", JSON.stringify(temp));
   }
 
   function HanderDeleteItemInArray() {
@@ -224,7 +249,11 @@ export default function IndustryExperience(props) {
   useEffect(() => {
     if (localStorage.getItem("arrayIndustryExperienxe") !== null) {
       let value = localStorage.getItem("arrayIndustryExperienxe");
-      setState(JSON.parse(value));
+      value = JSON.parse(value)
+      value.map((item, index) => {
+        value[index].selected = false;
+      });
+      setState(value);
     }
   }, []);
   function IsActive(Isactive) {
@@ -249,6 +278,29 @@ export default function IndustryExperience(props) {
         style={{ backgroundColor: backgroundColor }}
         onClick={() => {}}
       >
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      ><div
+      style={{ display: ShowHeaderButton , zIndex: "5"}}
+      className="headingOptionBoxRight"
+    >
+      <div
+        onClick={HandlerAddItemInArray}
+        className="outerWraperPlusAndNewEntry"
+      >
+        <FaPlus className="newEntryPlusIcon" />
+        <div className="newEntryText">New Entry</div>
+      </div>
+      <RiDeleteBin6Line
+        onClick={HanderDeleteItemInArray}
+        className="DeleteIcon"
+      />
+      <CgArrangeFront className="ArrangeIcon" />
+    </div></div>
         <div
           style={{ backgroundColor: backgroundColor }}
           className="HeadingNameBox"
@@ -264,23 +316,6 @@ export default function IndustryExperience(props) {
               dispatch(INCREMENT());
             }}
           />
-          <div
-            style={{ display: ShowHeaderButton }}
-            className="headingOptionBoxRight"
-          >
-            <div
-              onClick={HandlerAddItemInArray}
-              className="outerWraperPlusAndNewEntry"
-            >
-              <FaPlus className="newEntryPlusIcon" />
-              <div className="newEntryText">New Entry</div>
-            </div>
-            <RiDeleteBin6Line
-              onClick={HanderDeleteItemInArray}
-              className="DeleteIcon"
-            />
-            <CgArrangeFront className="ArrangeIcon" />
-          </div>
         </div>
         {array &&
           array.map((item, index) => {

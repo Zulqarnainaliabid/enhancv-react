@@ -248,3 +248,102 @@ export  const  UPDATESECTIONARRAY=(item)=>{
         payload:item
     }
 }
+
+export  const  INDUXACHIEVEMENT=(item)=>{
+    return{
+        type:'INDUXACHIEVEMENT',
+        payload:item
+    }
+}
+
+export  const  INDUXEDUCATION=(item)=>{
+    return{
+        type:'INDUXEDUCATION',
+        payload:item
+    }
+}
+
+export  const  INDUXEXPERIENCE=(item)=>{
+    return{
+        type:'INDUXEXPERIENCE',
+        payload:item
+    }
+}
+
+export  const  INDUXFINDMEONLINE=(item)=>{
+    return{
+        type:'INDUXFINDMEONLINE',
+        payload:item
+    }
+}
+
+export  const  INDUXFINDUSTRYEXPERIENCE=(item)=>{
+    return{
+        type:'INDUXFINDUSTRYEXPERIENCE',
+        payload:item
+    }
+}
+
+export  const  INDUXLANGUAGE=(item)=>{
+    return{
+        type:'INDUXLANGUAGE',
+        payload:item
+    }
+}
+
+export  const  INDUXPASSION=(item)=>{
+    return{
+        type:'INDUXPASSION',
+        payload:item
+    }
+}
+
+export  const  INDUXPROJECT=(item)=>{
+    return{
+        type:'INDUXPROJECT',
+        payload:item
+    }
+}
+
+export  const  INDUXSTRENGTH=(item)=>{
+    return{
+        type:'INDUXSTRENGTH',
+        payload:item
+    }
+}
+
+export  const  INDUXSUMMARY=(item)=>{
+    return{
+        type:'INDUXSUMMARY',
+        payload:item
+    }
+}
+
+export  const  INDUXTECKSTOCK=(item)=>{
+    return{
+        type:'INDUXTECKSTOCK',
+        payload:item
+    }
+}
+
+export  const  INDUXTRAINING=(item)=>{
+    return{
+        type:'INDUXTRAINING',
+        payload:item
+    }
+}
+
+export  const  INDUXVOLUNTEERING=(item)=>{
+    return{
+        type:'INDUXVOLUNTEERING',
+        payload:item
+    }
+}
+
+export  const  TOGGLELEFT=(item)=>{
+    console.log("item = ",item)
+    return{
+        type:'TOGGLELEFT',
+        payload:item
+    }
+}

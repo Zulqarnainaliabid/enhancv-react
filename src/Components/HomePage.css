@@ -467,9 +467,22 @@ border-radius: 24px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.582);
     font-size: 15px;
     width: 45%;
-    padding: 0px 0px 4px 0;
+    padding: 5px 8px;
+    font-weight: 700;
     margin: 7px 26px 17px 0px
     }
+  .ToolAndTechnologyTechStockSectionBorder{
+      /* border: 2px solid red; */
+      border: 1px solid rgba(0, 0, 0, 0.582);
+      font-size: 15px;
+      width: 45%;
+      padding: 5px 8px;
+      font-weight: 700;
+      margin: 7px 26px 17px 0px
+      }
+  .ToolAndTechnologyTechStockSectionBorder:focus::placeholder{
+        color: rgba(0, 0, 0, 0.192);
+      }
     .ToolAndTechnologyTechStockSection:focus::placeholder{
       color: rgba(0, 0, 0, 0.192);
     }
@@ -685,7 +698,16 @@ margin: 15px 0 0 0;
   height: 19px;
   margin: 17px 5px 0px 0px;
   border-radius: 19px;
- 
+}
+.outerWraperBorderStyle{
+  display: flex;
+  border-top: 1px solid rgba(0, 0, 0, 0.151);
+  margin: 12px 0px 0 0;
+  padding:15px 0px 5px 0
+}
+.RadioButtonsBorderStyle{
+  display: flex;
+  margin: -17px 0px 0px 12px;
 }
 .RadioButtonsToggleButtons:hover{
   color: #999;

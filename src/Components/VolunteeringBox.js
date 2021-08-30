@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLORVOLUNTEERING,
+  INDUXVOLUNTEERING,
 } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
@@ -90,7 +91,7 @@ export default function Boxfunction(props) {
   const [ShowBullets, setShowBullets] = useState(true);
   const [ShowLocation, setShowLocation] = useState(true);
   const [ShowPeriod, setShowPeriod] = useState(true);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const Indux = useSelector((state) => state.InduxVolunteering);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -158,7 +159,6 @@ export default function Boxfunction(props) {
       setDateSlash(false);
     }
   }
-
   useEffect(() => {
     if (UpdateToggleYearFrom) {
       let array = props.list;
@@ -190,7 +190,6 @@ export default function Boxfunction(props) {
       setDisplayShashOngoing(false);
     }
   }
-
   function handleYearOngoing(date) {
     if (date === null) {
       setYearOnGoing(null);
@@ -206,26 +205,6 @@ export default function Boxfunction(props) {
       setDiplayMinus(false);
     }
   }
-  useEffect(() => {
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
-  useEffect(() => {
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
-
   function HandleTextDecoration() {
     setToggleButtons(false);
     if (
@@ -253,6 +232,7 @@ export default function Boxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    dispatch(INDUXVOLUNTEERING(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -274,6 +254,9 @@ export default function Boxfunction(props) {
     borderBottom: props.borderbotm,
   };
   function HandleArrowDown() {
+    let index = props.index + 1;
+    dispatch(INDUXVOLUNTEERING(index));
+
     setToggleButtons(false);
     props.IsActiveUp(true);
     let temp = props.list;
@@ -289,6 +272,9 @@ export default function Boxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
+    let index = null;
+    index = props.index - 1;
+    dispatch(INDUXVOLUNTEERING(index));
     setToggleButtons(false);
     props.IsActive(true);
     let temp = props.list;
@@ -305,14 +291,22 @@ export default function Boxfunction(props) {
   };
   function HandleDelete() {
     setToggleButtons(false);
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
+    }
+    console.log("new array", temp);
+    localStorage.setItem("arrayVolunteering", JSON.stringify(temp));
+    window.location.reload(false);
   }
   useEffect(() => {
+    inputref.current.focus();
     if (localStorage.getItem("arrayVolunteering") !== null) {
       setcheckplacehodercompanydiscription(false);
       setcheckplacehoderBollets(false);
@@ -359,10 +353,6 @@ export default function Boxfunction(props) {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
-  useEffect(() => {
-    inputref.current.focus();
-  }, [Counter]);
-
   function handleToggglebutton(index, toggle) {
     let array = [];
     array = props.list;
@@ -465,6 +455,8 @@ export default function Boxfunction(props) {
               props.HandlerAddItemInArrayfun();
               setCounter(Counter + 1);
               setToggleButtons(false);
+              props.IsActiveUp(true);
+              props.IsActive(false);
             }}
           >
             <FaPlus className="newEntryPlusIcon" />

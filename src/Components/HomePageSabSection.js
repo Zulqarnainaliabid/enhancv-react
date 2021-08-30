@@ -126,7 +126,6 @@ function HomaPageSabSection(props) {
     }
     props.setArray([...temp]);
     localStorage.setItem("Section", JSON.stringify(temp));
-    console.log("aray..Right",temp[0].Left)
   }
   return (
     <>

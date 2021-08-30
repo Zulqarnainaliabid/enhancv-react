@@ -9,7 +9,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION } from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION , INDUXPASSION} from "./Redux/actions/indux";
 import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "./DatePicker/JasonData";
 
@@ -73,33 +73,7 @@ export default function PassionBoxfunction(props) {
   const [TitleTextHolder, setTitleTextHolder] = useState("");
   const [BulletsTextHolder, setBulletsTextHolder] = useState("");
   const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
-  const CounterBackgroundcolor = useSelector((state) => state.counter);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  useEffect(() => {
-  }, [CounterBackgroundcolor]);
-
-  useEffect(() => {
-    setToggleButtons(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [CounterData]);
-  useEffect(() => {
-    setToggleButtons(false);
-    setlistIcon(false);
-    let temp = props.list;
-    props.list.map((item, index) => {
-      if (item.selected) {
-        temp[index].selected = false;
-      }
-    });
-    props.setList([...temp]);
-  }, [Incrementnull]);
+  const Indux = useSelector((state) => state.InduxPassion);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
@@ -132,6 +106,7 @@ export default function PassionBoxfunction(props) {
     }
     props.button();
     setUpdateNumber(UpdateNumber + 1);
+    dispatch(INDUXPASSION(props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
@@ -150,6 +125,8 @@ export default function PassionBoxfunction(props) {
     }
   }
   function HandleArrowDown() {
+    let index = props.index + 1;
+    dispatch(INDUXPASSION(index));
     setToggleButtons(false);
     setlistIcon(false);
     props.IsActiveUp(true);
@@ -166,6 +143,9 @@ export default function PassionBoxfunction(props) {
     }
   }
   const HandleArrowUP = () => {
+    let index = null;
+    index = props.index - 1;
+    dispatch(INDUXPASSION(index));
     setToggleButtons(false);
     setlistIcon(false);
     props.IsActive(true);
@@ -184,14 +164,22 @@ export default function PassionBoxfunction(props) {
   function HandleDelete() {
     setToggleButtons(false);
     setlistIcon(false);
-    props.HanderDeleteItemInArrayfun();
-    let array = props.list;
-    if (array.length === 1) {
+    let temp = [];
+    temp = props.list;
+    if (temp.length === 1) {
       props.IsActive(false);
       props.IsActiveUp(false);
     }
+    console.log("index = ", Indux);
+    if (Indux !== null) {
+      temp.splice(Indux, 1);
+    }
+    console.log("new array", temp);
+    localStorage.setItem("arrayPassion", JSON.stringify(temp));
+    window.location.reload(false);
   }
   useEffect(() => {
+    inputref.current.focus();
     if (localStorage.getItem("arrayPassion") !== null) {
       setcheckplacehoderBollets(false);
       let value = localStorage.getItem("arrayPassion");
@@ -224,10 +212,6 @@ export default function PassionBoxfunction(props) {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
-
-  useEffect(() => {
-    inputref.current.focus();
-  }, [Counter]);
   return (
     <>
       <div style={{ position: "relative" }}>
@@ -267,6 +251,8 @@ export default function PassionBoxfunction(props) {
               props.HandlerAddItemInArrayfun();
               setCounter(Counter + 1);
               setToggleButtons(false);
+              props.IsActiveUp(true);
+              props.IsActive(false);
             }}
           >
             <FaPlus className="newEntryPlusIcon" />
