@@ -386,15 +386,15 @@ export default function Header(props) {
             <div className="outerContainerAdressHeader">
               <div
                 className="outerWraperAdress"
-                style={{ display: ShowPhone ? "flex" : "none" }}
               >
-                <MdPhone className="AdressIconHeader" />
+                <MdPhone className="AdressIconHeader"  style={{ display: ShowPhone ? "flex" : "none" }} />
                 <input
                   type="text"
                   className="adressText"
                   value={UserPhone}
                   onChange={HnadleUserPhone}
                   placeholder="Phone"
+                  style={{ display: ShowPhone ? "flex" : "none" }}
                 />
                 <div
                   className="AdressIconHeader"
