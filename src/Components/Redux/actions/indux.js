@@ -352,3 +352,11 @@ export  const  TOGGLEREARRANGEBUTTONS=(item)=>{
         payload:item
     }
 }
+
+export  const  TOGGLEUSERIMGMODALBUTTONS=(item)=>{
+    console.log("check it",item)
+    return{
+        type:'TOGGLEUSERIMGMODALBUTTONS',
+        payload:item
+    }
+}

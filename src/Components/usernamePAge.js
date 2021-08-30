@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./HomePage.css";
 import { IoIosCamera } from "react-icons/io";
 import { RiSettings5Fill } from "react-icons/ri";
-import { RiPhoneFill } from "react-icons/ri";
+import { MdPhone } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
 import { BiLinkAlt } from "react-icons/bi";
 import UserImg from "./Backgroundimg/Capture.PNG";
@@ -13,8 +13,11 @@ import AvatarEditor from "react-avatar-editor";
 import { GrFormClose } from "react-icons/gr";
 import { ImFacebook2 } from "react-icons/im";
 import { RiDeleteBinLine } from "react-icons/ri";
-import {INCREMENTDATA} from './Redux/actions/indux'
-import {useSelector, useDispatch} from 'react-redux'
+import {
+  INCREMENTDATA,
+  TOGGLEUSERIMGMODALBUTTONS,
+} from "./Redux/actions/indux";
+import { useSelector, useDispatch } from "react-redux";
 export default function Header(props) {
   const [Border, setBorder] = useState(null);
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -39,7 +42,7 @@ export default function Header(props) {
   const [userProfileImage, setUserProfileImage] = useState(UserImg);
   const [selectedImage, setSelectedImage] = useState(null);
   const [editor, setEditor] = useState(null);
-  const [UserName, setUserName] = useState('');
+  const [UserName, setUserName] = useState("");
   const [UserTitle, setUserTitle] = useState("");
   const [UserPhone, setUserPhone] = useState("");
   const [UserEmail, setUserEmail] = useState("");
@@ -47,10 +50,12 @@ export default function Header(props) {
   const [UserLink, setUserLink] = useState("");
   const [Circle, setCircle] = useState("#00c091");
   const [Square, setSquare] = useState("#ccc");
-  const counter = useSelector(state => state.counter)
+  const counter = useSelector((state) => state.counter);
+  const ToggleUserImgModal = useSelector((state) => state.ToggleUserImgModal);
+  console.log("try ,", ToggleUserImgModal);
   const dispatch = useDispatch();
   function HandleBoarder() {
-    dispatch(INCREMENTDATA())
+    dispatch(INCREMENTDATA());
     props.button();
     setBorder("1px solid #60d5ba");
     setbackgroundColor("white");
@@ -72,7 +77,7 @@ export default function Header(props) {
   }, [counter]);
 
   function HandleCloseUserImage() {
-    setDisplayUserImage("none");
+    setDisplayUserImage(false);
   }
   function HandleToggleButton() {
     setToggleButton(!ToggleButton);
@@ -89,10 +94,19 @@ export default function Header(props) {
   }
   function handleModal() {
     setShowModal(true);
+    dispatch(TOGGLEUSERIMGMODALBUTTONS(true));
   }
   function handleClosModal() {
     setShowModal(false);
+    dispatch(TOGGLEUSERIMGMODALBUTTONS(false));
   }
+  useEffect(() => {
+    if (ToggleUserImgModal) {
+      setShowModal(true);
+    } else {
+      setShowModal(false);
+    }
+  }, [ToggleUserImgModal]);
   const onScaleChange = (scaleChangeEvent) => {
     const scaleValue = parseFloat(scaleChangeEvent.target.value);
     setScaleValue(scaleValue);
@@ -300,6 +314,7 @@ export default function Header(props) {
           className="inconCamer"
           onClick={() => {
             setShowModal(!ShowModal);
+            dispatch(TOGGLEUSERIMGMODALBUTTONS(true));
           }}
         />
         <RiSettings5Fill onClick={HandleToggleButton} className="inconCamer" />
@@ -340,8 +355,8 @@ export default function Header(props) {
           border: Border,
           backgroundColor: backgroundColor,
           borderRadius: "5px",
-          width:"90%",
-          alignItems:"unset"
+          width: "90%",
+          alignItems: "unset",
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -373,7 +388,7 @@ export default function Header(props) {
                 className="outerWraperAdress"
                 style={{ display: ShowPhone ? "flex" : "none" }}
               >
-                <RiPhoneFill className="AdressIconHeader" />
+                <MdPhone className="AdressIconHeader" />
                 <input
                   type="text"
                   className="adressText"
@@ -571,7 +586,7 @@ export default function Header(props) {
                   }}
                 />
                 <label
-                 for="uploadfile"
+                  for="uploadfile"
                   style={{ display: FacekoobButtons }}
                   className="outerWraperFromComputer"
                 >
@@ -594,6 +609,7 @@ export default function Header(props) {
                     JSON.stringify(userProfileImage)
                   );
                   setShowModal(false);
+                  dispatch(TOGGLEUSERIMGMODALBUTTONS(false));
                 }}
                 className="outerWraperOKButtonModal"
               >
@@ -604,9 +620,6 @@ export default function Header(props) {
               Disclaimer. Keep in mind that in some US states, having a photo on
               your resume is forbidden.
             </div>
-          </div>
-          <div className="outerWraperModalHover" onClick={handleClosModal}>
-            Hover
           </div>
         </>
       )}

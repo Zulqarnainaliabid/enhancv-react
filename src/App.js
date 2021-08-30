@@ -41,6 +41,7 @@ import {
   INCREMENTBACKGROUNDCOLOREDUCATION,
   INCREMENTBACKGROUNDCOLORACHIEVEMENT,
   TOGGLEREARRANGEBUTTONS,
+  TOGGLEUSERIMGMODALBUTTONS,
   ACHIEVEMENTYES,
   TOGGLELEFT,
 } from "./Components/Redux/actions/indux";
@@ -76,7 +77,7 @@ function App() {
   const TechstockYes = useSelector((state) => state.TechstockYes);
   const ToggleLeft = useSelector((state) => state.ToggleLeft);
   const ToggleRearrangebuttons = useSelector((state) => state.ToggleRearrangebuttons);
-  
+  const ToggleUserImgModal = useSelector(state => state.ToggleUserImgModal)
   useEffect(() => {
     if (Achievementyes) {
       let temp = [];
@@ -753,6 +754,20 @@ function App() {
       <>
         <AlertProvider template={AlertTemplate} {...types} {...options}>
           <div style={{ position: "relative" }} ref={ref}>
+         {ToggleUserImgModal && <div className="outerWraperModalHover" onClick={()=>{
+            console.log("true")
+            dispatch(TOGGLEUSERIMGMODALBUTTONS(false))
+          }}>
+            
+          </div>}
+          {ToggleAddNewSection && (
+              <div
+                className="SetBackGroundAddNewSection"
+                onClick={() => {
+                  setToggleAddNewSection(false);
+                }}
+              ></div>
+            )}
             <div
               className="outerContainerButtons"
               style={{ display: HideButtons ? "none" : "flex" }}
@@ -819,14 +834,6 @@ function App() {
                 HandleRemoveSection={HandleRemoveSection}
               />
             </div>
-            {ToggleAddNewSection && (
-              <div
-                className="SetBackGroundAddNewSection"
-                onClick={() => {
-                  setToggleAddNewSection(false);
-                }}
-              ></div>
-            )}
             <Home
               ref={childRef}
               Array={Array}

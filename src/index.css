@@ -12,7 +12,7 @@ code {
     monospace;
 }
 .SetBackGroundAddNewSection{
-border: 1px solid green;
+/* border: 1px solid green; */
 position: absolute;
 top:0px;
 left: 0px;

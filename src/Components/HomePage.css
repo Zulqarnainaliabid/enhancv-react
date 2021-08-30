@@ -168,13 +168,13 @@ color: #00c091;
   cursor: pointer;
 }
 .outerContainerSection{
-  border: 1px solid;
+  /* border: 1px solid; */
   background-color: white;
   z-index: 5;
   width: 71%;
   padding: 40px 76px 25px 76px;
   border-radius: 6px;
-  top: 91px;
+  top: 17px;
   left: 160px;
   position: absolute;
   /* height: 573px; */
@@ -733,18 +733,18 @@ input[type='radio']:checked:after {
   padding: 0px 46px 0px 46px;
   top: -96px;
   border-radius: 10px;
-  height: 62%;
+  /* height: 62%; */
   background-color: white;
 }
 .outerWraperModalHover{
   /* border: 2px solid; */
   position: absolute;
   z-index: 4;
-  left: -41px;
-  right: -42px;
+  left: 0px;
+  right: 0px;
   background:#535064cc;
-  top: -107px;
-  bottom: -108px;
+  top: 0px;
+  bottom: 0px;
 }
 .outerWraperCloseIconeModal{
   display: flex;
@@ -804,15 +804,17 @@ display: flex;
 justify-content: space-between;
 }
 .outerWraperOKButtonModal{
-  border: 1px solid;
+  /* border: 1px solid;
+  border: 1px solid; */
   padding: 0px 47px 0px 48px;
   line-height: 69px;
   border-radius: 9px;
-  margin: 31px 0px 42px 0px;
+  margin: 32px 0px 0px 16px;
   font-size: 22px;
+  height: 66px;
   color: white;
   cursor: pointer;
-  background-color: #8c7cdb;
+  background-color: #8c7cdb
 }
 .outerWraperOKButtonModal:hover{
 background-color: #624cce;
@@ -878,10 +880,10 @@ input[type="file"]{
   position: absolute;
   z-index: 1;
   text-align: center;
-  left: 143px;
+  left: 144px;
   right: 137px;
-  top: 105px;
-  bottom: 263px;
+  top: 103px;
+  bottom: 175px;
   color: aliceblue;
   border-radius: 96px;
 }

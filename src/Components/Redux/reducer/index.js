@@ -55,6 +55,7 @@ import InduxExperience from './InduxExperience'
 import InduxIndestryExperience from './InduxIndesteryErpeience'
 import ToggleLeft from './ToggleLeft'
 import ToggleRearrangebuttons from './ToggleRearrangeButtons'
+import ToggleUserImgModal from './ToggleUserImgModalButtons'
 const allReducers = combineReducers({
 counter:counterReducer,
 CounterData:IncrementData,
@@ -112,5 +113,6 @@ InduxExperience:InduxExperience,
 InduxIndestryExperience:InduxIndestryExperience,
 ToggleLeft:ToggleLeft,
 ToggleRearrangebuttons:ToggleRearrangebuttons,
+ToggleUserImgModal:ToggleUserImgModal,
 });
 export default allReducers
