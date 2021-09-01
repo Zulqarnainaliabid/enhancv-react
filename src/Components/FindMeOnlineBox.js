@@ -9,7 +9,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from 'react-switch';
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE ,INDUXFINDMEONLINE } from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE ,INDUXFINDMEONLINE  ,SETTOGGLEBUTTONNULL,} from "./Redux/actions/indux";
 import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "./DatePicker/JasonData";
 import "./HomePage.css";
@@ -70,8 +70,20 @@ export default function Boxfunction(props) {
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [TitleTextHolder, setTitleTextHolder] = useState('');
   const [BulletsTextHolder, setBulletsTextHolder] = useState('');
+  const [WidthLeftRight, setWidthLeftRight] = useState(null);
+  
   const dispatch = useDispatch();
   const Indux = useSelector((state) => state.InduxFindmeOnline);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [SetToggleButtonsNull]);
+  
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
     setlistIcon(false)
@@ -92,6 +104,7 @@ export default function Boxfunction(props) {
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLOFINDMEONLINE());
     setlistIcon(false)
+    dispatch(SETTOGGLEBUTTONNULL());
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
@@ -212,6 +225,24 @@ export default function Boxfunction(props) {
           setShowBullots(item.selectedToggleButton);
         }
       });
+    }
+  }, []);
+
+  useEffect(() => {
+    if(UpdateWidthLeftRight!==null){
+      UpdateWidthLeftRight.map((item,index)=>{
+        if(UpdateWidthLeftRight[index].name==="Find Me")
+        {
+          if(UpdateWidthLeftRight[index].Left)
+          {
+            console.log("Left")
+           setWidthLeftRight("556px")
+          }else{
+            console.log("right")
+            setWidthLeftRight("300px")
+          }
+        }
+      })
     }
   }, []);
   return (
@@ -377,7 +408,7 @@ export default function Boxfunction(props) {
               {checkplacehoderBollets ? (
                 <div>jj</div>
               ) : (
-                <div className="app" style={{width:"300px"}}>
+                <div className="app" style={{width:WidthLeftRight}}>
                 <Editor
                   text={BulletsTextHolder}
                   onChange={(text) => {

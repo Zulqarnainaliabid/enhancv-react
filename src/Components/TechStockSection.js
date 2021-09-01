@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./TechStockSectionBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT, INCREMENTBACKGROUNDCOLORSKILL ,TECHSTOCKYES ,TOGGLEREARRANGEBUTTONS,INDUXTECKSTOCK} from "./Redux/actions/indux";
+import { INCREMENT, INCREMENTBACKGROUNDCOLORSKILL ,TECHSTOCKYES ,TOGGLEREARRANGEBUTTONS,INDUXTECKSTOCK,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
 
 export default function TechStockSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -32,8 +32,10 @@ export default function TechStockSection(props) {
   const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLORSKILL());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -207,6 +209,11 @@ export default function TechStockSection(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -248,6 +255,9 @@ export default function TechStockSection(props) {
     dispatch(TECHSTOCKYES(true));
     
   }
+  
+ 
+
   useEffect(() => {
     if (localStorage.getItem("arrayTechStock") !== null) {
       let value = localStorage.getItem("arrayTechStock");
@@ -259,6 +269,53 @@ export default function TechStockSection(props) {
 
     }
   }, []);
+
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Skill"){
+          let value = localStorage.getItem("arrayTechStock");
+          value = JSON.parse(value);
+          if(value===[]||value===null || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLORSKILL());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: { showGroupName: true },
+              togglebuttonlist: [
+                { name: "Show Group Name", selectedToggleButton: true },
+              ],
+              Texttoolandtechnology: [{ text: "" ,poriperty:null}],
+              value: {
+                grouptitle: "",
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXTECKSTOCK(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayTechStock", JSON.stringify(temp));
+          }
+         
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
+
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);
@@ -266,6 +323,7 @@ export default function TechStockSection(props) {
       setToggleArrowDown(Isactive);
     }
   }
+
   function IsActiveUp(Isactive) {
     if (Isactive) {
       setToggleArrowUp(Isactive);
@@ -273,6 +331,7 @@ export default function TechStockSection(props) {
       setToggleArrowUp(Isactive);
     }
   }
+
   return (
     <>
       <div

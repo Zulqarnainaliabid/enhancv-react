@@ -10,7 +10,7 @@ import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , INDUXLANGUAGE} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , INDUXLANGUAGE, SETTOGGLEBUTTONNULL,} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -63,11 +63,19 @@ export default function Boxfunction(props) {
   const [LanguageTextholder, setLanguageTextholder] = useState("");
   const dispatch = useDispatch();
   const Indux = useSelector((state) => state.InduxLanguage);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+
   useEffect(() => {
     setToggleButtons(false);
-  }, [props.UpdateState]);
+  }, [SetToggleButtonsNull]);
+  
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORLANGUAGE());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -297,10 +305,7 @@ export default function Boxfunction(props) {
             borderBottom: props.borderbotm,
           }}
         >
-          <div className="slider">
-            <div
-              className="outerWraperTextHolder"
-            >
+          <div style={{position:"relative"}}>
               <input
                 ref={inputref}
                 type="text"
@@ -315,10 +320,7 @@ export default function Boxfunction(props) {
                   setLanguageTextholder(e.target.value)
                 }}
               />
-              <div className="value" style={{ display: ShowProficiency ? "flex" : "none" }}>
-                <input type="text" style={{ fontSize: "16px" }} placeholder={Language} />
-              </div>
-            </div>
+                <input type="text"  placeholder={Language} style={{ display: ShowProficiency ? "flex" : "none",fontSize:"18px" ,position:"absolute",right:"-117px",top:"0px"}} />
             <div style={{ display: ShowSlider ? "block" : "none" }}>
               <Slider
                 min={1}

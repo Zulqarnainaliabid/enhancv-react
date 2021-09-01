@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLOREDUCATION,
-  INDUXEDUCATION
+  INDUXEDUCATION, SETTOGGLEBUTTONNULL,
 } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
@@ -89,12 +89,24 @@ export default function Boxfunction(props) {
   const [BullotsTestHolder, setBullotsTestHolder] = useState("");
   const [GPAFullTestHolder, setGPAFullTestHolder] = useState("");
   const [GPAObtainTestHolder, setGPAObtainTestHolder] = useState("");
+  const [WidthLeftRight, setWidthLeftRight] = useState(null);
   const [ArrayTemp, setArrayTemp] = useState([]);
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
   const Indux = useSelector((state) => state.InduxEducation);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
+
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [SetToggleButtonsNull]);
+  
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -222,6 +234,7 @@ export default function Boxfunction(props) {
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLOREDUCATION());
     dispatch(INCREMENT());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -400,6 +413,24 @@ export default function Boxfunction(props) {
           setShowBullets(item.selectedToggleButton);
         }
       });
+    }
+  }, []);
+
+  useEffect(() => {
+    if(UpdateWidthLeftRight!==null){
+      UpdateWidthLeftRight.map((item,index)=>{
+        if(UpdateWidthLeftRight[index].name==="Education")
+        {
+          if(UpdateWidthLeftRight[index].Left)
+          {
+            console.log("Left")
+           setWidthLeftRight("396px")
+          }else{
+            console.log("right")
+            setWidthLeftRight("176px")
+          }
+        }
+      })
     }
   }, []);
   return (
@@ -637,10 +668,6 @@ export default function Boxfunction(props) {
           <div className="outerWraperGPA" style={{display:"flex"}}>
             <div>
               <div
-                className="RichText"
-                style={{ display: ShowBullets ? "block" : "none" }}
-              ></div>
-              <div
                 onClick={handleText}
                 className="EditorText"
                 style={{ display: ShowBullets ? "block" : "none" }}
@@ -648,7 +675,7 @@ export default function Boxfunction(props) {
                 {checkplacehoderBollets ? (
                   <div>jj</div>
                 ) : (
-                  <div style={{width:"176px"}}>
+                  <div style={{width:WidthLeftRight,marginTop:"10px"}}>
                   <Editor
                    text={BullotsTestHolder}
                     onChange={(text) => {

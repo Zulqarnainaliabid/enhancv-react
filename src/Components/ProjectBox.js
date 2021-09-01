@@ -13,7 +13,8 @@ import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import DatePicker from "./DatePicker/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORPROJECT , INDUXPROJECT} from "./Redux/actions/indux";
+import InputBullets from './Bullets'
+import { INCREMENT , INCREMENTBACKGROUNDCOLORPROJECT , INDUXPROJECT, SETTOGGLEBUTTONNULL,} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -74,6 +75,8 @@ export default function Boxfunction(props) {
   const [Ongoing, setOngoing] = useState(true);
   const [BackwordMinusOngoing, setBackwordMinusOngoing] = useState(false);
   const [Counter, setCounter] = useState(0);
+  const [WidthLeftRight, setWidthLeftRight] = useState(null);
+  
   const [
     checkplacehodercompanydiscription,
     setcheckplacehodercompanydiscription,
@@ -90,6 +93,16 @@ export default function Boxfunction(props) {
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
   const Indux = useSelector((state) => state.InduxProject);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [SetToggleButtonsNull]);
+  
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -205,9 +218,7 @@ export default function Boxfunction(props) {
       setDiplayMinus(false);
     }
   }
-  useEffect(() => {
-    setToggleButtons(false);
-  }, [props.UpdateState]);
+  
   function HandleTextDecoration() {
     setToggleButtons(false);
     if (
@@ -223,6 +234,7 @@ export default function Boxfunction(props) {
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORPROJECT());
     dispatch(INCREMENT());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -354,6 +366,23 @@ export default function Boxfunction(props) {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
+  useEffect(() => {
+    if(UpdateWidthLeftRight!==null){
+      UpdateWidthLeftRight.map((item,index)=>{
+        if(UpdateWidthLeftRight[index].name==="Project")
+        {
+          if(UpdateWidthLeftRight[index].Left)
+          {
+            console.log("Left")
+           setWidthLeftRight("556px")
+          }else{
+            console.log("right")
+            setWidthLeftRight("300px")
+          }
+        }
+      })
+    }
+  }, []);
 
   function handleToggglebutton(index, toggle) {
     let array = [];
@@ -387,7 +416,6 @@ export default function Boxfunction(props) {
   const [UrlTextHolder, setUrlTextHolder] = useState("");
   const [SummaryWorkTextHolder, setSummaryWorkTextHolder] = useState("");
   const [BullotsTextHolder, setBullotsTextHolder] = useState("");
-
   useEffect(() => {
     if (localStorage.getItem("arrayProject") !== null) {
       setcheckplacehoderBollets(false);
@@ -500,7 +528,6 @@ export default function Boxfunction(props) {
           />
         </div>
         </div>
-    
       <div
         onClick={HandleSetBackGroundColor}
         className="outerWraperBox"
@@ -654,8 +681,8 @@ export default function Boxfunction(props) {
             {checkplacehodercompanydiscription ? (
               <div>hh</div>
             ) : (
-              <Editor
-                tag="pre"
+              <div style={{width:WidthLeftRight}}><Editor
+                className="PreEditor"
                 text={SummaryWorkTextHolder}
                 onChange={(text) => {
                   let array = props.list;
@@ -669,41 +696,21 @@ export default function Boxfunction(props) {
                     hideOnClick: true,
                   },
                 }}
-              />
+              /></div>
             )}
           </div>
-          <div
-            className="RichText"
-            style={{ display: "block" }}
-            style={{ display: ShowBullets ? "block" : "none" }}
-          ></div>
-          <div
-            onClick={handleText}
-            className="EditorText"
-            style={{ display: ShowBullets ? "block" : "none" }}
-          >
-            {checkplacehoderBollets ? (
-              <div>jj</div>
-            ) : (
-              <div className="app" style={{width:"300px"}}>
-              <Editor
-                text={BullotsTextHolder}
-                onChange={(text) => {
-                  setBullotsTextHolder(text);
-                  let array = props.list;
-                  array[props.index].value.bullotsTextHolder = text;
-                  localStorage.setItem("arrayProject", JSON.stringify(array));
-                }}
-                options={{
-                  placeholder: {
-                    text: "What was a successful outcome of your work?",
-                    hideOnClick: true,
-                  },
-                }}
-              />
+              <div
+              style={{width:WidthLeftRight}}>
+                <InputBullets
+                ShowBullets={ShowBullets}
+                handleText={handleText}
+                checkplacehoderBollets={checkplacehoderBollets}
+                BullotsTextHolder={BullotsTextHolder}
+                setBullotsTextHolder={setBullotsTextHolder}
+                list={props.list}
+                IndexItem={props.index}
+                />    
               </div>
-            )}
-          </div>
         </div>
       </div>
     </>

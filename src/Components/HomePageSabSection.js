@@ -2,7 +2,10 @@ import React from "react";
 import "./HomePageSabSection.css";
 import { RiCloseFill } from "react-icons/ri";
 import {Sections} from './Section'
+import { useDispatch, useSelector } from "react-redux";
+import {UPDATEWIDTHLEFTRIGTH} from './Redux/actions/indux'
 function HomaPageSabSection(props) {
+  const dispatch = useDispatch();
   const {useRef} = React;
   const childRef = useRef();
   const dragOver = (e) => {

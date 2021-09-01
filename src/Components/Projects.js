@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ProjectBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORPROJECT , PROJECTYES ,TOGGLEREARRANGEBUTTONS, INDUXPROJECT} from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORPROJECT , PROJECTYES ,TOGGLEREARRANGEBUTTONS, INDUXPROJECT,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
 export default function Projects(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -15,6 +15,8 @@ export default function Projects(props) {
   const [UpdateState, setUpdateState] = useState(0);
   const [ToggleArrowDown, setToggleArrowDown] = useState(true);
   const [ToggleArrowUp, setToggleArrowUp] = useState(true);
+ 
+  
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
   const nullBackgroundcolorPassion = useSelector((state) => state.IncrementBackgroundColorPassion);
@@ -31,8 +33,10 @@ export default function Projects(props) {
   const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLORPROJECT());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -207,6 +211,11 @@ export default function Projects(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -265,6 +274,8 @@ export default function Projects(props) {
     localStorage.setItem("arrayProject", JSON.stringify(temp));
   }
 
+ 
+
   function HanderDeleteItemInArray() {
     dispatch(PROJECTYES(true));
   }
@@ -279,6 +290,73 @@ export default function Projects(props) {
       setState(value);
     }
   }, []);
+
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Project"){
+          let value = localStorage.getItem("arrayProject");
+          value = JSON.parse(value);
+          if(value===null|| value===[] || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLORPROJECT());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: {
+                showDiscription: true,
+                showBullets: true,
+                showLocation: true,
+                showPeriod: true,
+                showLink: true,
+              },
+              togglebuttonlist: [
+                { name: "Show Discription", selectedToggleButton: true },
+                { name: "Show Bullets", selectedToggleButton: true },
+                { name: "Show Location", selectedToggleButton: true },
+                { name: "Show Period", selectedToggleButton: true },
+                { name: "Show Link", selectedToggleButton: true },
+              ],
+              value: {
+                titleTextHolder: "",
+                locationTextHolder: "",
+                SummaryWorkTextHolder: "",
+                bullotsTextHolder: "",
+                urlTextHolder: "",
+                date: {
+                  yearfrom: null,
+                  monthfrom: null,
+                  monthto: null,
+                  ongoing: true,
+                  yearto: null,
+                },
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXPROJECT(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayProject", JSON.stringify(temp));
+
+          }
+         
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);
@@ -293,6 +371,8 @@ export default function Projects(props) {
       setToggleArrowUp(Isactive);
     }
   }
+
+  
 
   return (
     <>

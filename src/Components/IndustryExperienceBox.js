@@ -8,7 +8,12 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import { useDispatch, useSelector } from "react-redux";
 import { RangeStepInput } from "react-range-step-input";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE , INDUXFINDUSTRYEXPERIENCE} from "./Redux/actions/indux";
+import {
+  INCREMENT,
+  INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE,
+  INDUXFINDUSTRYEXPERIENCE,
+  SETTOGGLEBUTTONNULL,
+} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -58,12 +63,22 @@ export default function Boxfunction(props) {
   const [TitleTestHolder, setTitleTestHolder] = useState("");
   const Indux = useSelector((state) => state.InduxIndestryExperience);
   const dispatch = useDispatch();
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector(
+    (state) => state.SetToggleButtonsNull
+  );
+
   useEffect(() => {
     setToggleButtons(false);
-  }, [props.UpdateState]);
+  }, [SetToggleButtonsNull]);
+
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE());
     dispatch(INCREMENT());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -97,6 +112,7 @@ export default function Boxfunction(props) {
   }
   const style = {
     borderBottom: props.borderbotm,
+    width: "288px"
   };
   function HandleArrowDown() {
     let index = props.index + 1;
@@ -157,7 +173,7 @@ export default function Boxfunction(props) {
     }
   }
   useEffect(() => {
-    inputref.current.focus()
+    inputref.current.focus();
     if (localStorage.getItem("arrayIndustryExperienxe") !== null) {
       let value = localStorage.getItem("arrayIndustryExperienxe");
       value = JSON.parse(value);
@@ -199,80 +215,91 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
-         <div
-        style={{ display: props.item.selected ? "flex" : "none" }}
-        className="headingOptionUnderBox"
-      >
+      <div style={{ position: "relative" }}>
         <div
-          className="outerWraperPlusAndNewEntry"
-          onClick={() => {
-            props.HandlerAddItemInArrayfun();
-            setCounter(Counter + 1);
-            setToggleButtons(false);
-            props.IsActiveUp(true);
-            props.IsActive(false);
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            position: "relative",
           }}
         >
-          <FaPlus className="newEntryPlusIcon" />
-          <div className="newEntryText">New Entry</div>
+          <div
+            style={{ display: props.item.selected ? "flex" : "none" }}
+            className="headingOptionUnderBox"
+          >
+            <div
+              className="outerWraperPlusAndNewEntry"
+              onClick={() => {
+                props.HandlerAddItemInArrayfun();
+                setCounter(Counter + 1);
+                setToggleButtons(false);
+                props.IsActiveUp(true);
+                props.IsActive(false);
+              }}
+            >
+              <FaPlus className="newEntryPlusIcon" />
+              <div className="newEntryText">New Entry</div>
+            </div>
+            {props.ToggleArrowUp && (
+              <MdKeyboardArrowUp
+                onClick={HandleArrowUP}
+                className="ArrowIcon"
+              />
+            )}
+            {props.ToggleArrowDown && (
+              <MdKeyboardArrowDown
+                onClick={HandleArrowDown}
+                className="ArrowIcon"
+              />
+            )}
+            <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
+            <RiSettings5Fill
+              onClick={() => {
+                setToggleButtons(!ToggleButtons);
+                let temp = [];
+                temp = TogglebuttonsName;
+                let togglebuttonarray = temp[props.index].togglebuttonlist;
+                settogglebuttonarrayList([...togglebuttonarray]);
+              }}
+              className="ArrangeIcon"
+            />
+          </div>
         </div>
-        {props.ToggleArrowUp && (
-          <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
-        )}
-        {props.ToggleArrowDown && (
-          <MdKeyboardArrowDown
-            onClick={HandleArrowDown}
-            className="ArrowIcon"
-          />
-        )}
-        <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
-        <RiSettings5Fill
-          onClick={() => {
-            setToggleButtons(!ToggleButtons);
-            let temp = [];
-            temp = TogglebuttonsName;
-            let togglebuttonarray = temp[props.index].togglebuttonlist;
-            settogglebuttonarrayList([...togglebuttonarray]);
-          }}
-          className="ArrangeIcon"
-        />
-      </div>
-       </div>
-     
-      <div
-        onClick={HandleSetBackGroundColor}
-        className="outerWraperBox"
-        style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
-        }}
-      >
+
         <div
-          className="outerWraperInputFieldHaider"
-          onClick={() => {
-            setToggleButtons(false);
+          onClick={HandleSetBackGroundColor}
+          className="outerWraperBox"
+          style={{
+            backgroundColor: props.item.selected ? "white" : "",
+            border: props.item.selected ? "1px solid #60d5ba" : "",
           }}
-          style={style}
         >
-          <input
-           ref={inputref}
-            type="text"
-            className="outerWraperGroupTitle"
-            placeholder="Area of expertise"
-            value={TitleTestHolder}
-            onChange={(e) => {
-              setTitleTestHolder(e.target.value);
-              let array = props.list;
-              array[props.index].value.titleTextHolder = e.target.value;
-              localStorage.setItem(
-                "arrayIndustryExperienxe",
-                JSON.stringify(array)
-              );
+          <div
+            className="outerWraperInputFieldHaider"
+            onClick={() => {
+              setToggleButtons(false);
             }}
-          />
-          <div style={{ display: ShowSlider ? "block" : "none" }}>
-            <RangeStepInput />
+            style={style}
+          >
+            <input
+              ref={inputref}
+              type="text"
+              className="outerWraperGroupTitle"
+              placeholder="Area of expertise"
+              value={TitleTestHolder}
+              onChange={(e) => {
+                setTitleTestHolder(e.target.value);
+                let array = props.list;
+                array[props.index].value.titleTextHolder = e.target.value;
+                localStorage.setItem(
+                  "arrayIndustryExperienxe",
+                  JSON.stringify(array)
+                );
+              }}
+            />
+            <div style={{ display: ShowSlider ? "block" : "none" }}>
+              <RangeStepInput />
+            </div>
           </div>
         </div>
       </div>

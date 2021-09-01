@@ -16,6 +16,7 @@ import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLORVOLUNTEERING,
   INDUXVOLUNTEERING,
+  SETTOGGLEBUTTONNULL,
 } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
@@ -84,14 +85,33 @@ export default function Boxfunction(props) {
   ] = useState(true);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
-  const UpdateYearFrom = useSelector((state) => state.IncrementState);
-  const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
   const [ShowDescription, setShowDescription] = useState(true);
   const [ShowBullets, setShowBullets] = useState(true);
   const [ShowLocation, setShowLocation] = useState(true);
   const [ShowPeriod, setShowPeriod] = useState(true);
+  const [UpdateNumber, setUpdateNumber] = useState(0);
+  const [TitleTextHolder, setTitleTextHolder] = useState("");
+  const [CompnyNameTextHolder, setCompnyNameTextHolder] = useState("");
+  const [LocationTextHolder, setLocationTextHolder] = useState("");
+  const [CompanyDiscriptionTextHolder, setCompanyDiscriptionTextHolder] =
+    useState("");
+  const [BullotsTextHolder, setBullotsTextHolder] = useState("");
+  const [WidthLeftRight, setWidthLeftRight] = useState(null);
+  
   const Indux = useSelector((state) => state.InduxVolunteering);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
+  const UpdateYearFrom = useSelector((state) => state.IncrementState);
+  const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
+
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [SetToggleButtonsNull]);
+  
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
   function HandleOngoing(toggle) {
     if (toggle) {
       setOngoing(true);
@@ -219,6 +239,7 @@ export default function Boxfunction(props) {
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORVOLUNTEERING());
     dispatch(INCREMENT());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -374,13 +395,7 @@ export default function Boxfunction(props) {
       setShowPeriod(toggle);
     }
   }
-  const [UpdateNumber, setUpdateNumber] = useState(0);
-  const [TitleTextHolder, setTitleTextHolder] = useState("");
-  const [CompnyNameTextHolder, setCompnyNameTextHolder] = useState("");
-  const [LocationTextHolder, setLocationTextHolder] = useState("");
-  const [CompanyDiscriptionTextHolder, setCompanyDiscriptionTextHolder] =
-    useState("");
-  const [BullotsTextHolder, setBullotsTextHolder] = useState("");
+
   useEffect(() => {
     if (localStorage.getItem("arrayVolunteering") !== null) {
       setcheckplacehoderBollets(false);
@@ -406,6 +421,24 @@ export default function Boxfunction(props) {
           setShowPeriod(item.selectedToggleButton);
         }
       });
+    }
+  }, []);
+
+  useEffect(() => {
+    if(UpdateWidthLeftRight!==null){
+      UpdateWidthLeftRight.map((item,index)=>{
+        if(UpdateWidthLeftRight[index].name==="Volunteering")
+        {
+          if(UpdateWidthLeftRight[index].Left)
+          {
+            console.log("Left")
+           setWidthLeftRight("556px")
+          }else{
+            console.log("right")
+            setWidthLeftRight("300px")
+          }
+        }
+      })
     }
   }, []);
   return (
@@ -650,7 +683,7 @@ export default function Boxfunction(props) {
             {checkplacehodercompanydiscription ? (
               <div>hh</div>
             ) : (
-              <div className="app" style={{width:"300px"}}>
+              <div className="app" style={{width:WidthLeftRight}}>
               <Editor
                 text={CompanyDiscriptionTextHolder}
                 onChange={(text) => {
@@ -673,10 +706,6 @@ export default function Boxfunction(props) {
             )}
           </div>
           <div
-            className="RichText"
-            style={{ display: ShowBullets ? "block" : "none" }}
-          ></div>
-          <div
             onClick={handleText}
             className="EditorText"
             style={{ display: ShowBullets ? "block" : "none" }}
@@ -684,7 +713,7 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
-              <div className="app" style={{width:"300px"}}>
+              <div className="app" style={{width:WidthLeftRight, marginTop: "10px"}}>
               <Editor
                 text={BullotsTextHolder}
                 onChange={(text) => {

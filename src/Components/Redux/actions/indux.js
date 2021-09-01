@@ -354,9 +354,28 @@ export  const  TOGGLEREARRANGEBUTTONS=(item)=>{
 }
 
 export  const  TOGGLEUSERIMGMODALBUTTONS=(item)=>{
-    console.log("check it",item)
     return{
         type:'TOGGLEUSERIMGMODALBUTTONS',
         payload:item
+    }
+}
+export  const  SETTOGGLEBUTTONNULL=()=>{
+    return{
+        type:'SETTOGGLEBUTTONNULL',
+    }
+}
+
+export  const  DEDAULTADDSECTION=(item,toggle)=>{
+    return{
+        type:'DEDAULTADDSECTION',
+        payload:item,
+        toggle:toggle
+    }
+}
+
+export  const  UPDATEWIDTHLEFTRIGTH=(item)=>{
+    return{
+        type:'UPDATEWIDTHLEFTRIGTH',
+        payload:item,
     }
 }

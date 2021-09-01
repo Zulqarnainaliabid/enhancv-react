@@ -13,6 +13,7 @@ import Switch from "react-switch";
 import {
   INCREMENTBACKGROUNDCOLORSKILL,
   INDUXTECKSTOCK,
+   SETTOGGLEBUTTONNULL,
 } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
@@ -57,7 +58,7 @@ export function ToolAndTechnology(props) {
           if (e.target.value.length < 1) {
             setWidth(20);
           } else {
-            setWidth(e.target.value.length+1);
+            setWidth(e.target.value.length);
           }
           setTextHolderToolsandTechnology(e.target.value);
           let temp = [];
@@ -128,7 +129,16 @@ export default function Boxfunction(props) {
   const [BackGroundColoSecond, setBackGroundColoSecond] = useState("rgb(0, 192, 145)");
   const [BorderStyle, setBorderStyle] = useState("ToolAndTechnologyTechStockSection");
   const Indux = useSelector((state) => state.InduxTechstock);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
 
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [SetToggleButtonsNull]);
+  
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
   useEffect(() => {
     setToggleButtons(false);
   }, [props.UpdateState]);
@@ -145,6 +155,7 @@ export default function Boxfunction(props) {
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORSKILL());
     props.HandleCompleteBoarderUnSelected();
+    dispatch(SETTOGGLEBUTTONNULL());
     let temp = props.list;
     if (!temp[props.index].selected) {
       props.list.map((item, index) => {

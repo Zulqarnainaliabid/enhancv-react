@@ -12,6 +12,8 @@ import {
   ACHIEVEMENTYES,
   INDUXACHIEVEMENT,
   TOGGLEREARRANGEBUTTONS,
+  SETTOGGLEBUTTONNULL,
+  DEDAULTADDSECTION,
 } from "./Redux/actions/indux";
 export default function Achievements(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -63,8 +65,10 @@ export default function Achievements(props) {
     (state) => state.IncrementBackgroundColorIndusteryExperience
   );
   const Incrementnull = useSelector((state) => state.IncrementNull);
-  
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
+
   function HandleCompleteBoarderSelected() {
+    dispatch(SETTOGGLEBUTTONNULL());
     dispatch(INCREMENTBACKGROUNDCOLORACHIEVEMENT());
     props.button();
     setbackgroundColor("white");
@@ -232,10 +236,16 @@ export default function Achievements(props) {
     });
     setState([...temp]);
   }, [Incrementnull]);
+
   useEffect(() => {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
   
   function HandlerAddItemInArray() {
@@ -274,16 +284,63 @@ export default function Achievements(props) {
   function HanderDeleteItemInArray() {
     dispatch(ACHIEVEMENTYES(true));
   }
+ 
+
   useEffect(() => {
     if (localStorage.getItem("arrayAchievement") !== null) {
       let value = localStorage.getItem("arrayAchievement");
       value = JSON.parse(value);
-      value.map((item, index) => {
-        value[index].selected = false;
-      });
+        value.map((item, index) => {
+          value[index].selected = false;
+        });
       setState(value);
     }
   }, []);
+
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Achievement"){
+          let value = localStorage.getItem("arrayAchievement");
+          value = JSON.parse(value);
+          if(value===[] || value===null || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLORACHIEVEMENT());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: { showIcon: true, showbullet: true },
+              togglebuttonlist: [
+                { name: "Show icone", selected: true },
+                { name: "Show Bullets", selected: true },
+              ],
+              value: { title: "", bullots: "" },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXACHIEVEMENT(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayAchievement", JSON.stringify(temp));
+          }
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
+
+
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);

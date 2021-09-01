@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./VolunteeringBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORVOLUNTEERING , VOLUNTEERINFYES,INDUXVOLUNTEERING , TOGGLEREARRANGEBUTTONS} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORVOLUNTEERING , VOLUNTEERINFYES,INDUXVOLUNTEERING , TOGGLEREARRANGEBUTTONS,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
 export default function Volunteering(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -31,9 +31,11 @@ export default function Volunteering(props) {
   const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
   function HandleCompleteBoarderSelected() {
     props.button();
     dispatch(INCREMENTBACKGROUNDCOLORVOLUNTEERING());
+    dispatch(SETTOGGLEBUTTONNULL());
     setbackgroundColor("white");
     setShowHeaderButton("flex");
     setborderBottm("1px dashed rgba(0, 0, 0, 0.548)");
@@ -206,6 +208,11 @@ export default function Volunteering(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -261,9 +268,13 @@ export default function Volunteering(props) {
     setState([...temp]);
     localStorage.setItem("arrayVolunteering", JSON.stringify(temp));
   }
+
+ 
+
   function HanderDeleteItemInArray() {
     dispatch(VOLUNTEERINFYES(true));
   }
+
   useEffect(() => {
     if (localStorage.getItem("arrayVolunteering") !== null) {
       let value = localStorage.getItem("arrayVolunteering");
@@ -274,6 +285,71 @@ export default function Volunteering(props) {
       setState(value);
     }
   }, []);
+
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Volunteering"){
+          let value = localStorage.getItem("arrayVolunteering");
+          value = JSON.parse(value);
+          if(value===[] || value===null || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLORVOLUNTEERING());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: {
+                showDiscription: true,
+                showLocation: true,
+                showBullets: true,
+                showPeriod: true,
+              },
+              togglebuttonlist: [
+                { name: "Show Discription", selectedToggleButton: true },
+                { name: "Show Location", selectedToggleButton: true },
+                { name: "Show Bullets", selectedToggleButton: true },
+                { name: "Show Period", selectedToggleButton: true },
+              ],
+              value: {
+                titleTextHolder: "",
+                companynameTextholder: "",
+                locationTextholder: "",
+                companydiscriptionTextholder: "",
+                bullotsTextHolder: "",
+                date: {
+                  yearfrom: null,
+                  monthfrom: null,
+                  monthto: null,
+                  ongoing: true,
+                  yearto: null,
+                },
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXVOLUNTEERING(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayVolunteering", JSON.stringify(temp));
+          }
+         
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
+
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);
@@ -281,6 +357,7 @@ export default function Volunteering(props) {
       setToggleArrowDown(Isactive);
     }
   }
+
   function IsActiveUp(Isactive) {
     if (Isactive) {
       setToggleArrowUp(Isactive);

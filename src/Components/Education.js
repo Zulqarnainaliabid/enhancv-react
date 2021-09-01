@@ -12,6 +12,8 @@ import {
   EDUCATIONYES,
   INDUXACHIEVEMENT,
   TOGGLEREARRANGEBUTTONS,
+  SETTOGGLEBUTTONNULL,
+  DEDAULTADDSECTION,
 } from "./Redux/actions/indux";
 export default function Education(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -23,6 +25,9 @@ export default function Education(props) {
   const [ToggleArrowUp, setToggleArrowUp] = useState(true);
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
+
   const nullBackgroundcolorPassion = useSelector(
     (state) => state.IncrementBackgroundColorPassion
   );
@@ -62,9 +67,9 @@ export default function Education(props) {
   const nullBackgroundcolorIndustryExperience = useSelector(
     (state) => state.IncrementBackgroundColorIndusteryExperience
   );
-  const Incrementnull = useSelector((state) => state.IncrementNull);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLOREDUCATION());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -237,6 +242,11 @@ export default function Education(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -293,7 +303,7 @@ export default function Education(props) {
     setState([...temp]);
     localStorage.setItem("arrayEducation", JSON.stringify(temp));
   }
-
+  
   function HanderDeleteItemInArray() {
     dispatch(EDUCATIONYES(true));
   }
@@ -308,6 +318,69 @@ export default function Education(props) {
       setState(value);
     }
   }, []);
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Education"){
+          let value = localStorage.getItem("arrayEducation");
+          value = JSON.parse(value);
+          if(value===[] || value===null || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLOREDUCATION());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: {
+                showGPA: true,
+                showLocation: true,
+                showPeriod: true,
+                showBullets: true,
+              },
+              togglebuttonlist: [
+                { name: "Show GPA", selectedToggleButton: true },
+                { name: "Show Location", selectedToggleButton: true },
+                { name: "Show Period", selectedToggleButton: true },
+                { name: "Show Bullets", selectedToggleButton: true },
+              ],
+              value: {
+                titleTextHolder: "",
+                InstitudeNameTestHolder: "",
+                locationTestHolder: "",
+                bullotsTestHolder: "",
+                GPAFullTestHolder: "",
+                GPAObtainTestHolder: "",
+                date: {
+                  yearfrom: null,
+                  monthfrom: null,
+                  monthto: null,
+                  ongoing: true,
+                  yearto: null,
+                },
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXACHIEVEMENT(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayEducation", JSON.stringify(temp));
+          }
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);

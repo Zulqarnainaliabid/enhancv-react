@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import PassionBoxfunction from "./PassionsBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION , PASSIONYES ,TOGGLEREARRANGEBUTTONS, INDUXPASSION} from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION , PASSIONYES ,TOGGLEREARRANGEBUTTONS, INDUXPASSION, SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
 export default function Passions(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -31,8 +31,10 @@ export default function Passions(props) {
   const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLORPASSION());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -205,6 +207,11 @@ export default function Passions(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -258,6 +265,54 @@ export default function Passions(props) {
       setState(value);
     }
   }, []);
+
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Profesion"){
+          let value = localStorage.getItem("arrayPassion");
+          value = JSON.parse(value);
+          if(value===null|| value===[] || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLORPASSION());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: { showDiscription: true, showicon: true },
+              togglebuttonlist: [
+                { name: "Show Discription", selectedToggleButton: true },
+                { name: "Show Icon", selectedToggleButton: true },
+              ],
+              value: {
+                titleCareerInterest: "",
+                bullots: "",
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXPASSION(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayPassion", JSON.stringify(temp));
+
+          }
+         
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);
@@ -300,7 +355,7 @@ export default function Passions(props) {
         className="DeleteIcon"
       />
       <CgArrangeFront className="ArrangeIcon" onClick={()=>{
-              dispatch(TOGGLEREARRANGEBUTTONS())
+              dispatch(TOGGLEREARRANGEBUTTONS(true))
             }} />
     </div></div>
         <div

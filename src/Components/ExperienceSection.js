@@ -6,7 +6,15 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ExperienceBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLOREXPERIENCE ,EXPERIENCEYES ,TOGGLEREARRANGEBUTTONS, INDUXEXPERIENCE} from "./Redux/actions/indux";
+import {
+  INCREMENT,
+  INCREMENTBACKGROUNDCOLOREXPERIENCE,
+  EXPERIENCEYES,
+  TOGGLEREARRANGEBUTTONS,
+  INDUXEXPERIENCE,
+  SETTOGGLEBUTTONNULL,
+  DEDAULTADDSECTION
+} from "./Redux/actions/indux";
 export default function ExperienceSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -17,22 +25,51 @@ export default function ExperienceSection(props) {
   const [ToggleArrowUp, setToggleArrowUp] = useState(true);
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
-  const nullBackgroundcolorPassion = useSelector((state) => state.IncrementBackgroundColorPassion);
-  const nullBackgroundcolorTraining = useSelector((state) => state.IncrementBackgroundColorTraining);
-  const nullBackgroundcolorAchievement = useSelector((state) => state.IncrementBackgroundColorAchievement);
-  const nullBackgroundcolorSkill = useSelector((state) => state.IncrementBackgroundColorSkill);
-  const nullBackgroundcolorProject = useSelector((state) => state.IncrementBackgroundColorProject);
-  const nullBackgroundcolorMyTime = useSelector((state) => state.IncrementBackgroundColorMyTime);
-  const nullBackgroundcolorLanguage = useSelector((state) => state.IncrementBackgroundColorLanguage);
-  const nullBackgroundcolorFindMeOnline = useSelector((state) => state.IncrementBackgroundColorFindMeOnline);
-  const nullBackgroundcolorSummary = useSelector((state) => state.IncrementBackgroundColorSummary);
-  const nullBackgroundcolorStrength = useSelector((state) => state.IncrementBackgroundColorStrength);
-  const nullBackgroundcolorVolunteering = useSelector((state) => state.IncrementBackgroundColorVolunteering);
-  const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
-  const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
+  const nullBackgroundcolorPassion = useSelector(
+    (state) => state.IncrementBackgroundColorPassion
+  );
+  const nullBackgroundcolorTraining = useSelector(
+    (state) => state.IncrementBackgroundColorTraining
+  );
+  const nullBackgroundcolorAchievement = useSelector(
+    (state) => state.IncrementBackgroundColorAchievement
+  );
+  const nullBackgroundcolorSkill = useSelector(
+    (state) => state.IncrementBackgroundColorSkill
+  );
+  const nullBackgroundcolorProject = useSelector(
+    (state) => state.IncrementBackgroundColorProject
+  );
+  const nullBackgroundcolorMyTime = useSelector(
+    (state) => state.IncrementBackgroundColorMyTime
+  );
+  const nullBackgroundcolorLanguage = useSelector(
+    (state) => state.IncrementBackgroundColorLanguage
+  );
+  const nullBackgroundcolorFindMeOnline = useSelector(
+    (state) => state.IncrementBackgroundColorFindMeOnline
+  );
+  const nullBackgroundcolorSummary = useSelector(
+    (state) => state.IncrementBackgroundColorSummary
+  );
+  const nullBackgroundcolorStrength = useSelector(
+    (state) => state.IncrementBackgroundColorStrength
+  );
+  const nullBackgroundcolorVolunteering = useSelector(
+    (state) => state.IncrementBackgroundColorVolunteering
+  );
+  const nullBackgroundcolorEducation = useSelector(
+    (state) => state.IncrementBackgroundColorEducation
+  );
+  const nullBackgroundcolorIndustryExperience = useSelector(
+    (state) => state.IncrementBackgroundColorIndusteryExperience
+  );
+ 
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLOREXPERIENCE());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -205,6 +242,11 @@ export default function ExperienceSection(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -268,18 +310,88 @@ export default function ExperienceSection(props) {
     localStorage.setItem("arrayExperience", JSON.stringify(temp));
   }
   function HanderDeleteItemInArray() {
-   dispatch(EXPERIENCEYES(true));
+    dispatch(EXPERIENCEYES(true));
   }
+  
   useEffect(() => {
     if (localStorage.getItem("arrayExperience") !== null) {
       let value = localStorage.getItem("arrayExperience");
-      value = JSON.parse(value)
+      value = JSON.parse(value);
       value.map((item, index) => {
         value[index].selected = false;
       });
       setState(value);
     }
   }, []);
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Experience"){
+          let value = localStorage.getItem("arrayExperience");
+          value = JSON.parse(value);
+          if(value===[] || value===null || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLOREXPERIENCE());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              togglebuttonlist: [
+                { name: "Show Title", selected: "true" },
+                { name: "Show Company Name", selected: "true" },
+                { name: "Show Discription", selected: "true" },
+                { name: "Show Bullets", selected: "true" },
+                { name: "Show Period", selected: "true" },
+                { name: "Show Location", selected: "true" },
+                { name: "Show Link", selected: "true" },
+              ],
+              toggleButton: {
+                showtitle: true,
+                showcompayname: true,
+                showdiscription: true,
+                showbullets: true,
+                showlocation: true,
+                showperiod: true,
+                showlink: true,
+              },
+              value: {
+                title: "",
+                companyname: "",
+                location: "",
+                date: {
+                  yearfrom: null,
+                  monthfrom: null,
+                  monthto: null,
+                  ongoing: true,
+                  yearto: null,
+                },
+                companydiscription: "",
+                bullots: "",
+                url: "",
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXEXPERIENCE(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayExperience", JSON.stringify(temp));
+          }
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);
@@ -301,33 +413,36 @@ export default function ExperienceSection(props) {
         style={{ backgroundColor: backgroundColor }}
         onClick={() => {}}
       >
-      <div
-        style={{
-          position: "relative",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
         <div
-        style={{ display: ShowHeaderButton , zIndex: "5"}}
-        className="headingOptionBoxRight"
-      >
-        <div
-          onClick={HandlerAddItemInArray}
-          className="outerWraperPlusAndNewEntry"
+          style={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+          }}
         >
-          <FaPlus className="newEntryPlusIcon" />
-          <div className="newEntryText">New Entry</div>
+          <div
+            style={{ display: ShowHeaderButton, zIndex: "5" }}
+            className="headingOptionBoxRight"
+          >
+            <div
+              onClick={HandlerAddItemInArray}
+              className="outerWraperPlusAndNewEntry"
+            >
+              <FaPlus className="newEntryPlusIcon" />
+              <div className="newEntryText">New Entry</div>
+            </div>
+            <RiDeleteBin6Line
+              onClick={HanderDeleteItemInArray}
+              className="DeleteIcon"
+            />
+            <CgArrangeFront
+              className="ArrangeIcon"
+              onClick={() => {
+                dispatch(TOGGLEREARRANGEBUTTONS(true));
+              }}
+            />
+          </div>
         </div>
-        <RiDeleteBin6Line
-          onClick={HanderDeleteItemInArray}
-          className="DeleteIcon"
-        />
-        <CgArrangeFront className="ArrangeIcon" onClick={()=>{
-              dispatch(TOGGLEREARRANGEBUTTONS(true))
-            }} />
-      </div>
-      </div>
         <div
           style={{ backgroundColor: backgroundColor }}
           className="HeadingNameBox"

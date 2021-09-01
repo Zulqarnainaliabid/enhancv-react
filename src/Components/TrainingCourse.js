@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./TrainingCourseBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLORTRAINING , TRAININGYES ,TOGGLEREARRANGEBUTTONS, INDUXTRAINING} from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORTRAINING , TRAININGYES ,TOGGLEREARRANGEBUTTONS, INDUXTRAINING,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
 export default function TrainingCourse(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -31,8 +31,10 @@ export default function TrainingCourse(props) {
   const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLORTRAINING());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -218,6 +220,11 @@ export default function TrainingCourse(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -256,6 +263,8 @@ export default function TrainingCourse(props) {
     localStorage.setItem("arrayTraining", JSON.stringify(temp));
   }
 
+
+
   function HanderDeleteItemInArray() {
     dispatch(TRAININGYES(true));
   }
@@ -270,6 +279,53 @@ export default function TrainingCourse(props) {
       setState(value);
     }
   }, []);
+
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Training"){
+          let value = localStorage.getItem("arrayTraining");
+          value = JSON.parse(value);
+          if(value===null || value===[] || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLORTRAINING());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: { showDiscription: true },
+              togglebuttonlist: [
+                { name: "Show Description", selectedToggleButton: true },
+              ],
+              value: {
+                titleTextHolder: "",
+                bullotsTextHolder: "",
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXTRAINING(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayTraining", JSON.stringify(temp));
+          }
+         
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
+
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);
@@ -277,6 +333,7 @@ export default function TrainingCourse(props) {
       setToggleArrowDown(Isactive);
     }
   }
+
   function IsActiveUp(Isactive) {
     if (Isactive) {
       setToggleArrowUp(Isactive);

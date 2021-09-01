@@ -9,7 +9,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION , INDUXPASSION} from "./Redux/actions/indux";
+import { INCREMENT,INCREMENTBACKGROUNDCOLORPASSION , INDUXPASSION, SETTOGGLEBUTTONNULL,} from "./Redux/actions/indux";
 import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "./DatePicker/JasonData";
 
@@ -72,11 +72,21 @@ export default function PassionBoxfunction(props) {
   const [ShowBullots, setShowBullots] = useState(true);
   const [TitleTextHolder, setTitleTextHolder] = useState("");
   const [BulletsTextHolder, setBulletsTextHolder] = useState("");
+  const [WidthLeftRight, setWidthLeftRight] = useState(null);
+  
   const dispatch = useDispatch();
   const Indux = useSelector((state) => state.InduxPassion);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
   useEffect(() => {
     setToggleButtons(false);
-  }, [props.UpdateState]);
+  }, [SetToggleButtonsNull]);
+  
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
+
   function HandleTextDecoration() {
     setToggleButtons(false);
     setlistIcon(false);
@@ -92,6 +102,7 @@ export default function PassionBoxfunction(props) {
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORPASSION());
     setlistIcon(false);
+    dispatch(SETTOGGLEBUTTONNULL());
     dispatch(INCREMENT());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
@@ -210,6 +221,24 @@ export default function PassionBoxfunction(props) {
     setEnabledFontFormatColor("");
     setEnabledFontFormatNoDrop("pointer");
   }
+
+  useEffect(() => {
+    if(UpdateWidthLeftRight!==null){
+      UpdateWidthLeftRight.map((item,index)=>{
+        if(UpdateWidthLeftRight[index].name==="Profesion")
+        {
+          if(UpdateWidthLeftRight[index].Left)
+          {
+            console.log("Left")
+           setWidthLeftRight("556px")
+          }else{
+            console.log("right")
+            setWidthLeftRight("300px")
+          }
+        }
+      })
+    }
+  }, []);
   return (
     <>
       <div style={{ position: "relative" }}>
@@ -370,7 +399,7 @@ export default function PassionBoxfunction(props) {
               {checkplacehoderBollets ? (
                 <div>jj</div>
               ) : (
-                <div className="app" style={{width:"300px"}}>
+                <div className="app" style={{width:WidthLeftRight}}>
                 <Editor
                   text={BulletsTextHolder}
                   onChange={(text) => {

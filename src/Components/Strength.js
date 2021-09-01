@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./StrengthBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORSTRENGTH , STRENGTHYES , TOGGLEREARRANGEBUTTONS,INDUXSTRENGTH} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORSTRENGTH , STRENGTHYES , TOGGLEREARRANGEBUTTONS,INDUXSTRENGTH,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
 export default function Strength(props) {
   
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -32,8 +32,10 @@ export default function Strength(props) {
   const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLORSTRENGTH());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -206,6 +208,11 @@ export default function Strength(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -245,6 +252,8 @@ export default function Strength(props) {
     localStorage.setItem("arrayStrength", JSON.stringify(temp));
   }
 
+ 
+
   function HanderDeleteItemInArray() {
     dispatch(STRENGTHYES(true));
   }
@@ -259,6 +268,54 @@ export default function Strength(props) {
       setState(value);
     }
   }, []);
+
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Strength"){
+          let value = localStorage.getItem("arrayStrength");
+          value = JSON.parse(value);
+          if(value===null||value===[] || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLORSTRENGTH());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: { showDiscription: true, showicon: true },
+              togglebuttonlist: [
+                { name: "Show Description", selectedToggleButton: true },
+                { name: "Show Icons", selectedToggleButton: true },
+              ],
+              value: {
+                titleTextHolder: "",
+                DiscriptionTextHolder: "",
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXSTRENGTH(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayStrength", JSON.stringify(temp));
+
+          }
+         
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);

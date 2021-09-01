@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./LanguageBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , LANGUAGEYES , TOGGLEREARRANGEBUTTONS, INDUXLANGUAGE} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORLANGUAGE , LANGUAGEYES , TOGGLEREARRANGEBUTTONS, INDUXLANGUAGE,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
 export default function Language(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -31,8 +31,10 @@ export default function Language(props) {
   const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLORLANGUAGE());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -205,6 +207,11 @@ export default function Language(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -245,6 +252,7 @@ export default function Language(props) {
     localStorage.setItem("arrayLanguage", JSON.stringify(temp));
   }
 
+
   function HanderDeleteItemInArray() {
     dispatch(LANGUAGEYES(true));
   }
@@ -259,6 +267,54 @@ export default function Language(props) {
       setState(value);
     }
   }, []);
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Langue"){
+          let value = localStorage.getItem("arrayLanguage");
+          value = JSON.parse(value);
+          if(value===[]||value===null || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLORLANGUAGE());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: { showSlider: true, showProficiency: true },
+              togglebuttonlist: [
+                { name: "Show Slider", selectedToggleButton: true },
+                { name: "Show Proficiency", selectedToggleButton: true },
+              ],
+              value: {
+                LanguageTextholder: "",
+                proficiencyTextHolder: "",
+                SliderValueTextHolder: "",
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXLANGUAGE(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayLanguage", JSON.stringify(temp));
+
+          }
+         
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);

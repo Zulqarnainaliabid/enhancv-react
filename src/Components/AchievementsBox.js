@@ -7,12 +7,14 @@ import { BiText } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
+import ReactDOM from 'react-dom';
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import {
   INCREMENTBACKGROUNDCOLORACHIEVEMENT,
   INDUXACHIEVEMENT,
+  SETTOGGLEBUTTONNULL,
 } from "./Redux/actions/indux";
 import { BsStarHalf } from "react-icons/bs";
 import { iconListData } from "../Components/DatePicker/JasonData";
@@ -54,6 +56,7 @@ export function SwitchButtons(props) {
 export default function Boxfunction(props) {
   const alert = useAlert();
   const textInput = useRef(null);
+  const textInputEditor = useRef(null);
   const [EnabledFontFormatColor, setEnabledFontFormatColor] =
     useState("#38434744");
   const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] =
@@ -70,11 +73,19 @@ export default function Boxfunction(props) {
   const [ShowIcon, setShowIcon] = useState(true);
   const [ShowBullets, setShowBullets] = useState(true);
   const [loader, setloader] = useState(false);
+  const [WidthLeftRight, setWidthLeftRight] = useState(null);
   const dispatch = useDispatch();
   const Indux = useSelector((state) => state.InduxAchievement);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
   useEffect(() => {
     setToggleButtons(false);
-  }, [props.UpdateState]);
+  }, [SetToggleButtonsNull]);
+
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
 
   function HandleTextDecoration() {
     setlistIcon(false);
@@ -90,6 +101,7 @@ export default function Boxfunction(props) {
   }
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORACHIEVEMENT());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -192,6 +204,24 @@ export default function Boxfunction(props) {
       setShowBullets(toggle);
     }
   }
+ 
+  useEffect(() => {
+    if(UpdateWidthLeftRight!==null){
+      UpdateWidthLeftRight.map((item,index)=>{
+        if(UpdateWidthLeftRight[index].name==="Achievement")
+        {
+          if(UpdateWidthLeftRight[index].Left)
+          {
+            console.log("Left")
+           setWidthLeftRight("556px")
+          }else{
+            console.log("right")
+            setWidthLeftRight("300px")
+          }
+        }
+      })
+    }
+  }, []);
 
   useEffect(() => {
     if (loader) {
@@ -207,7 +237,6 @@ export default function Boxfunction(props) {
       return () => clearTimeout(timer);
     }
   }, [loader]);
-
   useEffect(() => {
     textInput.current.focus();
     if (localStorage.getItem("arrayAchievement") !== null) {
@@ -416,8 +445,9 @@ export default function Boxfunction(props) {
                 {checkplacehoderBollets ? (
                   <div>jj</div>
                 ) : (
-                  <div className="app" style={{ width: "300px" }}>
+                  <div className="app" style={{ width: WidthLeftRight }}>
                     <Editor
+                    tag="div"
                       text={Bullots}
                       onChange={(text) => {
                         let array = props.list;
@@ -432,6 +462,8 @@ export default function Boxfunction(props) {
                         placeholder: {
                           text: "Why are you proud of this achievement?",
                           hideOnClick: true,
+                          autoLink:true,
+                          tag: "input",
                         },
                       }}
                     />

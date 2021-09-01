@@ -23,9 +23,9 @@
 
 .outerWraperTextHolder{
     /* border: 1px solid; */
-        display: flex;
-        justify-content: space-between;
-        padding: 0px 21px 0px 21px;
+        /* display: flex;
+        justify-content: space-between; */
+        /* padding: 0px 21px 0px 21px; */
         font-size: 23px;
         color:#65696d;
     }

@@ -16,6 +16,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import {
   INCREMENTDATA,
   TOGGLEUSERIMGMODALBUTTONS,
+  SETTOGGLEBUTTONNULL
 } from "./Redux/actions/indux";
 import { useSelector, useDispatch } from "react-redux";
 export default function Header(props) {
@@ -51,11 +52,13 @@ export default function Header(props) {
   const [Circle, setCircle] = useState("#00c091");
   const [Square, setSquare] = useState("#ccc");
   const counter = useSelector((state) => state.counter);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
   const ToggleUserImgModal = useSelector((state) => state.ToggleUserImgModal);
-  console.log("try ,", ToggleUserImgModal);
+ 
   const dispatch = useDispatch();
   function HandleBoarder() {
     dispatch(INCREMENTDATA());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setBorder("1px solid #60d5ba");
     setbackgroundColor("white");
@@ -70,6 +73,10 @@ export default function Header(props) {
   }, [props.data]);
 
   useEffect(() => {
+    setToggleButton(false);
+  }, [SetToggleButtonsNull]);
+
+  useEffect(() => {
     setbackgroundColor(null);
     setBorder(null);
     setShowHeaderButton("none");
@@ -82,15 +89,28 @@ export default function Header(props) {
   function HandleToggleButton() {
     setToggleButton(!ToggleButton);
   }
+  const setUserImg = {
+    BorderRadius:"",
+    SetSquere:"",
+    SetCircle:""
+  }
   function HandleBorderRadiusCircle() {
     setBorderRadius("112px");
     setSquare("#ccc");
     setCircle("#00c091");
+    setUserImg.BorderRadius="112px"
+    setUserImg.SetSquere="#ccc"
+    setUserImg.SetCircle="#00c091"
+    localStorage.setItem("SetUserImg", JSON.stringify(setUserImg));
   }
   function HandleBorderRadiusVerticle() {
     setBorderRadius("9px");
     setSquare("#00c091");
     setCircle("#ccc");
+    setUserImg.BorderRadius="9px"
+    setUserImg.SetSquere="#00c091"
+    setUserImg.SetCircle="#ccc"
+    localStorage.setItem("SetUserImg", JSON.stringify(setUserImg));
   }
   function handleModal() {
     setShowModal(true);
@@ -293,6 +313,15 @@ export default function Header(props) {
     if (localStorage.getItem("ToggleUsImage") !== null) {
       let value = localStorage.getItem("ToggleUsImage");
       setDisplayUserImage(JSON.parse(value));
+    }
+
+    if (localStorage.getItem("SetUserImg") !== null) {
+      let value = localStorage.getItem("SetUserImg");
+          value = JSON.parse(value)
+      setBorderRadius(value.BorderRadius)
+      setSquare(value.SetSquere)
+      setCircle(value.SetCircle)
+      
     }
   }, []);
   let data = [

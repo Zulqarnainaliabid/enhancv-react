@@ -10,7 +10,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORTRAINING , INDUXTRAINING} from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORTRAINING , INDUXTRAINING, SETTOGGLEBUTTONNULL,} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -65,12 +65,20 @@ export default function Boxfunction(props) {
   const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
   const [BullotsTextHolder, setBullotsTextHolder] = useState("");
   const [TitleTextHolder, setTitleTextHolder] = useState("");
+  const [WidthLeftRight, setWidthLeftRight] = useState(null);
   const dispatch = useDispatch();
   const Indux = useSelector((state) => state.InduxTraining);
+  const Incrementnull = useSelector((state) => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
 
   useEffect(() => {
     setToggleButtons(false);
-  }, [props.UpdateState]);
+  }, [SetToggleButtonsNull]);
+  
+  useEffect(() => {
+    setToggleButtons(false);
+  }, [Incrementnull]);
   function HandleTextDecoration() {
     setToggleButtons(false);
     if (
@@ -85,6 +93,7 @@ export default function Boxfunction(props) {
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORTRAINING());
     dispatch(INCREMENT());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -202,6 +211,25 @@ export default function Boxfunction(props) {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if(UpdateWidthLeftRight!==null){
+      UpdateWidthLeftRight.map((item,index)=>{
+        if(UpdateWidthLeftRight[index].name==="Training")
+        {
+          if(UpdateWidthLeftRight[index].Left)
+          {
+            console.log("Left")
+           setWidthLeftRight("556px")
+          }else{
+            console.log("right")
+            setWidthLeftRight("300px")
+          }
+        }
+      })
+    }
+  }, []);
+
   return (
     <>
       <div style={{ position: "relative" }}>
@@ -320,7 +348,7 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
-              <div className="app" style={{width:"300px"}}>
+              <div className="app" style={{width:WidthLeftRight}}>
               <Editor
                 text={BullotsTextHolder}
                 onChange={(text) => {

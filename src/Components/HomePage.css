@@ -108,9 +108,12 @@ border: 1px solid #00c091;
 .outerWraperInputFieldHaider{
 display: flex;
 flex-direction: column;
-width: 100%;
 line-height: 16px;
+/* border: 1px solid; */
 /* border: 1px solid firebrick; */
+}
+input[type="range"] {
+  width: 100%;
 }
 .outerWraperBoxHeaderButton{
   position: absolute;
@@ -649,7 +652,7 @@ color: blue;
 }
 .OuterWraperToggleButtons{
   position: absolute;
-  z-index: 99999999;
+  z-index: 4;
   background-color: white;
   padding: 18px;
   border-radius: 4px;
@@ -946,7 +949,7 @@ margin: 7px 13px 4px 0px;
 }
 .medium-editor-element {
   word-wrap: break-word;
-  min-height: 30px;
+  min-height: unset;
   margin: 0;
   /* width: 300px; */
   padding: 0px;
@@ -1016,6 +1019,14 @@ textarea {
   pointer-events: none;
   font-size: 16px;
 }
+.PreEditor.medium-editor-placeholder:after {
+margin: unset;
+ margin: 0px 0px 0px 0px !important;
+}
+.medium-editor-placeholder {
+  position: relative;
+  margin: 5px 0px 0px 16px
+}
 .TexrHolderexperience{
   font-size: 29px;
   width: 100%;
@@ -1034,7 +1045,7 @@ textarea {
 }
 
 .EditorText{
-  margin: -11px 0px 0px 25px;
+  margin: -14px 0px 0px 18px
 }
 .outerWraperEditor {
   /* border: 1px solid; */
@@ -1141,6 +1152,17 @@ article {
 }
 p{
   margin: unset !important;
+  padding: 4px;
+}
+p::before{
+  content: "\A";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.479);
+    margin:5px 0px 0px -12px;
+    display:inline;
+    position:absolute;
 }
 .companyTitlePassionsSection:focus::placeholder{
 color:rgba(71, 72, 75, 0.37);

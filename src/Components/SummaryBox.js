@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import Editor from "react-medium-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORSUMMARY , INDUXSUMMARY} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORSUMMARY , INDUXSUMMARY, SETTOGGLEBUTTONNULL,} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -22,10 +22,11 @@ export default function Boxfunction(props) {
   const [Counter, setCounter] = useState(0);
   const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const [SummaryTextHolder, setSummaryTextHolder] = useState("");
+  const [WidthLeftRight, setWidthLeftRight] = useState(null);
+  
   const dispatch = useDispatch();
   const Indux = useSelector((state) => state.InduxSummary);
- 
-  useEffect(() => {}, [props.UpdateState]);
+  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
   function HandleTextDecoration() {
     if (
       EnabledFontFormatColor === "#38434744" ||
@@ -39,6 +40,7 @@ export default function Boxfunction(props) {
   function HandleSetBackGroundColor() {
     dispatch(INCREMENTBACKGROUNDCOLORSUMMARY());
     dispatch(INCREMENT());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.HandleCompleteBoarderUnSelected();
     let temp = props.list;
     if (!temp[props.index].selected) {
@@ -124,12 +126,29 @@ export default function Boxfunction(props) {
     setEnabledFontFormatNoDrop("pointer");
   }
   useEffect(() => {
-    // inputref.current.focus()
     if (localStorage.getItem("arraySummary") !== null) {
       setcheckplacehoderBollets(false);
       let value = localStorage.getItem("arraySummary");
       value = JSON.parse(value);
       setSummaryTextHolder(value[props.index].value.titleSummaryTextHolder);
+    }
+  }, []);
+
+  useEffect(() => {
+    if(UpdateWidthLeftRight!==null){
+      UpdateWidthLeftRight.map((item,index)=>{
+        if(UpdateWidthLeftRight[index].name==="Summary")
+        {
+          if(UpdateWidthLeftRight[index].Left)
+          {
+            console.log("Left")
+           setWidthLeftRight("556px")
+          }else{
+            console.log("right")
+            setWidthLeftRight("325px")
+          }
+        }
+      })
     }
   }, []);
   return (
@@ -185,9 +204,8 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
-              <div className="app" style={{width:"300px"}}>
+              <div className="app" style={{width:WidthLeftRight,marginLeft: "15px"}}>
               <Editor
-                // ref={inputref}
                 text={SummaryTextHolder}
                 onChange={(text) => {
                   setSummaryTextHolder(text);

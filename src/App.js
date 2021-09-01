@@ -42,6 +42,7 @@ import {
   INCREMENTBACKGROUNDCOLORACHIEVEMENT,
   TOGGLEREARRANGEBUTTONS,
   TOGGLEUSERIMGMODALBUTTONS,
+  UPDATEWIDTHLEFTRIGTH,
   ACHIEVEMENTYES,
   TOGGLELEFT,
 } from "./Components/Redux/actions/indux";
@@ -583,6 +584,7 @@ function App() {
         }
         setArray([...Array]);
       }
+      dispatch(UPDATEWIDTHLEFTRIGTH(Array))
       localStorage.setItem("Section", JSON.stringify(Array));
     }
   }

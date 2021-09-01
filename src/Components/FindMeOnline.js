@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./FindMeOnlineBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE , FINDMEONLINEYES ,TOGGLEREARRANGEBUTTONS, INDUXFINDMEONLINE} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLOFINDMEONLINE , FINDMEONLINEYES ,TOGGLEREARRANGEBUTTONS, INDUXFINDMEONLINE,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
 export default function FindMeOnline(props) {
 
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -32,8 +32,10 @@ export default function FindMeOnline(props) {
   const nullBackgroundcolorEducation = useSelector((state) => state.IncrementBackgroundColorEducation);
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLOFINDMEONLINE());
+    dispatch(SETTOGGLEBUTTONNULL());
     props.button();
     setbackgroundColor("white");
     setShowHeaderButton("flex");
@@ -206,6 +208,11 @@ export default function FindMeOnline(props) {
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    let temp = array;
+    temp.map((item, index) => {
+      temp[index].selected = false;
+    });
+    setState([...temp]);
   }, [CounterData]);
 
   function HandlerAddItemInArray() {
@@ -244,6 +251,8 @@ export default function FindMeOnline(props) {
     setState([...temp]);
     localStorage.setItem("arrayFindmeOnline", JSON.stringify(temp));
   }
+ 
+
   function HanderDeleteItemInArray() {
    dispatch(FINDMEONLINEYES(true));
   }
@@ -257,6 +266,54 @@ export default function FindMeOnline(props) {
       setState(value);
     }
   }, []);
+
+  useEffect(() => {
+    if(AddDefaultSection.toggle){
+      if(AddDefaultSection.name==="Find Me"){
+          let value = localStorage.getItem("arrayFindmeOnline");
+          value = JSON.parse(value);
+          if(value===[]||value===null || value.length===0){
+            if (array === [] || array.length === 0) {
+              setToggleArrowDown(false);
+              setToggleArrowUp(false);
+            } else {
+              setToggleArrowDown(false);
+              setToggleArrowUp(true);
+            }
+            dispatch(INCREMENTBACKGROUNDCOLOFINDMEONLINE());
+            props.button();
+            setbackgroundColor(null);
+            setborderBottm("none");
+            setShowHeaderButton("none");
+            array.push({
+              selected: false,
+              toggleButton: { showDiscription: true, showicon: true },
+              togglebuttonlist: [
+                { name: "Show UserName", selectedToggleButton: true },
+                { name: "Show Icons", selectedToggleButton: true },
+              ],
+              value: {
+                titleSocialnetwork: "",
+                bullots: "",
+              },
+            });
+            let temp = [];
+            temp = array;
+            temp.map((item, index) => {
+              item.selected = false;
+            });
+            let index = temp.length - 1;
+            dispatch(INDUXFINDMEONLINE(index));
+            temp[index].selected = true;
+            setState([...temp]);
+            localStorage.setItem("arrayFindmeOnline", JSON.stringify(temp));
+
+          }
+         
+      }
+    }
+    dispatch(DEDAULTADDSECTION("",false));
+  }, [AddDefaultSection.toggle]);
   function IsActive(Isactive) {
     if (Isactive) {
       setToggleArrowDown(Isactive);
