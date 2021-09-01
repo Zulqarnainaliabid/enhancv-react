@@ -598,7 +598,7 @@ export default function Boxfunction(props) {
                 <MdDateRange  className="dateIcone" />
               </label>
 
-              <div style={{ display: DislayDatePeriod ? "block" : "none" }}>
+              <div style={{ display: DislayDatePeriod ? "block" : "none" ,width:"104px"}}>
                 Date Period
               </div>
               <div className="DateFrom">
