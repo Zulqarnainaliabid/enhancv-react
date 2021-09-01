@@ -576,7 +576,7 @@ export default function Boxfunction(props) {
               className="outerWraperDateExperienceSectionDatePeriod"
             >
               <MdDateRange className="dateIcone" />
-              <div style={{ display: DislayDatePeriod ? "block" : "none",width:"104px"}}>
+              <div style={{ display: DislayDatePeriod ? "block" : "none"}}>
                 Date Period
               </div>
               <div className="DateFrom">
