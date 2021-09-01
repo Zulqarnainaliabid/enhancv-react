@@ -399,7 +399,7 @@ export default function PassionBoxfunction(props) {
               {checkplacehoderBollets ? (
                 <div>jj</div>
               ) : (
-                <div className="app" style={{width:WidthLeftRight}}>
+                <div className="app" style={{width:WidthLeftRight,marginLeft:"12px"}}>
                 <Editor
                   text={BulletsTextHolder}
                   onChange={(text) => {

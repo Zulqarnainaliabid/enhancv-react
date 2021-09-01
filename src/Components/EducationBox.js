@@ -424,7 +424,7 @@ export default function Boxfunction(props) {
           if(UpdateWidthLeftRight[index].Left)
           {
             console.log("Left")
-           setWidthLeftRight("396px")
+           setWidthLeftRight("266px")
           }else{
             console.log("right")
             setWidthLeftRight("176px")
@@ -613,7 +613,7 @@ export default function Boxfunction(props) {
                     <div>{YearOnGoing}</div>
                   </div>
                 ) : (
-                  <div style={{ display: "flex" }}>
+                  <div style={{ display: "flex" ,width:"0px"}}>
                     <div
                       style={{
                         display: BackwordMinusOngoing ? "block" : "none",
@@ -665,7 +665,7 @@ export default function Boxfunction(props) {
               />
             </div>
           </div>
-          <div className="outerWraperGPA" style={{display:"flex"}}>
+          <div className="outerWraperGPA" style={{display:"flex",width:"0px"}}>
             <div>
               <div
                 onClick={handleText}

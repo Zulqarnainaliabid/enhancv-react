@@ -681,7 +681,7 @@ export default function Boxfunction(props) {
             {checkplacehodercompanydiscription ? (
               <div>hh</div>
             ) : (
-              <div style={{width:WidthLeftRight}}><Editor
+              <div style={{width:WidthLeftRight,marginLeft: "12px"}}><Editor
                 className="PreEditor"
                 text={SummaryWorkTextHolder}
                 onChange={(text) => {
