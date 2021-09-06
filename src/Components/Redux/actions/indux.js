@@ -379,3 +379,50 @@ export  const  UPDATEWIDTHLEFTRIGTH=(item)=>{
         payload:item,
     }
 }
+
+export  const  BACKGROUNDCOLORDATPICKER=(item)=>{
+    return{
+        type:'BACKGROUNDCOLORDATPICKER',
+        payload:item,
+    }
+}
+
+export  const  BACKGROUNDCOLORDATPICKEREXPERIENCE=(item)=>{
+    return{
+        type:'BACKGROUNDCOLORDATPICKEREXPERIENCE',
+        payload:item,
+    }
+}
+
+export  const  BACKGROUNDCOLORDATPICKPROJECT=(item)=>{
+    return{
+        type:'BACKGROUNDCOLORDATPICKPROJECT',
+        payload:item,
+    }
+}
+
+export  const  BACKGROUNDCOLORDATPICKPVOLUNTEERING=(item)=>{
+    console.log("false",item)
+    return{
+        type:'BACKGROUNDCOLORDATPICKPVOLUNTEERING',
+        payload:item,
+    }
+}
+
+export  const  SINGLECOLUMN=(item)=>{
+    console.log("false",item)
+    return{
+        type:'SINGLECOLUMN',
+        payload:item,
+    }
+}
+
+export  const  UPDATENUMBERSLICE=(item)=>{
+    console.log("false",item)
+    return{
+        type:'UPDATENUMBERSLICE',
+        payload:item,
+    }
+}
+
+

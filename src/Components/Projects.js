@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./ProjectBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT ,INCREMENTBACKGROUNDCOLORPROJECT , PROJECTYES ,TOGGLEREARRANGEBUTTONS, INDUXPROJECT,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
+import { INCREMENT ,INCREMENTBACKGROUNDCOLORPROJECT , PROJECTYES ,TOGGLEREARRANGEBUTTONS, INDUXPROJECT,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION,BACKGROUNDCOLORDATPICKPROJECT} from "./Redux/actions/indux";
 export default function Projects(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -34,6 +34,8 @@ export default function Projects(props) {
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
   const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
+  
+  const BackgroundColorDatePickerProject = useSelector((state) => state.BackgroundColorDatePickerProject);
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLORPROJECT());
     dispatch(SETTOGGLEBUTTONNULL());
@@ -376,6 +378,11 @@ export default function Projects(props) {
 
   return (
     <>
+      {BackgroundColorDatePickerProject && (
+              <div onClick={()=>{
+                dispatch(BACKGROUNDCOLORDATPICKPROJECT(false));
+              }} className="BackgroundColorDatePicker"></div>
+            )}
       <div
         className="outerWraperCompleteBox"
         style={{ backgroundColor: backgroundColor }}

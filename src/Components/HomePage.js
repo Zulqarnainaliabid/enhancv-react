@@ -1,14 +1,15 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./HomePage.css";
 import img from "./Backgroundimg/backgroundimg.png";
 import Header from "../Components/usernamePAge";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState,useSelector } from "react";
 import { INCREMENTBACKGROUNDNULL,TOGGLELEFT } from "./Redux/actions/indux";
 const { forwardRef, useRef, useImperativeHandle } = React;
 const Home = forwardRef((props, ref) => {
   const [Count, setCount] = useState(null);
   const dispatch = useDispatch();
+
   function HandleHoverEffect() {
     props.SetHoverEffect(null);
     setCount(Count+1)
@@ -21,6 +22,7 @@ const Home = forwardRef((props, ref) => {
         dispatch(INCREMENTBACKGROUNDNULL());
     }
   }));
+  console.log("check it",props.ToggleAddNewSectionRight)
   return (
     <div className="outerContainter">
       <div
@@ -32,7 +34,26 @@ const Home = forwardRef((props, ref) => {
       >
         <Header button={props.HandleSetHoverEffect} data={Count} />
         <div className="outerWraperTwoSections">
-          {props.ToggleAddNewSectionLeft ? (
+        {props.SingleColumnTemplate ?
+         <>{props.ToggleAddNewSectionLeftSingleColumn ? <div className="SectionRightSingleColumn">
+          {props.Array && props.Array.filter((Section) =>props.SingleColumnTemplate || Section.Left === true).map(
+              (item, index) => {
+                return <div
+                key={index}
+                >{item.section}</div>;
+              }
+            )}
+        </div>: <div className="FirstSection"
+            onClick={()=>{
+              props.setToggleAddNewSection(true)
+              dispatch(TOGGLELEFT(true));
+            }}
+            >
+              <div className="AddnewSection"
+              >Add new section</div>
+            </div>}</>
+        :<>
+         {props.ToggleAddNewSectionLeft ? (
              <div className="SectionRight">
              {props.Array && props.Array.filter((Section) => Section.Left === true).map(
                  (item, index) => {
@@ -70,9 +91,21 @@ const Home = forwardRef((props, ref) => {
             }}
             >
               <div className="AddnewSection"
-              >Add new section</div>
+              >Add new section </div>
             </div>
-          )}
+          )}</>
+          }
+
+
+
+
+
+
+
+
+
+
+
         </div>
         <div className="OuterWraperSection"></div>
         <div

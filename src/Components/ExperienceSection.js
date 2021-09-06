@@ -13,7 +13,8 @@ import {
   TOGGLEREARRANGEBUTTONS,
   INDUXEXPERIENCE,
   SETTOGGLEBUTTONNULL,
-  DEDAULTADDSECTION
+  DEDAULTADDSECTION,
+  BACKGROUNDCOLORDATPICKEREXPERIENCE
 } from "./Redux/actions/indux";
 export default function ExperienceSection(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -65,6 +66,9 @@ export default function ExperienceSection(props) {
   );
   const nullBackgroundcolorIndustryExperience = useSelector(
     (state) => state.IncrementBackgroundColorIndusteryExperience
+  );
+  const BackgroundColorDatePickerExperience = useSelector(
+    (state) => state.BackgroundColorDatePickerExperience
   );
  
   function HandleCompleteBoarderSelected() {
@@ -408,6 +412,11 @@ export default function ExperienceSection(props) {
   }
   return (
     <>
+     {BackgroundColorDatePickerExperience && (
+              <div onClick={()=>{
+                dispatch(BACKGROUNDCOLORDATPICKEREXPERIENCE(false));
+              }} className="BackgroundColorDatePicker"></div>
+            )}
       <div
         className="outerWraperCompleteBox"
         style={{ backgroundColor: backgroundColor }}

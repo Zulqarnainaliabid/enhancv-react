@@ -59,6 +59,12 @@ import ToggleUserImgModal from './ToggleUserImgModalButtons'
 import SetToggleButtonsNull from './SetToggleButtonsNull'
 import DefaultAddSection from './DefaultAddSection'
 import UpdateWidthLeftRight from './UpdateWidthLeftRigth'
+import BackgroundColorDatePicker from './BackgroundColorDatePicker'
+import BackgroundColorDatePickerExperience from './BackgroundColorDatePickerExperience'
+import BackgroundColorDatePickerProject from './BackgroundColorDatePickerProject'
+import BackgroundColorDatePickerVolunteering from './BackgroundColorDatePickerVolunteering'
+import UpdateNumberSlice from './UpdateNumberSlice'
+import SingleColumnTemplate from './singleColumn'
 const allReducers = combineReducers({
 counter:counterReducer,
 CounterData:IncrementData,
@@ -119,6 +125,12 @@ ToggleRearrangebuttons:ToggleRearrangebuttons,
 ToggleUserImgModal:ToggleUserImgModal,
 SetToggleButtonsNull:SetToggleButtonsNull,
 DefaultAddSection:DefaultAddSection,
-UpdateWidthLeftRight:UpdateWidthLeftRight
+UpdateWidthLeftRight:UpdateWidthLeftRight,
+BackgroundColorDatePicker:BackgroundColorDatePicker,
+BackgroundColorDatePickerExperience:BackgroundColorDatePickerExperience,
+BackgroundColorDatePickerProject:BackgroundColorDatePickerProject,
+BackgroundColorDatePickerVolunteering:BackgroundColorDatePickerVolunteering,
+SingleColumnTemplate:SingleColumnTemplate,
+UpdateNumberSlice:UpdateNumberSlice,
 });
 export default allReducers

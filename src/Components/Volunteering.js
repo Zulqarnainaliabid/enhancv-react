@@ -6,7 +6,7 @@ import { CgArrangeFront } from "react-icons/cg";
 import Boxfunction from "./VolunteeringBox";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLORVOLUNTEERING , VOLUNTEERINFYES,INDUXVOLUNTEERING , TOGGLEREARRANGEBUTTONS,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION} from "./Redux/actions/indux";
+import { INCREMENT , INCREMENTBACKGROUNDCOLORVOLUNTEERING , VOLUNTEERINFYES,INDUXVOLUNTEERING , TOGGLEREARRANGEBUTTONS,SETTOGGLEBUTTONNULL,DEDAULTADDSECTION,BACKGROUNDCOLORDATPICKPVOLUNTEERING} from "./Redux/actions/indux";
 export default function Volunteering(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
   const [backgroundColor, setbackgroundColor] = useState(null);
@@ -32,6 +32,8 @@ export default function Volunteering(props) {
   const nullBackgroundcolorIndustryExperience = useSelector((state) => state.IncrementBackgroundColorIndusteryExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
   const AddDefaultSection = useSelector((state) => state.DefaultAddSection);
+  const BackgroundColorDatePickerVolunteering = useSelector((state) => state.BackgroundColorDatePickerVolunteering);
+
   function HandleCompleteBoarderSelected() {
     props.button();
     dispatch(INCREMENTBACKGROUNDCOLORVOLUNTEERING());
@@ -269,8 +271,6 @@ export default function Volunteering(props) {
     localStorage.setItem("arrayVolunteering", JSON.stringify(temp));
   }
 
- 
-
   function HanderDeleteItemInArray() {
     dispatch(VOLUNTEERINFYES(true));
   }
@@ -368,6 +368,12 @@ export default function Volunteering(props) {
 
   return (
     <>
+      {BackgroundColorDatePickerVolunteering && (
+              <div onClick={()=>{
+                console.log("b",BackgroundColorDatePickerVolunteering)
+                dispatch(BACKGROUNDCOLORDATPICKPVOLUNTEERING(false));
+              }} className="BackgroundColorDatePicker">Volunteering</div>
+            )}
       <div
         className="outerWraperCompleteBox"
         style={{ backgroundColor: backgroundColor }}

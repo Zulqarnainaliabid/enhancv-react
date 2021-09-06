@@ -142,6 +142,9 @@ color: #00c091;
   width: 90%;
   z-index: 3;
 }
+.OuterWraperSlic{
+  border: 1px solid;
+}
 .SectionLeft {
   /* border: 1px solid blue; */
   width: 37%;
@@ -152,6 +155,9 @@ color: #00c091;
   /* display: flex;
   flex-direction: column;
   gap: 12px; */
+}
+.SectionRightSingleColumn{
+  width: 100%;
 }
 .FirstSection{
   /* border: 1px solid; */
@@ -284,7 +290,7 @@ color: #00c091;
 .outerContainerButtons{
   /* border: 1px solid rgb(0, 141, 106); */
   position: absolute;
-  top: 78px;
+  top: 56px;
   left: 188px;
   gap: 21px;
   font-size: 18px;
@@ -306,15 +312,38 @@ color: #00c091;
 }
 .RearrangeIcon {
   /* border: 1px solid red; */
-  font-size: 21px;
+  font-size: 19px;
 }
 .OuterWraperAddNewSectionButton:hover{
   color: #8c7cdb83;
 }
 .OuterWraperReArrangeButton {
-  color: black;
+  color: #384347;
   display: flex;
   gap: 9px;
+}
+.outerWraperTemplateButtons{
+border: 1px solid #384347;
+display: flex;
+padding: 6px;
+font-size: 17px;
+gap: 6px;
+border-radius: 6px;
+cursor: pointer;
+color: #384347;
+}
+/* .outerWraperButtonsDownload{
+  border: 1px solid #384347;
+display: flex;
+padding: 8px;
+gap: 6px;
+border-radius: 6px;
+cursor: pointer;
+color: #384347;
+} */
+.outerWraperTemplateButtons:hover{
+  color: #38434793;
+  border-color: #38434793;
 }
 .OuterWraperReArrangeButton:hover{
   color: rgba(0, 0, 0, 0.589);
@@ -672,6 +701,45 @@ color: blue;
 .InnerWraperToggleButtons{
 display: flex;
 }
+.ToggleButtonsLabelSlice{
+  transition: color .2s ease-in-out;
+  font-size: 17px;
+  color: #384347;
+  width: 171px;
+  margin: 6px 0 0 0;
+  padding: 12px;
+  /* margin: 19px 0 0 0; */
+  cursor: pointer;
+  font-weight: 400;
+}
+.inputFieldChart{
+  border: 1px solid;
+}
+.outerWraperLAbel {
+  display: flex;
+  width: 236px;
+}
+.outerWraperName {
+  background: black;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 7px;
+  width: 12px;
+  align-items: center;
+  font-size: 13px;
+  display: flex;
+  color: white;
+  font-weight: 700;
+  justify-content: center;
+}
+.outerWraperInputFieldSlice{
+  width: 28%;
+  margin: 85px 0px 0px 20px;
+}
+.OuterWraperDoughnutchart {
+  /* border: 1px solid; */
+  width: 57%;
+}
 .ToggleButtonsLabel{
   /* border: 1px solid; */
   transition: color .2s ease-in-out;
@@ -701,6 +769,13 @@ margin: 15px 0 0 0;
   height: 19px;
   margin: 17px 5px 0px 0px;
   border-radius: 19px;
+}
+.InnerWraperToggleButtonsSlice{
+  display: flex;
+  position: absolute;
+  background-color: white;
+  top: -60px;
+  padding: 8px;
 }
 .outerWraperBorderStyle{
   display: flex;
@@ -956,6 +1031,48 @@ margin: 7px 13px 4px 0px;
   overflow: hidden;
   padding:0px;
   color: rgba(71, 72, 75, 0.81);
+}
+.BackgroundColorDatePicker{
+  background-color: rgba(0, 0, 0, 0.384);
+  position:absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom:0;
+  /* border: 1px solid; */
+}
+.TemplateModal{
+  background-color: #008CFF;
+}
+.OuterWraperModalTemplate{
+  /* border: 1px solid; */
+  position: fixed;
+  right: 0;
+  width: 25%;
+  height: 692px;
+  z-index: 5;
+  overflow-y: scroll;
+}
+.TextHolderTemplate{
+  text-align: center;
+  margin: 12px;
+  font-weight: 700;
+}
+.TamplateImg1{
+/* border: 1px solid; */
+width: 100%;
+cursor: pointer;
+}
+.TamplateImg1:hover{
+  border: 1px solid #00c091;
+}
+
+.testModal {
+  background-color: white;
+  padding: 30px;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 textarea {
   /* width: 157px; */

@@ -142,6 +142,71 @@ function HomaPageSabSection(props) {
         <div className="AppSubSections">
           <div className="HeaderSubSections">Header</div>
           <div className="outerWraperContainerSubSections">
+           {props.SingleColumnTemplate?
+           <>
+            <div
+              className="LeftContainerSubSections"
+              onDrop={HandleLeftContainer}
+              onDragOver={dragOver}
+            >
+              {props.Array &&
+                props.Array.filter((item) =>props.SingleColumnTemplate || item.Left === true).map(
+                  (item, index) => {
+                    return (
+                        <div 
+                          key={index}
+                          draggable
+                          onDragStart={(e) => HandleDRagStart(index, "Left", e)}
+                          onDragEnd={() => handleDragEnd()}
+                          onDragEnter={() => HandleMargen(item)}
+                          onDrop={(e) => drop(e, index, true)}
+                          onDragLeave={() => HandleMargenLeave(item)}
+                          onDragOver={dragOver}
+                          style={{
+                            marginTop: item.margen,
+                            boxShadow: item.BoxShedow,
+                            position: "relative",
+                          }}
+                          onMouseEnter={() => {
+                            let temp = [];
+                            temp = props.Array;
+                            temp[index].ToggleCrossIconLeft = true;
+                            props.setArray([...temp]);
+                          }}
+                          onMouseLeave={() => {
+                            let temp = [];
+                            temp = props.Array;
+                            temp[index].ToggleCrossIconLeft = false;
+                            props.setArray([...temp]);
+                          }}
+                        >
+                          <div
+                            className="DotIconsSubSections"
+                            style={{ position: "absolute" }}
+                          >
+                            : :
+                          </div>
+                          <RiCloseFill
+                            className="crossIcoSubSections"
+                            style={{
+                              position: "absolute",
+                              display: true ? "block" : "none",
+                            }}
+                            onClick={()=>{
+                              let nameSection = item.name
+                              props.HandleRemoveSection(nameSection)
+                              childRef.current.HandleRemoveSectionRearrange(nameSection)
+                            }}
+                          />
+                          <div className="boxSubSections">{item.name}</div>
+                        </div>
+                    );
+                  }
+                )}
+            </div>
+           </>
+           :
+           <>
             <div
               className="LeftContainerSubSections"
               onDrop={HandleLeftContainer}
@@ -264,6 +329,7 @@ function HomaPageSabSection(props) {
                   }
                 )}
             </div>
+         </>}
           </div>
           <div
             className="submitButtonSubSections"

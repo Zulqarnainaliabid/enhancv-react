@@ -28,6 +28,7 @@ export default function ItemFunction(props) {
             temp[props.index].Isactive = false;
             temp[props.index].selectedBoder = false;
             props.setMonthArry([...temp]);
+            console.log("month.....")
             props.month(null)
           }}
           onMouseLeave={() => {

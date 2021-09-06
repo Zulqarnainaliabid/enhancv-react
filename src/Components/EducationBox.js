@@ -16,6 +16,7 @@ import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLOREDUCATION,
   INDUXEDUCATION, SETTOGGLEBUTTONNULL,
+  BACKGROUNDCOLORDATPICKER,
 } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
@@ -91,6 +92,8 @@ export default function Boxfunction(props) {
   const [GPAObtainTestHolder, setGPAObtainTestHolder] = useState("");
   const [WidthLeftRight, setWidthLeftRight] = useState(null);
   const [ArrayTemp, setArrayTemp] = useState([]);
+  const [Tempdata, setTempdata] = useState(false);
+  
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
@@ -99,13 +102,16 @@ export default function Boxfunction(props) {
   const Incrementnull = useSelector((state) => state.IncrementNull);
   const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
   const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
-
+  
+  const BackgroundColorDatePicker = useSelector((state) => state.BackgroundColorDatePicker);
+  
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
   
   useEffect(() => {
     setToggleButtons(false);
+    setShowDate(false)
   }, [Incrementnull]);
   function HandleOngoing(toggle) {
     if (toggle) {
@@ -433,9 +439,30 @@ export default function Boxfunction(props) {
       })
     }
   }, []);
+
+  useEffect(() => {
+    console.log("fale = ",BackgroundColorDatePicker)
+    if(BackgroundColorDatePicker===false){
+      setShowDate(false)
+    }
+  }, [BackgroundColorDatePicker]);
   return (
     <>
       <div style={{ position: "relative" }}>
+      {ShowDate && (
+              <div>
+                <DatePicker
+                  date={handleUpdateDate}
+                  month={handleUpdateDateMonthFrom}
+                  HandleMonthOngoing={HandleMonthOngoing}
+                  handleYearOngoing={handleYearOngoing}
+                  HandleOngoing={HandleOngoing}
+                  setUpdateMonthFrom={setUpdateMonthFrom}
+                  UpdateMonthFrom={UpdateMonthFrom}
+                  setUpdateDate={setUpdateDate}
+                />
+              </div>
+            )}
         {ToggleButtons && (
           <div className="OuterWraperToggleButtonsExperienceSection">
             {togglebuttonarrayList.map((item, index) => {
@@ -581,7 +608,8 @@ export default function Boxfunction(props) {
           >
             <div
               onClick={() => {
-                setShowDate(!ShowDate);
+                setShowDate(!ShowDate)
+                dispatch(BACKGROUNDCOLORDATPICKER(true));
               }}
               style={{ display: ShowPeriod ? "flex" : "none" }}
               className="outerWraperDateExperienceSectionDatePeriod"
@@ -613,7 +641,7 @@ export default function Boxfunction(props) {
                     <div>{YearOnGoing}</div>
                   </div>
                 ) : (
-                  <div style={{ display: "flex" ,width:"0px"}}>
+                  <div style={{ display: "flex"}}>
                     <div
                       style={{
                         display: BackwordMinusOngoing ? "block" : "none",
@@ -626,26 +654,6 @@ export default function Boxfunction(props) {
                 )}
               </div>
             </div>
-            {ShowDate && (
-              <div>
-                <DatePicker
-                  date={handleUpdateDate}
-                  month={handleUpdateDateMonthFrom}
-                  HandleMonthOngoing={HandleMonthOngoing}
-                  handleYearOngoing={handleYearOngoing}
-                  HandleOngoing={HandleOngoing}
-                  setUpdateMonthFrom={setUpdateMonthFrom}
-                  UpdateMonthFrom={UpdateMonthFrom}
-                  setUpdateDate={setUpdateDate}
-                />
-                <div
-                  className="BackGroundHoverEffectDate"
-                  onClick={() => {
-                    setShowDate(false);
-                  }}
-                ></div>
-              </div>
-            )}
             <div
               style={{ display: ShowLocation ? "flex" : "none" }}
               className="outerWraperDateExperienceSection"

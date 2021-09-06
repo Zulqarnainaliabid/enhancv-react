@@ -14,6 +14,7 @@ import {
   TOGGLEREARRANGEBUTTONS,
   SETTOGGLEBUTTONNULL,
   DEDAULTADDSECTION,
+  BACKGROUNDCOLORDATPICKER,
 } from "./Redux/actions/indux";
 export default function Education(props) {
   const [ShowHeaderButton, setShowHeaderButton] = useState("none");
@@ -67,6 +68,10 @@ export default function Education(props) {
   const nullBackgroundcolorIndustryExperience = useSelector(
     (state) => state.IncrementBackgroundColorIndusteryExperience
   );
+  const BackgroundColorDatePicker = useSelector(
+    (state) => state.BackgroundColorDatePicker
+  );
+
   function HandleCompleteBoarderSelected() {
     dispatch(INCREMENTBACKGROUNDCOLOREDUCATION());
     dispatch(SETTOGGLEBUTTONNULL());
@@ -248,7 +253,6 @@ export default function Education(props) {
     });
     setState([...temp]);
   }, [CounterData]);
-
   function HandlerAddItemInArray() {
     if (array === [] || array.length === 0) {
       setToggleArrowDown(false);
@@ -397,6 +401,11 @@ export default function Education(props) {
   }
   return (
     <>
+      {BackgroundColorDatePicker && (
+              <div onClick={()=>{
+                dispatch(BACKGROUNDCOLORDATPICKER(false));
+              }} className="BackgroundColorDatePicker"></div>
+            )}
       <div
         className="outerWraperCompleteBox"
         style={{ backgroundColor: backgroundColor }}

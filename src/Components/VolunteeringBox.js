@@ -17,6 +17,7 @@ import {
   INCREMENTBACKGROUNDCOLORVOLUNTEERING,
   INDUXVOLUNTEERING,
   SETTOGGLEBUTTONNULL,
+  BACKGROUNDCOLORDATPICKPVOLUNTEERING,
 } from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
@@ -97,20 +98,25 @@ export default function Boxfunction(props) {
     useState("");
   const [BullotsTextHolder, setBullotsTextHolder] = useState("");
   const [WidthLeftRight, setWidthLeftRight] = useState(null);
-  
+
   const Indux = useSelector((state) => state.InduxVolunteering);
   const Incrementnull = useSelector((state) => state.IncrementNull);
-  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
-  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
+  const SetToggleButtonsNull = useSelector(
+    (state) => state.SetToggleButtonsNull
+  );
+  const UpdateWidthLeftRight = useSelector(
+    (state) => state.UpdateWidthLeftRight
+  );
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
-
+  const BackgroundColorDatePickerVolunteering = useSelector((state) => state.BackgroundColorDatePickerVolunteering);
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
-  
+
   useEffect(() => {
     setToggleButtons(false);
+    setShowDate(false);
   }, [Incrementnull]);
   function HandleOngoing(toggle) {
     if (toggle) {
@@ -425,25 +431,44 @@ export default function Boxfunction(props) {
   }, []);
 
   useEffect(() => {
-    if(UpdateWidthLeftRight!==null){
-      UpdateWidthLeftRight.map((item,index)=>{
-        if(UpdateWidthLeftRight[index].name==="Volunteering")
-        {
-          if(UpdateWidthLeftRight[index].Left)
-          {
-            console.log("Left")
-           setWidthLeftRight("556px")
-          }else{
-            console.log("right")
-            setWidthLeftRight("300px")
+    if (UpdateWidthLeftRight !== null) {
+      UpdateWidthLeftRight.map((item, index) => {
+        if (UpdateWidthLeftRight[index].name === "Volunteering") {
+          if (UpdateWidthLeftRight[index].Left) {
+            console.log("Left");
+            setWidthLeftRight("556px");
+          } else {
+            console.log("right");
+            setWidthLeftRight("300px");
           }
         }
-      })
+      });
     }
   }, []);
+
+  useEffect(() => {
+    console.log("fale = ",BackgroundColorDatePickerVolunteering)
+    if(BackgroundColorDatePickerVolunteering===false){
+      setShowDate(false)
+    }
+  }, [BackgroundColorDatePickerVolunteering]);
   return (
     <>
       <div style={{ position: "relative" }}>
+        {ShowDate && (
+          <div>
+            <DatePicker
+              date={handleUpdateDate}
+              month={handleUpdateDateMonthFrom}
+              HandleMonthOngoing={HandleMonthOngoing}
+              handleYearOngoing={handleYearOngoing}
+              HandleOngoing={HandleOngoing}
+              setUpdateMonthFrom={setUpdateMonthFrom}
+              UpdateMonthFrom={UpdateMonthFrom}
+              setUpdateDate={setUpdateDate}
+            />
+          </div>
+        )}
         {ToggleButtons && (
           <div className="OuterWraperToggleButtonsExperienceSection">
             {togglebuttonarrayList.map((item, index) => {
@@ -566,7 +591,7 @@ export default function Boxfunction(props) {
           <input
             type="text"
             value={CompnyNameTextHolder}
-            style={{fontSize:"15px !important"}}
+            style={{ fontSize: "15px !important" }}
             className="TitleExperienceBoxSection"
             onClick={() => {
               setEnabledFontFormatColor("#38434744");
@@ -590,15 +615,16 @@ export default function Boxfunction(props) {
             <div
               onClick={() => {
                 setShowDate(!ShowDate);
+                dispatch(BACKGROUNDCOLORDATPICKPVOLUNTEERING(true));
               }}
               style={{ display: ShowPeriod ? "flex" : "none" }}
               className="outerWraperDateExperienceSectionDatePeriod"
             >
-              <label >
-                <MdDateRange  className="dateIcone" />
+              <label>
+                <MdDateRange className="dateIcone" />
               </label>
 
-              <div style={{ display: DislayDatePeriod ? "block" : "none"}}>
+              <div style={{ display: DislayDatePeriod ? "block" : "none" }}>
                 Date Period
               </div>
               <div className="DateFrom">
@@ -634,26 +660,6 @@ export default function Boxfunction(props) {
                 )}
               </div>
             </div>
-            {ShowDate && (
-              <div>
-                <DatePicker
-                  date={handleUpdateDate}
-                  month={handleUpdateDateMonthFrom}
-                  HandleMonthOngoing={HandleMonthOngoing}
-                  handleYearOngoing={handleYearOngoing}
-                  HandleOngoing={HandleOngoing}
-                  setUpdateMonthFrom={setUpdateMonthFrom}
-                  UpdateMonthFrom={UpdateMonthFrom}
-                  setUpdateDate={setUpdateDate}
-                />
-                <div
-                  className="BackGroundHoverEffectDate"
-                  onClick={() => {
-                    setShowDate(false);
-                  }}
-                ></div>
-              </div>
-            )}
             <div
               style={{ display: ShowLocation ? "flex" : "none" }}
               className="outerWraperDateExperienceSection"
@@ -683,25 +689,29 @@ export default function Boxfunction(props) {
             {checkplacehodercompanydiscription ? (
               <div>hh</div>
             ) : (
-              <div className="app" style={{width:WidthLeftRight,marginLeft: "12px"}}>
-              <Editor
-                text={CompanyDiscriptionTextHolder}
-                onChange={(text) => {
-                  let array = props.list;
-                  array[props.index].value.companydiscriptionTextholder = text;
-                  localStorage.setItem(
-                    "arrayVolunteering",
-                    JSON.stringify(array)
-                  );
-                  setCompanyDiscriptionTextHolder(text);
-                }}
-                options={{
-                  placeholder: {
-                    text: "Description",
-                    hideOnClick: true,
-                  },
-                }}
-              />
+              <div
+                className="app"
+                style={{ width: WidthLeftRight, marginLeft: "12px" }}
+              >
+                <Editor
+                  text={CompanyDiscriptionTextHolder}
+                  onChange={(text) => {
+                    let array = props.list;
+                    array[props.index].value.companydiscriptionTextholder =
+                      text;
+                    localStorage.setItem(
+                      "arrayVolunteering",
+                      JSON.stringify(array)
+                    );
+                    setCompanyDiscriptionTextHolder(text);
+                  }}
+                  options={{
+                    placeholder: {
+                      text: "Description",
+                      hideOnClick: true,
+                    },
+                  }}
+                />
               </div>
             )}
           </div>
@@ -713,25 +723,28 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
-              <div className="app" style={{width:WidthLeftRight, marginTop: "10px"}}>
-              <Editor
-                text={BullotsTextHolder}
-                onChange={(text) => {
-                  let array = props.list;
-                  array[props.index].value.bullotsTextHolder = text;
-                  localStorage.setItem(
-                    "arrayVolunteering",
-                    JSON.stringify(array)
-                  );
-                  setBullotsTextHolder(text);
-                }}
-                options={{
-                  placeholder: {
-                    text: "What was the impact of your efforts?",
-                    hideOnClick: true,
-                  },
-                }}
-              />
+              <div
+                className="app"
+                style={{ width: WidthLeftRight, marginTop: "10px" }}
+              >
+                <Editor
+                  text={BullotsTextHolder}
+                  onChange={(text) => {
+                    let array = props.list;
+                    array[props.index].value.bullotsTextHolder = text;
+                    localStorage.setItem(
+                      "arrayVolunteering",
+                      JSON.stringify(array)
+                    );
+                    setBullotsTextHolder(text);
+                  }}
+                  options={{
+                    placeholder: {
+                      text: "What was the impact of your efforts?",
+                      hideOnClick: true,
+                    },
+                  }}
+                />
               </div>
             )}
           </div>

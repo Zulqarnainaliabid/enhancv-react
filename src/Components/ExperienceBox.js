@@ -13,7 +13,13 @@ import Editor from "react-medium-editor";
 import DatePicker from "./DatePicker/DatePicker";
 import Switch from "react-switch";
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT , INCREMENTBACKGROUNDCOLOREXPERIENCE , INDUXEXPERIENCE, SETTOGGLEBUTTONNULL,} from "./Redux/actions/indux";
+import {
+  INCREMENT,
+  INCREMENTBACKGROUNDCOLOREXPERIENCE,
+  INDUXEXPERIENCE,
+  SETTOGGLEBUTTONNULL,
+  BACKGROUNDCOLORDATPICKEREXPERIENCE,
+} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -97,18 +103,31 @@ export default function Boxfunction(props) {
   const [ShowPeriod, setShowPeriod] = useState(true);
   const [ShowLinks, setShowLinks] = useState(true);
   const [WidthLeftRight, setWidthLeftRight] = useState(null);
-  
+
   const Indux = useSelector((state) => state.InduxExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
-  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
-  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
+  const SetToggleButtonsNull = useSelector(
+    (state) => state.SetToggleButtonsNull
+  );
+  const UpdateWidthLeftRight = useSelector(
+    (state) => state.UpdateWidthLeftRight
+  );
+
+  const BackgroundColorDatePickerExperience = useSelector(
+    (state) => state.BackgroundColorDatePickerExperience
+  );
+  
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
-  
+
   useEffect(() => {
+    console.log("under", Incrementnull);
     setToggleButtons(false);
+    setShowDate(false);
   }, [Incrementnull]);
+
+  console.log("kkk", Incrementnull, ShowDate);
   const dispatch = useDispatch();
   function HandleOngoing(toggle) {
     if (toggle) {
@@ -224,7 +243,7 @@ export default function Boxfunction(props) {
     }
   }
   function HandleTextDecoration() {
-    setToggleButtons(false)
+    setToggleButtons(false);
     if (
       EnabledFontFormatColor === "#38434744" ||
       EnabledFontFormatNoDrop === "no-drop "
@@ -275,7 +294,7 @@ export default function Boxfunction(props) {
   function HandleArrowDown() {
     let index = props.index + 1;
     dispatch(INDUXEXPERIENCE(index));
-    setToggleButtons(false)
+    setToggleButtons(false);
     props.IsActiveUp(true);
     let temp = props.list;
     if (temp[props.index].selected) {
@@ -293,7 +312,7 @@ export default function Boxfunction(props) {
     let index = null;
     index = props.index - 1;
     dispatch(INDUXEXPERIENCE(index));
-    setToggleButtons(false)
+    setToggleButtons(false);
     props.IsActive(true);
     let temp = props.list;
     if (temp[props.index].selected) {
@@ -370,7 +389,7 @@ export default function Boxfunction(props) {
         setBackwordMinusOngoing(true);
       }
 
-    item[props.index].togglebuttonlist.map((item, index) => {
+      item[props.index].togglebuttonlist.map((item, index) => {
         if (item.name === "Show Title") {
           setShowTitle(item.selected);
         } else if (item.name === "Show Company Name") {
@@ -430,27 +449,45 @@ export default function Boxfunction(props) {
   }
 
   useEffect(() => {
-    if(UpdateWidthLeftRight!==null){
-      UpdateWidthLeftRight.map((item,index)=>{
-        if(UpdateWidthLeftRight[index].name==="Experience")
-        {
-          if(UpdateWidthLeftRight[index].Left)
-          {
-            console.log("Left")
-           setWidthLeftRight("556px")
-          }else{
-            console.log("right")
-            setWidthLeftRight("300px")
+    if (UpdateWidthLeftRight !== null) {
+      UpdateWidthLeftRight.map((item, index) => {
+        if (UpdateWidthLeftRight[index].name === "Experience") {
+          if (UpdateWidthLeftRight[index].Left) {
+            console.log("Left");
+            setWidthLeftRight("556px");
+          } else {
+            console.log("right");
+            setWidthLeftRight("300px");
           }
         }
-      })
+      });
     }
   }, []);
 
+  useEffect(() => {
+    console.log("fale = ",BackgroundColorDatePickerExperience)
+    if(BackgroundColorDatePickerExperience===false){
+      setShowDate(false)
+    }
+  }, [BackgroundColorDatePickerExperience]);
+
   return (
     <>
-      
       <div style={{ position: "relative" }}>
+        {ShowDate && (
+          <div>
+            <DatePicker
+              date={handleUpdateDate}
+              month={handleUpdateDateMonthFrom}
+              HandleMonthOngoing={HandleMonthOngoing}
+              handleYearOngoing={handleYearOngoing}
+              HandleOngoing={HandleOngoing}
+              setUpdateMonthFrom={setUpdateMonthFrom}
+              UpdateMonthFrom={UpdateMonthFrom}
+              setUpdateDate={setUpdateDate}
+            />
+          </div>
+        )}
         {ToggleButtons && (
           <div className="OuterWraperToggleButtonsExperienceSection">
             {togglebuttonarrayList.map((item, index) => {
@@ -474,59 +511,67 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
-        <div
-        style={{ display: props.item.selected ? "flex" : "none" }}
-        className="headingOptionUnderBox"
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          position: "relative",
+        }}
       >
         <div
-          className="outerWraperPlusAndNewEntry"
-          onClick={() => {
-            props.HandlerAddItemInArrayfun();
-            setCounter(Counter + 1);
-            setToggleButtons(false)
-            props.IsActiveUp(true);
-            props.IsActive(false);
-          }}
+          style={{ display: props.item.selected ? "flex" : "none" }}
+          className="headingOptionUnderBox"
         >
-          <FaPlus className="newEntryPlusIcon" />
-          <div className="newEntryText">New Entry</div>
-        </div>
-        {props.ToggleArrowUp && (
-          <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
-        )}
-        {props.ToggleArrowDown && (
-          <MdKeyboardArrowDown
-            onClick={HandleArrowDown}
-            className="ArrowIcon"
+          <div
+            className="outerWraperPlusAndNewEntry"
+            onClick={() => {
+              props.HandlerAddItemInArrayfun();
+              setCounter(Counter + 1);
+              setToggleButtons(false);
+              props.IsActiveUp(true);
+              props.IsActive(false);
+            }}
+          >
+            <FaPlus className="newEntryPlusIcon" />
+            <div className="newEntryText">New Entry</div>
+          </div>
+          {props.ToggleArrowUp && (
+            <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
+          )}
+          {props.ToggleArrowDown && (
+            <MdKeyboardArrowDown
+              onClick={HandleArrowDown}
+              className="ArrowIcon"
+            />
+          )}
+          <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
+          <BiText
+            onClick={HandleTextDecoration}
+            style={{
+              color: EnabledFontFormatColor,
+              cursor: EnabledFontFormatNoDrop,
+            }}
+            className="DeleteIcon"
           />
-        )}
-        <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
-        <BiText
-          onClick={HandleTextDecoration}
-          style={{
-            color: EnabledFontFormatColor,
-            cursor: EnabledFontFormatNoDrop,
-          }}
-          className="DeleteIcon"
-        />
-        <label  onClick={()=>{
-          setToggleButtons(false)
-          setShowDate(true)
-        }}>
-          <MdDateRange className="ArrangeIcon" />
-        </label>
-        <RiSettings5Fill
-          onClick={() => {
-            setToggleButtons(!ToggleButtons);
-            let temp = [];
-            temp = TogglebuttonsName;
-            let togglebuttonarray = temp[props.index].togglebuttonlist;
-            settogglebuttonarrayList([...togglebuttonarray]);
-          }}
-          className="ArrangeIcon"
-        />
-      </div>
+          <label
+            onClick={() => {
+              setToggleButtons(false);
+              setShowDate(true);
+            }}
+          >
+            <MdDateRange className="ArrangeIcon" />
+          </label>
+          <RiSettings5Fill
+            onClick={() => {
+              setToggleButtons(!ToggleButtons);
+              let temp = [];
+              temp = TogglebuttonsName;
+              let togglebuttonarray = temp[props.index].togglebuttonlist;
+              settogglebuttonarrayList([...togglebuttonarray]);
+            }}
+            className="ArrangeIcon"
+          />
+        </div>
       </div>
       <div
         onClick={HandleSetBackGroundColor}
@@ -589,6 +634,7 @@ export default function Boxfunction(props) {
             <div
               onClick={() => {
                 setShowDate(!ShowDate);
+                dispatch(BACKGROUNDCOLORDATPICKEREXPERIENCE(true));
               }}
               style={{ display: ShowPeriod ? "flex" : "none" }}
               className="outerWraperDateExperienceSectionDatePeriod"
@@ -596,7 +642,7 @@ export default function Boxfunction(props) {
               <label>
                 <MdDateRange className="dateIcone" />
               </label>
-              <div style={{ display: DislayDatePeriod ? "block" : "none"}}>
+              <div style={{ display: DislayDatePeriod ? "block" : "none" }}>
                 Date Period
               </div>
               <div className="DateFrom">
@@ -632,26 +678,6 @@ export default function Boxfunction(props) {
                 )}
               </div>
             </div>
-            {ShowDate && (
-              <div>
-                <DatePicker
-                  date={handleUpdateDate}
-                  month={handleUpdateDateMonthFrom}
-                  HandleMonthOngoing={HandleMonthOngoing}
-                  handleYearOngoing={handleYearOngoing}
-                  HandleOngoing={HandleOngoing}
-                  setUpdateMonthFrom={setUpdateMonthFrom}
-                  UpdateMonthFrom={UpdateMonthFrom}
-                  setUpdateDate={setUpdateDate}
-                />
-                <div
-                  className="BackGroundHoverEffectDate"
-                  onClick={() => {
-                    setShowDate(false);
-                  }}
-                ></div>
-              </div>
-            )}
             <div
               style={{ display: ShowLocation ? "flex" : "none" }}
               className="outerWraperDateExperienceSection"
@@ -703,25 +729,26 @@ export default function Boxfunction(props) {
             {checkplacehodercompanydiscription ? (
               <div>hh</div>
             ) : (
-              <div style={{width:WidthLeftRight,marginLeft: "12px"}}>
-              <Editor
-                text={CompanyDiscription}
-                onChange={(text) => {
-                  let array = props.list;
-                  array[props.index].value.companydiscription = text;
-                  setCompanyDiscription(text);
-                  localStorage.setItem(
-                    "arrayExperience",
-                    JSON.stringify(array)
-                  );
-                }}
-                options={{
-                  placeholder: {
-                    text: "Company Description",
-                    hideOnClick: true,
-                  },
-                }}
-              /></div>
+              <div style={{ width: WidthLeftRight, marginLeft: "12px" }}>
+                <Editor
+                  text={CompanyDiscription}
+                  onChange={(text) => {
+                    let array = props.list;
+                    array[props.index].value.companydiscription = text;
+                    setCompanyDiscription(text);
+                    localStorage.setItem(
+                      "arrayExperience",
+                      JSON.stringify(array)
+                    );
+                  }}
+                  options={{
+                    placeholder: {
+                      text: "Company Description",
+                      hideOnClick: true,
+                    },
+                  }}
+                />
+              </div>
             )}
           </div>
           <div
@@ -732,25 +759,28 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
-              <div className="app" style={{width:WidthLeftRight,marginTop:"10px"}}>
-              <Editor
-                text={Bullots}
-                onChange={(text) => {
-                  let array = props.list;
-                  array[props.index].value.bullots = text;
-                  setBullots(text);
-                  localStorage.setItem(
-                    "arrayExperience",
-                    JSON.stringify(array)
-                  );
-                }}
-                options={{
-                  placeholder: {
-                    text: "What did you want in this role?",
-                    hideOnClick: true,
-                  },
-                }}
-              />
+              <div
+                className="app"
+                style={{ width: WidthLeftRight, marginTop: "10px" }}
+              >
+                <Editor
+                  text={Bullots}
+                  onChange={(text) => {
+                    let array = props.list;
+                    array[props.index].value.bullots = text;
+                    setBullots(text);
+                    localStorage.setItem(
+                      "arrayExperience",
+                      JSON.stringify(array)
+                    );
+                  }}
+                  options={{
+                    placeholder: {
+                      text: "What did you want in this role?",
+                      hideOnClick: true,
+                    },
+                  }}
+                />
               </div>
             )}
           </div>

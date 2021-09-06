@@ -13,8 +13,14 @@ import Switch from "react-switch";
 import Editor from "react-medium-editor";
 import DatePicker from "./DatePicker/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import InputBullets from './Bullets'
-import { INCREMENT , INCREMENTBACKGROUNDCOLORPROJECT , INDUXPROJECT, SETTOGGLEBUTTONNULL,} from "./Redux/actions/indux";
+import InputBullets from "./Bullets";
+import {
+  INCREMENT,
+  INCREMENTBACKGROUNDCOLORPROJECT,
+  INDUXPROJECT,
+  SETTOGGLEBUTTONNULL,
+  BACKGROUNDCOLORDATPICKPROJECT,
+} from "./Redux/actions/indux";
 import "./HomePage.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -76,7 +82,7 @@ export default function Boxfunction(props) {
   const [BackwordMinusOngoing, setBackwordMinusOngoing] = useState(false);
   const [Counter, setCounter] = useState(0);
   const [WidthLeftRight, setWidthLeftRight] = useState(null);
-  
+
   const [
     checkplacehodercompanydiscription,
     setcheckplacehodercompanydiscription,
@@ -94,14 +100,22 @@ export default function Boxfunction(props) {
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
   const Indux = useSelector((state) => state.InduxProject);
   const Incrementnull = useSelector((state) => state.IncrementNull);
-  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
-  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
+  
+  const BackgroundColorDatePickerProject = useSelector((state) => state.BackgroundColorDatePickerProject);
+  
+  const SetToggleButtonsNull = useSelector(
+    (state) => state.SetToggleButtonsNull
+  );
+  const UpdateWidthLeftRight = useSelector(
+    (state) => state.UpdateWidthLeftRight
+  );
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
-  
+
   useEffect(() => {
     setToggleButtons(false);
+    setShowDate(false);
   }, [Incrementnull]);
   function HandleOngoing(toggle) {
     if (toggle) {
@@ -123,7 +137,9 @@ export default function Boxfunction(props) {
     }
   }
   function handleUpdateDate(yearfrom) {
+    console.log("yearfrom,",yearfrom)
     if (yearfrom === null) {
+      setDislayDatePeriod(true)
       setUpdateDate(null);
       let array = props.list;
       array[props.index].value.date.yearfrom = yearfrom.number;
@@ -147,6 +163,7 @@ export default function Boxfunction(props) {
   }
 
   function handleUpdateDateMonthFrom(monthfrom) {
+    console.log("monthfrom - - - - -",monthfrom)
     if (monthfrom === null) {
       setUpdateMonthFrom(null);
       let array = props.list;
@@ -158,7 +175,7 @@ export default function Boxfunction(props) {
       array[props.index].value.date.monthfrom = monthfrom;
       localStorage.setItem("arrayProject", JSON.stringify(array));
     }
-    if (monthfrom === null && UpdateMonthFrom === null) {
+    if (monthfrom === null) {
       setDislayDatePeriod(true);
       setDateSlash(false);
     } else {
@@ -218,7 +235,7 @@ export default function Boxfunction(props) {
       setDiplayMinus(false);
     }
   }
-  
+
   function HandleTextDecoration() {
     setToggleButtons(false);
     if (
@@ -367,20 +384,18 @@ export default function Boxfunction(props) {
     setEnabledFontFormatNoDrop("pointer");
   }
   useEffect(() => {
-    if(UpdateWidthLeftRight!==null){
-      UpdateWidthLeftRight.map((item,index)=>{
-        if(UpdateWidthLeftRight[index].name==="Project")
-        {
-          if(UpdateWidthLeftRight[index].Left)
-          {
-            console.log("Left")
-           setWidthLeftRight("556px")
-          }else{
-            console.log("right")
-            setWidthLeftRight("300px")
+    if (UpdateWidthLeftRight !== null) {
+      UpdateWidthLeftRight.map((item, index) => {
+        if (UpdateWidthLeftRight[index].name === "Project") {
+          if (UpdateWidthLeftRight[index].Left) {
+            console.log("Left");
+            setWidthLeftRight("556px");
+          } else {
+            console.log("right");
+            setWidthLeftRight("300px");
           }
         }
-      })
+      });
     }
   }, []);
 
@@ -444,9 +459,31 @@ export default function Boxfunction(props) {
       });
     }
   }, []);
+
+  useEffect(() => {
+    console.log("fale = ",BackgroundColorDatePickerProject)
+    if(BackgroundColorDatePickerProject===false){
+      setShowDate(false)
+    }
+  }, [BackgroundColorDatePickerProject]);
+  console.log("hh",UpdateMonthFrom)
   return (
     <>
       <div style={{ position: "relative" }}>
+        {ShowDate && (
+          <div>
+            <DatePicker
+              date={handleUpdateDate}
+              month={handleUpdateDateMonthFrom}
+              HandleMonthOngoing={HandleMonthOngoing}
+              handleYearOngoing={handleYearOngoing}
+              HandleOngoing={HandleOngoing}
+              setUpdateMonthFrom={setUpdateMonthFrom}
+              UpdateMonthFrom={UpdateMonthFrom}
+              setUpdateDate={setUpdateDate}
+            />
+          </div>
+        )}
         {ToggleButtons && (
           <div className="OuterWraperToggleButtonsExperienceSection">
             {togglebuttonarrayList.map((item, index) => {
@@ -472,7 +509,13 @@ export default function Boxfunction(props) {
           </div>
         )}
       </div>
-      <div style={{display:"flex",justifyContent:"center",position:"relative"}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          position: "relative",
+        }}
+      >
         <div
           style={{ display: props.item.selected ? "flex" : "none" }}
           className="headingOptionUnderBoxEducation"
@@ -527,7 +570,7 @@ export default function Boxfunction(props) {
             className="ArrangeIcon"
           />
         </div>
-        </div>
+      </div>
       <div
         onClick={HandleSetBackGroundColor}
         className="outerWraperBox"
@@ -571,12 +614,13 @@ export default function Boxfunction(props) {
             <div
               onClick={() => {
                 setShowDate(!ShowDate);
+                dispatch(BACKGROUNDCOLORDATPICKPROJECT(true));
               }}
               style={{ display: ShowPeriod ? "flex" : "none" }}
               className="outerWraperDateExperienceSectionDatePeriod"
             >
               <MdDateRange className="dateIcone" />
-              <div style={{ display: DislayDatePeriod ? "block" : "none"}}>
+              <div style={{ display: DislayDatePeriod ? "block" : "none" }}>
                 Date Period
               </div>
               <div className="DateFrom">
@@ -612,26 +656,7 @@ export default function Boxfunction(props) {
                 )}
               </div>
             </div>
-            {ShowDate && (
-              <div>
-                <DatePicker
-                  date={handleUpdateDate}
-                  month={handleUpdateDateMonthFrom}
-                  HandleMonthOngoing={HandleMonthOngoing}
-                  handleYearOngoing={handleYearOngoing}
-                  HandleOngoing={HandleOngoing}
-                  setUpdateMonthFrom={setUpdateMonthFrom}
-                  UpdateMonthFrom={UpdateMonthFrom}
-                  setUpdateDate={setUpdateDate}
-                />
-                <div
-                  className="BackGroundHoverEffectDate"
-                  onClick={() => {
-                    setShowDate(false);
-                  }}
-                ></div>
-              </div>
-            )}
+
             <div
               style={{ display: ShowLocation ? "flex" : "none" }}
               className="outerWraperDateExperienceSection"
@@ -681,36 +706,37 @@ export default function Boxfunction(props) {
             {checkplacehodercompanydiscription ? (
               <div>hh</div>
             ) : (
-              <div style={{width:WidthLeftRight,marginLeft: "12px"}}><Editor
-                className="PreEditor"
-                text={SummaryWorkTextHolder}
-                onChange={(text) => {
-                  let array = props.list;
-                  array[props.index].value.SummaryWorkTextHolder = text;
-                  localStorage.setItem("arrayProject", JSON.stringify(array));
-                  setSummaryWorkTextHolder(text);
-                }}
-                options={{
-                  placeholder: {
-                    text: "Short summary of your work",
-                    hideOnClick: true,
-                  },
-                }}
-              /></div>
+              <div style={{ width: WidthLeftRight, marginLeft: "12px" }}>
+                <Editor
+                  className="PreEditor"
+                  text={SummaryWorkTextHolder}
+                  onChange={(text) => {
+                    let array = props.list;
+                    array[props.index].value.SummaryWorkTextHolder = text;
+                    localStorage.setItem("arrayProject", JSON.stringify(array));
+                    setSummaryWorkTextHolder(text);
+                  }}
+                  options={{
+                    placeholder: {
+                      text: "Short summary of your work",
+                      hideOnClick: true,
+                    },
+                  }}
+                />
+              </div>
             )}
           </div>
-              <div
-              style={{width:WidthLeftRight}}>
-                <InputBullets
-                ShowBullets={ShowBullets}
-                handleText={handleText}
-                checkplacehoderBollets={checkplacehoderBollets}
-                BullotsTextHolder={BullotsTextHolder}
-                setBullotsTextHolder={setBullotsTextHolder}
-                list={props.list}
-                IndexItem={props.index}
-                />    
-              </div>
+          <div style={{ width: WidthLeftRight }}>
+            <InputBullets
+              ShowBullets={ShowBullets}
+              handleText={handleText}
+              checkplacehoderBollets={checkplacehoderBollets}
+              BullotsTextHolder={BullotsTextHolder}
+              setBullotsTextHolder={setBullotsTextHolder}
+              list={props.list}
+              IndexItem={props.index}
+            />
+          </div>
         </div>
       </div>
     </>

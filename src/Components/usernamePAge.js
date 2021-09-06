@@ -361,7 +361,6 @@ export default function Header(props) {
                 </div>
               );
             })}
-          <div className="BottomLineTogleButtons"></div>
           <div className="InnerWraperToggleButtons">
             <div className="ToggleButtonsLabel">Photo Style</div>
             <div
