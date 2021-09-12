@@ -131,6 +131,7 @@ export default function Boxfunction(props) {
   const Indux = useSelector((state) => state.InduxTechstock);
   const Incrementnull = useSelector((state) => state.IncrementNull);
   const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
+  const UpdateColor = useSelector((state) => state.UpdateColor);
 
   useEffect(() => {
     setToggleButtons(false);
@@ -433,7 +434,7 @@ export default function Boxfunction(props) {
                 setGroupTitlrTextHolder(e.target.value);
                 localStorage.setItem("arrayTechStock", JSON.stringify(array));
               }}
-              className="companyTitleExperienceSection"
+              className=    {UpdateColor ? "companyTitleExperienceSectionBlue" : "companyTitleExperienceSectionGreen" }
               placeholder="Group Title"
             />
           </div>

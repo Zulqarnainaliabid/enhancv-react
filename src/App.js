@@ -14,6 +14,7 @@ import Projects from "./Components/Projects";
 import TrainingCourse from "./Components/TrainingCourse";
 import MyTime from "./Components/MyTime";
 import Language from "./Components/Language";
+import { CgArrangeBack } from "react-icons/cg";
 import Passions from "./Components/Passions";
 import IndustryExperience from "./Components/IndustryExperience";
 import FindMeOnline from "./Components/FindMeOnline";
@@ -21,11 +22,11 @@ import Summry from "./Components/Summry";
 import Strength from "./Components/Strength";
 import Volunteering from "./Components/Volunteering";
 import ExperienceSection from "./Components/ExperienceSection";
-import {HiTemplate } from 'react-icons/hi'
+import { HiTemplate } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
+import { MdArrowDropDown } from "react-icons/md";
 import Education from "./Components/Education";
-import Loader from "./Components/Loader";
-import Modal from './Components/AnimatedModal'
+import Modal from "./Components/AnimatedModal";
 import ReactToPdf from "react-to-pdf";
 import {
   INCREMENTBACKGROUNDCOLORVOLUNTEERING,
@@ -46,6 +47,8 @@ import {
   TOGGLEUSERIMGMODALBUTTONS,
   UPDATEWIDTHLEFTRIGTH,
   BACKGROUNDCOLORDATPICKER,
+  SINGLECOLUMN,
+  UPDATECOLOR,
   ACHIEVEMENTYES,
   TOGGLELEFT,
 } from "./Components/Redux/actions/indux";
@@ -53,13 +56,18 @@ function App() {
   const [ToggleRearrangeSection, setToggleRearrangeSection] = useState(null);
   const [ToggleAddNewSection, setToggleAddNewSection] = useState(false);
   const [ToggleAddNewSectionLeft, setToggleAddNewSectionLeft] = useState(false);
-  const [ToggleAddNewSectionLeftSingleColumn, setToggleAddNewSectionLeftSingleColumn] = useState(false);
+  const [
+    ToggleAddNewSectionLeftSingleColumn,
+    setToggleAddNewSectionLeftSingleColumn,
+  ] = useState(false);
   const [ToggleAddNewSectionRight, setToggleAddNewSectionRight] =
     useState(false);
   const [HoverEffect, SetHoverEffect] = useState(null);
   const [Array, setArray] = useState([]);
   const [HideButtons, setHideButtons] = useState(false);
   const [ShowModal, setShowModal] = useState(false);
+  const [CheckToggleImage, setCheckToggleImage] = useState(false);
+  const [ShowDropDown, setShowDropDown] = useState(false);
   const ref = React.createRef();
   const dispatch = useDispatch();
   const { useRef } = React;
@@ -81,6 +89,8 @@ function App() {
   const VolunteeringYes = useSelector((state) => state.VolunteeringYes);
   const TechstockYes = useSelector((state) => state.TechstockYes);
   const ToggleLeft = useSelector((state) => state.ToggleLeft);
+  const TogglePages = useSelector((state) => state.TogglePages);
+
   const ToggleRearrangebuttons = useSelector(
     (state) => state.ToggleRearrangebuttons
   );
@@ -97,7 +107,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [Achievementyes]);
@@ -112,7 +122,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [EducationYes]);
@@ -127,7 +137,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [ExperienceYes]);
@@ -142,7 +152,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [FindmeOnlineYes]);
@@ -157,7 +167,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [IndustryExperienceYes]);
@@ -172,7 +182,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [LanguageYes]);
@@ -187,7 +197,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [MytimeYes]);
@@ -202,7 +212,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [PassionYes]);
@@ -217,7 +227,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [ProjectYes]);
@@ -232,7 +242,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [StrengthYes]);
@@ -247,7 +257,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [SummaryYes]);
@@ -262,7 +272,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [TrainingYes]);
@@ -277,7 +287,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [VolunteeringYes]);
@@ -292,7 +302,7 @@ function App() {
         }
       });
       setArray([...temp]);
-        localStorage.setItem("Section", JSON.stringify(temp));
+      localStorage.setItem("Section", JSON.stringify(temp));
       HandleAddNewSection();
     }
   }, [TechstockYes]);
@@ -306,7 +316,7 @@ function App() {
       }
     });
     setArray([...temp]);
-      localStorage.setItem("Section", JSON.stringify(temp));
+    localStorage.setItem("Section", JSON.stringify(temp));
   }
 
   function HandleSections(data, toggle) {
@@ -593,7 +603,7 @@ function App() {
         setArray([...Array]);
       }
       dispatch(UPDATEWIDTHLEFTRIGTH(Array));
-        localStorage.setItem("Section", JSON.stringify(Array));
+      localStorage.setItem("Section", JSON.stringify(Array));
     }
   }
   const options = {
@@ -611,9 +621,9 @@ function App() {
     if (Array === null || Array === undefined || Array.length === 0) {
       setToggleAddNewSectionRight(false);
       setToggleAddNewSectionLeft(false);
-      setToggleAddNewSectionLeftSingleColumn(false)
+      setToggleAddNewSectionLeftSingleColumn(false);
     } else {
-      setToggleAddNewSectionLeftSingleColumn(true)
+      setToggleAddNewSectionLeftSingleColumn(true);
       if (Array.length === 1) {
         temp.map((item, index) => {
           if (item.Left === true) {
@@ -660,7 +670,6 @@ function App() {
   }
 
   useEffect(() => {
-    
     let temp = [];
     temp = Array;
     if (Array === null || Array === undefined || Array.length === 0) {
@@ -710,7 +719,7 @@ function App() {
         }
       }
     }
-    if(SingleColumnTemplate){
+    if (SingleColumnTemplate) {
       if (localStorage.getItem("NewSection") !== null) {
         let value = localStorage.getItem("NewSection");
         value = JSON.parse(value);
@@ -726,7 +735,7 @@ function App() {
           }
         });
       }
-    }else{
+    } else {
       if (localStorage.getItem("Section") !== null) {
         let value = localStorage.getItem("Section");
         value = JSON.parse(value);
@@ -765,8 +774,12 @@ function App() {
     if (localStorage.getItem("Singlecolumn") !== null) {
       let value = localStorage.getItem("Singlecolumn");
       value = JSON.parse(value);
-      SingleColumnTemplate=value
-      console.log("hi",SingleColumnTemplate)
+      dispatch(SINGLECOLUMN(value));
+    }
+    if (localStorage.getItem("Color") !== null) {
+      let value = localStorage.getItem("Color");
+      value = JSON.parse(value);
+      dispatch(UPDATECOLOR(value));
     }
   }, []);
 
@@ -816,26 +829,30 @@ function App() {
               className="outerContainerButtons"
               style={{ display: HideButtons ? "none" : "flex" }}
             >
-              <div
-                className="outerWraperTemplateButtons"
-                onClick={() => {
-                  setToggleAddNewSection(true);
-                  dispatch(BACKGROUNDCOLORDATPICKER(false));
-                }}
-              >
-                <HiPlusCircle className="RearrangeIcon" />
-                Add Section
-              </div>
-              <div
-                className="outerWraperTemplateButtons"
-                onClick={() => {
-                  setToggleRearrangeSection(true);
-                  dispatch(BACKGROUNDCOLORDATPICKER(false));
-                }}
-              >
-                <CgArrangeFront className="RearrangeIcon" />
-                Rearrange Sections
-              </div>
+              {TogglePages && (
+                <div
+                  className="outerWraperTemplateButtons"
+                  onClick={() => {
+                    setToggleAddNewSection(true);
+                    dispatch(BACKGROUNDCOLORDATPICKER(false));
+                  }}
+                >
+                  <HiPlusCircle className="RearrangeIcon" />
+                  Add Section
+                </div>
+              )}
+              {TogglePages && (
+                <div
+                  className="outerWraperTemplateButtons"
+                  onClick={() => {
+                    setToggleRearrangeSection(true);
+                    dispatch(BACKGROUNDCOLORDATPICKER(false));
+                  }}
+                >
+                  <CgArrangeFront className="RearrangeIcon" />
+                  Rearrange Sections
+                </div>
+              )}
               <ReactToPdf
                 targetRef={ref}
                 filename="div-blue.pdf"
@@ -873,28 +890,90 @@ function App() {
                   </div>
                 )}
               </ReactToPdf>
+              {TogglePages && (
+                <div className="outerWraperTemplateButtons">
+                  <HiTemplate />
+                  <div
+                    onClick={() => {
+                      setShowModal(true);
+                      setCheckToggleImage(false);
+                    }}
+                  >
+                    Template
+                  </div>
+                </div>
+              )}
               <div className="outerWraperTemplateButtons">
-                <HiTemplate/>
-              <div onClick={()=>{
-                setShowModal(true)
-              }}>
-                Template
+                <CgArrangeBack />
+                <div
+                  onClick={() => {
+                    setShowModal(true);
+                    setCheckToggleImage(true);
+                  }}
+                >
+                  Select Back Image
                 </div>
+              </div>
+              <div className="outerWraperColorButtons">
+                <MdArrowDropDown />
+                <div
+                  onClick={() => {
+                    setShowDropDown(!ShowDropDown);
+                  }}
+                >
+                  Select Color
                 </div>
+                {ShowDropDown && (
+                  <div className="DropDown">
+                    <div
+                      className="ColorBlue"
+                      onClick={() => {
+                        dispatch(UPDATECOLOR(true));
+                        localStorage.setItem("Color", JSON.stringify(true));
+                        setShowDropDown(false);
+                      }}
+                    >
+                      Blue
+                    </div>
+                    <div
+                      className="ColorGreen"
+                      onClick={() => {
+                        dispatch(UPDATECOLOR(false));
+                        localStorage.setItem("Color", JSON.stringify(false));
+                        setShowDropDown(false);
+                      }}
+                    >
+                      Green
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-            <div style={{ position: "absolute", zIndex: "-2" }}>
-              <HomaPageSabSection
-                setArray={setArray}
-                Array={Array}
-                HandleAddNewSection={HandleAddNewSection}
-                HandleRemoveSection={HandleRemoveSection}
-                SingleColumnTemplate={SingleColumnTemplate}
-              />
+            {TogglePages && (
+              <div style={{ position: "absolute", zIndex: "-2" }}>
+                <HomaPageSabSection
+                  setArray={setArray}
+                  Array={Array}
+                  HandleAddNewSection={HandleAddNewSection}
+                  HandleRemoveSection={HandleRemoveSection}
+                  SingleColumnTemplate={SingleColumnTemplate}
+                />
+              </div>
+            )}
+            <div
+              className="OuterWraperModalTemplate"
+              style={{ zIndex: ShowModal ? 5 : 0 }}
+            >
+              {ShowModal && (
+                <div
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                >
+                  <Modal CheckToggleImage={CheckToggleImage} />
+                </div>
+              )}
             </div>
-            <div className="OuterWraperModalTemplate">
-            {ShowModal &&<div onClick={()=>{
-               setShowModal(false)
-            }}><Modal/></div>}</div>
             <Home
               ref={childRef}
               Array={Array}
@@ -906,7 +985,9 @@ function App() {
               SetHoverEffect={SetHoverEffect}
               SingleColumnTemplate={SingleColumnTemplate}
               setArray={setArray}
-              ToggleAddNewSectionLeftSingleColumn={ToggleAddNewSectionLeftSingleColumn}
+              ToggleAddNewSectionLeftSingleColumn={
+                ToggleAddNewSectionLeftSingleColumn
+              }
             />
             {ToggleAddNewSection && (
               <>

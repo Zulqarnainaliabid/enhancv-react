@@ -71,7 +71,7 @@ export default function Boxfunction(props) {
   const Incrementnull = useSelector((state) => state.IncrementNull);
   const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
   const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
-
+  const UpdateColor = useSelector((state) => state.UpdateColor);
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
@@ -336,7 +336,7 @@ export default function Boxfunction(props) {
               array[props.index].value.titleTextHolder = e.target.value;
               localStorage.setItem("arrayTraining", JSON.stringify(array));
             }}
-            className="companyTitleExperienceSection"
+            className=    {UpdateColor ? "companyTitleExperienceSectionBlue" : "companyTitleExperienceSectionGreen" }
             style={{ display: "block ", fontSize: "20px " }}
             placeholder="Course Title"
           />

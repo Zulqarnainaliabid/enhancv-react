@@ -77,6 +77,7 @@ export default function Boxfunction(props) {
   const Incrementnull = useSelector((state) => state.IncrementNull);
   const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
   const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
+  const UpdateColor = useSelector((state) => state.UpdateColor);
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
@@ -366,7 +367,7 @@ export default function Boxfunction(props) {
               setlistIcon(!listIcon);
             }}
             style={{ display: ShowIcon ? "block": "none" }}
-            className="Icon"
+            className=    {UpdateColor ? "IconBlue" : "IconGreen" }
           >
             {Icon}
           </div>

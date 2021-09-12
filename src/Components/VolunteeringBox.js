@@ -107,6 +107,7 @@ export default function Boxfunction(props) {
   const UpdateWidthLeftRight = useSelector(
     (state) => state.UpdateWidthLeftRight
   );
+  const UpdateColor = useSelector((state) => state.UpdateColor);
   const UpdateYearFrom = useSelector((state) => state.IncrementState);
   const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
   const BackgroundColorDatePickerVolunteering = useSelector((state) => state.BackgroundColorDatePickerVolunteering);
@@ -592,7 +593,7 @@ export default function Boxfunction(props) {
             type="text"
             value={CompnyNameTextHolder}
             style={{ fontSize: "15px !important" }}
-            className="TitleExperienceBoxSection"
+            className=    {UpdateColor ? "TitleExperienceBoxSectionBlue" : "TitleExperienceBoxSectionGreen" }
             onClick={() => {
               setEnabledFontFormatColor("#38434744");
               setEnabledFontFormatNoDrop("no-drop");

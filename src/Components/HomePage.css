@@ -39,6 +39,18 @@ input{
   border-radius: 5px;
   box-sizing: border-box;
 }
+.outerWraperBoxCoverLetter{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex-wrap: wrap;
+  transition: background .3s;
+  padding: 15px;
+  border: 1px solid transparent;
+  z-index: 1;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
 .outerWraperBox:hover{
   border: 1px solid #60d5ba;
 }
@@ -48,16 +60,30 @@ input{
     padding: 15px;
     z-index: 1;
 }
-.outerWraperGroupTitle{
+.outerWraperGroupTitleBlue{
 color:#008CFF !important;
 font-size: 18px;
 width: 100%;
 }
-.outerWraperGroupTitle::placeholder{
+.outerWraperGroupTitleGreen{
+  color:#00B400 !important;
+  font-size: 18px;
+  width: 100%;
+  }
+  input[type=range].styled-slider::-webkit-slider-thumb:active {
+    background: red;
+  }
+.outerWraperGroupTitleBlue::placeholder{
   color: #008CFF !important;
 }
-.outerWraperGroupTitle:focus::placeholder{
+.outerWraperGroupTitleGreen::placeholder{
+  color: #00B400 !important;
+}
+.outerWraperGroupTitleBlue:focus::placeholder{
   color: #008cff7c !important;
+}
+.outerWraperGroupTitleGreen:focus::placeholder{
+  color: #00b40081 !important;
 }
 .input[range]{
 width: 372px;
@@ -66,6 +92,13 @@ width: 372px;
     /* border: 1px solid; */
     border-radius: 12px;
     z-index: 3;
+}
+.outerWraperCompleteBoxCoverLetterSummary {
+  border: 1px solid;
+  border-radius: 5px;
+  z-index: 3;
+  width: 90%;
+  margin: 20px 0 0 0;
 }
 
 .outerWraperListIcon{
@@ -96,11 +129,19 @@ width: 372px;
   font-size: 40px;
   cursor: pointer;
 }
-.Icon{
+
+.IconBlue{
 margin: 10px 10px 0 0;
 font-size: 33px;
 color: #008CFF !important;
 }
+
+.IconGreen{
+  margin: 10px 10px 0 0;
+  font-size: 33px;
+  color: #00B400 !important 
+  }
+
 .iconsList:hover{
 color:#00c091;
 border: 1px solid #00c091;
@@ -322,6 +363,20 @@ color: #00c091;
   display: flex;
   gap: 9px;
 }
+.DropDown {
+  position: absolute;
+  background-color: white;
+  top: 37px;
+  z-index: 5;
+  font-size: 19px;
+  font-weight: 700;
+  width: 85%;
+  border-radius: 6px;
+  box-shadow: darkcyan;
+  padding: 9px 11px 7px 12px;
+  box-shadow: 4px 3px 7px rgb(0 0 0 / 21%);
+  left: 0;
+}
 .outerWraperTemplateButtons{
 border: 1px solid #384347;
 display: flex;
@@ -331,16 +386,34 @@ gap: 6px;
 border-radius: 6px;
 cursor: pointer;
 color: #384347;
+position: relative;
 }
-/* .outerWraperButtonsDownload{
+.ColorBlue{
+  padding: 4px;
+  color: #008CFF;
+}
+.ColorBlue:hover{
+  color: #008cff73;
+}
+.ColorGreen {
+  color: #00B400 !important;
+  padding: 4px;
+}
+.ColorGreen:hover {
+  color: #00b40079 !important;
+}
+
+.outerWraperColorButtons{
   border: 1px solid #384347;
-display: flex;
-padding: 8px;
-gap: 6px;
-border-radius: 6px;
-cursor: pointer;
-color: #384347;
-} */
+  display: flex;
+  padding: 6px;
+  font-size: 17px;
+  gap: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #384347;
+  position: relative;
+  }
 .outerWraperTemplateButtons:hover{
   color: #38434793;
   border-color: #38434793;
@@ -372,6 +445,20 @@ cursor: pointer;
 }
 
 .HeadingNameBox{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  border-radius:5px;
+  padding-top: 12px;
+  padding-bottom:12px;
+  border: 1px solid transparent;
+  padding-left: 14px;
+  padding-right: 14px;
+  z-index: 1;
+}
+.HeadingNameBoxCoverLetter{
   position: relative;
   display: flex;
   justify-content: center;
@@ -600,28 +687,47 @@ display: flex;
 }
 .outerContainerAdressHeader{
 /* border: 1px solid red; */
-margin: 38px 0 0 0;
+/* margin: 38px 0 0 0; */
 }
-.AdressIconHeader{
+.AdressIconHeaderBlue{
 color: #008CFF;
 margin: 0px 9px 0 0;
 font-size: 20px;
 }
+.AdressIconHeaderGreen{
+  color: #00B400 !important;
+  margin: 0px 9px 0 0;
+  font-size: 20px;
+  }
 .adressText{
   font-size: 15px;
 }
 .adressText:focus::placeholder{
   color: #3843475e;
 }
-.InnerHeadingText{
+.InnerHeadingTextBlue{
   color: #008CFF;
   font-size:21px;
   font-weight:"700";
 }
-.InnerHeadingText::placeholder{
+.InnerHeadingTextGreen{
+  color: #00B400 !important;
+  font-size:21px;
+  font-weight:"700";
+}
+.InnerHeadingTextGreen::placeholder{
+  color:#00B400 !important;
+}
+
+.InnerHeadingTextBlue::placeholder{
   color:#008CFF !important;
 }
-.InnerHeadingText:focus::placeholder{
+
+.InnerHeadingTextGreen:focus::placeholder{
+  color:#00b4007e !important;
+}
+
+.InnerHeadingTextBlue:focus::placeholder{
   color:#008cff81 !important;
 }
 .input:focus{
@@ -634,8 +740,8 @@ font-size: 20px;
   padding: 10px;
 }
 .UserImg{
-  height: 170px;
-  width: 169px;
+  height: 146px;
+  width: 144px;
   object-fit: cover;
   cursor: pointer;
 }
@@ -655,8 +761,8 @@ color: blue;
 }
 .UploadIconUserImg{
   color: #fff;
-  font-size: 35px;
-  margin: 1px 24px 0 0;
+  font-size: 22px;
+  margin: 0px 5px 0 0;
   padding: 7px;
   border-radius: 5px;
   background-color: #00c091;
@@ -666,7 +772,7 @@ color: blue;
 }
 .EyeIconUserImg{
   color: #fff;
-  font-size: 35px;
+  font-size: 22px;
   margin: 1px 24px 0 0;
   padding: 7px;
   border-radius: 5px;
@@ -675,9 +781,239 @@ color: blue;
 .EyeIconUserImg:hover{
   background-color: #ff2443;
 }
-
+.OuterWraperCVButtons{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 .outerWraperIconUserImag{
-  margin: 63px 0px 0px 23px
+  margin: 58px 0px 0px 33px
+}
+.TextHolder {
+  /* border: 1px solid black; */
+  font-size: 20px;
+  font-weight: 700;
+  /* background-color: #F8FFFF; */
+  padding: 28px 20px 0px 20px;
+  border-radius: 5px;
+ 
+  color: #276f86;
+  margin: 1px 21px 0 0;
+  /* box-shadow: 0 0 0 1px #a9d5de inset, 0 0 0 0 transparent; */
+}
+.OuterContainer{
+  background-color: #f8ffff;
+  /* border:1px solid */
+  height: 692px;
+}
+.button1 {
+  background-color: rgb(45, 192, 141);
+  padding: 12px;
+  color: white;
+  border-radius: 10px;
+  height: 22px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 30px 10px 30px;
+}
+.button2{
+  padding: 12px;
+  color: white;
+  border-radius: 10px;
+  height: 22px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 30px 10px 30px;
+  background-color: #EFEFEF;
+  color: #252525;
+}
+.button2:hover{
+background-color: #afafaf;
+}
+  .HeadingTextHolder {
+    /* border: 1px solid; */
+    margin: 52px 15% 0px 0px;
+    font-weight: 700;
+    font-family: sans-serif !important;
+    font-size: 31px;
+    color: #33475B;
+}
+.SignUPName{
+border: 1px solid #b3b3b3;
+height: 16px;
+width: 100%;
+padding: 15px;
+border-radius: 5px;
+}
+.OuterContainerSign{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+  left: 39%;
+}
+.OuterWraperSign {
+  /* border: 1px solid; */
+  background-color: rgba(0, 0, 0, 0.486);
+  color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+.TextHolferTermAndCondition{
+  display: flex;
+  gap: 7px;
+  color: #576064;
+}
+.CheckBox{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #e6e6e6;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    margin:0px 15px 0 0px;
+border-radius: 6px;
+}
+.HeadingTextHolderSignIn{
+  color: #485255;
+  margin: 21px 0px 0px 0;
+  text-align: center;
+  font-size: 25px;
+}
+.Subtitle{
+  font-size: 18px;
+  color: #60696c;
+  margin: 0px 0px 8px 0;
+  
+}
+.NaveBarLinks {
+  /* border: 1px solid; */
+  padding: 10px;
+  width: 142px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.ArrowUP {
+    /* border: 1px solid; */
+    position: fixed;
+    right: 16px;
+    color: white;
+    top: 91%;
+    background-color: rgba(0, 0, 0, 0.425);
+    padding: 7px;
+    border-radius: 5px;
+    font-size: 34px;
+    z-index: 3;
+    cursor: pointer;
+}
+.CoverImg{
+  /* border: 1px solid; */
+  width: 80%;
+  margin: 0px 0px 0px 38px;
+}
+
+  .NaveBar {
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: center;
+    background-color: rgba(36,59,86,1);;
+    padding: 7px;
+    gap: 35px;
+    font-size: 22px;
+    color: white;
+    
+}
+.BullotsPrivacy {
+  color: #8c7cdb;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.SubBolletsPrivacy:hover{
+  color: #4327cf;
+}
+
+.SubHeading1 {
+  font-size: 22px;
+  color: #384347;
+  margin: 40px 0px 7px 0
+}
+.HeadingTermOfSerives {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #384347;
+  margin: 73px 0px 35px 0
+}
+.OuterContainerTerm {
+  /* border: 1px solid; */
+  margin: 89px 100px 12px 350px;
+  color: #384347;
+  font-size: 18px;
+}
+.SubmitButtons{
+  color: #fff;
+  background-color: #00c091;
+  border-color: #00c091;
+  padding: 15px 75px;
+  font-size: 18px;
+  border-radius: 6px;
+  text-align: center;
+  margin: 38px 0 0 0;
+  cursor: pointer;
+  font-weight: 700;
+}
+.SubmitButtons:hover{
+  color: #fff;
+  background-color: #008d6a;
+}
+.OuterWraperCheckBox{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  grid-gap: 12px;
+  gap: 12px;
+  margin: 18px 0px 0px -15px;
+}
+.outerWraperSigInForm {
+  background-color: white;
+  padding: 40px;
+  height: 62%;
+  margin: 40px 0 0 0;
+  border-radius: 5px;
+}
+.OuterCoverImage{
+  /* border: 1px solid red; */
+}
+.OuterWraperSlider{
+  /* border: 1px solid; */
+  width: 95%;
+  margin: 1% 0px 0px 36px;
+}
+.button1:hover{
+  background-color: rgb(0, 124, 81);
+}
+.OuterWraperButtons {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 16px;
+  width: 13%;
+  grid-gap: 16px;
+  gap: 16px;
 }
 .OuterWraperToggleButtons{
   position: absolute;
@@ -700,6 +1036,9 @@ color: blue;
 }
 .InnerWraperToggleButtons{
 display: flex;
+}
+.Tooltip{
+  border:1px solid black
 }
 .ToggleButtonsLabelSlice{
   transition: color .2s ease-in-out;
@@ -734,11 +1073,18 @@ display: flex;
 }
 .outerWraperInputFieldSlice{
   width: 28%;
-  margin: 85px 0px 0px 20px;
+  margin: 45px 0px 0px 0px;
 }
 .OuterWraperDoughnutchart {
   /* border: 1px solid; */
   width: 57%;
+}
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.outerWraperPercentage {
+  margin: 4px 0px 0px -16px;
 }
 .ToggleButtonsLabel{
   /* border: 1px solid; */
@@ -1030,7 +1376,7 @@ margin: 7px 13px 4px 0px;
   padding: 0px;
   overflow: hidden;
   padding:0px;
-  color: rgba(71, 72, 75, 0.81);
+  color: rgba(47, 48, 49, 0.973);
 }
 .BackgroundColorDatePicker{
   background-color: rgba(0, 0, 0, 0.384);
@@ -1051,7 +1397,7 @@ margin: 7px 13px 4px 0px;
   right: 0;
   width: 25%;
   height: 692px;
-  z-index: 5;
+  /* z-index: 5; */
   overflow-y: scroll;
 }
 .TextHolderTemplate{
@@ -1064,6 +1410,14 @@ margin: 7px 13px 4px 0px;
 width: 100%;
 cursor: pointer;
 }
+.TamplateBackgroundImg1{
+     width: 87px;
+     cursor: pointer;
+     margin: 3px 9px 0 0;
+     border-radius: 6px;
+     border: 1px solid rgba(0, 0, 0, 0.178);
+  }
+
 .TamplateImg1:hover{
   border: 1px solid #00c091;
 }
@@ -1071,6 +1425,13 @@ cursor: pointer;
 .testModal {
   background-color: white;
   padding: 30px;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+.testModalBackGroundImg {
+  background-color: white;
+  padding: 30px;
+  height: 632px;
   /* display: flex; */
   /* flex-direction: column; */
 }
@@ -1105,17 +1466,30 @@ textarea {
 .GPARight:focus::placeholder{
   color: rgba(71, 72, 75, 0.514);
 }
-.GPALeft{
+.GPALeftBlue{
   /* border: 1px solid; */
   width: 24px;
   font-size: 16px;
-}
-
-.GPALeft::placeholder{
   color: #008CFF;
 }
-.GPALeft:focus::placeholder{
+.GPALeftGreen{
+  /* border: 1px solid; */
+  width: 24px;
+  font-size: 16px;
+  color: #00B400 !important
+}
+
+.GPALeftBlue::placeholder{
+  color: #008CFF;
+}
+.GPALeftGreen::placeholder{
+  color: #00B400 !important
+}
+.GPALeftBlue:focus::placeholder{
   color: #008cff9a;
+}
+.GPALeftGreen:focus::placeholder{
+  color: #00b4007c !important;
 }
 ::marker {
   color: rgba(71, 72, 75, 0.81);
@@ -1232,21 +1606,37 @@ font-size: 17px;
 .companyNameTitleExperienceSection:focus::placeholder{
   color:   #008cff6e !important;
 }
-.companyTitleExperienceSection{
+.companyTitleExperienceSectionBlue{
 /* border: 1px solid; */
 font-size: 20px;
 color: #008CFF !important;
 }
-.TitleExperienceBoxSection{
+.companyTitleExperienceSectionGreen{
+  /* border: 1px solid; */
+  font-size: 20px;
+  color: #00B400 !important;
+  }
+.TitleExperienceBoxSectionBlue{
   /* border: 1px solid; */
   font-size: 15px;
   color: #008CFF !important;
 }
-.TitleExperienceBoxSection::placeholder{
+.TitleExperienceBoxSectionGreen{
+  /* border: 1px solid; */
+  font-size: 15px;
+  color: #00B400 !important;
+}
+.TitleExperienceBoxSectionBlue::placeholder{
   color: #008CFF !important;
 }
-.TitleExperienceBoxSection:focus::placeholder{
+.TitleExperienceBoxSectionGreen::placeholder{
+  color: #00B400 !important;
+}
+.TitleExperienceBoxSectionBlue:focus::placeholder{
   color: #008cff88 !important;
+}
+.TitleExperienceBoxSectionGreen:focus::placeholder{
+  color: #00b4006e !important;
 }
 .test[placeholder]:empty:before {
   content: attr(placeholder);
@@ -1267,12 +1657,30 @@ article {
   /* content: ""; */
   color:rgba(71, 72, 75, 0.37);
 }
+.outerWraperLoginButtons{
+  /* background-color: rgba(180, 180, 93, 0.103); */
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px;
+  grid-gap: 21px;
+  gap: 21px;
+  padding: 21px;
+}
 p{
   margin: unset !important;
   padding: 4px;
 }
-p::before{
+.summary p::before{
   content: "\A";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.479);
+    margin:5px 0px 0px -12px;
+    display:inline;
+    position:absolute;
+}
+.cover-letter p::before{
     width: 7px;
     height: 7px;
     border-radius: 50%;
@@ -1284,11 +1692,17 @@ p::before{
 .companyTitlePassionsSection:focus::placeholder{
 color:rgba(71, 72, 75, 0.37);
 }
-.companyTitleExperienceSection::placeholder{
+.companyTitleExperienceSectionBlue::placeholder{
   color:  #008CFF !important;
 }
-.companyTitleExperienceSection:focus::placeholder{
+.companyTitleExperienceSectionGreen::placeholder{
+  color:  #00B400 !important
+}
+.companyTitleExperienceSectionBlue:focus::placeholder{
   color:   #008cff6e !important;
+}
+.companyTitleExperienceSectionGreen:focus::placeholder{
+  color:   #00b40073 !important;
 }
 .companyTitleExperienceSection:focus::placeholder{
   color:rgba(71, 72, 75, 0.329);

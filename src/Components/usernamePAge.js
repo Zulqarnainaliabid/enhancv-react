@@ -54,7 +54,8 @@ export default function Header(props) {
   const counter = useSelector((state) => state.counter);
   const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
   const ToggleUserImgModal = useSelector((state) => state.ToggleUserImgModal);
- 
+  const UpdateColor = useSelector((state) => state.UpdateColor);
+  
   const dispatch = useDispatch();
   function HandleBoarder() {
     dispatch(INCREMENTDATA());
@@ -324,6 +325,7 @@ export default function Header(props) {
       
     }
   }, []);
+  
   let data = [
     { lebel: "Show Link", name: "showlink", set: HandleLinks },
     { lebel: "Show Title", name: "showtitle", set: HandleTitle },
@@ -406,7 +408,7 @@ export default function Header(props) {
                 type="text"
                 value={UserTitle}
                 onChange={HnadleUserTitle}
-                className="InnerHeadingText"
+                className=    {UpdateColor ? "InnerHeadingTextBlue" : "InnerHeadingTextGreen" }
                 style={{ display: ShowTitle ? "block" : "none" }}
                 placeholder="Your next desired role"
               />
@@ -415,7 +417,7 @@ export default function Header(props) {
               <div
                 className="outerWraperAdress"
               >
-                <MdPhone className="AdressIconHeader"  style={{ display: ShowPhone ? "flex" : "none" }} />
+                <MdPhone  className=    {UpdateColor ? "AdressIconHeaderBlue" : "AdressIconHeaderGreen" }  style={{ display: ShowPhone ? "flex" : "none" }} />
                 <input
                   type="text"
                   className="adressText"
@@ -425,7 +427,7 @@ export default function Header(props) {
                   style={{ display: ShowPhone ? "flex" : "none" }}
                 />
                 <div
-                  className="AdressIconHeader"
+                   className=    {UpdateColor ? "AdressIconHeaderBlue" : "AdressIconHeaderGreen" }
                   style={{ display: ShowEmail ? "flex" : "none" }}
                 >
                   @
@@ -441,7 +443,7 @@ export default function Header(props) {
               </div>
               <div className="outerWraperAdress">
                 <BiLinkAlt
-                  className="AdressIconHeader"
+                   className=    {UpdateColor ? "AdressIconHeaderBlue" : "AdressIconHeaderGreen" }
                   style={{ display: ShowLink ? "block" : "none" }}
                 />
                 <input
@@ -453,7 +455,7 @@ export default function Header(props) {
                   placeholder="Website/Links"
                 />
                 <MdLocationOn
-                  className="AdressIconHeader"
+                   className=    {UpdateColor ? "AdressIconHeaderBlue" : "AdressIconHeaderGreen" }
                   style={{ display: ShowLocation ? "block" : "none" }}
                 />
                 <input

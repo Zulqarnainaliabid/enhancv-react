@@ -104,7 +104,7 @@ export default function Boxfunction(props) {
   const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
   
   const BackgroundColorDatePicker = useSelector((state) => state.BackgroundColorDatePicker);
-  
+  const UpdateColor = useSelector((state) => state.UpdateColor);
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
@@ -586,7 +586,8 @@ export default function Boxfunction(props) {
           <input
             type="text"
             value={InstitudeNameTestHolder}
-            className="TitleExperienceBoxSection"
+            className=    {UpdateColor ? "TitleExperienceBoxSectionBlue" : "TitleExperienceBoxSectionGreen" }
+        
             onClick={() => {
               setEnabledFontFormatColor("#38434744");
               setEnabledFontFormatNoDrop("no-drop");
@@ -736,7 +737,7 @@ export default function Boxfunction(props) {
                 <input
                   value={GPAObtainTestHolder}
                   type="number"
-                  className="GPALeft"
+                  className=    {UpdateColor ? "GPALeftBlue" : "GPALeftGreen" }
                   placeholder="4.0"
                   onChange={(e) => {
                     setGPAObtainTestHolder(e.target.value);

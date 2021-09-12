@@ -106,6 +106,8 @@ export default function Boxfunction(props) {
 
   const Indux = useSelector((state) => state.InduxExperience);
   const Incrementnull = useSelector((state) => state.IncrementNull);
+  const UpdateColor = useSelector((state) => state.UpdateColor);
+  
   const SetToggleButtonsNull = useSelector(
     (state) => state.SetToggleButtonsNull
   );
@@ -610,7 +612,7 @@ export default function Boxfunction(props) {
           <input
             type="text"
             value={CompnyName}
-            className="TitleExperienceBoxSection"
+            className=    {UpdateColor ? "TitleExperienceBoxSectionBlue" : "TitleExperienceBoxSectionGreen" }
             style={{ display: ShowCompanyName ? "block" : "none" }}
             onClick={() => {
               setEnabledFontFormatColor("#38434744");

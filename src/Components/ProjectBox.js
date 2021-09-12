@@ -109,6 +109,7 @@ export default function Boxfunction(props) {
   const UpdateWidthLeftRight = useSelector(
     (state) => state.UpdateWidthLeftRight
   );
+  const UpdateColor = useSelector((state) => state.UpdateColor);
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
@@ -601,7 +602,7 @@ export default function Boxfunction(props) {
               localStorage.setItem("arrayProject", JSON.stringify(array));
               setTitleTextHolder(e.target.value);
             }}
-            className="companyTitleExperienceSection"
+            className=    {UpdateColor ? "companyTitleExperienceSectionBlue" : "companyTitleExperienceSectionGreen" }
             placeholder="Project Name"
           />
           <div

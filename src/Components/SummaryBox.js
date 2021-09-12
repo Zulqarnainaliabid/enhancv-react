@@ -205,6 +205,7 @@ export default function Boxfunction(props) {
               <div>jj</div>
             ) : (
               <div className="app" style={{width:WidthLeftRight,marginLeft: "15px"}}>
+                <div className="summary">
               <Editor
                 text={SummaryTextHolder}
                 onChange={(text) => {
@@ -221,6 +222,8 @@ export default function Boxfunction(props) {
                 }}
               />
               </div>
+              </div>
+
             )}
           </div>
         </div>

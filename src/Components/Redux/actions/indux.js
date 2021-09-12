@@ -425,4 +425,25 @@ export  const  UPDATENUMBERSLICE=(item)=>{
     }
 }
 
+export  const  UPDATECOLOR=(item)=>{
+    return{
+        type:'UPDATECOLOR',
+        payload:item,
+    }
+}
+
+export  const  UPDATEBACKGROUNDIMAGE=(item)=>{
+    return{
+        type:'UPDATEBACKGROUNDIMAGE',
+        payload:item,
+    }
+}
+
+export  const  TOGGLEPAGES=(item)=>{
+    return{
+        type:'TOGGLEPAGES',
+        payload:item,
+    }
+}
+
 

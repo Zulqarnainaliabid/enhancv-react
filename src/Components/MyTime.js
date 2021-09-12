@@ -25,13 +25,10 @@ export default function MyTime(props) {
   const [NumberOfSlice3, setNumberOfSlice3] = useState("#00c091");
   const [NumberOfSlice6, setNumberOfSlice6] = useState("#ccc");
   const [NumberOfSlice9, setNumberOfSlice9] = useState("#ccc");
-  const [NumberOfSlice, setNumberOfSlice] = useState(3);
-  const [ArraysliceinputField, setArraysliceinputField] = useState([
-    { label: "A",number:"A1", },
-    { label: "B",number:"B1", },
-    { label: "C",number:"C1", },
-    { label: "D",number:"D1", },
-  ]);
+  const [series, setseries] = useState([5, 5, 5, 5]);
+  const [labels, setlabels] = useState(["A", "B", "C", "D"]);
+  const [SliceNumber, setSliceNumber] = useState(3);
+
   const dispatch = useDispatch();
   const CounterData = useSelector((state) => state.CounterData);
   const nullBackgroundcolorPassion = useSelector(
@@ -83,6 +80,7 @@ export default function MyTime(props) {
     setborderBottm("1px dashed rgba(0, 0, 0, 0.548)");
   }
   function sethandleBackgroundcolor() {
+    dispatch(INCREMENT());
     setToggleButtons(true);
     props.button();
     dispatch(INCREMENTBACKGROUNDCOLOMYTIME());
@@ -198,82 +196,151 @@ export default function MyTime(props) {
     setborderBottm("none");
     setShowHeaderButton("none");
     setUnderBoxcolor(false);
+    
   }, [Incrementnull]);
 
   useEffect(() => {
     setToggleButtons(false);
-    setToggleButtons(false);
     setbackgroundColor(null);
     setborderBottm("none");
     setShowHeaderButton("none");
+    setUnderBoxcolor(false);
   }, [CounterData]);
 
   useEffect(() => {
+    if (localStorage.getItem("arraySeries") !== null) {
+      let value = localStorage.getItem("arraySeries");
+      value = JSON.parse(value);
+      var result = value.map(function (x) {
+        return parseInt(x);
+      });
+      HandleSeries(result);
+    }
     inputref.current.focus();
-  }, [CounterData]);
-
-  useEffect(() => {
-    localStorage.setItem("slice", JSON.stringify(4));
   }, []);
-  
+
   function HandleRemoveSection() {
     dispatch(MYTIMEYES(true));
   }
-  function HandleNumberOfslice3(name,value) {
+  function HandleSeries(array) {
+    var result = array.map(function (x) {
+      return parseInt(x);
+    });
+    let temp4 = [];
+    if (SliceNumber === 3) {
+      for (let i = 0; i < 4; i++) {
+        temp4[i] = result[i];
+      }
+    } else if (SliceNumber === 6) {
+      for (let i = 0; i < 6; i++) {
+        temp4[i] = result[i];
+      }
+    } else if (SliceNumber === 9) {
+      for (let i = 0; i < result.length; i++) {
+        temp4[i] = result[i];
+      }
+    }
+    setseries([...temp4]);
+  }
+  function HandleNumberOfslice3() {
     setNumberOfSlice6("#ccc");
     setNumberOfSlice3("#00c091");
     setNumberOfSlice9("#ccc");
-    setNumberOfSlice(3)
-    let temp = [];
-    temp = ArraysliceinputField;
-    temp = [
-      { label: "A",number:"A1",},
-      { label: "B",number:"A2",},
-      { label: "C",number:"A3",},
-      { label: "D",number:"A4",},
-    ];
-    setArraysliceinputField([...temp]);
-    childRef.current.getAlert(4,name,value);
+
+    if (localStorage.getItem("arraySeries") !== null) {
+      let value = localStorage.getItem("arraySeries");
+      let temp = [];
+      value = JSON.parse(value);
+      var result = value.map(function (x) {
+        return parseInt(x);
+      });
+      for (let i = 0; i < 4; i++) {
+        temp[i] = result[i];
+      }
+      setseries(temp);
+    } else {
+      setseries([5, 5, 5, 5]);
+    }
+    setlabels(["A", "B", "C", "D"]);
+    setSliceNumber(3);
+    const slice = {
+      NumberOfSlice6: "#ccc",
+      NumberOfSlice3: "#00c091",
+      NumberOfSlice9: "#ccc",
+      series: [5, 5, 5, 5],
+      labels: ["A", "B", "C", "D"],
+    };
+    localStorage.setItem("arraySlice", JSON.stringify(slice));
   }
-  function HandleNumberOfslice6(name,value) {
+  function HandleNumberOfslice6() {
     setNumberOfSlice6("#00c091");
     setNumberOfSlice3("#ccc");
     setNumberOfSlice9("#ccc");
-    setNumberOfSlice(6)
-    let temp = [];
-    temp = ArraysliceinputField;
-    temp = [
-      { label: "A",number:"A1",},
-      { label: "B",number:"A2",},
-      { label: "C",number:"A3",},
-      { label: "D",number:"A4",},
-      { label: "E",number:"A5",},
-      { label: "F",number:"A6",},
-    ];
-    setArraysliceinputField([...temp]);
-    childRef.current.getAlert(6,name,value);
+    setSliceNumber(6);
+    if (localStorage.getItem("arraySeries") !== null) {
+      let value = localStorage.getItem("arraySeries");
+      let temp = [];
+      value = JSON.parse(value);
+      var result = value.map(function (x) {
+        return parseInt(x);
+      });
+      for (let i = 0; i < 6; i++) {
+        temp[i] = result[i];
+      }
+      setseries(temp);
+    } else {
+      setseries([5, 5, 5, 5, 5, 5]);
+    }
+    setlabels(["A", "B", "C", "D", "E", "F"]);
+    const slice = {
+      NumberOfSlice6: "#00c091",
+      NumberOfSlice3: "#ccc",
+      NumberOfSlice9: "#ccc",
+      series: [5, 5, 5, 5, 5, 5],
+      labels: ["A", "B", "C", "D", "E", "F"],
+    };
+    localStorage.setItem("arraySlice", JSON.stringify(slice));
   }
-  function HandleNumberOfslice9(name,value) {
+  function HandleNumberOfslice9() {
     setNumberOfSlice6("#ccc");
     setNumberOfSlice3("#ccc");
     setNumberOfSlice9("#00c091");
-    setNumberOfSlice(8);
-    setNumberOfSlice(9)
-    let temp = [];
-    temp = ArraysliceinputField;
-    temp = [
-      { label: "A",number:"A1", },
-      { label: "B",number:"A2", },
-      { label: "C",number:"A3", },
-      { label: "D",number:"A4", },
-      { label: "E",number:"A5", },
-      { label: "F",number:"A6", },
-      { label: "H",number:"A7", },
-      { label: "I",number:"A8", },
-    ];
-    setArraysliceinputField([...temp]);
-    childRef.current.getAlert(8,name,value);
+    if (localStorage.getItem("arraySeries") !== null) {
+      let value = localStorage.getItem("arraySeries");
+      let temp = [];
+      value = JSON.parse(value);
+      var result = value.map(function (x) {
+        return parseInt(x);
+      });
+      for (let i = 0; i < result.length; i++) {
+        temp[i] = result[i];
+      }
+      setseries(temp);
+    }else{
+      setseries([5, 5, 5, 5, 5, 5, 5, 5]);
+    }
+    setlabels(["A", "B", "C", "D", "E", "F", "G", "H"]);
+    setSliceNumber(9);
+    const slice = {
+      NumberOfSlice6: "#ccc",
+      NumberOfSlice3: "#ccc",
+      NumberOfSlice9: "#00c091",
+      series: [5, 5, 5, 5, 5, 5, 5, 5],
+      labels: ["A", "B", "C", "D", "E", "F", "G", "H"],
+    };
+    localStorage.setItem("arraySlice", JSON.stringify(slice));
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("arraySlice") !== null) {
+      let value = localStorage.getItem("arraySlice");
+      value = JSON.parse(value);
+      setNumberOfSlice6(value.NumberOfSlice6);
+      setNumberOfSlice3(value.NumberOfSlice3);
+      setNumberOfSlice9(value.NumberOfSlice9);
+      setlabels(value.labels);
+    }
+  }, []);
   return (
     <>
       <div
@@ -358,13 +425,10 @@ export default function MyTime(props) {
         >
           <ApexChart
             ref={childRef}
-            UpdateNumberSlice={UpdateNumberSlice}
-            ArraysliceinputField={ArraysliceinputField}
-            setArraysliceinputField={setArraysliceinputField}
-            ArraysliceinputField={ArraysliceinputField}
-            HandleNumberOfslice3={HandleNumberOfslice3}
-            HandleNumberOfslice6={HandleNumberOfslice6}
-            HandleNumberOfslice9={HandleNumberOfslice9}
+            series={series}
+            labels={labels}
+            SliceNumber={SliceNumber}
+            HandleSeries={HandleSeries}
           />
         </div>
       </div>

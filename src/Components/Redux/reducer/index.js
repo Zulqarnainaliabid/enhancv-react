@@ -65,6 +65,9 @@ import BackgroundColorDatePickerProject from './BackgroundColorDatePickerProject
 import BackgroundColorDatePickerVolunteering from './BackgroundColorDatePickerVolunteering'
 import UpdateNumberSlice from './UpdateNumberSlice'
 import SingleColumnTemplate from './singleColumn'
+import UpdateColor from './UpdateColor'
+import UpdateBackGroundImage from './UpdateBackgroundImage'
+import TogglePages from './TogglePages'
 const allReducers = combineReducers({
 counter:counterReducer,
 CounterData:IncrementData,
@@ -132,5 +135,8 @@ BackgroundColorDatePickerProject:BackgroundColorDatePickerProject,
 BackgroundColorDatePickerVolunteering:BackgroundColorDatePickerVolunteering,
 SingleColumnTemplate:SingleColumnTemplate,
 UpdateNumberSlice:UpdateNumberSlice,
+UpdateColor:UpdateColor,
+UpdateBackGroundImage:UpdateBackGroundImage,
+TogglePages:TogglePages
 });
 export default allReducers

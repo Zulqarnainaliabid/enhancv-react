@@ -244,9 +244,6 @@ export default function Summry(props) {
     setState([...temp]);
     localStorage.setItem("arraySummary", JSON.stringify(temp));
   }
-
-
-
   function HanderDeleteItemInArray() {
     dispatch(SUMMARYYES(true));
   }

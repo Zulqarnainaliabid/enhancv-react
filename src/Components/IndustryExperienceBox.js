@@ -68,6 +68,12 @@ export default function Boxfunction(props) {
     (state) => state.SetToggleButtonsNull
   );
 
+  const  UpdateColor = useSelector(
+    (state) => state. UpdateColor
+  );
+
+ 
+
   useEffect(() => {
     setToggleButtons(false);
   }, [SetToggleButtonsNull]);
@@ -284,7 +290,7 @@ export default function Boxfunction(props) {
             <input
               ref={inputref}
               type="text"
-              className="outerWraperGroupTitle"
+              className=    {UpdateColor ? "outerWraperGroupTitleBlue" : "outerWraperGroupTitleGreen" }
               placeholder="Area of expertise"
               value={TitleTestHolder}
               onChange={(e) => {
