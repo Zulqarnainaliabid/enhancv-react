@@ -1,45 +1,45 @@
-import React, { useState, useEffect, useRef } from "react";
-import { MdDateRange } from "react-icons/md";
-import { MdLocationOn } from "react-icons/md";
-import { RiSettings5Fill } from "react-icons/ri";
-import { BiLinkAlt } from "react-icons/bi";
-import { useAlert } from "react-alert";
-import { FaPlus } from "react-icons/fa";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { BiText } from "react-icons/bi";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { MdKeyboardArrowUp } from "react-icons/md";
-import Switch from "react-switch";
-import Editor from "react-medium-editor";
-import DatePicker from "./DatePicker/DatePicker";
-import { useDispatch, useSelector } from "react-redux";
-import InputBullets from "./Bullets";
+import React, {useState, useEffect, useRef} from 'react';
+import {MdDateRange} from 'react-icons/md';
+import {MdLocationOn} from 'react-icons/md';
+import {RiSettings5Fill} from 'react-icons/ri';
+import {BiLinkAlt} from 'react-icons/bi';
+// import {useAlert} from 'react-alert';
+import {FaPlus} from 'react-icons/fa';
+import {RiDeleteBin6Line} from 'react-icons/ri';
+import {BiText} from 'react-icons/bi';
+import {MdKeyboardArrowDown} from 'react-icons/md';
+import {MdKeyboardArrowUp} from 'react-icons/md';
+import Switch from 'react-switch';
+import Editor from 'react-medium-editor';
+import DatePicker from './DatePicker/DatePicker';
+import {useDispatch, useSelector} from 'react-redux';
+import InputBullets from './Bullets';
 import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLORPROJECT,
   INDUXPROJECT,
   SETTOGGLEBUTTONNULL,
   BACKGROUNDCOLORDATPICKPROJECT,
-} from "./Redux/actions/indux";
-import "./HomePage.css";
-require("medium-editor/dist/css/medium-editor.css");
-require("medium-editor/dist/css/themes/default.css");
-export function SwitchButtons(props) {
-  const [checked, setchecked] = useState(true);
-  function handleChange(value) {
-    setchecked(value);
-    props.handleToggglebutton(props.index, value);
+} from './Redux/actions/indux';
+import './HomePage.css';
+require ('medium-editor/dist/css/medium-editor.css');
+require ('medium-editor/dist/css/themes/default.css');
+export function SwitchButtons (props) {
+  const [checked, setchecked] = useState (true);
+  function handleChange (value) {
+    setchecked (value);
+    props.handleToggglebutton (props.index, value);
   }
-  useEffect(() => {
-    if (localStorage.getItem("arrayProject") !== null) {
-      let value = localStorage.getItem("arrayProject");
-      value = JSON.parse(value);
-      setchecked(
+  useEffect (() => {
+    if (localStorage.getItem ('arrayProject') !== null) {
+      let value = localStorage.getItem ('arrayProject');
+      value = JSON.parse (value);
+      setchecked (
         value[props.indexouterarray].togglebuttonlist[props.index]
           .selectedToggleButton
       );
     } else {
-      setchecked(true);
+      setchecked (true);
     }
   }, []);
   return (
@@ -59,419 +59,430 @@ export function SwitchButtons(props) {
     </label>
   );
 }
-export default function Boxfunction(props) {
-  const inputref = useRef();
-  const alert = useAlert();
-  const [EnabledFontFormatColor, setEnabledFontFormatColor] =
-    useState("#38434744");
-  const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] =
-    useState("no-drop");
-  const [LinkTextBox, setLinkTextBox] = useState("none");
-  const [ToggleButtons, setToggleButtons] = useState(false);
-  const [UpdateNumber, setUpdateNumber] = useState(0);
-  const [ShowDate, setShowDate] = useState(false);
-  const [UpdateDate, setUpdateDate] = useState(null);
-  const [DislayDatePeriod, setDislayDatePeriod] = useState(true);
-  const [UpdateMonthFrom, setUpdateMonthFrom] = useState(null);
-  const [DateSlash, setDateSlash] = useState(false);
-  const [MonthOngoing, setMonthOngoing] = useState(null);
-  const [YearOnGoing, setYearOnGoing] = useState(null);
-  const [DiplayMinus, setDiplayMinus] = useState(false);
-  const [DisplayShashOngoing, setDisplayShashOngoing] = useState(false);
-  const [Ongoing, setOngoing] = useState(true);
-  const [BackwordMinusOngoing, setBackwordMinusOngoing] = useState(false);
-  const [Counter, setCounter] = useState(0);
-  const [WidthLeftRight, setWidthLeftRight] = useState(null);
+export default function Boxfunction (props) {
+  const inputref = useRef ();
+  // const alert = useAlert ();
+  const [EnabledFontFormatColor, setEnabledFontFormatColor] = useState (
+    '#38434744'
+  );
+  const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] = useState (
+    'no-drop'
+  );
+  const [LinkTextBox, setLinkTextBox] = useState ('none');
+  const [ToggleButtons, setToggleButtons] = useState (false);
+  const [UpdateNumber, setUpdateNumber] = useState (0);
+  const [ShowDate, setShowDate] = useState (false);
+  const [UpdateDate, setUpdateDate] = useState (null);
+  const [DislayDatePeriod, setDislayDatePeriod] = useState (true);
+  const [UpdateMonthFrom, setUpdateMonthFrom] = useState (null);
+  const [DateSlash, setDateSlash] = useState (false);
+  const [MonthOngoing, setMonthOngoing] = useState (null);
+  const [YearOnGoing, setYearOnGoing] = useState (null);
+  const [DiplayMinus, setDiplayMinus] = useState (false);
+  const [DisplayShashOngoing, setDisplayShashOngoing] = useState (false);
+  const [Ongoing, setOngoing] = useState (true);
+  const [BackwordMinusOngoing, setBackwordMinusOngoing] = useState (false);
+  const [Counter, setCounter] = useState (0);
+  const [WidthLeftRight, setWidthLeftRight] = useState (null);
 
   const [
     checkplacehodercompanydiscription,
     setcheckplacehodercompanydiscription,
-  ] = useState(true);
-  const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
-  const [ShowDescription, setShowDescription] = useState(true);
-  const [ShowBullets, setShowBullets] = useState(true);
-  const [ShowLocation, setShowLocation] = useState(true);
-  const [ShowPeriod, setShowPeriod] = useState(true);
-  const [ShowLinks, setShowLinks] = useState(true);
-  const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
-  const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
-  const dispatch = useDispatch();
-  const UpdateYearFrom = useSelector((state) => state.IncrementState);
-  const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
-  const Indux = useSelector((state) => state.InduxProject);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  
-  const BackgroundColorDatePickerProject = useSelector((state) => state.BackgroundColorDatePickerProject);
-  
-  const SetToggleButtonsNull = useSelector(
-    (state) => state.SetToggleButtonsNull
-  );
-  const UpdateWidthLeftRight = useSelector(
-    (state) => state.UpdateWidthLeftRight
-  );
-  const UpdateColor = useSelector((state) => state.UpdateColor);
-  useEffect(() => {
-    setToggleButtons(false);
-  }, [SetToggleButtonsNull]);
+  ] = useState (true);
+  const [checkplacehoderBollets, setcheckplacehoderBollets] = useState (true);
+  const [ShowDescription, setShowDescription] = useState (true);
+  const [ShowBullets, setShowBullets] = useState (true);
+  const [ShowLocation, setShowLocation] = useState (true);
+  const [ShowPeriod, setShowPeriod] = useState (true);
+  const [ShowLinks, setShowLinks] = useState (true);
+  const [TogglebuttonsName, setTogglebuttonsName] = useState (props.list);
+  const [togglebuttonarrayList, settogglebuttonarrayList] = useState ([]);
+  const dispatch = useDispatch ();
+  const UpdateYearFrom = useSelector (state => state.IncrementState);
+  const UpdateToggleYearFrom = useSelector (state => state.UpdateYearFrom);
+  const Indux = useSelector (state => state.InduxProject);
+  const Incrementnull = useSelector (state => state.IncrementNull);
 
-  useEffect(() => {
-    setToggleButtons(false);
-    setShowDate(false);
-  }, [Incrementnull]);
-  function HandleOngoing(toggle) {
+  const BackgroundColorDatePickerProject = useSelector (
+    state => state.BackgroundColorDatePickerProject
+  );
+
+  const SetToggleButtonsNull = useSelector (
+    state => state.SetToggleButtonsNull
+  );
+  const UpdateWidthLeftRight = useSelector (
+    state => state.UpdateWidthLeftRight
+  );
+  const UpdateColor = useSelector (state => state.UpdateColor);
+  useEffect (
+    () => {
+      setToggleButtons (false);
+    },
+    [SetToggleButtonsNull]
+  );
+
+  useEffect (
+    () => {
+      setToggleButtons (false);
+      setShowDate (false);
+    },
+    [Incrementnull]
+  );
+  function HandleOngoing (toggle) {
     if (toggle) {
-      setOngoing(true);
+      setOngoing (true);
       let array = props.list;
       array[props.index].value.date.ongoing = true;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     } else {
-      setOngoing(false);
+      setOngoing (false);
       let array = props.list;
       array[props.index].value.date.ongoing = false;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     }
     if (UpdateDate !== null || UpdateMonthFrom !== null) {
-      setBackwordMinusOngoing(true);
+      setBackwordMinusOngoing (true);
     } else {
-      setBackwordMinusOngoing(false);
-      setDislayDatePeriod(false);
+      setBackwordMinusOngoing (false);
+      setDislayDatePeriod (false);
     }
   }
-  function handleUpdateDate(yearfrom) {
-    console.log("yearfrom,",yearfrom)
+  function handleUpdateDate (yearfrom) {
     if (yearfrom === null) {
-      setDislayDatePeriod(true)
-      setUpdateDate(null);
+      setDislayDatePeriod (true);
+      setUpdateDate (null);
       let array = props.list;
       array[props.index].value.date.yearfrom = yearfrom.number;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     } else {
-      setUpdateDate(yearfrom.number);
+      setUpdateDate (yearfrom.number);
       let array = props.list;
       array[props.index].value.date.yearfrom = yearfrom.number;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     }
     if (yearfrom === null && UpdateMonthFrom === null) {
-      setDislayDatePeriod(true);
+      setDislayDatePeriod (true);
     } else {
-      setDislayDatePeriod(false);
+      setDislayDatePeriod (false);
     }
     if (UpdateMonthFrom !== null && yearfrom !== null) {
-      setDateSlash(true);
+      setDateSlash (true);
     } else if (UpdateMonthFrom === null || yearfrom === null) {
-      setDateSlash(false);
+      setDateSlash (false);
     }
   }
 
-  function handleUpdateDateMonthFrom(monthfrom) {
-    console.log("monthfrom - - - - -",monthfrom)
+  function handleUpdateDateMonthFrom (monthfrom) {
     if (monthfrom === null) {
-      setUpdateMonthFrom(null);
+      setUpdateMonthFrom (null);
       let array = props.list;
       array[props.index].value.date.monthfrom = monthfrom;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     } else {
-      setUpdateMonthFrom(monthfrom);
+      setUpdateMonthFrom (monthfrom);
       let array = props.list;
       array[props.index].value.date.monthfrom = monthfrom;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     }
     if (monthfrom === null) {
-      setDislayDatePeriod(true);
-      setDateSlash(false);
+      setDislayDatePeriod (true);
+      setDateSlash (false);
     } else {
-      setDislayDatePeriod(false);
+      setDislayDatePeriod (false);
     }
     if (UpdateDate !== null && monthfrom !== null) {
-      setDateSlash(true);
+      setDateSlash (true);
     } else if (UpdateDate === null || monthfrom === null) {
-      setDateSlash(false);
+      setDateSlash (false);
     }
   }
 
-  useEffect(() => {
-    if (UpdateToggleYearFrom) {
-      let array = props.list;
-      array[props.index].value.date.yearfrom = null;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
-      setDateSlash(false);
-    }
-  }, [UpdateYearFrom]);
-  function HandleMonthOngoing(date) {
+  useEffect (
+    () => {
+      if (UpdateToggleYearFrom) {
+        let array = props.list;
+        array[props.index].value.date.yearfrom = null;
+        localStorage.setItem ('arrayProject', JSON.stringify (array));
+        setDateSlash (false);
+      }
+    },
+    [UpdateYearFrom]
+  );
+  function HandleMonthOngoing (date) {
     if (date === null) {
-      setMonthOngoing(null);
+      setMonthOngoing (null);
       let array = props.list;
       array[props.index].value.date.monthto = date;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     } else {
-      setMonthOngoing(date);
+      setMonthOngoing (date);
       let array = props.list;
       array[props.index].value.date.monthto = date;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     }
     if (date !== null || YearOnGoing !== null) {
-      setDiplayMinus(true);
+      setDiplayMinus (true);
     } else if (date === null && YearOnGoing === null) {
-      setDiplayMinus(false);
+      setDiplayMinus (false);
     }
     if (date !== null && YearOnGoing !== null) {
-      setDisplayShashOngoing(true);
+      setDisplayShashOngoing (true);
     } else {
-      setDisplayShashOngoing(false);
+      setDisplayShashOngoing (false);
     }
   }
 
-  function handleYearOngoing(date) {
+  function handleYearOngoing (date) {
     if (date === null) {
-      setYearOnGoing(null);
+      setYearOnGoing (null);
     } else {
-      setYearOnGoing(date);
+      setYearOnGoing (date);
       let array = props.list;
       array[props.index].value.date.yearto = date;
-      localStorage.setItem("arrayProject", JSON.stringify(array));
+      localStorage.setItem ('arrayProject', JSON.stringify (array));
     }
     if (date !== null || YearOnGoing !== null) {
-      setDiplayMinus(true);
+      setDiplayMinus (true);
     } else if (date === null && YearOnGoing === null) {
-      setDiplayMinus(false);
+      setDiplayMinus (false);
     }
   }
 
-  function HandleTextDecoration() {
-    setToggleButtons(false);
+  function HandleTextDecoration () {
+    setToggleButtons (false);
     if (
-      EnabledFontFormatColor === "#38434744" ||
-      EnabledFontFormatNoDrop === "no-drop "
+      EnabledFontFormatColor === '#38434744' ||
+      EnabledFontFormatNoDrop === 'no-drop '
     ) {
-      alert.show(
-        "Text decoration is available only in descriptions and bullets"
-      );
+      // alert.show (
+      //   'Text decoration is available only in descriptions and bullets'
+      // );
     }
   }
 
-  function HandleSetBackGroundColor() {
-    dispatch(INCREMENTBACKGROUNDCOLORPROJECT());
-    dispatch(INCREMENT());
-    dispatch(SETTOGGLEBUTTONNULL());
-    props.HandleCompleteBoarderUnSelected();
+  function HandleSetBackGroundColor () {
+    dispatch (INCREMENTBACKGROUNDCOLORPROJECT ());
+    dispatch (INCREMENT ());
+    dispatch (SETTOGGLEBUTTONNULL ());
+    props.HandleCompleteBoarderUnSelected ();
     let temp = props.list;
     if (!temp[props.index].selected) {
-      props.list.map((item, index) => {
+      props.list.map ((item, index) => {
         if (item.selected) {
           temp[index].selected = false;
         }
       });
       temp[props.index].selected = true;
-      props.setList([...temp]);
+      props.setList ([...temp]);
     }
-    props.button();
-    setUpdateNumber(UpdateNumber + 1);
-    dispatch(INDUXPROJECT(props.index));
+    props.button ();
+    setUpdateNumber (UpdateNumber + 1);
+    dispatch (INDUXPROJECT (props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
-        props.IsActiveUp(false);
-        props.IsActive(true);
+        props.IsActiveUp (false);
+        props.IsActive (true);
       } else if (props.index === array.length - 1) {
-        props.IsActive(false);
-        props.IsActiveUp(true);
+        props.IsActive (false);
+        props.IsActiveUp (true);
       } else {
-        props.IsActive(true);
-        props.IsActiveUp(true);
+        props.IsActive (true);
+        props.IsActiveUp (true);
       }
     } else {
-      props.IsActive(false);
-      props.IsActiveUp(false);
+      props.IsActive (false);
+      props.IsActiveUp (false);
     }
   }
   const style = {
     borderBottom: props.borderbotm,
   };
-  function HandleArrowDown() {
+  function HandleArrowDown () {
     let index = props.index + 1;
-    dispatch(INDUXPROJECT(index));
-    setToggleButtons(false);
-    props.IsActiveUp(true);
+    dispatch (INDUXPROJECT (index));
+    setToggleButtons (false);
+    props.IsActiveUp (true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index + 1].selected = true;
     }
     temp[props.index].selected = false;
-    props.setList([...temp]);
+    props.setList ([...temp]);
     if (props.index + 1 === temp.length - 1) {
-      props.IsActive(false);
+      props.IsActive (false);
     } else {
-      props.IsActive(true);
+      props.IsActive (true);
     }
   }
   const HandleArrowUP = () => {
     let index = null;
     index = props.index - 1;
-    dispatch(INDUXPROJECT(index));
-    setToggleButtons(false);
-    props.IsActive(true);
+    dispatch (INDUXPROJECT (index));
+    setToggleButtons (false);
+    props.IsActive (true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index - 1].selected = true;
     }
     temp[props.index].selected = false;
-    props.setList([...temp]);
+    props.setList ([...temp]);
     if (props.index === 1) {
-      props.IsActiveUp(false);
+      props.IsActiveUp (false);
     } else {
-      props.IsActiveUp(true);
+      props.IsActiveUp (true);
     }
   };
-  function HandleDelete() {
-    setToggleButtons(false);
+  function HandleDelete () {
+    setToggleButtons (false);
     let temp = [];
     temp = props.list;
     if (temp.length === 1) {
-      props.IsActive(false);
-      props.IsActiveUp(false);
+      props.IsActive (false);
+      props.IsActiveUp (false);
     }
     if (Indux !== null) {
-      temp.splice(Indux, 1);
+      temp.splice (Indux, 1);
     }
-    localStorage.setItem("arrayProject", JSON.stringify(temp));
-    window.location.reload(false);
+    localStorage.setItem ('arrayProject', JSON.stringify (temp));
+    window.location.reload (false);
   }
-  useEffect(() => {
-    inputref.current.focus();
-    if (localStorage.getItem("arrayProject") !== null) {
-      setcheckplacehodercompanydiscription(false);
-      setcheckplacehoderBollets(false);
-      let item = localStorage.getItem("arrayProject");
-      item = JSON.parse(item);
-      setUpdateDate(item[props.index].value.date.yearfrom);
-      setUpdateMonthFrom(item[props.index].value.date.monthfrom);
-      setMonthOngoing(item[props.index].value.date.monthto);
-      setOngoing(item[props.index].value.date.ongoing);
-      setYearOnGoing(item[props.index].value.date.yearto);
+  useEffect (() => {
+    inputref.current.focus ();
+    if (localStorage.getItem ('arrayProject') !== null) {
+      setcheckplacehodercompanydiscription (false);
+      setcheckplacehoderBollets (false);
+      let item = localStorage.getItem ('arrayProject');
+      item = JSON.parse (item);
+      setUpdateDate (item[props.index].value.date.yearfrom);
+      setUpdateMonthFrom (item[props.index].value.date.monthfrom);
+      setMonthOngoing (item[props.index].value.date.monthto);
+      setOngoing (item[props.index].value.date.ongoing);
+      setYearOnGoing (item[props.index].value.date.yearto);
       if (
         item[props.index].value.date.yearfrom !== null ||
         item[props.index].value.date.monthfrom !== null ||
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.yearto !== null
       ) {
-        setDislayDatePeriod(false);
+        setDislayDatePeriod (false);
       } else {
-        setDislayDatePeriod(true);
-        setDateSlash(false);
+        setDislayDatePeriod (true);
+        setDateSlash (false);
       }
       if (
         item[props.index].value.date.monthfrom !== null &&
         item[props.index].value.date.yearfrom !== null
       ) {
-        setDateSlash(true);
+        setDateSlash (true);
       }
       if (
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.yearto !== null
       ) {
-        setDiplayMinus(true);
-        setDisplayShashOngoing(true);
+        setDiplayMinus (true);
+        setDisplayShashOngoing (true);
       }
       if (
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.ongoing !== null
       ) {
-        setBackwordMinusOngoing(true);
+        setBackwordMinusOngoing (true);
       }
     }
   }, []);
-  function handleText() {
-    setEnabledFontFormatColor("");
-    setEnabledFontFormatNoDrop("pointer");
+  function handleText () {
+    setEnabledFontFormatColor ('');
+    setEnabledFontFormatNoDrop ('pointer');
   }
-  useEffect(() => {
+  useEffect (() => {
     if (UpdateWidthLeftRight !== null) {
-      UpdateWidthLeftRight.map((item, index) => {
-        if (UpdateWidthLeftRight[index].name === "Project") {
+      UpdateWidthLeftRight.map ((item, index) => {
+        if (UpdateWidthLeftRight[index].name === 'Project') {
           if (UpdateWidthLeftRight[index].Left) {
-            console.log("Left");
-            setWidthLeftRight("556px");
+            setWidthLeftRight ('556px');
           } else {
-            console.log("right");
-            setWidthLeftRight("300px");
+
+            setWidthLeftRight ('300px');
           }
         }
       });
     }
   }, []);
 
-  function handleToggglebutton(index, toggle) {
+  function handleToggglebutton (index, toggle) {
     let array = [];
     array = props.list;
     array[props.index].togglebuttonlist[index].selectedToggleButton = toggle;
-    localStorage.setItem("arrayProject", JSON.stringify(array));
+    localStorage.setItem ('arrayProject', JSON.stringify (array));
     if (
-      array[props.index].togglebuttonlist[index].name === "Show Discription"
+      array[props.index].togglebuttonlist[index].name === 'Show Discription'
     ) {
-      setShowDescription(toggle);
+      setShowDescription (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Bullets"
+      array[props.index].togglebuttonlist[index].name === 'Show Bullets'
     ) {
-      setShowBullets(toggle);
+      setShowBullets (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Location"
+      array[props.index].togglebuttonlist[index].name === 'Show Location'
     ) {
-      setShowLocation(toggle);
+      setShowLocation (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Period"
+      array[props.index].togglebuttonlist[index].name === 'Show Period'
     ) {
-      setShowPeriod(toggle);
+      setShowPeriod (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Link"
+      array[props.index].togglebuttonlist[index].name === 'Show Link'
     ) {
-      setShowLinks(toggle);
+      setShowLinks (toggle);
     }
   }
-  const [TitleTextHolder, setTitleTextHolder] = useState("");
-  const [LocationTextHolder, setLocationTextHolder] = useState("");
-  const [UrlTextHolder, setUrlTextHolder] = useState("");
-  const [SummaryWorkTextHolder, setSummaryWorkTextHolder] = useState("");
-  const [BullotsTextHolder, setBullotsTextHolder] = useState("");
-  useEffect(() => {
-    if (localStorage.getItem("arrayProject") !== null) {
-      setcheckplacehoderBollets(false);
-      let value = localStorage.getItem("arrayProject");
-      value = JSON.parse(value);
-      setTitleTextHolder(value[props.index].value.titleTextHolder);
-      setLocationTextHolder(value[props.index].value.locationTextHolder);
-      setUrlTextHolder(value[props.index].value.urlTextHolder);
-      setSummaryWorkTextHolder(value[props.index].value.SummaryWorkTextHolder);
-      setBullotsTextHolder(value[props.index].value.bullotsTextHolder);
+  const [TitleTextHolder, setTitleTextHolder] = useState ('');
+  const [LocationTextHolder, setLocationTextHolder] = useState ('');
+  const [UrlTextHolder, setUrlTextHolder] = useState ('');
+  const [SummaryWorkTextHolder, setSummaryWorkTextHolder] = useState ('');
+  const [BullotsTextHolder, setBullotsTextHolder] = useState ('');
+  useEffect (() => {
+    if (localStorage.getItem ('arrayProject') !== null) {
+      setcheckplacehoderBollets (false);
+      let value = localStorage.getItem ('arrayProject');
+      value = JSON.parse (value);
+      setTitleTextHolder (value[props.index].value.titleTextHolder);
+      setLocationTextHolder (value[props.index].value.locationTextHolder);
+      setUrlTextHolder (value[props.index].value.urlTextHolder);
+      setSummaryWorkTextHolder (value[props.index].value.SummaryWorkTextHolder);
+      setBullotsTextHolder (value[props.index].value.bullotsTextHolder);
 
       let array = [];
       array = value[props.index].togglebuttonlist;
-      array.map((item, index) => {
-        if (item.name === "Show Discription") {
-          setShowDescription(item.selectedToggleButton);
-        } else if (item.name === "Show Bullets") {
-          setShowBullets(item.selectedToggleButton);
-        } else if (item.name === "Show Location") {
-          setShowLocation(item.selectedToggleButton);
-        } else if (item.name === "Show Period") {
-          setShowPeriod(item.selectedToggleButton);
-        } else if (item.name === "Show Link") {
-          setShowLinks(item.selectedToggleButton);
+      array.map ((item, index) => {
+        if (item.name === 'Show Discription') {
+          setShowDescription (item.selectedToggleButton);
+        } else if (item.name === 'Show Bullets') {
+          setShowBullets (item.selectedToggleButton);
+        } else if (item.name === 'Show Location') {
+          setShowLocation (item.selectedToggleButton);
+        } else if (item.name === 'Show Period') {
+          setShowPeriod (item.selectedToggleButton);
+        } else if (item.name === 'Show Link') {
+          setShowLinks (item.selectedToggleButton);
         }
       });
     }
   }, []);
 
-  useEffect(() => {
-    console.log("fale = ",BackgroundColorDatePickerProject)
-    if(BackgroundColorDatePickerProject===false){
-      setShowDate(false)
-    }
-  }, [BackgroundColorDatePickerProject]);
-  console.log("hh",UpdateMonthFrom)
+  useEffect (
+    () => {
+      if (BackgroundColorDatePickerProject === false) {
+        setShowDate (false);
+      }
+    },
+    [BackgroundColorDatePickerProject]
+  );
   return (
-    <>
-      <div style={{ position: "relative" }}>
-        {ShowDate && (
+    <div>
+      <div style={{position: 'relative',display:"flex",justifyContent:"center"}}>
+        {ShowDate &&
           <div>
             <DatePicker
               date={handleUpdateDate}
@@ -483,13 +494,12 @@ export default function Boxfunction(props) {
               UpdateMonthFrom={UpdateMonthFrom}
               setUpdateDate={setUpdateDate}
             />
-          </div>
-        )}
-        {ToggleButtons && (
+          </div>}
+        {ToggleButtons &&
           <div className="OuterWraperToggleButtonsExperienceSection">
-            {togglebuttonarrayList.map((item, index) => {
+            {togglebuttonarrayList.map ((item, index) => {
               return (
-                <>
+                <div>
                   <div className="InnerWraperToggleButtons">
                     <div className="ToggleButtonsLabel">{item.name} </div>
                     <div className="outerWraperSwitchClass">
@@ -504,45 +514,42 @@ export default function Boxfunction(props) {
                       />
                     </div>
                   </div>
-                </>
+                </div>
               );
             })}
-          </div>
-        )}
+          </div>}
       </div>
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          position: "relative",
+          display: 'flex',
+          justifyContent: 'center',
+          position: 'relative',
         }}
       >
         <div
-          style={{ display: props.item.selected ? "flex" : "none" }}
+          style={{display: props.item.selected ? 'flex' : 'none'}}
           className="headingOptionUnderBoxEducation"
         >
           <div
             className="outerWraperPlusAndNewEntry"
             onClick={() => {
-              props.HandlerAddItemInArrayfun();
-              setCounter(Counter + 1);
-              setToggleButtons(false);
-              props.IsActiveUp(true);
-              props.IsActive(false);
+              props.HandlerAddItemInArrayfun ();
+              setCounter (Counter + 1);
+              setToggleButtons (false);
+              props.IsActiveUp (true);
+              props.IsActive (false);
             }}
           >
             <FaPlus className="newEntryPlusIcon" />
             <div className="newEntryText">New Entry</div>
           </div>
-          {props.ToggleArrowUp && (
-            <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
-          )}
-          {props.ToggleArrowDown && (
+          {props.ToggleArrowUp &&
+            <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />}
+          {props.ToggleArrowDown &&
             <MdKeyboardArrowDown
               onClick={HandleArrowDown}
               className="ArrowIcon"
-            />
-          )}
+            />}
           <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
           <BiText
             onClick={HandleTextDecoration}
@@ -554,19 +561,19 @@ export default function Boxfunction(props) {
           />
           <label
             onClick={() => {
-              setToggleButtons(false);
-              setShowDate(true);
+              setToggleButtons (false);
+              setShowDate (true);
             }}
           >
             <MdDateRange className="ArrangeIcon" />
           </label>
           <RiSettings5Fill
             onClick={() => {
-              setToggleButtons(!ToggleButtons);
+              setToggleButtons (!ToggleButtons);
               let temp = [];
               temp = TogglebuttonsName;
               let togglebuttonarray = temp[props.index].togglebuttonlist;
-              settogglebuttonarrayList([...togglebuttonarray]);
+              settogglebuttonarrayList ([...togglebuttonarray]);
             }}
             className="ArrangeIcon"
           />
@@ -576,15 +583,15 @@ export default function Boxfunction(props) {
         onClick={HandleSetBackGroundColor}
         className="outerWraperBox"
         style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
+          backgroundColor: props.item.selected ? 'white' : '',
+          border: props.item.selected ? '1px solid #60d5ba' : '',
         }}
       >
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
-            setLinkTextBox("none");
-            setToggleButtons(false);
+            setLinkTextBox ('none');
+            setToggleButtons (false);
           }}
           style={style}
         >
@@ -593,73 +600,74 @@ export default function Boxfunction(props) {
             type="text"
             value={TitleTextHolder}
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
-            onChange={(e) => {
+            onChange={e => {
               let array = props.list;
               array[props.index].value.titleTextHolder = e.target.value;
-              localStorage.setItem("arrayProject", JSON.stringify(array));
-              setTitleTextHolder(e.target.value);
+              localStorage.setItem ('arrayProject', JSON.stringify (array));
+              setTitleTextHolder (e.target.value);
             }}
-            className=    {UpdateColor ? "companyTitleExperienceSectionBlue" : "companyTitleExperienceSectionGreen" }
+            className={
+              UpdateColor
+                ? 'companyTitleExperienceSectionBlue'
+                : 'companyTitleExperienceSectionGreen'
+            }
             placeholder="Project Name"
           />
           <div
             className="outerWraperContainerDateLocationExperienceSection"
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
           >
             <div
               onClick={() => {
-                setShowDate(!ShowDate);
-                dispatch(BACKGROUNDCOLORDATPICKPROJECT(true));
+                setShowDate (!ShowDate);
+                dispatch (BACKGROUNDCOLORDATPICKPROJECT (true));
               }}
-              style={{ display: ShowPeriod ? "flex" : "none" }}
+              style={{display: ShowPeriod ? 'flex' : 'none',width:"50%"}}
               className="outerWraperDateExperienceSectionDatePeriod"
             >
               <MdDateRange className="dateIcone" />
-              <div style={{ display: DislayDatePeriod ? "block" : "none" }}>
+              <div style={{display: DislayDatePeriod ? 'block' : 'none'}}>
                 Date Period
               </div>
               <div className="DateFrom">
                 {UpdateMonthFrom}
-                <div style={{ display: DateSlash ? "block" : "none" }}>/</div>
+                <div style={{display: DateSlash ? 'block' : 'none'}}>/</div>
                 {UpdateDate}
-                {Ongoing ? (
-                  <div className="DateFrom">
-                    <div style={{ display: DiplayMinus ? "block" : "none" }}>
-                      -
+                {Ongoing
+                  ? <div className="DateFrom">
+                      <div style={{display: DiplayMinus ? 'block' : 'none'}}>
+                        -
+                      </div>
+                      <div>{MonthOngoing}</div>
+                      <div
+                        style={{
+                          display: DisplayShashOngoing ? 'block' : 'none',
+                        }}
+                      >
+                        /
+                      </div>
+                      <div>{YearOnGoing}</div>
                     </div>
-                    <div>{MonthOngoing}</div>
-                    <div
-                      style={{
-                        display: DisplayShashOngoing ? "block" : "none",
-                      }}
-                    >
-                      /
-                    </div>
-                    <div>{YearOnGoing}</div>
-                  </div>
-                ) : (
-                  <div style={{ display: "flex" }}>
-                    <div
-                      style={{
-                        display: BackwordMinusOngoing ? "block" : "none",
-                      }}
-                    >
-                      -
-                    </div>
-                    Ongoing
-                  </div>
-                )}
+                  : <div style={{display: 'flex'}}>
+                      <div
+                        style={{
+                          display: BackwordMinusOngoing ? 'block' : 'none',
+                        }}
+                      >
+                        -
+                      </div>
+                      Ongoing
+                    </div>}
               </div>
             </div>
-
             <div
-              style={{ display: ShowLocation ? "flex" : "none" }}
+              style={{display: ShowLocation ? 'flex' : 'none'}}
               className="outerWraperDateExperienceSection"
             >
               <MdLocationOn className="dateIcone" />
@@ -669,21 +677,21 @@ export default function Boxfunction(props) {
                 type="text"
                 placeholder="Location"
                 value={LocationTextHolder}
-                onChange={(e) => {
-                  setLocationTextHolder(e.target.value);
+                onChange={e => {
+                  setLocationTextHolder (e.target.value);
                   let array = props.list;
                   array[props.index].value.locationTextHolder = e.target.value;
-                  localStorage.setItem("arrayProject", JSON.stringify(array));
+                  localStorage.setItem ('arrayProject', JSON.stringify (array));
                 }}
               />
             </div>
           </div>
           <div
-            style={{ display: ShowLinks ? "flex" : "none" }}
+            style={{display: ShowLinks ? 'flex' : 'none'}}
             className="outerWraperDateExperienceSection"
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
           >
             <BiLinkAlt className="dateIcone" />
@@ -692,42 +700,45 @@ export default function Boxfunction(props) {
               className="URLExperienceSection"
               placeholder="Url"
               value={UrlTextHolder}
-              onChange={(e) => {
-                setUrlTextHolder(e.target.value);
+              onChange={e => {
+                setUrlTextHolder (e.target.value);
                 let array = props.list;
                 array[props.index].value.urlTextHolder = e.target.value;
-                localStorage.setItem("arrayProject", JSON.stringify(array));
+                localStorage.setItem ('arrayProject', JSON.stringify (array));
               }}
             />
           </div>
           <div
             onClick={handleText}
-            style={{ display: ShowDescription ? "block" : "none" }}
+            style={{display: ShowDescription ? 'block' : 'none'}}
           >
-            {checkplacehodercompanydiscription ? (
-              <div>hh</div>
-            ) : (
-              <div style={{ width: WidthLeftRight, marginLeft: "12px" }}>
-                <Editor
-                  className="PreEditor"
-                  text={SummaryWorkTextHolder}
-                  onChange={(text) => {
-                    let array = props.list;
-                    array[props.index].value.SummaryWorkTextHolder = text;
-                    localStorage.setItem("arrayProject", JSON.stringify(array));
-                    setSummaryWorkTextHolder(text);
-                  }}
-                  options={{
-                    placeholder: {
-                      text: "Short summary of your work",
-                      hideOnClick: true,
-                    },
-                  }}
-                />
-              </div>
-            )}
+            {checkplacehodercompanydiscription
+              ? <div>hh</div>
+              : <div>
+                  <div className="summary">
+                    <Editor
+                      className="PreEditor"
+                      text={SummaryWorkTextHolder}
+                      onChange={text => {
+                        let array = props.list;
+                        array[props.index].value.SummaryWorkTextHolder = text;
+                        localStorage.setItem (
+                          'arrayProject',
+                          JSON.stringify (array)
+                        );
+                        setSummaryWorkTextHolder (text);
+                      }}
+                      options={{
+                        placeholder: {
+                          text: 'Short summary of your work',
+                          hideOnClick: true,
+                        },
+                      }}
+                    />
+                  </div>
+                </div>}
           </div>
-          <div style={{ width: WidthLeftRight }}>
+          <div>
             <InputBullets
               ShowBullets={ShowBullets}
               handleText={handleText}
@@ -740,6 +751,6 @@ export default function Boxfunction(props) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

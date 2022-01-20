@@ -15,14 +15,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75%;
+  width: 940px;
+  height: 850px;
   padding: 5% 0px 5% 0px;
   margin: 7% 0% 7% 0%;
   box-shadow: 0 7px 10px rgb(0 0 0 / 60%);
   /* border: 2px solid red; */
   position: relative;
+  background-color: white;
 }
 input{
+  width: 100%;
   outline: none;
   border: none;
   background-color: unset;
@@ -115,7 +118,7 @@ width: 372px;
   justify-content: center;
   align-items: center;
   background-color: white;
-  margin: 16px 0px 0px 351px;
+  margin:36px 0px 0px 35px;
 }
 
 .iconsList{
@@ -151,7 +154,28 @@ display: flex;
 flex-direction: column;
 line-height: 16px;
 /* border: 1px solid; */
+width: 100%;
 /* border: 1px solid firebrick; */
+}
+.outerWraperInputFieldHaiderStrenght{
+  display: flex;
+flex-direction: column;
+line-height: 16px;
+/* border: 1px solid; */
+width: 95%;
+}
+.outerWraperInputFieldHeaderAchievement{
+  display: flex;
+flex-direction: column;
+line-height: 16px;
+/* border: 1px solid; */
+width: 95%;
+}
+.outerWraperInputFieldHeaderFindMeOnline{
+  display: flex;
+flex-direction: column;
+line-height: 16px;
+/* border: 1px solid; */
 }
 input[type="range"] {
   width: 100%;
@@ -177,9 +201,8 @@ color: #00c091;
   display: flex;
   grid-gap: 4%;
   /* border: 1px solid; */
-  padding: 12px;
-  justify-content: space-between;
-  margin: 90px 0 0 0;
+  justify-content: center;
+  margin: 60px 0 0 0;
   width: 90%;
   z-index: 3;
 }
@@ -188,7 +211,7 @@ color: #00c091;
 }
 .SectionLeft {
   /* border: 1px solid blue; */
-  width: 37%;
+  width: 38%;
 }
 .SectionRight {
   /* border: 1px solid red; */
@@ -585,16 +608,14 @@ border-radius: 24px;
     /* border: 2px solid red; */
     border-bottom: 1px solid rgba(0, 0, 0, 0.582);
     font-size: 15px;
-    width: 45%;
     padding: 5px 8px;
     font-weight: 700;
-    margin: 7px 26px 17px 0px
+    margin: 7px 25px 17px 0px
     }
   .ToolAndTechnologyTechStockSectionBorder{
       /* border: 2px solid red; */
       border: 1px solid rgba(0, 0, 0, 0.582);
       font-size: 15px;
-      width: 45%;
       padding: 5px 8px;
       font-weight: 700;
       margin: 7px 26px 17px 0px
@@ -804,7 +825,7 @@ color: blue;
 .OuterContainer{
   background-color: #f8ffff;
   /* border:1px solid */
-  height: 692px;
+  /* height: 692px; */
 }
 .button1 {
   background-color: rgb(45, 192, 141);
@@ -812,7 +833,7 @@ color: blue;
   color: white;
   border-radius: 10px;
   height: 22px;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
   cursor: pointer;
   padding: 10px 30px 10px 30px;
@@ -834,7 +855,7 @@ background-color: #afafaf;
 }
   .HeadingTextHolder {
     /* border: 1px solid; */
-    margin: 52px 15% 0px 0px;
+    margin: 41px 15% 0px 0px;
     font-weight: 700;
     font-family: sans-serif !important;
     font-size: 31px;
@@ -1031,7 +1052,7 @@ border-radius: 6px;
   background-color: white;
   padding: 18px;
   border-radius: 4px;
-  margin: 0px 0px 0px 325px;
+  /* margin: 0px 0px 0px 93px; */
   box-shadow: 0 7px 10px rgb(0 0 0 / 60%);
 }
 .InnerWraperToggleButtons{
@@ -1056,7 +1077,6 @@ display: flex;
 }
 .outerWraperLAbel {
   display: flex;
-  width: 236px;
 }
 .outerWraperName {
   background: black;
@@ -1072,12 +1092,12 @@ display: flex;
   justify-content: center;
 }
 .outerWraperInputFieldSlice{
-  width: 28%;
-  margin: 45px 0px 0px 0px;
+  /* width: 28%;
+  margin: 45px 0px 0px 0px; */
 }
 .OuterWraperDoughnutchart {
   /* border: 1px solid; */
-  width: 57%;
+  /* width: 57%; */
 }
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -1141,6 +1161,7 @@ input[type='radio']:checked:before {
 }
 input[type='radio']:after {
   color: #999;
+
   background-color: gold;
 }
 
@@ -1152,9 +1173,9 @@ input[type='radio']:checked:after {
   /* border: 2px solid;  */
   position: absolute;
   z-index: 5;
-  width: 32%;
+  width: 34%;
   left: 32%;
-  padding: 0px 46px 0px 46px;
+  padding: 0px 46px 26px 46px;
   top: -96px;
   border-radius: 10px;
   /* height: 62%; */
@@ -1260,7 +1281,7 @@ position: absolute;
     line-height: 22px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    padding: 50px 40px 30px;
+    padding: 28px 40px 30px;
     color: rgba(0, 0, 0, 0.527);
 }
 input[type="file"]{
@@ -1304,10 +1325,10 @@ input[type="file"]{
   position: absolute;
   z-index: 1;
   text-align: center;
-  left: 144px;
-  right: 137px;
-  top: 103px;
-  bottom: 175px;
+  left: 146px;
+  right: 146px;
+  top: 106px;
+  bottom: 198px;
   color: aliceblue;
   border-radius: 96px;
 }
@@ -1350,6 +1371,8 @@ margin: -1px 6px 0px 0px;
 .outerWraperDateExperienceSection{
 /* border: 2px solid; */
 display: flex;
+justify-content: center;
+align-items: center;
 cursor: pointer;
 color: rgba(71, 72, 75, 0.81);
 margin: 7px 13px 4px 0px;
@@ -1359,6 +1382,9 @@ margin: 7px 13px 4px 0px;
   cursor: pointer;
   color: rgba(71, 72, 75, 0.81);
   margin: 7px 13px 4px 0px;
+  justify-content: center;
+  align-items: center;
+  width: unset !important;
 }
 .outerWraperDateExperienceSectionDatePeriod:hover{
   color: rgba(71, 72, 75, 0.308);
@@ -1370,9 +1396,8 @@ margin: 7px 13px 4px 0px;
 }
 .medium-editor-element {
   word-wrap: break-word;
-  min-height: unset;
+  min-height: unset !important;
   margin: 0;
-  /* width: 300px; */
   padding: 0px;
   overflow: hidden;
   padding:0px;
@@ -1396,7 +1421,7 @@ margin: 7px 13px 4px 0px;
   position: fixed;
   right: 0;
   width: 25%;
-  height: 692px;
+  height: 633px;
   /* z-index: 5; */
   overflow-y: scroll;
 }
@@ -1428,10 +1453,13 @@ cursor: pointer;
   /* display: flex; */
   /* flex-direction: column; */
 }
+.OuterWraperBackGroundImg{
+  margin-bottom: 40px;
+}
 .testModalBackGroundImg {
   background-color: white;
   padding: 30px;
-  height: 632px;
+  /* height: 632px; */
   /* display: flex; */
   /* flex-direction: column; */
 }
@@ -1448,7 +1476,7 @@ textarea {
 }
 .OuterwrpaerGPA{
   font-size: 16px;
-  margin: 0px 0px 0px 59px;
+  margin: 0px 0px 0px 36px;
 }
 .OuterwrpaerGPA:focus::placeholder{
   color: rgba(71, 72, 75, 0.514);
@@ -1508,7 +1536,8 @@ textarea {
   color: unset !important;
   font-style: unset !important;
   pointer-events: none;
-  font-size: 16px;
+  font-size: 14px;
+  text-overflow: ellipsis;
 }
 .PreEditor.medium-editor-placeholder:after {
 margin: unset;
@@ -1516,7 +1545,7 @@ margin: unset;
 }
 .medium-editor-placeholder {
   position: relative;
-  margin: 5px 0px 0px 16px
+  margin: unset
 }
 .TexrHolderexperience{
   font-size: 29px;
@@ -1535,9 +1564,9 @@ margin: unset;
   color:rgba(71, 72, 75, 0.89);
 }
 
-.EditorText{
+/* .EditorText{
   margin: -14px 0px 0px 18px
-}
+} */
 .outerWraperEditor {
   /* border: 1px solid; */
   margin: 5px 0px -8px 0px;
@@ -1709,6 +1738,7 @@ color:rgba(71, 72, 75, 0.37);
 }
 .outerWraperContainerDateLocationExperienceSection{
   display: flex;
+  align-items: center;
   /* border: 1px solid; */
 }
 .LocationExperienceSection{

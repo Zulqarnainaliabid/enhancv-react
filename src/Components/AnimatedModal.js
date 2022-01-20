@@ -26,7 +26,7 @@ const styles = {
 };
 
 function Modal(props) {
-  console.log("mola", props.CheckToggleImage);
+
   const [ImgSource, setImgSource] = useState([
     BackImg1,
     BackImg2,
@@ -40,10 +40,12 @@ function Modal(props) {
     BackImg10,
     BackImg11,
   ]);
-
   const dispatch = useDispatch();
-
   useEffect(() => {}, [props.CheckToggleImage]);
+
+ async function SetData(toggle){
+  await localStorage.setItem("ToggleWidth", JSON.stringify(toggle));
+  }
 
   if (props.CheckToggleImage) {
     return (
@@ -74,12 +76,14 @@ function Modal(props) {
         <div className="testModal" style={styles.fadeInRight}>
           <div
             className="TextHolderTemplate"
-            style={{ fontSize: "19px", fontWeight: "bold" }}
+            style={{ fontSize: "19px", fontWeight: "bold"}}
           >
             Select Template
           </div>
           <div
             onClick={() => {
+              console.log("selected = true")
+              SetData(true)
               dispatch(SINGLECOLUMN(true));
               localStorage.setItem("Singlecolumn", JSON.stringify(true));
             }}
@@ -89,6 +93,8 @@ function Modal(props) {
           </div>
           <div
             onClick={() => {
+              console.log("selected = false")
+              SetData(false)
               dispatch(SINGLECOLUMN(false));
               localStorage.setItem("Singlecolumn", JSON.stringify(false));
             }}

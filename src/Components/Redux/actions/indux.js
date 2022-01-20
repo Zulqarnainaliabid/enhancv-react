@@ -402,7 +402,6 @@ export  const  BACKGROUNDCOLORDATPICKPROJECT=(item)=>{
 }
 
 export  const  BACKGROUNDCOLORDATPICKPVOLUNTEERING=(item)=>{
-    console.log("false",item)
     return{
         type:'BACKGROUNDCOLORDATPICKPVOLUNTEERING',
         payload:item,
@@ -410,7 +409,6 @@ export  const  BACKGROUNDCOLORDATPICKPVOLUNTEERING=(item)=>{
 }
 
 export  const  SINGLECOLUMN=(item)=>{
-    console.log("false",item)
     return{
         type:'SINGLECOLUMN',
         payload:item,
@@ -418,7 +416,6 @@ export  const  SINGLECOLUMN=(item)=>{
 }
 
 export  const  UPDATENUMBERSLICE=(item)=>{
-    console.log("false",item)
     return{
         type:'UPDATENUMBERSLICE',
         payload:item,

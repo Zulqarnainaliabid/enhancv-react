@@ -1,40 +1,40 @@
-import React, { useState, useEffect, useRef } from "react";
-import { MdDateRange } from "react-icons/md";
-import { MdLocationOn } from "react-icons/md";
-import { RiSettings5Fill } from "react-icons/ri";
-import { BiLinkAlt } from "react-icons/bi";
-import { useAlert } from "react-alert";
-import { FaPlus } from "react-icons/fa";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { BiText } from "react-icons/bi";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { MdKeyboardArrowUp } from "react-icons/md";
-import Editor from "react-medium-editor";
-import DatePicker from "./DatePicker/DatePicker";
-import Switch from "react-switch";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState, useEffect, useRef} from 'react';
+import {MdDateRange} from 'react-icons/md';
+import {MdLocationOn} from 'react-icons/md';
+import {RiSettings5Fill} from 'react-icons/ri';
+import {BiLinkAlt} from 'react-icons/bi';
+// import {useAlert} from 'react-alert';
+import {FaPlus} from 'react-icons/fa';
+import {RiDeleteBin6Line} from 'react-icons/ri';
+import {BiText} from 'react-icons/bi';
+import {MdKeyboardArrowDown} from 'react-icons/md';
+import {MdKeyboardArrowUp} from 'react-icons/md';
+import Editor from 'react-medium-editor';
+import DatePicker from './DatePicker/DatePicker';
+import Switch from 'react-switch';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLOREXPERIENCE,
   INDUXEXPERIENCE,
   SETTOGGLEBUTTONNULL,
   BACKGROUNDCOLORDATPICKEREXPERIENCE,
-} from "./Redux/actions/indux";
-import "./HomePage.css";
-require("medium-editor/dist/css/medium-editor.css");
-require("medium-editor/dist/css/themes/default.css");
+} from './Redux/actions/indux';
+import './HomePage.css';
+require ('medium-editor/dist/css/medium-editor.css');
+require ('medium-editor/dist/css/themes/default.css');
 
-export function SwitchButtons(props) {
-  const [checked, setchecked] = useState(true);
-  function handleChange(value) {
-    setchecked(value);
-    props.handleToggglebutton(props.index, value);
+export function SwitchButtons (props) {
+  const [checked, setchecked] = useState (true);
+  function handleChange (value) {
+    setchecked (value);
+    props.handleToggglebutton (props.index, value);
   }
-  useEffect(() => {
-    if (localStorage.getItem("arrayExperience") !== null) {
-      let value = localStorage.getItem("arrayExperience");
-      value = JSON.parse(value);
-      setchecked(
+  useEffect (() => {
+    if (localStorage.getItem ('arrayExperience') !== null) {
+      let value = localStorage.getItem ('arrayExperience');
+      value = JSON.parse (value);
+      setchecked (
         value[props.indexouterarray].togglebuttonlist[props.index].selected
       );
     }
@@ -57,426 +57,433 @@ export function SwitchButtons(props) {
   );
 }
 
-export default function Boxfunction(props) {
-  const inputref = useRef(null);
-  const alert = useAlert();
-  const [EnabledFontFormatColor, setEnabledFontFormatColor] =
-    useState("#38434744");
-  const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] =
-    useState("no-drop");
-  const [LinkTextBox, setLinkTextBox] = useState("none");
+export default function Boxfunction (props) {
+  const inputref = useRef (null);
+  // const alert = useAlert ();
+  const [EnabledFontFormatColor, setEnabledFontFormatColor] = useState (
+    '#38434744'
+  );
+  const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] = useState (
+    'no-drop'
+  );
+  const [LinkTextBox, setLinkTextBox] = useState ('none');
 
-  const [ToggleButtons, setToggleButtons] = useState(false);
-  const [UpdateNumber, setUpdateNumber] = useState(0);
-  const [Title, setTitle] = useState("");
-  const [CompnyName, setCompnyName] = useState("");
-  const [Location, setLocation] = useState("");
-  const [Url, setUrl] = useState("");
-  const [CompanyDiscription, setCompanyDiscription] = useState("");
-  const [Bullots, setBullots] = useState("");
-  const [ShowDate, setShowDate] = useState(false);
-  const [UpdateDate, setUpdateDate] = useState(null);
-  const [DislayDatePeriod, setDislayDatePeriod] = useState(true);
-  const [UpdateMonthFrom, setUpdateMonthFrom] = useState(null);
-  const [DateSlash, setDateSlash] = useState(false);
-  const [MonthOngoing, setMonthOngoing] = useState(null);
-  const [YearOnGoing, setYearOnGoing] = useState(null);
-  const [DiplayMinus, setDiplayMinus] = useState(false);
-  const [DisplayShashOngoing, setDisplayShashOngoing] = useState(false);
-  const [Ongoing, setOngoing] = useState(true);
-  const [BackwordMinusOngoing, setBackwordMinusOngoing] = useState(false);
-  const [Counter, setCounter] = useState(0);
+  const [ToggleButtons, setToggleButtons] = useState (false);
+  const [UpdateNumber, setUpdateNumber] = useState (0);
+  const [Title, setTitle] = useState ('');
+  const [CompnyName, setCompnyName] = useState ('');
+  const [Location, setLocation] = useState ('');
+  const [Url, setUrl] = useState ('');
+  const [CompanyDiscription, setCompanyDiscription] = useState ('');
+  const [Bullots, setBullots] = useState ('');
+  const [ShowDate, setShowDate] = useState (false);
+  const [UpdateDate, setUpdateDate] = useState (null);
+  const [DislayDatePeriod, setDislayDatePeriod] = useState (true);
+  const [UpdateMonthFrom, setUpdateMonthFrom] = useState (null);
+  const [DateSlash, setDateSlash] = useState (false);
+  const [MonthOngoing, setMonthOngoing] = useState (null);
+  const [YearOnGoing, setYearOnGoing] = useState (null);
+  const [DiplayMinus, setDiplayMinus] = useState (false);
+  const [DisplayShashOngoing, setDisplayShashOngoing] = useState (false);
+  const [Ongoing, setOngoing] = useState (true);
+  const [BackwordMinusOngoing, setBackwordMinusOngoing] = useState (false);
+  const [Counter, setCounter] = useState (0);
   const [
     checkplacehodercompanydiscription,
     setcheckplacehodercompanydiscription,
-  ] = useState(true);
-  const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
-  const UpdateYearFrom = useSelector((state) => state.IncrementState);
-  const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
-  const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
-  const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
-  const [ShowTitle, setShowTitle] = useState(true);
-  const [ShowCompanyName, setShowCompanyName] = useState(true);
-  const [ShowDescription, setShowDescription] = useState(true);
-  const [ShowBullets, setShowBullets] = useState(true);
-  const [ShowLocation, setShowLocation] = useState(true);
-  const [ShowPeriod, setShowPeriod] = useState(true);
-  const [ShowLinks, setShowLinks] = useState(true);
-  const [WidthLeftRight, setWidthLeftRight] = useState(null);
+  ] = useState (true);
+  const [checkplacehoderBollets, setcheckplacehoderBollets] = useState (true);
+  const UpdateYearFrom = useSelector (state => state.IncrementState);
+  const UpdateToggleYearFrom = useSelector (state => state.UpdateYearFrom);
+  const [TogglebuttonsName, setTogglebuttonsName] = useState (props.list);
+  const [togglebuttonarrayList, settogglebuttonarrayList] = useState ([]);
+  const [ShowTitle, setShowTitle] = useState (true);
+  const [ShowCompanyName, setShowCompanyName] = useState (true);
+  const [ShowDescription, setShowDescription] = useState (true);
+  const [ShowBullets, setShowBullets] = useState (true);
+  const [ShowLocation, setShowLocation] = useState (true);
+  const [ShowPeriod, setShowPeriod] = useState (true);
+  const [ShowLinks, setShowLinks] = useState (true);
+  const [WidthLeftRight, setWidthLeftRight] = useState (null);
 
-  const Indux = useSelector((state) => state.InduxExperience);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  const UpdateColor = useSelector((state) => state.UpdateColor);
-  
-  const SetToggleButtonsNull = useSelector(
-    (state) => state.SetToggleButtonsNull
+  const Indux = useSelector (state => state.InduxExperience);
+  const Incrementnull = useSelector (state => state.IncrementNull);
+  const UpdateColor = useSelector (state => state.UpdateColor);
+
+  const SetToggleButtonsNull = useSelector (
+    state => state.SetToggleButtonsNull
   );
-  const UpdateWidthLeftRight = useSelector(
-    (state) => state.UpdateWidthLeftRight
+  const UpdateWidthLeftRight = useSelector (
+    state => state.UpdateWidthLeftRight
   );
 
-  const BackgroundColorDatePickerExperience = useSelector(
-    (state) => state.BackgroundColorDatePickerExperience
+  const BackgroundColorDatePickerExperience = useSelector (
+    state => state.BackgroundColorDatePickerExperience
   );
-  
-  useEffect(() => {
-    setToggleButtons(false);
-  }, [SetToggleButtonsNull]);
 
-  useEffect(() => {
-    console.log("under", Incrementnull);
-    setToggleButtons(false);
-    setShowDate(false);
-  }, [Incrementnull]);
+  useEffect (
+    () => {
+      setToggleButtons (false);
+    },
+    [SetToggleButtonsNull]
+  );
 
-  console.log("kkk", Incrementnull, ShowDate);
-  const dispatch = useDispatch();
-  function HandleOngoing(toggle) {
+  useEffect (
+    () => {
+      setToggleButtons (false);
+      setShowDate (false);
+    },
+    [Incrementnull]
+  );
+  const dispatch = useDispatch ();
+  function HandleOngoing (toggle) {
     if (toggle) {
-      setOngoing(true);
+      setOngoing (true);
       let array = props.list;
       array[props.index].value.date.ongoing = true;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     } else {
-      setOngoing(false);
+      setOngoing (false);
       let array = props.list;
       array[props.index].value.date.ongoing = false;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     }
     if (UpdateDate !== null || UpdateMonthFrom !== null) {
-      setBackwordMinusOngoing(true);
+      setBackwordMinusOngoing (true);
     } else {
-      setBackwordMinusOngoing(false);
-      setDislayDatePeriod(false);
+      setBackwordMinusOngoing (false);
+      setDislayDatePeriod (false);
     }
   }
-  function handleUpdateDate(yearfrom) {
+  function handleUpdateDate (yearfrom) {
     if (yearfrom === null) {
-      setUpdateDate(null);
+      setUpdateDate (null);
       let array = props.list;
       array[props.index].value.date.yearfrom = yearfrom.number;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     } else {
-      setUpdateDate(yearfrom.number);
+      setUpdateDate (yearfrom.number);
       let array = props.list;
       array[props.index].value.date.yearfrom = yearfrom.number;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     }
     if (yearfrom === null && UpdateMonthFrom === null) {
-      setDislayDatePeriod(true);
+      setDislayDatePeriod (true);
     } else {
-      setDislayDatePeriod(false);
+      setDislayDatePeriod (false);
     }
     if (UpdateMonthFrom !== null && yearfrom !== null) {
-      setDateSlash(true);
+      setDateSlash (true);
     } else if (UpdateMonthFrom === null || yearfrom === null) {
-      setDateSlash(false);
+      setDateSlash (false);
     }
   }
 
-  function handleUpdateDateMonthFrom(monthfrom) {
+  function handleUpdateDateMonthFrom (monthfrom) {
     if (monthfrom === null) {
-      setUpdateMonthFrom(null);
+      setUpdateMonthFrom (null);
       let array = props.list;
       array[props.index].value.date.monthfrom = monthfrom;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     } else {
-      setUpdateMonthFrom(monthfrom);
+      setUpdateMonthFrom (monthfrom);
       let array = props.list;
       array[props.index].value.date.monthfrom = monthfrom;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     }
     if (monthfrom === null && UpdateMonthFrom === null) {
-      setDislayDatePeriod(true);
-      setDateSlash(false);
+      setDislayDatePeriod (true);
+      setDateSlash (false);
     } else {
-      setDislayDatePeriod(false);
+      setDislayDatePeriod (false);
     }
     if (UpdateDate !== null && monthfrom !== null) {
-      setDateSlash(true);
+      setDateSlash (true);
     } else if (UpdateDate === null || monthfrom === null) {
-      setDateSlash(false);
+      setDateSlash (false);
     }
   }
-  useEffect(() => {
-    if (UpdateToggleYearFrom) {
-      let array = props.list;
-      array[props.index].value.date.yearfrom = null;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
-      setDateSlash(false);
-    }
-  }, [UpdateYearFrom]);
-  function HandleMonthOngoing(date) {
+  useEffect (
+    () => {
+      if (UpdateToggleYearFrom) {
+        let array = props.list;
+        array[props.index].value.date.yearfrom = null;
+        localStorage.setItem ('arrayExperience', JSON.stringify (array));
+        setDateSlash (false);
+      }
+    },
+    [UpdateYearFrom]
+  );
+  function HandleMonthOngoing (date) {
     if (date === null) {
-      setMonthOngoing(null);
+      setMonthOngoing (null);
       let array = props.list;
       array[props.index].value.date.monthto = date;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     } else {
-      setMonthOngoing(date);
+      setMonthOngoing (date);
       let array = props.list;
       array[props.index].value.date.monthto = date;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     }
     if (date !== null || YearOnGoing !== null) {
-      setDiplayMinus(true);
+      setDiplayMinus (true);
     } else if (date === null && YearOnGoing === null) {
-      setDiplayMinus(false);
+      setDiplayMinus (false);
     }
     if (date !== null && YearOnGoing !== null) {
-      setDisplayShashOngoing(true);
+      setDisplayShashOngoing (true);
     } else {
-      setDisplayShashOngoing(false);
+      setDisplayShashOngoing (false);
     }
   }
-  function handleYearOngoing(date) {
+  function handleYearOngoing (date) {
     if (date === null) {
-      setYearOnGoing(null);
+      setYearOnGoing (null);
     } else {
-      setYearOnGoing(date);
+      setYearOnGoing (date);
       let array = props.list;
       array[props.index].value.date.yearto = date;
-      localStorage.setItem("arrayExperience", JSON.stringify(array));
+      localStorage.setItem ('arrayExperience', JSON.stringify (array));
     }
     if (date !== null || YearOnGoing !== null) {
-      setDiplayMinus(true);
+      setDiplayMinus (true);
     } else if (date === null && YearOnGoing === null) {
-      setDiplayMinus(false);
+      setDiplayMinus (false);
     }
   }
-  function HandleTextDecoration() {
-    setToggleButtons(false);
+  function HandleTextDecoration () {
+    setToggleButtons (false);
     if (
-      EnabledFontFormatColor === "#38434744" ||
-      EnabledFontFormatNoDrop === "no-drop "
+      EnabledFontFormatColor === '#38434744' ||
+      EnabledFontFormatNoDrop === 'no-drop '
     ) {
-      alert.show(
-        "Text decoration is available only in descriptions and bullets"
-      );
+      // alert.show (
+      //   'Text decoration is available only in descriptions and bullets'
+      // );
     }
   }
-  function HandleSetBackGroundColor() {
-    dispatch(INCREMENTBACKGROUNDCOLOREXPERIENCE());
-    dispatch(INCREMENT());
-    dispatch(SETTOGGLEBUTTONNULL());
-    props.HandleCompleteBoarderUnSelected();
+  function HandleSetBackGroundColor () {
+    dispatch (INCREMENTBACKGROUNDCOLOREXPERIENCE ());
+    dispatch (INCREMENT ());
+    dispatch (SETTOGGLEBUTTONNULL ());
+    props.HandleCompleteBoarderUnSelected ();
     let temp = props.list;
     if (!temp[props.index].selected) {
-      props.list.map((item, index) => {
+      props.list.map ((item, index) => {
         if (item.selected) {
           temp[index].selected = false;
         }
       });
       temp[props.index].selected = true;
-      props.setList([...temp]);
+      props.setList ([...temp]);
     }
-    props.button();
-    setUpdateNumber(UpdateNumber + 1);
-    dispatch(INDUXEXPERIENCE(props.index));
+    props.button ();
+    setUpdateNumber (UpdateNumber + 1);
+    dispatch (INDUXEXPERIENCE (props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
-        props.IsActiveUp(false);
-        props.IsActive(true);
+        props.IsActiveUp (false);
+        props.IsActive (true);
       } else if (props.index === array.length - 1) {
-        props.IsActive(false);
-        props.IsActiveUp(true);
+        props.IsActive (false);
+        props.IsActiveUp (true);
       } else {
-        props.IsActive(true);
-        props.IsActiveUp(true);
+        props.IsActive (true);
+        props.IsActiveUp (true);
       }
     } else {
-      props.IsActive(false);
-      props.IsActiveUp(false);
+      props.IsActive (false);
+      props.IsActiveUp (false);
     }
   }
   const style = {
     borderBottom: props.borderbotm,
   };
-  function HandleArrowDown() {
+  function HandleArrowDown () {
     let index = props.index + 1;
-    dispatch(INDUXEXPERIENCE(index));
-    setToggleButtons(false);
-    props.IsActiveUp(true);
+    dispatch (INDUXEXPERIENCE (index));
+    setToggleButtons (false);
+    props.IsActiveUp (true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index + 1].selected = true;
     }
     temp[props.index].selected = false;
-    props.setList([...temp]);
+    props.setList ([...temp]);
     if (props.index + 1 === temp.length - 1) {
-      props.IsActive(false);
+      props.IsActive (false);
     } else {
-      props.IsActive(true);
+      props.IsActive (true);
     }
   }
   const HandleArrowUP = () => {
     let index = null;
     index = props.index - 1;
-    dispatch(INDUXEXPERIENCE(index));
-    setToggleButtons(false);
-    props.IsActive(true);
+    dispatch (INDUXEXPERIENCE (index));
+    setToggleButtons (false);
+    props.IsActive (true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index - 1].selected = true;
     }
     temp[props.index].selected = false;
-    props.setList([...temp]);
+    props.setList ([...temp]);
     if (props.index === 1) {
-      props.IsActiveUp(false);
+      props.IsActiveUp (false);
     } else {
-      props.IsActiveUp(true);
+      props.IsActiveUp (true);
     }
   };
-  function HandleDelete() {
-    setToggleButtons(false);
+  function HandleDelete () {
+    setToggleButtons (false);
     let temp = [];
     temp = props.list;
     if (temp.length === 1) {
-      props.IsActive(false);
-      props.IsActiveUp(false);
+      props.IsActive (false);
+      props.IsActiveUp (false);
     }
     if (Indux !== null) {
-      temp.splice(Indux, 1);
+      temp.splice (Indux, 1);
     }
-    localStorage.setItem("arrayExperience", JSON.stringify(temp));
-    window.location.reload(false);
+    localStorage.setItem ('arrayExperience', JSON.stringify (temp));
+    window.location.reload (false);
   }
-  useEffect(() => {
-    inputref.current.focus();
-    if (localStorage.getItem("arrayExperience") !== null) {
-      setcheckplacehodercompanydiscription(false);
-      setcheckplacehoderBollets(false);
-      let item = localStorage.getItem("arrayExperience");
-      item = JSON.parse(item);
-      setTitle(item[props.index].value.title);
-      setCompnyName(item[props.index].value.companyname);
-      setLocation(item[props.index].value.location);
-      setUrl(item[props.index].value.url);
-      setCompanyDiscription(item[props.index].value.companydiscription);
-      setBullots(item[props.index].value.bullots);
-      setUpdateDate(item[props.index].value.date.yearfrom);
-      setUpdateMonthFrom(item[props.index].value.date.monthfrom);
-      setMonthOngoing(item[props.index].value.date.monthto);
-      setOngoing(item[props.index].value.date.ongoing);
-      setYearOnGoing(item[props.index].value.date.yearto);
+  useEffect (() => {
+    inputref.current.focus ();
+    if (localStorage.getItem ('arrayExperience') !== null) {
+      setcheckplacehodercompanydiscription (false);
+      setcheckplacehoderBollets (false);
+      let item = localStorage.getItem ('arrayExperience');
+      item = JSON.parse (item);
+      setTitle (item[props.index].value.title);
+      setCompnyName (item[props.index].value.companyname);
+      setLocation (item[props.index].value.location);
+      setUrl (item[props.index].value.url);
+      setCompanyDiscription (item[props.index].value.companydiscription);
+      setBullots (item[props.index].value.bullots);
+      setUpdateDate (item[props.index].value.date.yearfrom);
+      setUpdateMonthFrom (item[props.index].value.date.monthfrom);
+      setMonthOngoing (item[props.index].value.date.monthto);
+      setOngoing (item[props.index].value.date.ongoing);
+      setYearOnGoing (item[props.index].value.date.yearto);
       if (
         item[props.index].value.date.yearfrom !== null ||
         item[props.index].value.date.monthfrom !== null ||
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.yearto !== null
       ) {
-        setDislayDatePeriod(false);
+        setDislayDatePeriod (false);
       } else {
-        setDislayDatePeriod(true);
-        setDateSlash(false);
+        setDislayDatePeriod (true);
+        setDateSlash (false);
       }
       if (
         item[props.index].value.date.monthfrom !== null &&
         item[props.index].value.date.yearfrom !== null
       ) {
-        setDateSlash(true);
+        setDateSlash (true);
       }
       if (
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.yearto !== null
       ) {
-        setDiplayMinus(true);
-        setDisplayShashOngoing(true);
+        setDiplayMinus (true);
+        setDisplayShashOngoing (true);
       }
       if (
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.ongoing !== null
       ) {
-        setBackwordMinusOngoing(true);
+        setBackwordMinusOngoing (true);
       }
 
-      item[props.index].togglebuttonlist.map((item, index) => {
-        if (item.name === "Show Title") {
-          setShowTitle(item.selected);
-        } else if (item.name === "Show Company Name") {
-          setShowCompanyName(item.selected);
-        } else if (item.name === "Show Discription") {
-          setShowDescription(item.selected);
-        } else if (item.name === "Show Bullets") {
-          setShowBullets(item.selected);
-        } else if (item.name === "Show Period") {
-          setShowPeriod(item.selected);
-        } else if (item.name === "Show Location") {
-          setShowLocation(item.selected);
-        } else if (item.name === "Show Link") {
-          setShowLinks(item.selected);
+      item[props.index].togglebuttonlist.map ((item, index) => {
+        if (item.name === 'Show Title') {
+          setShowTitle (item.selected);
+        } else if (item.name === 'Show Company Name') {
+          setShowCompanyName (item.selected);
+        } else if (item.name === 'Show Discription') {
+          setShowDescription (item.selected);
+        } else if (item.name === 'Show Bullets') {
+          setShowBullets (item.selected);
+        } else if (item.name === 'Show Period') {
+          setShowPeriod (item.selected);
+        } else if (item.name === 'Show Location') {
+          setShowLocation (item.selected);
+        } else if (item.name === 'Show Link') {
+          setShowLinks (item.selected);
         }
       });
     }
   }, []);
 
-  function handleToggglebutton(index, toggle) {
+  function handleToggglebutton (index, toggle) {
     let array = [];
     array = props.list;
     array[props.index].togglebuttonlist[index].selected = toggle;
-    localStorage.setItem("arrayExperience", JSON.stringify(array));
-    if (array[props.index].togglebuttonlist[index].name === "Show Title") {
-      setShowTitle(toggle);
+    localStorage.setItem ('arrayExperience', JSON.stringify (array));
+    if (array[props.index].togglebuttonlist[index].name === 'Show Title') {
+      setShowTitle (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Company Name"
+      array[props.index].togglebuttonlist[index].name === 'Show Company Name'
     ) {
-      setShowCompanyName(toggle);
+      setShowCompanyName (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Discription"
+      array[props.index].togglebuttonlist[index].name === 'Show Discription'
     ) {
-      setShowDescription(toggle);
+      setShowDescription (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Bullets"
+      array[props.index].togglebuttonlist[index].name === 'Show Bullets'
     ) {
-      setShowBullets(toggle);
+      setShowBullets (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Period"
+      array[props.index].togglebuttonlist[index].name === 'Show Period'
     ) {
-      setShowPeriod(toggle);
+      setShowPeriod (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Location"
+      array[props.index].togglebuttonlist[index].name === 'Show Location'
     ) {
-      setShowLocation(toggle);
+      setShowLocation (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Link"
+      array[props.index].togglebuttonlist[index].name === 'Show Link'
     ) {
-      setShowLinks(toggle);
+      setShowLinks (toggle);
     }
   }
 
-  function handleText() {
-    setEnabledFontFormatColor("");
-    setEnabledFontFormatNoDrop("pointer");
+  function handleText () {
+    setEnabledFontFormatColor ('');
+    setEnabledFontFormatNoDrop ('pointer');
   }
 
-  useEffect(() => {
+  useEffect (() => {
     if (UpdateWidthLeftRight !== null) {
-      UpdateWidthLeftRight.map((item, index) => {
-        if (UpdateWidthLeftRight[index].name === "Experience") {
+      UpdateWidthLeftRight.map ((item, index) => {
+        if (UpdateWidthLeftRight[index].name === 'Experience') {
           if (UpdateWidthLeftRight[index].Left) {
-            console.log("Left");
-            setWidthLeftRight("556px");
+            setWidthLeftRight ('556px');
           } else {
-            console.log("right");
-            setWidthLeftRight("300px");
           }
         }
       });
     }
   }, []);
 
-  useEffect(() => {
-    console.log("fale = ",BackgroundColorDatePickerExperience)
-    if(BackgroundColorDatePickerExperience===false){
-      setShowDate(false)
-    }
-  }, [BackgroundColorDatePickerExperience]);
+  useEffect (
+    () => {
+      if (BackgroundColorDatePickerExperience === false) {
+        setShowDate (false);
+      }
+    },
+    [BackgroundColorDatePickerExperience]
+  );
 
   return (
-    <>
-      <div style={{ position: "relative" }}>
-        {ShowDate && (
+    <div>
+      <div style={{position: 'relative',display:"flex", justifyContent:"center"}}>
+        {ShowDate &&
           <div>
             <DatePicker
               date={handleUpdateDate}
@@ -488,11 +495,10 @@ export default function Boxfunction(props) {
               UpdateMonthFrom={UpdateMonthFrom}
               setUpdateDate={setUpdateDate}
             />
-          </div>
-        )}
-        {ToggleButtons && (
+          </div>}
+        {ToggleButtons &&
           <div className="OuterWraperToggleButtonsExperienceSection">
-            {togglebuttonarrayList.map((item, index) => {
+            {togglebuttonarrayList.map ((item, index) => {
               return (
                 <div className="InnerWraperToggleButtons">
                   <div className="ToggleButtonsLabel">{item.name}</div>
@@ -510,42 +516,39 @@ export default function Boxfunction(props) {
                 </div>
               );
             })}
-          </div>
-        )}
+          </div>}
       </div>
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          position: "relative",
+          display: 'flex',
+          justifyContent: 'center',
+          position: 'relative',
         }}
       >
         <div
-          style={{ display: props.item.selected ? "flex" : "none" }}
+          style={{display: props.item.selected ? 'flex' : 'none'}}
           className="headingOptionUnderBox"
         >
           <div
             className="outerWraperPlusAndNewEntry"
             onClick={() => {
-              props.HandlerAddItemInArrayfun();
-              setCounter(Counter + 1);
-              setToggleButtons(false);
-              props.IsActiveUp(true);
-              props.IsActive(false);
+              props.HandlerAddItemInArrayfun ();
+              setCounter (Counter + 1);
+              setToggleButtons (false);
+              props.IsActiveUp (true);
+              props.IsActive (false);
             }}
           >
             <FaPlus className="newEntryPlusIcon" />
             <div className="newEntryText">New Entry</div>
           </div>
-          {props.ToggleArrowUp && (
-            <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />
-          )}
-          {props.ToggleArrowDown && (
+          {props.ToggleArrowUp &&
+            <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />}
+          {props.ToggleArrowDown &&
             <MdKeyboardArrowDown
               onClick={HandleArrowDown}
               className="ArrowIcon"
-            />
-          )}
+            />}
           <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
           <BiText
             onClick={HandleTextDecoration}
@@ -557,19 +560,19 @@ export default function Boxfunction(props) {
           />
           <label
             onClick={() => {
-              setToggleButtons(false);
-              setShowDate(true);
+              setToggleButtons (false);
+              setShowDate (true);
             }}
           >
             <MdDateRange className="ArrangeIcon" />
           </label>
           <RiSettings5Fill
             onClick={() => {
-              setToggleButtons(!ToggleButtons);
+              setToggleButtons (!ToggleButtons);
               let temp = [];
               temp = TogglebuttonsName;
               let togglebuttonarray = temp[props.index].togglebuttonlist;
-              settogglebuttonarrayList([...togglebuttonarray]);
+              settogglebuttonarrayList ([...togglebuttonarray]);
             }}
             className="ArrangeIcon"
           />
@@ -579,15 +582,15 @@ export default function Boxfunction(props) {
         onClick={HandleSetBackGroundColor}
         className="outerWraperBox"
         style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
+          backgroundColor: props.item.selected ? 'white' : '',
+          border: props.item.selected ? '1px solid #60d5ba' : '',
         }}
       >
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
-            setLinkTextBox("none");
-            setToggleButtons(false);
+            setLinkTextBox ('none');
+            setToggleButtons (false);
           }}
           style={style}
         >
@@ -596,92 +599,94 @@ export default function Boxfunction(props) {
             type="text"
             value={Title}
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
-            onChange={(e) => {
+            onChange={e => {
               let array = props.list;
               array[props.index].value.title = e.target.value;
-              setTitle(e.target.value);
-              localStorage.setItem("arrayExperience", JSON.stringify(array));
+              setTitle (e.target.value);
+              localStorage.setItem ('arrayExperience', JSON.stringify (array));
             }}
             className="companyHeaderExperienceSection"
-            style={{ display: ShowTitle ? "block" : "none" }}
+            style={{display: ShowTitle ? 'block' : 'none'}}
             placeholder="Title"
           />
           <input
             type="text"
             value={CompnyName}
-            className=    {UpdateColor ? "TitleExperienceBoxSectionBlue" : "TitleExperienceBoxSectionGreen" }
-            style={{ display: ShowCompanyName ? "block" : "none" }}
+            className={
+              UpdateColor
+                ? 'TitleExperienceBoxSectionBlue'
+                : 'TitleExperienceBoxSectionGreen'
+            }
+            style={{display: ShowCompanyName ? 'block' : 'none'}}
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
             placeholder="Company Name"
-            onChange={(e) => {
+            onChange={e => {
               let array = props.list;
               array[props.index].value.companyname = e.target.value;
-              setCompnyName(e.target.value);
-              localStorage.setItem("arrayExperience", JSON.stringify(array));
+              setCompnyName (e.target.value);
+              localStorage.setItem ('arrayExperience', JSON.stringify (array));
             }}
           />
           <div
             className="outerWraperContainerDateLocationExperienceSection"
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
           >
             <div
               onClick={() => {
-                setShowDate(!ShowDate);
-                dispatch(BACKGROUNDCOLORDATPICKEREXPERIENCE(true));
+                setShowDate (!ShowDate);
+                dispatch (BACKGROUNDCOLORDATPICKEREXPERIENCE (true));
               }}
-              style={{ display: ShowPeriod ? "flex" : "none" }}
+              style={{display: ShowPeriod ? 'flex' : 'none'}}
               className="outerWraperDateExperienceSectionDatePeriod"
             >
               <label>
                 <MdDateRange className="dateIcone" />
               </label>
-              <div style={{ display: DislayDatePeriod ? "block" : "none" }}>
+              <div style={{display: DislayDatePeriod ? 'block' : 'none'}}>
                 Date Period
               </div>
               <div className="DateFrom">
                 {UpdateMonthFrom}
-                <div style={{ display: DateSlash ? "block" : "none" }}>/</div>
+                <div style={{display: DateSlash ? 'block' : 'none'}}>/</div>
                 {UpdateDate}
-                {Ongoing ? (
-                  <div className="DateFrom">
-                    <div style={{ display: DiplayMinus ? "block" : "none" }}>
-                      -
+                {Ongoing
+                  ? <div className="DateFrom">
+                      <div style={{display: DiplayMinus ? 'block' : 'none'}}>
+                        -
+                      </div>
+                      <div>{MonthOngoing}</div>
+                      <div
+                        style={{
+                          display: DisplayShashOngoing ? 'block' : 'none',
+                        }}
+                      >
+                        /
+                      </div>
+                      <div>{YearOnGoing}</div>
                     </div>
-                    <div>{MonthOngoing}</div>
-                    <div
-                      style={{
-                        display: DisplayShashOngoing ? "block" : "none",
-                      }}
-                    >
-                      /
-                    </div>
-                    <div>{YearOnGoing}</div>
-                  </div>
-                ) : (
-                  <div style={{ display: "flex" }}>
-                    <div
-                      style={{
-                        display: BackwordMinusOngoing ? "block" : "none",
-                      }}
-                    >
-                      -
-                    </div>
-                    Ongoing
-                  </div>
-                )}
+                  : <div style={{display: 'flex'}}>
+                      <div
+                        style={{
+                          display: BackwordMinusOngoing ? 'block' : 'none',
+                        }}
+                      >
+                        -
+                      </div>
+                      Ongoing
+                    </div>}
               </div>
             </div>
             <div
-              style={{ display: ShowLocation ? "flex" : "none" }}
+              style={{display: ShowLocation ? 'flex' : 'none'}}
               className="outerWraperDateExperienceSection"
             >
               <MdLocationOn className="dateIcone" />
@@ -690,24 +695,24 @@ export default function Boxfunction(props) {
                 type="text"
                 placeholder="Location"
                 value={Location}
-                onChange={(e) => {
+                onChange={e => {
                   let array = props.list;
                   array[props.index].value.location = e.target.value;
-                  setLocation(e.target.value);
-                  localStorage.setItem(
-                    "arrayExperience",
-                    JSON.stringify(array)
+                  setLocation (e.target.value);
+                  localStorage.setItem (
+                    'arrayExperience',
+                    JSON.stringify (array)
                   );
                 }}
               />
             </div>
           </div>
           <div
-            style={{ display: ShowLinks ? "flex" : "none" }}
+            style={{display: ShowLinks ? 'flex' : 'none'}}
             className="outerWraperDateExperienceSection"
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
           >
             <BiLinkAlt className="dateIcone" />
@@ -716,78 +721,78 @@ export default function Boxfunction(props) {
               className="URLExperienceSection"
               placeholder="Url"
               value={Url}
-              onChange={(e) => {
+              onChange={e => {
                 let array = props.list;
                 array[props.index].value.url = e.target.value;
-                setUrl(e.target.value);
-                localStorage.setItem("arrayExperience", JSON.stringify(array));
+                setUrl (e.target.value);
+                localStorage.setItem (
+                  'arrayExperience',
+                  JSON.stringify (array)
+                );
               }}
             />
           </div>
           <div
             onClick={handleText}
-            style={{ display: ShowDescription ? "block" : "none" }}
+            style={{display: ShowDescription ? 'block' : 'none'}}
           >
-            {checkplacehodercompanydiscription ? (
-              <div>hh</div>
-            ) : (
-              <div style={{ width: WidthLeftRight, marginLeft: "12px" }}>
-                <Editor
-                  text={CompanyDiscription}
-                  onChange={(text) => {
-                    let array = props.list;
-                    array[props.index].value.companydiscription = text;
-                    setCompanyDiscription(text);
-                    localStorage.setItem(
-                      "arrayExperience",
-                      JSON.stringify(array)
-                    );
-                  }}
-                  options={{
-                    placeholder: {
-                      text: "Company Description",
-                      hideOnClick: true,
-                    },
-                  }}
-                />
-              </div>
-            )}
+            {checkplacehodercompanydiscription
+              ? <div>hh</div>
+              : <div>
+                  <div className="summary">
+                    <Editor
+                      text={CompanyDiscription}
+                      onChange={text => {
+                        let array = props.list;
+                        array[props.index].value.companydiscription = text;
+                        setCompanyDiscription (text);
+                        localStorage.setItem (
+                          'arrayExperience',
+                          JSON.stringify (array)
+                        );
+                      }}
+                      options={{
+                        placeholder: {
+                          text: 'Company Description',
+                          hideOnClick: true,
+                        },
+                      }}
+                    />
+                  </div>
+                </div>}
           </div>
           <div
             onClick={handleText}
             className="EditorText"
-            style={{ display: ShowBullets ? "block" : "none" }}
+            style={{display: ShowBullets ? 'block' : 'none'}}
           >
-            {checkplacehoderBollets ? (
-              <div>jj</div>
-            ) : (
-              <div
-                className="app"
-                style={{ width: WidthLeftRight, marginTop: "10px" }}
-              >
-                <Editor
-                  text={Bullots}
-                  onChange={(text) => {
-                    let array = props.list;
-                    array[props.index].value.bullots = text;
-                    setBullots(text);
-                    localStorage.setItem(
-                      "arrayExperience",
-                      JSON.stringify(array)
-                    );
-                  }}
-                  options={{
-                    placeholder: {
-                      text: "What did you want in this role?",
-                      hideOnClick: true,
-                    },
-                  }}
-                />
-              </div>
-            )}
+            {checkplacehoderBollets
+              ? <div>jj</div>
+              : <div className="app" style={{marginTop: '10px'}}>
+                  <div className="summary">
+                    <Editor
+                      text={Bullots}
+                      onChange={text => {
+                        let array = props.list;
+                        array[props.index].value.bullots = text;
+                        setBullots (text);
+                        localStorage.setItem (
+                          'arrayExperience',
+                          JSON.stringify (array)
+                        );
+                      }}
+                      options={{
+                        placeholder: {
+                          text: 'What did you want in this role?',
+                          hideOnClick: true,
+                        },
+                      }}
+                    />
+                  </div>
+                </div>}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

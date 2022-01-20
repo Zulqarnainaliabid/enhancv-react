@@ -370,7 +370,6 @@ export default function Volunteering(props) {
     <>
       {BackgroundColorDatePickerVolunteering && (
               <div onClick={()=>{
-                console.log("b",BackgroundColorDatePickerVolunteering)
                 dispatch(BACKGROUNDCOLORDATPICKPVOLUNTEERING(false));
               }} className="BackgroundColorDatePicker">Volunteering</div>
             )}

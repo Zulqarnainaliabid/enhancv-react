@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
 import { FaPlus } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiText } from "react-icons/bi";
@@ -13,7 +13,7 @@ require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
 export default function Boxfunction(props) {
   const inputref = useRef();
-  const alert = useAlert();
+  // const alert = useAlert();
   const [EnabledFontFormatColor, setEnabledFontFormatColor] =
     useState("#38434744");
   const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] =
@@ -32,9 +32,9 @@ export default function Boxfunction(props) {
       EnabledFontFormatColor === "#38434744" ||
       EnabledFontFormatNoDrop === "no-drop "
     ) {
-      alert.show(
-        "Text decoration is available only in descriptions and bullets"
-      );
+      // alert.show(
+      //   "Text decoration is available only in descriptions and bullets"
+      // );
     }
   }
   function HandleSetBackGroundColor() {
@@ -141,10 +141,9 @@ export default function Boxfunction(props) {
         {
           if(UpdateWidthLeftRight[index].Left)
           {
-            console.log("Left")
            setWidthLeftRight("556px")
           }else{
-            console.log("right")
+
             setWidthLeftRight("325px")
           }
         }
@@ -204,7 +203,8 @@ export default function Boxfunction(props) {
             {checkplacehoderBollets ? (
               <div>jj</div>
             ) : (
-              <div className="app" style={{width:WidthLeftRight,marginLeft: "15px"}}>
+              <div className="app"
+              >
                 <div className="summary">
               <Editor
                 text={SummaryTextHolder}
@@ -223,7 +223,6 @@ export default function Boxfunction(props) {
               />
               </div>
               </div>
-
             )}
           </div>
         </div>

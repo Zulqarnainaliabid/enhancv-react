@@ -84,7 +84,6 @@ export default function MonthFromCrossIcon(props) {
           props.setMonthfromToggleCrossIcon([...temp]);
       }}
       onClick={()=>{
-        console.log("yearfrom , ,")
         dispatch(UPDATEYEARFROM("true"))
         dispatch(INCREMENTSTATE())
           props.setUpdateDate(null)

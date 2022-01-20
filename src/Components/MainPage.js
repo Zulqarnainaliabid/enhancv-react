@@ -163,8 +163,7 @@ export default function Main() {
           </div>
         </div>
         <div className="OuterWraperSlider">
-          <SimpleSlider 
-          />
+          <SimpleSlider />
         </div>
       </div>
     </>

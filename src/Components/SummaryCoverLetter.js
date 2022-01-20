@@ -12,7 +12,7 @@ export default function SummaryCoverLetter(props) {
   const [SummaryCoverLetterTextHolder, setSummaryCoverLetterTextHolder] =
     useState("");
   const Incrementnull = useSelector((state) => state.IncrementNull);
-  const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
+  // const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
   const CounterData = useSelector((state) => state.CounterData);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,13 +26,13 @@ export default function SummaryCoverLetter(props) {
 
   useEffect(() => {
     if (localStorage.getItem("CoverLetterSummary") !== null) {
-      setcheckplacehoderBollets(false);
+      // setcheckplacehoderBollets(false);
       let value = localStorage.getItem("CoverLetterSummary");
       value = JSON.parse(value);
       setSummaryCoverLetterTextHolder(value);
     }
     if (localStorage.getItem("CoverLetterTitle") !== null) {
-      setcheckplacehoderBollets(false);
+      // setcheckplacehoderBollets(false);
       let value = localStorage.getItem("CoverLetterTitle");
       value = JSON.parse(value);
       setTitleCoverLetterTextHolder(value);
@@ -79,10 +79,6 @@ export default function SummaryCoverLetter(props) {
           <div className="outerWraperBoxCoverLetter">
             <div className="outerWraperInputFieldHaider">
               <div className="EditorText">
-                {checkplacehoderBollets ? (
-                  <div>jj</div>
-                ) : (
-                  <div style={{ width: "966px" }}>
                     <div className="cover-letter">
                     <Editor
                       style={{ content: "none" }}
@@ -102,8 +98,6 @@ export default function SummaryCoverLetter(props) {
                       }}
                     />
                     </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>

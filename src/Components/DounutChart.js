@@ -97,7 +97,7 @@ const ApexChart = forwardRef((props, ref) => {
             options={options}
             series={props.series}
             type="donut"
-            width="380"
+            width="100%"
             labels={props.labels}
           />
         </div>

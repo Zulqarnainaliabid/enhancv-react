@@ -1,42 +1,43 @@
-import React, { useState, useEffect, useRef } from "react";
-import { MdDateRange } from "react-icons/md";
-import { MdLocationOn } from "react-icons/md";
-import { RiSettings5Fill } from "react-icons/ri";
-import { useAlert } from "react-alert";
-import { FaPlus } from "react-icons/fa";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { BiText } from "react-icons/bi";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { MdKeyboardArrowUp } from "react-icons/md";
-import Switch from "react-switch";
-import Editor from "react-medium-editor";
-import DatePicker from "./DatePicker/DatePicker";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState, useEffect, useRef} from 'react';
+import {MdDateRange} from 'react-icons/md';
+import {MdLocationOn} from 'react-icons/md';
+import {RiSettings5Fill} from 'react-icons/ri';
+// import {useAlert} from 'react-alert';
+import {FaPlus} from 'react-icons/fa';
+import {RiDeleteBin6Line} from 'react-icons/ri';
+import {BiText} from 'react-icons/bi';
+import {MdKeyboardArrowDown} from 'react-icons/md';
+import {MdKeyboardArrowUp} from 'react-icons/md';
+import Switch from 'react-switch';
+import Editor from 'react-medium-editor';
+import DatePicker from './DatePicker/DatePicker';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   INCREMENT,
   INCREMENTBACKGROUNDCOLOREDUCATION,
-  INDUXEDUCATION, SETTOGGLEBUTTONNULL,
+  INDUXEDUCATION,
+  SETTOGGLEBUTTONNULL,
   BACKGROUNDCOLORDATPICKER,
-} from "./Redux/actions/indux";
-import "./HomePage.css";
-require("medium-editor/dist/css/medium-editor.css");
-require("medium-editor/dist/css/themes/default.css");
-export function SwitchButtons(props) {
-  const [checked, setchecked] = useState(true);
-  function handleChange(value) {
-    setchecked(value);
-    props.handleToggglebutton(props.index, value);
+} from './Redux/actions/indux';
+import './HomePage.css';
+require ('medium-editor/dist/css/medium-editor.css');
+require ('medium-editor/dist/css/themes/default.css');
+export function SwitchButtons (props) {
+  const [checked, setchecked] = useState (true);
+  function handleChange (value) {
+    setchecked (value);
+    props.handleToggglebutton (props.index, value);
   }
-  useEffect(() => {
-    if (localStorage.getItem("arrayEducation") !== null) {
-      let value = localStorage.getItem("arrayEducation");
-      value = JSON.parse(value);
-      setchecked(
+  useEffect (() => {
+    if (localStorage.getItem ('arrayEducation') !== null) {
+      let value = localStorage.getItem ('arrayEducation');
+      value = JSON.parse (value);
+      setchecked (
         value[props.indexouterarray].togglebuttonlist[props.index]
           .selectedToggleButton
       );
     } else {
-      setchecked(true);
+      setchecked (true);
     }
   }, []);
   return (
@@ -56,418 +57,433 @@ export function SwitchButtons(props) {
     </label>
   );
 }
-export default function Boxfunction(props) {
-  const inputref = useRef();
-  const alert = useAlert();
-  const [EnabledFontFormatColor, setEnabledFontFormatColor] =
-    useState("#38434744");
-  const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] =
-    useState("no-drop");
-  const [ToggleButtons, setToggleButtons] = useState(false);
-  const [UpdateNumber, setUpdateNumber] = useState(0);
-  const [ShowDate, setShowDate] = useState(false);
-  const [UpdateDate, setUpdateDate] = useState(null);
-  const [DislayDatePeriod, setDislayDatePeriod] = useState(true);
-  const [UpdateMonthFrom, setUpdateMonthFrom] = useState(null);
-  const [DateSlash, setDateSlash] = useState(false);
-  const [MonthOngoing, setMonthOngoing] = useState(null);
-  const [YearOnGoing, setYearOnGoing] = useState(null);
-  const [DiplayMinus, setDiplayMinus] = useState(false);
-  const [DisplayShashOngoing, setDisplayShashOngoing] = useState(false);
-  const [Ongoing, setOngoing] = useState(true);
-  const [BackwordMinusOngoing, setBackwordMinusOngoing] = useState(false);
-  const [Counter, setCounter] = useState(0);
-  const [checkplacehoderBollets, setcheckplacehoderBollets] = useState(true);
-  const [TogglebuttonsName, setTogglebuttonsName] = useState(props.list);
-  const [togglebuttonarrayList, settogglebuttonarrayList] = useState([]);
-  const [ShowGPA, setShowGPA] = useState(true);
-  const [ShowBullets, setShowBullets] = useState(true);
-  const [ShowLocation, setShowLocation] = useState(true);
-  const [ShowPeriod, setShowPeriod] = useState(true);
-  const [TitleTextHolder, setTitleTextHolder] = useState("");
-  const [InstitudeNameTestHolder, setInstitudeNameTestHolder] = useState("");
-  const [LocationTestHolder, setLocationTestHolder] = useState("");
-  const [BullotsTestHolder, setBullotsTestHolder] = useState("");
-  const [GPAFullTestHolder, setGPAFullTestHolder] = useState("");
-  const [GPAObtainTestHolder, setGPAObtainTestHolder] = useState("");
-  const [WidthLeftRight, setWidthLeftRight] = useState(null);
-  const [ArrayTemp, setArrayTemp] = useState([]);
-  const [Tempdata, setTempdata] = useState(false);
-  
-  const dispatch = useDispatch();
-  const CounterData = useSelector((state) => state.CounterData);
-  const UpdateYearFrom = useSelector((state) => state.IncrementState);
-  const UpdateToggleYearFrom = useSelector((state) => state.UpdateYearFrom);
-  const Indux = useSelector((state) => state.InduxEducation);
-  const Incrementnull = useSelector((state) => state.IncrementNull);
-  const SetToggleButtonsNull = useSelector((state) => state.SetToggleButtonsNull);
-  const UpdateWidthLeftRight = useSelector((state) => state.UpdateWidthLeftRight);
-  
-  const BackgroundColorDatePicker = useSelector((state) => state.BackgroundColorDatePicker);
-  const UpdateColor = useSelector((state) => state.UpdateColor);
-  useEffect(() => {
-    setToggleButtons(false);
-  }, [SetToggleButtonsNull]);
-  
-  useEffect(() => {
-    setToggleButtons(false);
-    setShowDate(false)
-  }, [Incrementnull]);
-  function HandleOngoing(toggle) {
+export default function Boxfunction (props) {
+  const inputref = useRef ();
+  // const alert = useAlert ();
+  const [EnabledFontFormatColor, setEnabledFontFormatColor] = useState (
+    '#38434744'
+  );
+  const [EnabledFontFormatNoDrop, setEnabledFontFormatNoDrop] = useState (
+    'no-drop'
+  );
+  const [ToggleButtons, setToggleButtons] = useState (false);
+  const [UpdateNumber, setUpdateNumber] = useState (0);
+  const [ShowDate, setShowDate] = useState (false);
+  const [UpdateDate, setUpdateDate] = useState (null);
+  const [DislayDatePeriod, setDislayDatePeriod] = useState (true);
+  const [UpdateMonthFrom, setUpdateMonthFrom] = useState (null);
+  const [DateSlash, setDateSlash] = useState (false);
+  const [MonthOngoing, setMonthOngoing] = useState (null);
+  const [YearOnGoing, setYearOnGoing] = useState (null);
+  const [DiplayMinus, setDiplayMinus] = useState (false);
+  const [DisplayShashOngoing, setDisplayShashOngoing] = useState (false);
+  const [Ongoing, setOngoing] = useState (true);
+  const [BackwordMinusOngoing, setBackwordMinusOngoing] = useState (false);
+  const [Counter, setCounter] = useState (0);
+  const [checkplacehoderBollets, setcheckplacehoderBollets] = useState (true);
+  const [TogglebuttonsName, setTogglebuttonsName] = useState (props.list);
+  const [togglebuttonarrayList, settogglebuttonarrayList] = useState ([]);
+  const [ShowGPA, setShowGPA] = useState (true);
+  const [ShowBullets, setShowBullets] = useState (true);
+  const [ShowLocation, setShowLocation] = useState (true);
+  const [ShowPeriod, setShowPeriod] = useState (true);
+  const [TitleTextHolder, setTitleTextHolder] = useState ('');
+  const [InstitudeNameTestHolder, setInstitudeNameTestHolder] = useState ('');
+  const [LocationTestHolder, setLocationTestHolder] = useState ('');
+  const [BullotsTestHolder, setBullotsTestHolder] = useState ('');
+  const [GPAFullTestHolder, setGPAFullTestHolder] = useState ('');
+  const [GPAObtainTestHolder, setGPAObtainTestHolder] = useState ('');
+  const [WidthLeftRight, setWidthLeftRight] = useState (null);
+  const [ArrayTemp, setArrayTemp] = useState ([]);
+  const [Tempdata, setTempdata] = useState (false);
+
+  const dispatch = useDispatch ();
+  const CounterData = useSelector (state => state.CounterData);
+  const UpdateYearFrom = useSelector (state => state.IncrementState);
+  const UpdateToggleYearFrom = useSelector (state => state.UpdateYearFrom);
+  const Indux = useSelector (state => state.InduxEducation);
+  const Incrementnull = useSelector (state => state.IncrementNull);
+  const SetToggleButtonsNull = useSelector (
+    state => state.SetToggleButtonsNull
+  );
+  const UpdateWidthLeftRight = useSelector (
+    state => state.UpdateWidthLeftRight
+  );
+
+  const BackgroundColorDatePicker = useSelector (
+    state => state.BackgroundColorDatePicker
+  );
+  const UpdateColor = useSelector (state => state.UpdateColor);
+  useEffect (
+    () => {
+      setToggleButtons (false);
+    },
+    [SetToggleButtonsNull]
+  );
+
+  useEffect (
+    () => {
+      setToggleButtons (false);
+      setShowDate (false);
+    },
+    [Incrementnull]
+  );
+  function HandleOngoing (toggle) {
     if (toggle) {
-      setOngoing(true);
+      setOngoing (true);
       let array = props.list;
       array[props.index].value.date.ongoing = true;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     } else {
-      setOngoing(false);
+      setOngoing (false);
       let array = props.list;
       array[props.index].value.date.ongoing = false;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     }
     if (UpdateDate !== null || UpdateMonthFrom !== null) {
-      setBackwordMinusOngoing(true);
+      setBackwordMinusOngoing (true);
     } else {
-      setBackwordMinusOngoing(false);
-      setDislayDatePeriod(false);
+      setBackwordMinusOngoing (false);
+      setDislayDatePeriod (false);
     }
   }
-  function handleUpdateDate(yearfrom) {
+  function handleUpdateDate (yearfrom) {
     if (yearfrom === null) {
-      setUpdateDate(null);
+      setUpdateDate (null);
       let array = props.list;
       array[props.index].value.date.yearfrom = yearfrom.number;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     } else {
-      setUpdateDate(yearfrom.number);
+      setUpdateDate (yearfrom.number);
       let array = props.list;
       array[props.index].value.date.yearfrom = yearfrom.number;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     }
     if (yearfrom === null && UpdateMonthFrom === null) {
-      setDislayDatePeriod(true);
+      setDislayDatePeriod (true);
     } else {
-      setDislayDatePeriod(false);
+      setDislayDatePeriod (false);
     }
     if (UpdateMonthFrom !== null && yearfrom !== null) {
-      setDateSlash(true);
+      setDateSlash (true);
     } else if (UpdateMonthFrom === null || yearfrom === null) {
-      setDateSlash(false);
+      setDateSlash (false);
     }
   }
 
-  function handleUpdateDateMonthFrom(monthfrom) {
+  function handleUpdateDateMonthFrom (monthfrom) {
     if (monthfrom === null) {
-      setUpdateMonthFrom(null);
+      setUpdateMonthFrom (null);
       let array = props.list;
       array[props.index].value.date.monthfrom = monthfrom;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     } else {
-      setUpdateMonthFrom(monthfrom);
+      setUpdateMonthFrom (monthfrom);
       let array = props.list;
       array[props.index].value.date.monthfrom = monthfrom;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     }
     if (monthfrom === null && UpdateMonthFrom === null) {
-      setDislayDatePeriod(true);
-      setDateSlash(false);
+      setDislayDatePeriod (true);
+      setDateSlash (false);
     } else {
-      setDislayDatePeriod(false);
+      setDislayDatePeriod (false);
     }
     if (UpdateDate !== null && monthfrom !== null) {
-      setDateSlash(true);
+      setDateSlash (true);
     } else if (UpdateDate === null || monthfrom === null) {
-      setDateSlash(false);
+      setDateSlash (false);
     }
   }
-  useEffect(() => {
-    if (UpdateToggleYearFrom) {
-      let array = props.list;
-      array[props.index].value.date.yearfrom = null;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
-      setDateSlash(false);
-    }
-  }, [UpdateYearFrom]);
-  function HandleMonthOngoing(date) {
+  useEffect (
+    () => {
+      if (UpdateToggleYearFrom) {
+        let array = props.list;
+        array[props.index].value.date.yearfrom = null;
+        localStorage.setItem ('arrayEducation', JSON.stringify (array));
+        setDateSlash (false);
+      }
+    },
+    [UpdateYearFrom]
+  );
+  function HandleMonthOngoing (date) {
     if (date === null) {
-      setMonthOngoing(null);
+      setMonthOngoing (null);
       let array = props.list;
       array[props.index].value.date.monthto = date;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     } else {
-      setMonthOngoing(date);
+      setMonthOngoing (date);
       let array = props.list;
       array[props.index].value.date.monthto = date;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     }
     if (date !== null || YearOnGoing !== null) {
-      setDiplayMinus(true);
+      setDiplayMinus (true);
     } else if (date === null && YearOnGoing === null) {
-      setDiplayMinus(false);
+      setDiplayMinus (false);
     }
     if (date !== null && YearOnGoing !== null) {
-      setDisplayShashOngoing(true);
+      setDisplayShashOngoing (true);
     } else {
-      setDisplayShashOngoing(false);
+      setDisplayShashOngoing (false);
     }
   }
-  function handleYearOngoing(date) {
+  function handleYearOngoing (date) {
     if (date === null) {
-      setYearOnGoing(null);
+      setYearOnGoing (null);
     } else {
-      setYearOnGoing(date);
+      setYearOnGoing (date);
       let array = props.list;
       array[props.index].value.date.yearto = date;
-      localStorage.setItem("arrayEducation", JSON.stringify(array));
+      localStorage.setItem ('arrayEducation', JSON.stringify (array));
     }
     if (date !== null || YearOnGoing !== null) {
-      setDiplayMinus(true);
+      setDiplayMinus (true);
     } else if (date === null && YearOnGoing === null) {
-      setDiplayMinus(false);
+      setDiplayMinus (false);
     }
   }
-  function HandleTextDecoration() {
-    setToggleButtons(false);
+  function HandleTextDecoration () {
+    setToggleButtons (false);
     if (
-      EnabledFontFormatColor === "#38434744" ||
-      EnabledFontFormatNoDrop === "no-drop "
+      EnabledFontFormatColor === '#38434744' ||
+      EnabledFontFormatNoDrop === 'no-drop '
     ) {
-      alert.show(
-        "Text decoration is available only in descriptions and bullets"
-      );
+      // alert.show (
+      //   'Text decoration is available only in descriptions and bullets'
+      // );
     }
   }
-  function HandleSetBackGroundColor() {
-    dispatch(INCREMENTBACKGROUNDCOLOREDUCATION());
-    dispatch(INCREMENT());
-    dispatch(SETTOGGLEBUTTONNULL());
-    props.HandleCompleteBoarderUnSelected();
+  function HandleSetBackGroundColor () {
+    dispatch (INCREMENTBACKGROUNDCOLOREDUCATION ());
+    dispatch (INCREMENT ());
+    dispatch (SETTOGGLEBUTTONNULL ());
+    props.HandleCompleteBoarderUnSelected ();
     let temp = props.list;
     if (!temp[props.index].selected) {
-      props.list.map((item, index) => {
+      props.list.map ((item, index) => {
         if (item.selected) {
           temp[index].selected = false;
         }
       });
       temp[props.index].selected = true;
-      props.setList([...temp]);
+      props.setList ([...temp]);
     }
-    props.button();
-    setUpdateNumber(UpdateNumber + 1);
-    dispatch(INDUXEDUCATION(props.index));
+    props.button ();
+    setUpdateNumber (UpdateNumber + 1);
+    dispatch (INDUXEDUCATION (props.index));
     let array = props.list;
     if (array.length !== 1) {
       if (props.index === 0) {
-        props.IsActiveUp(false);
-        props.IsActive(true);
+        props.IsActiveUp (false);
+        props.IsActive (true);
       } else if (props.index === array.length - 1) {
-        props.IsActive(false);
-        props.IsActiveUp(true);
+        props.IsActive (false);
+        props.IsActiveUp (true);
       } else {
-        props.IsActive(true);
-        props.IsActiveUp(true);
+        props.IsActive (true);
+        props.IsActiveUp (true);
       }
     } else {
-      props.IsActive(false);
-      props.IsActiveUp(false);
+      props.IsActive (false);
+      props.IsActiveUp (false);
     }
   }
   const style = {
     borderBottom: props.borderbotm,
   };
-  function HandleArrowDown() {
+  function HandleArrowDown () {
     let index = props.index + 1;
-    dispatch(INDUXEDUCATION(index));
-    setToggleButtons(false);
-    props.IsActiveUp(true);
+    dispatch (INDUXEDUCATION (index));
+    setToggleButtons (false);
+    props.IsActiveUp (true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index + 1].selected = true;
     }
     temp[props.index].selected = false;
-    props.setList([...temp]);
+    props.setList ([...temp]);
     if (props.index + 1 === temp.length - 1) {
-      props.IsActive(false);
+      props.IsActive (false);
     } else {
-      props.IsActive(true);
+      props.IsActive (true);
     }
   }
-  function HandleArrowUP() {
+  function HandleArrowUP () {
     let index = null;
     index = props.index - 1;
-    dispatch(INDUXEDUCATION(index));
-    setToggleButtons(false);
-    props.IsActive(true);
+    dispatch (INDUXEDUCATION (index));
+    setToggleButtons (false);
+    props.IsActive (true);
     let temp = props.list;
     if (temp[props.index].selected) {
       temp[props.index - 1].selected = true;
     }
     temp[props.index].selected = false;
-    props.setList([...temp]);
-    setArrayTemp([...temp])
+    props.setList ([...temp]);
+    setArrayTemp ([...temp]);
     if (props.index === 1) {
-      props.IsActiveUp(false);
+      props.IsActiveUp (false);
     } else {
-      props.IsActiveUp(true);
+      props.IsActiveUp (true);
     }
-  };
-  function HandleDelete() {
-    setToggleButtons(false);
+  }
+  function HandleDelete () {
+    setToggleButtons (false);
     let temp = [];
     temp = props.list;
     if (temp.length === 1) {
-      props.IsActive(false);
-      props.IsActiveUp(false);
+      props.IsActive (false);
+      props.IsActiveUp (false);
     }
     if (Indux !== null) {
-      temp.splice(Indux, 1);
+      temp.splice (Indux, 1);
     }
-    localStorage.setItem("arrayEducation", JSON.stringify(temp));
-    window.location.reload(false);
+    localStorage.setItem ('arrayEducation', JSON.stringify (temp));
+    window.location.reload (false);
   }
-  useEffect(() => {
-    inputref.current.focus();
-    if (localStorage.getItem("arrayEducation") !== null) {
-      setcheckplacehoderBollets(false);
-      let item = localStorage.getItem("arrayEducation");
-      item = JSON.parse(item);
-      setUpdateDate(item[props.index].value.date.yearfrom);
-      setUpdateMonthFrom(item[props.index].value.date.monthfrom);
-      setMonthOngoing(item[props.index].value.date.monthto);
-      setOngoing(item[props.index].value.date.ongoing);
-      setYearOnGoing(item[props.index].value.date.yearto);
+  useEffect (() => {
+    inputref.current.focus ();
+    if (localStorage.getItem ('arrayEducation') !== null) {
+      setcheckplacehoderBollets (false);
+      let item = localStorage.getItem ('arrayEducation');
+      item = JSON.parse (item);
+      setUpdateDate (item[props.index].value.date.yearfrom);
+      setUpdateMonthFrom (item[props.index].value.date.monthfrom);
+      setMonthOngoing (item[props.index].value.date.monthto);
+      setOngoing (item[props.index].value.date.ongoing);
+      setYearOnGoing (item[props.index].value.date.yearto);
       if (
         item[props.index].value.date.yearfrom !== null ||
         item[props.index].value.date.monthfrom !== null ||
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.yearto !== null
       ) {
-        setDislayDatePeriod(false);
+        setDislayDatePeriod (false);
       } else {
-        setDislayDatePeriod(true);
-        setDateSlash(false);
+        setDislayDatePeriod (true);
+        setDateSlash (false);
       }
       if (
         item[props.index].value.date.monthfrom !== null &&
         item[props.index].value.date.yearfrom !== null
       ) {
-        setDateSlash(true);
+        setDateSlash (true);
       }
       if (
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.yearto !== null
       ) {
-        setDiplayMinus(true);
-        setDisplayShashOngoing(true);
+        setDiplayMinus (true);
+        setDisplayShashOngoing (true);
       }
       if (
         item[props.index].value.date.monthto !== null ||
         item[props.index].value.date.ongoing !== null
       ) {
-        setBackwordMinusOngoing(true);
+        setBackwordMinusOngoing (true);
       }
     }
   }, []);
-  function handleText() {
-    setEnabledFontFormatColor("");
-    setEnabledFontFormatNoDrop("pointer");
+  function handleText () {
+    setEnabledFontFormatColor ('');
+    setEnabledFontFormatNoDrop ('pointer');
   }
-  function handleToggglebutton(index, toggle) {
+  function handleToggglebutton (index, toggle) {
     let array = [];
     array = props.list;
     array[props.index].togglebuttonlist[index].selectedToggleButton = toggle;
-    localStorage.setItem("arrayEducation", JSON.stringify(array));
-    if (array[props.index].togglebuttonlist[index].name === "Show GPA") {
-      setShowGPA(toggle);
+    localStorage.setItem ('arrayEducation', JSON.stringify (array));
+    if (array[props.index].togglebuttonlist[index].name === 'Show GPA') {
+      setShowGPA (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Location"
+      array[props.index].togglebuttonlist[index].name === 'Show Location'
     ) {
-      setShowLocation(toggle);
+      setShowLocation (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Period"
+      array[props.index].togglebuttonlist[index].name === 'Show Period'
     ) {
-      setShowPeriod(toggle);
+      setShowPeriod (toggle);
     } else if (
-      array[props.index].togglebuttonlist[index].name === "Show Bullets"
+      array[props.index].togglebuttonlist[index].name === 'Show Bullets'
     ) {
-      setShowBullets(toggle);
+      setShowBullets (toggle);
     }
   }
-  useEffect(() => {
-    if (localStorage.getItem("arrayEducation") !== null) {
-      setcheckplacehoderBollets(false);
-      let value = localStorage.getItem("arrayEducation");
-      value = JSON.parse(value);
-      setTitleTextHolder(value[props.index].value.titleTextHolder);
-      setInstitudeNameTestHolder(
+  useEffect (() => {
+    if (localStorage.getItem ('arrayEducation') !== null) {
+      setcheckplacehoderBollets (false);
+      let value = localStorage.getItem ('arrayEducation');
+      value = JSON.parse (value);
+      setTitleTextHolder (value[props.index].value.titleTextHolder);
+      setInstitudeNameTestHolder (
         value[props.index].value.InstitudeNameTestHolder
       );
-      setLocationTestHolder(value[props.index].value.locationTestHolder);
-      setBullotsTestHolder(value[props.index].value.bullotsTestHolder);
-      setGPAFullTestHolder(value[props.index].value.GPAFullTestHolder);
-      setGPAObtainTestHolder(value[props.index].value.GPAObtainTestHolder);
+      setLocationTestHolder (value[props.index].value.locationTestHolder);
+      setBullotsTestHolder (value[props.index].value.bullotsTestHolder);
+      setGPAFullTestHolder (value[props.index].value.GPAFullTestHolder);
+      setGPAObtainTestHolder (value[props.index].value.GPAObtainTestHolder);
       let array = [];
       array = value[props.index].togglebuttonlist;
-      array.map((item, index) => {
-        if (item.name === "Show GPA") {
-          setShowGPA(item.selectedToggleButton);
-        } else if (item.name === "Show Location") {
-          setShowLocation(item.selectedToggleButton);
-        } else if (item.name === "Show Period") {
-          setShowPeriod(item.selectedToggleButton);
-        } else if (item.name === "Show Bullets") {
-          setShowBullets(item.selectedToggleButton);
+      array.map ((item, index) => {
+        if (item.name === 'Show GPA') {
+          setShowGPA (item.selectedToggleButton);
+        } else if (item.name === 'Show Location') {
+          setShowLocation (item.selectedToggleButton);
+        } else if (item.name === 'Show Period') {
+          setShowPeriod (item.selectedToggleButton);
+        } else if (item.name === 'Show Bullets') {
+          setShowBullets (item.selectedToggleButton);
         }
       });
     }
   }, []);
 
-  useEffect(() => {
-    if(UpdateWidthLeftRight!==null){
-      UpdateWidthLeftRight.map((item,index)=>{
-        if(UpdateWidthLeftRight[index].name==="Education")
-        {
-          if(UpdateWidthLeftRight[index].Left)
-          {
-            console.log("Left")
-           setWidthLeftRight("266px")
-          }else{
-            console.log("right")
-            setWidthLeftRight("176px")
+  useEffect (() => {
+    if (UpdateWidthLeftRight !== null) {
+      UpdateWidthLeftRight.map ((item, index) => {
+        if (UpdateWidthLeftRight[index].name === 'Education') {
+          if (UpdateWidthLeftRight[index].Left) {
+            setWidthLeftRight ('266px');
+          } else {
+            setWidthLeftRight ('176px');
           }
         }
-      })
+      });
     }
   }, []);
 
-  useEffect(() => {
-    console.log("fale = ",BackgroundColorDatePicker)
-    if(BackgroundColorDatePicker===false){
-      setShowDate(false)
-    }
-  }, [BackgroundColorDatePicker]);
+  useEffect (
+    () => {
+      if (BackgroundColorDatePicker === false) {
+        setShowDate (false);
+      }
+    },
+    [BackgroundColorDatePicker]
+  );
+
   return (
-    <>
-      <div style={{ position: "relative" }}>
-      {ShowDate && (
-              <div>
-                <DatePicker
-                  date={handleUpdateDate}
-                  month={handleUpdateDateMonthFrom}
-                  HandleMonthOngoing={HandleMonthOngoing}
-                  handleYearOngoing={handleYearOngoing}
-                  HandleOngoing={HandleOngoing}
-                  setUpdateMonthFrom={setUpdateMonthFrom}
-                  UpdateMonthFrom={UpdateMonthFrom}
-                  setUpdateDate={setUpdateDate}
-                />
-              </div>
-            )}
-        {ToggleButtons && (
+    <div>
+      <div style={{position: 'relative',display:"flex", justifyContent:"center"}}>
+        {ShowDate &&
+          <div>
+            <DatePicker
+              date={handleUpdateDate}
+              month={handleUpdateDateMonthFrom}
+              HandleMonthOngoing={HandleMonthOngoing}
+              handleYearOngoing={handleYearOngoing}
+              HandleOngoing={HandleOngoing}
+              setUpdateMonthFrom={setUpdateMonthFrom}
+              UpdateMonthFrom={UpdateMonthFrom}
+              setUpdateDate={setUpdateDate}
+            />
+          </div>}
+        {ToggleButtons &&
           <div className="OuterWraperToggleButtonsExperienceSection">
-            {togglebuttonarrayList.map((item, index) => {
+            {togglebuttonarrayList.map ((item, index) => {
               return (
-                <>
+                <div>
                   <div className="InnerWraperToggleButtons">
                     <div className="ToggleButtonsLabel">{item.name} </div>
                     <div className="outerWraperSwitchClass">
@@ -482,86 +498,86 @@ export default function Boxfunction(props) {
                       />
                     </div>
                   </div>
-                </>
+                </div>
               );
             })}
-          </div>
-        )}
+          </div>}
       </div>
-      <div style={{ display: "flex", justifyContent: "center",position:"relative" }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          position: 'relative',
+        }}
+      >
+        <div
+          style={{display: props.item.selected ? 'flex' : 'none'}}
+          className="headingOptionUnderBoxEducation"
+          onClick={() => {
+            setShowDate (false);
+          }}
+        >
           <div
-            style={{ display: props.item.selected ? "flex" : "none" }}
-            className="headingOptionUnderBoxEducation"
+            className="outerWraperPlusAndNewEntry"
             onClick={() => {
-              setShowDate(false);
+              props.HandlerAddItemInArrayfun ();
+              setCounter (Counter + 1);
+              setToggleButtons (false);
+              props.IsActiveUp (true);
+              props.IsActive (false);
             }}
           >
-            <div
-              className="outerWraperPlusAndNewEntry"
-              onClick={() => {
-                props.HandlerAddItemInArrayfun();
-                setCounter(Counter + 1);
-                setToggleButtons(false);
-                props.IsActiveUp(true);
-                props.IsActive(false);
-              }}
-            >
-              <FaPlus className="newEntryPlusIcon" />
-              <div className="newEntryText">New Entry</div>
-            </div>
-            {props.ToggleArrowUp && (
-              <MdKeyboardArrowUp
-                onClick={HandleArrowUP}
-                className="ArrowIcon"
-              />
-            )}
-            {props.ToggleArrowDown && (
-              <MdKeyboardArrowDown
-                onClick={HandleArrowDown}
-                className="ArrowIcon"
-              />
-            )}
-            <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
-            <BiText
-              onClick={HandleTextDecoration}
-              style={{
-                color: EnabledFontFormatColor,
-                cursor: EnabledFontFormatNoDrop,
-              }}
-              className="DeleteIcon"
-            />
-            <label
-              onClick={() => {
-                setToggleButtons(false);
-                setShowDate(true);
-              }}
-            >
-              <MdDateRange className="ArrangeIcon" />
-            </label>
-            <RiSettings5Fill
-              onClick={() => {
-                setToggleButtons(!ToggleButtons);
-                let temp = [];
-                temp = TogglebuttonsName;
-                let togglebuttonarray = temp[props.index].togglebuttonlist;
-                settogglebuttonarrayList([...togglebuttonarray]);
-              }}
-              className="ArrangeIcon"
-            />
+            <FaPlus className="newEntryPlusIcon" />
+            <div className="newEntryText">New Entry</div>
           </div>
+          {props.ToggleArrowUp &&
+            <MdKeyboardArrowUp onClick={HandleArrowUP} className="ArrowIcon" />}
+          {props.ToggleArrowDown &&
+            <MdKeyboardArrowDown
+              onClick={HandleArrowDown}
+              className="ArrowIcon"
+            />}
+          <RiDeleteBin6Line className="DeleteIcon" onClick={HandleDelete} />
+          <BiText
+            onClick={HandleTextDecoration}
+            style={{
+              color: EnabledFontFormatColor,
+              cursor: EnabledFontFormatNoDrop,
+            }}
+            className="DeleteIcon"
+          />
+          <label
+            onClick={() => {
+              setToggleButtons (false);
+              setShowDate (true);
+            }}
+          >
+            <MdDateRange className="ArrangeIcon" />
+          </label>
+          <RiSettings5Fill
+            onClick={() => {
+              setToggleButtons (!ToggleButtons);
+              let temp = [];
+              temp = TogglebuttonsName;
+              let togglebuttonarray = temp[props.index].togglebuttonlist;
+              settogglebuttonarrayList ([...togglebuttonarray]);
+            }}
+            className="ArrangeIcon"
+          />
         </div>
+      </div>
       <div
         onClick={HandleSetBackGroundColor}
         className="outerWraperBox"
         style={{
-          backgroundColor: props.item.selected ? "white" : "",
-          border: props.item.selected ? "1px solid #60d5ba" : "",
+          backgroundColor: props.item.selected ? 'white' : '',
+          border: props.item.selected ? '1px solid #60d5ba' : '',
         }}
       >
         <div
           className="outerWraperInputFieldHaider"
           onClick={() => {
-            setToggleButtons(false);
+            setToggleButtons (false);
           }}
           style={style}
         >
@@ -570,93 +586,94 @@ export default function Boxfunction(props) {
             type="text"
             value={TitleTextHolder}
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
-            onChange={(e) => {
-              setTitleTextHolder(e.target.value);
+            onChange={e => {
+              setTitleTextHolder (e.target.value);
               let array = props.list;
               array[props.index].value.titleTextHolder = e.target.value;
-              localStorage.setItem("arrayEducation", JSON.stringify(array));
+              localStorage.setItem ('arrayEducation', JSON.stringify (array));
             }}
             className="companyHeaderExperienceSection"
-            style={{ fontSize: "20px " }}
+            style={{fontSize: '20px '}}
             placeholder="Degree And Field Of Study"
           />
           <input
             type="text"
             value={InstitudeNameTestHolder}
-            className=    {UpdateColor ? "TitleExperienceBoxSectionBlue" : "TitleExperienceBoxSectionGreen" }
-        
+            className={
+              UpdateColor
+                ? 'TitleExperienceBoxSectionBlue'
+                : 'TitleExperienceBoxSectionGreen'
+            }
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
             placeholder="School of University"
-            onChange={(e) => {
+            onChange={e => {
               let array = props.list;
               array[props.index].value.InstitudeNameTestHolder = e.target.value;
-              localStorage.setItem("arrayEducation", JSON.stringify(array));
-              setInstitudeNameTestHolder(e.target.value);
+              localStorage.setItem ('arrayEducation', JSON.stringify (array));
+              setInstitudeNameTestHolder (e.target.value);
             }}
           />
           <div
             className="outerWraperContainerDateLocationExperienceSection"
             onClick={() => {
-              setEnabledFontFormatColor("#38434744");
-              setEnabledFontFormatNoDrop("no-drop");
+              setEnabledFontFormatColor ('#38434744');
+              setEnabledFontFormatNoDrop ('no-drop');
             }}
           >
             <div
               onClick={() => {
-                setShowDate(!ShowDate)
-                dispatch(BACKGROUNDCOLORDATPICKER(true));
+                setShowDate (!ShowDate);
+                dispatch (BACKGROUNDCOLORDATPICKER (true));
               }}
-              style={{ display: ShowPeriod ? "flex" : "none" }}
+              style={{display: ShowPeriod ? 'flex' : 'none',width:"50%"}}
               className="outerWraperDateExperienceSectionDatePeriod"
             >
               <label>
-                <MdDateRange  className="dateIcone" />
+                <MdDateRange className="dateIcone" />
               </label>
 
-              <div style={{ display: DislayDatePeriod ? "block" : "none" }}>
+              <div style={{display: DislayDatePeriod ? 'block' : 'none'}}>
                 Date Period
               </div>
               <div className="DateFrom">
                 {UpdateMonthFrom}
-                <div style={{ display: DateSlash ? "block" : "none" }}>/</div>
+                <div style={{display: DateSlash ? 'block' : 'none'}}>/</div>
                 {UpdateDate}
-                {Ongoing ? (
-                  <div className="DateFrom">
-                    <div style={{ display: DiplayMinus ? "block" : "none" }}>
-                      -
+                {Ongoing
+                  ? <div className="DateFrom">
+                      <div style={{display: DiplayMinus ? 'block' : 'none'}}>
+                        -
+                      </div>
+                      <div>{MonthOngoing}</div>
+                      <div
+                        style={{
+                          display: DisplayShashOngoing ? 'block' : 'none',
+                        }}
+                      >
+                        /
+                      </div>
+                      <div>{YearOnGoing}</div>
                     </div>
-                    <div>{MonthOngoing}</div>
-                    <div
-                      style={{
-                        display: DisplayShashOngoing ? "block" : "none",
-                      }}
-                    >
-                      /
-                    </div>
-                    <div>{YearOnGoing}</div>
-                  </div>
-                ) : (
-                  <div style={{ display: "flex"}}>
-                    <div
-                      style={{
-                        display: BackwordMinusOngoing ? "block" : "none",
-                      }}
-                    >
-                      -
-                    </div>
-                    Ongoing
-                  </div>
-                )}
+                  : <div style={{display: 'flex'}}>
+                      <div
+                        style={{
+                          display: BackwordMinusOngoing ? 'block' : 'none',
+                        }}
+                      >
+                        -
+                      </div>
+                      Ongoing
+                    </div>}
               </div>
             </div>
             <div
-              style={{ display: ShowLocation ? "flex" : "none" }}
+              style={{display: ShowLocation ? 'flex' : 'none'}}
               className="outerWraperDateExperienceSection"
             >
               <MdLocationOn className="dateIcone" />
@@ -665,88 +682,93 @@ export default function Boxfunction(props) {
                 type="text"
                 placeholder="Location"
                 value={LocationTestHolder}
-                onChange={(e) => {
+                onChange={e => {
                   let array = props.list;
                   array[props.index].value.locationTestHolder = e.target.value;
-                  localStorage.setItem("arrayEducation", JSON.stringify(array));
-                  setLocationTestHolder(e.target.value);
+                  localStorage.setItem (
+                    'arrayEducation',
+                    JSON.stringify (array)
+                  );
+                  setLocationTestHolder (e.target.value);
                 }}
               />
             </div>
           </div>
-          <div className="outerWraperGPA" style={{display:"flex",width:"0px"}}>
-            <div>
-              <div
-                onClick={handleText}
-                className="EditorText"
-                style={{ display: ShowBullets ? "block" : "none" }}
-              >
-                {checkplacehoderBollets ? (
-                  <div>jj</div>
-                ) : (
-                  <div style={{width:WidthLeftRight,marginTop:"10px"}}>
-                  <Editor
-                   text={BullotsTestHolder}
-                    onChange={(text) => {
-                      setBullotsTestHolder(text);
-                      let array = props.list;
-                      array[props.index].value.bullotsTestHolder = text;
-                      localStorage.setItem(
-                        "arrayEducation",
-                        JSON.stringify(array)
-                      );
-                    }}
-                    options={{
-                      placeholder: {
-                        text: "What knowledge did you acquire?",
-                        hideOnClick: true,
-                      },
-                    }}
-                  />
-                  </div>
-                )}
+          <div
+            className="outerWraperGPA"
+            style={{display: 'flex'}}
+          >
+            <div style={{width:"450px"}}>
+              <div onClick={handleText} className="EditorText">
+                {checkplacehoderBollets
+                  ? <div>jj</div>
+                  : <div style={{marginTop: '10px'}}>
+                      <div className="summary">
+                        <Editor
+                          text={BullotsTestHolder}
+                          onChange={text => {
+                            setBullotsTestHolder (text);
+                            let array = props.list;
+                            array[props.index].value.bullotsTestHolder = text;
+                            localStorage.setItem (
+                              'arrayEducation',
+                              JSON.stringify (array)
+                            );
+                          }}
+                          options={{
+                            placeholder: {
+                              text: 'What knowledge did you acquire?',
+                              hideOnClick: true,
+                            },
+                          }}
+                        />
+                      </div>
+                    </div>}
               </div>
             </div>
             <div
               style={{
-                borderLeft: ShowBullets? "1px solid":"none",
-                height: "67px",
-                marginLeft: "25px",
-                marginBottom: "12px",
-                display: ShowGPA ? "block" : "none",
+                borderLeft: ShowBullets ? '1px solid' : 'none',
+                height: '67px',
+                marginBottom: '12px',
+                display: ShowGPA ? 'block' : 'none',
+                // border:"1px solid"
               }}
             >
               <input
                 value={GPAFullTestHolder}
                 className="OuterwrpaerGPA"
                 placeholder="GPA"
-                onChange={(e) => {
-                  setGPAFullTestHolder(e.target.value);
+                onChange={e => {
+                  setGPAFullTestHolder (e.target.value);
                   let array = props.list;
                   array[props.index].value.GPAFullTestHolder = e.target.value;
-                  localStorage.setItem("arrayEducation", JSON.stringify(array));
+                  localStorage.setItem (
+                    'arrayEducation',
+                    JSON.stringify (array)
+                  );
                 }}
               />
               <div
                 style={{
-                  display: "flex",
-                  marginLeft: "52px",
-                  marginTop: "14px",
+                  display: 'flex',
+                  marginLeft: '16px',
+                  marginTop: '14px',
                 }}
               >
                 <input
                   value={GPAObtainTestHolder}
                   type="number"
-                  className=    {UpdateColor ? "GPALeftBlue" : "GPALeftGreen" }
+                  className={UpdateColor ? 'GPALeftBlue' : 'GPALeftGreen'}
                   placeholder="4.0"
-                  onChange={(e) => {
-                    setGPAObtainTestHolder(e.target.value);
+                  onChange={e => {
+                    setGPAObtainTestHolder (e.target.value);
                     let array = props.list;
                     array[props.index].value.GPAObtainTestHolder =
                       e.target.value;
-                    localStorage.setItem(
-                      "arrayEducation",
-                      JSON.stringify(array)
+                    localStorage.setItem (
+                      'arrayEducation',
+                      JSON.stringify (array)
                     );
                   }}
                 />
@@ -757,6 +779,6 @@ export default function Boxfunction(props) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

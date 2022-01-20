@@ -417,7 +417,11 @@ export default function Header(props) {
               <div
                 className="outerWraperAdress"
               >
-                <MdPhone  className=    {UpdateColor ? "AdressIconHeaderBlue" : "AdressIconHeaderGreen" }  style={{ display: ShowPhone ? "flex" : "none" }} />
+                <div>
+                <MdPhone  className=    {UpdateColor ? "AdressIconHeaderBlue" : "AdressIconHeaderGreen" }  style={{ display: ShowPhone ? "flex" : "none",
+               }} />
+              </div>
+
                 <input
                   type="text"
                   className="adressText"
@@ -442,10 +446,11 @@ export default function Header(props) {
                 />
               </div>
               <div className="outerWraperAdress">
+                <div>
                 <BiLinkAlt
                    className=    {UpdateColor ? "AdressIconHeaderBlue" : "AdressIconHeaderGreen" }
                   style={{ display: ShowLink ? "block" : "none" }}
-                />
+                /></div>
                 <input
                   type="text"
                   className="adressText"
@@ -454,10 +459,11 @@ export default function Header(props) {
                   style={{ display: ShowLink ? "block" : "none" }}
                   placeholder="Website/Links"
                 />
+                <div>
                 <MdLocationOn
                    className=    {UpdateColor ? "AdressIconHeaderBlue" : "AdressIconHeaderGreen" }
                   style={{ display: ShowLocation ? "block" : "none" }}
-                />
+                /></div>
                 <input
                   type="text"
                   className="adressText"

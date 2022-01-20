@@ -12,44 +12,47 @@ import {
   TOGGLEPAGES,
 } from "./Redux/actions/indux";
 const { forwardRef, useRef, useImperativeHandle } = React;
-const Home = forwardRef((props, ref) => {
+const ComponentToPrint = forwardRef((props, ref) => {
+
+
+    const [Count, setCount] = useState(null);
+    const UpdateBackGroundImage = useSelector(
+      (state) => state.UpdateBackGroundImage
+    );
+    const TogglePages = useSelector((state) => state.TogglePages);
   
-  const [Count, setCount] = useState(null);
-  const UpdateBackGroundImage = useSelector(
-    (state) => state.UpdateBackGroundImage
-  );
-  const TogglePages = useSelector((state) => state.TogglePages);
-
-  const dispatch = useDispatch();
-
-  function HandleHoverEffect() {
-    props.SetHoverEffect(null);
-    setCount(Count + 1);
-    dispatch(INCREMENTBACKGROUNDNULL());
-  }
-  useImperativeHandle(ref, () => ({
-    getAlert() {
+    const dispatch = useDispatch();
+  
+    function HandleHoverEffect() {
       props.SetHoverEffect(null);
       setCount(Count + 1);
       dispatch(INCREMENTBACKGROUNDNULL());
-    },
-  }));
-
-  useEffect(() => {
-    if (localStorage.getItem("BackGroundImage") !== null) {
-      let value = localStorage.getItem("BackGroundImage");
-      value = JSON.parse(value);
-      dispatch(UPDATEBACKGROUNDIMAGE(value));
     }
-    if (localStorage.getItem("TogglePAge") !== null) {
-      let value = localStorage.getItem("TogglePAge");
-      value = JSON.parse(value);
-      dispatch(TOGGLEPAGES(value));
-    }
-  }, []);
 
-  return (
-    <div className="outerContainter" ref={ref}>
+    // useImperativeHandle( () => ({
+    //   getAlert() {
+    //     props.SetHoverEffect(null);
+    //     setCount(Count + 1);
+    //     dispatch(INCREMENTBACKGROUNDNULL());
+    //   },
+    // }));
+  
+    useEffect(() => {
+      if (localStorage.getItem("BackGroundImage") !== null) {
+        let value = localStorage.getItem("BackGroundImage");
+        value = JSON.parse(value);
+        dispatch(UPDATEBACKGROUNDIMAGE(value));
+      }
+      if (localStorage.getItem("TogglePAge") !== null) {
+        let value = localStorage.getItem("TogglePAge");
+        value = JSON.parse(value);
+        dispatch(TOGGLEPAGES(value));
+      }
+    }, []);
+  
+
+    return (
+      <div ref={ref} className="outerContainter"y>
       <div
         className="InnerContainer"
         style={{
@@ -145,7 +148,8 @@ const Home = forwardRef((props, ref) => {
           }}
         ></div>
       </div>
-    </div>
-  );
-});
-export default Home;
+      </div>
+    );
+  });
+
+export default ComponentToPrint
