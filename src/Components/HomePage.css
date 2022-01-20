@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   width: 940px;
-  height: 850px;
+  /* height: 850px; */
   padding: 5% 0px 5% 0px;
   margin: 7% 0% 7% 0%;
   box-shadow: 0 7px 10px rgb(0 0 0 / 60%);
@@ -1825,3 +1825,15 @@ border: 1px solid;
 .inputFieldLinkBox:focus{
   border: 1px solid #00c091;
 }
+
+@page :first {
+  margin: 100cm 200cm;
+}
+
+@page :left {
+  margin: 0.5cm;
+  }
+  
+  @page :right {
+  margin: 0.8cm;
+  }

@@ -57,6 +57,7 @@ import {
   BACKGROUNDCOLORDATPICKER,
   SINGLECOLUMN,
   UPDATECOLOR,
+  INCREMENTBACKGROUNDNULL,
   ACHIEVEMENTYES,
   TOGGLELEFT,
 } from './Components/Redux/actions/indux';
@@ -83,6 +84,8 @@ function App () {
   const [ShowDropDown, setShowDropDown] = useState (false);
   const [numPages, setNumPages] = useState (null);
   const [pageNumber, setPageNumber] = useState (1);
+  const [Effect, setEffect] = useState (false);
+  
   const dispatch = useDispatch ();
   const Achievementyes = useSelector (state => state.Achievementyes);
   const EducationYes = useSelector (state => state.EducationYes);
@@ -871,6 +874,7 @@ function App () {
     () => {
       const timer = setTimeout (() => {
         setHideButtons (false);
+        setEffect(false)
       }, 1000);
       return () => clearTimeout (timer);
     },
@@ -927,6 +931,26 @@ function App () {
       setLoading (true);
       setText ('Loading new text...');
 
+      dispatch (BACKGROUNDCOLORDATPICKER (false));
+      setHideButtons (true);
+      dispatch (INCREMENTBACKGROUNDCOLORACHIEVEMENT ());
+      dispatch (INCREMENTBACKGROUNDCOLOREDUCATION ());
+      dispatch (INCREMENTBACKGROUNDCOLORPASSION ());
+      dispatch (INCREMENTBACKGROUNDCOLORTRAINING ());
+      dispatch (INCREMENTBACKGROUNDCOLOREXPERIENCE ());
+      dispatch (INCREMENTBACKGROUNDCOLORSKILL ());
+      dispatch (INCREMENTBACKGROUNDCOLORPROJECT ());
+      dispatch (INCREMENTBACKGROUNDCOLOMYTIME ());
+      dispatch (INCREMENTBACKGROUNDCOLOFINDMEONLINE ());
+      dispatch (INCREMENTBACKGROUNDCOLORLANGUAGE ());
+      dispatch (INCREMENTBACKGROUNDCOLORSUMMARY ());
+      dispatch (INCREMENTBACKGROUNDCOLORSTRENGTH ());
+      dispatch (INCREMENTBACKGROUNDCOLORVOLUNTEERING ());
+      dispatch (INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE ());
+      dispatch(INCREMENTBACKGROUNDNULL());
+      SetHoverEffect(null)
+      setEffect(true)
+
       return new Promise (resolve => {
         onBeforeGetContentResolve.current = resolve;
         setTimeout (() => {
@@ -957,6 +981,18 @@ function App () {
     },
     [componentRef.current]
   );
+
+  const reactToPrintTrigger = React.useCallback (() => {
+    return (
+      <div
+        className="outerWraperTemplateButtons"
+       style={{marginLeft:"15px"}}
+      >
+        <BiDownload />
+        <div>Download</div>
+      </div>
+    );
+  }, []);
 
   if (ToggleRearrangeSection === true) {
     return (
@@ -1018,46 +1054,23 @@ function App () {
                 Rearrange Sections
               </div>}
             <div>
-              <div
-                className="outerWraperTemplateButtons"
-                style={{display: 'flex', gap: '25px'}}
-                onClick={() => {}}
-              >
-                <BiDownload />
-                <div onClick={() => {}} className="Download">
-                  <ReactToPrint
-                    onBeforeGetContent={e => {
-                      let data = handleOnBeforeGetContent ();
-                      console.log ('jj', data);
-                      //  const html = ReactDOMServer.renderToString(componentRef.current);
-                      //  console.log("Content",html)
-                    }}
-                    pageStyle="pageStyle"
-                    onClick={() => {
-                      dispatch (BACKGROUNDCOLORDATPICKER (false));
-                      setHideButtons (true);
-                      dispatch (INCREMENTBACKGROUNDCOLORACHIEVEMENT ());
-                      dispatch (INCREMENTBACKGROUNDCOLOREDUCATION ());
-                      dispatch (INCREMENTBACKGROUNDCOLORPASSION ());
-                      dispatch (INCREMENTBACKGROUNDCOLORTRAINING ());
-                      dispatch (INCREMENTBACKGROUNDCOLOREXPERIENCE ());
-                      dispatch (INCREMENTBACKGROUNDCOLORSKILL ());
-                      dispatch (INCREMENTBACKGROUNDCOLORPROJECT ());
-                      dispatch (INCREMENTBACKGROUNDCOLOMYTIME ());
-                      dispatch (INCREMENTBACKGROUNDCOLOFINDMEONLINE ());
-                      dispatch (INCREMENTBACKGROUNDCOLORLANGUAGE ());
-                      dispatch (INCREMENTBACKGROUNDCOLORSUMMARY ());
-                      dispatch (INCREMENTBACKGROUNDCOLORSTRENGTH ());
-                      dispatch (INCREMENTBACKGROUNDCOLORVOLUNTEERING ());
-                      dispatch (INCREMENTBACKGROUNDCOLORINDUSTERYEXPERIENCE ());
-                    }}
-                    trigger={() => {
-                      return <div>Download</div>;
-                    }}
-                    content={() => componentRef.current}
-                  />
 
-                </div>
+              <div onClick={() => {}} className="Download">
+                <ReactToPrint
+                  content={reactToPrintContent}
+                  documentTitle="AwesomeFileName"
+                  onAfterPrint={handleAfterPrint}
+                  onBeforeGetContent={handleOnBeforeGetContent}
+                  onBeforePrint={handleBeforePrint}
+                  removeAfterPrint
+                  trigger={reactToPrintTrigger}
+                  pageStyle="pageStyle"
+
+                  // content={() => componentRef.current}
+                />
+                {/* {loading &&
+                  <p className="indicator">onBeforeGetContent: Loading...</p>} */}
+
               </div>
             </div>
             {TogglePages &&
@@ -1179,6 +1192,7 @@ function App () {
           SetHoverEffect={SetHoverEffect}
           SingleColumnTemplate={SingleColumnTemplate}
           setArray={setArray}
+          Effect={Effect}
           ToggleAddNewSectionLeftSingleColumn={
             ToggleAddNewSectionLeftSingleColumn
           }

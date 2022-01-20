@@ -29,6 +29,15 @@ const ComponentToPrint = forwardRef((props, ref) => {
       dispatch(INCREMENTBACKGROUNDNULL());
     }
 
+    useEffect(() => {
+      if(props.Effect){
+      props.SetHoverEffect(null);
+      setCount(Count + 1);
+      dispatch(INCREMENTBACKGROUNDNULL());
+      }
+    }, [props.HoverEffect]);
+    
+
     // useImperativeHandle( () => ({
     //   getAlert() {
     //     props.SetHoverEffect(null);
@@ -134,7 +143,6 @@ const ComponentToPrint = forwardRef((props, ref) => {
             )}
           </div>
         )}
-        <div className="OuterWraperSection"></div>
         <div
           onClick={HandleHoverEffect}
           style={{
