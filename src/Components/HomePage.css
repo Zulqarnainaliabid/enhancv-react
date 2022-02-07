@@ -1831,9 +1831,9 @@ border: 1px solid;
 }
 
 @page :left {
-  margin: 0.5cm;
-  }
-  
-  @page :right {
-  margin: 0.8cm;
-  }
+margin: 0.5cm;
+}
+
+@page :right {
+margin: 0.8cm;
+}
