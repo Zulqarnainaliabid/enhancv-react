@@ -1,6 +1,6 @@
 .rangeslider-horizontal .rangeslider__fill {
     height: 100%;
-    background-color: #008CFF !important;
+    background-color: #008cff !important;
     border-radius: 10px;
     top: 0;
 }
@@ -8,29 +8,20 @@
     height: 9px;
     border-radius: 10px;
 }
-.rangeslider, .rangeslider .rangeslider__fill {
+.rangeslider,
+.rangeslider .rangeslider__fill {
     display: block;
     box-shadow: unset;
 }
 
 .rangeslider {
-    margin: 20px 0;
+    margin: 5px 0;
     position: relative;
     background: black;
     touch-action: none;
     cursor: pointer;
 }
-
-.outerWraperTextHolder{
-    /* border: 1px solid; */
-        /* display: flex;
-        justify-content: space-between; */
-        /* padding: 0px 21px 0px 21px; */
-        font-size: 23px;
-        color:#65696d;
-    }
-    .rangeslider-horizontal .rangeslider__handle {
-        display: none;
-        
-    }
-    
+.rangeslider-horizontal .rangeslider__handle {
+    display: none;
+    color: #9b9b9b;
+}
