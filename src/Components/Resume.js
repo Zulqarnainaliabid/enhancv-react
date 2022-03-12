@@ -10,6 +10,8 @@ import DragAndDropComponent from './DragAndDropComponent';
 import {HiTemplate} from 'react-icons/hi';
 import {IoIosColorPalette} from 'react-icons/io';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 export default function Resume (props) {
   const [state, setState] = useState (true);
   const contextData = useContext (Context);
@@ -28,7 +30,7 @@ export default function Resume (props) {
   const handleOnBeforeGetContent = React.useCallback (
     () => {
       console.log ('`onBeforeGetContent` called');
-       childRef.current.getAlert ()
+      childRef.current.getAlert ();
       setLoading (true);
       setText ('Loading new text...');
       return new Promise (resolve => {
@@ -55,7 +57,22 @@ export default function Resume (props) {
   );
   const reactToPrintContent = React.useCallback (
     () => {
-      return componentRef.current;
+      let value = localStorage.getItem ('Users');
+      value = JSON.parse (value);
+      if (value === null) {
+        confirmAlert ({
+          title: 'Please Login First',
+          buttons: [
+            {
+              label: 'OK',
+            },
+          ],
+        });
+        return (null);
+      } else {
+        console.log("heo")
+        return componentRef.current;
+      }
     },
     [componentRef.current]
   );
@@ -65,9 +82,7 @@ export default function Resume (props) {
       <div
         className="d-flex align-items-center DownloadButton FontWeight CommonCssClassCursorPointer fontSize14"
         style={{gap: '6px'}}
-        onClick={()=>{
-         
-        }}
+        onClick={() => {}}
       >
         <MdDownloadForOffline style={{fontSize: '22px'}} />
         <div className="FontWeight ">Download</div>
@@ -85,7 +100,7 @@ export default function Resume (props) {
       <button onClick={() => childRef.current.getAlert ()}>Click</button>
     </span>
   );
- console.log("y",state)
+  console.log ('y', state);
   return (
     <div>
       <div className="pb-5">
@@ -185,7 +200,7 @@ export default function Resume (props) {
                   <div className="btnRusme">
                     {state
                       ? Resume
-                      : <DragAndDropComponent setState={setState}  />}
+                      : <DragAndDropComponent setState={setState} />}
                   </div>
                 </div>
               </CSSTransition>

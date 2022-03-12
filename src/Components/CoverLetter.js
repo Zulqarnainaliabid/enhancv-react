@@ -13,7 +13,9 @@ import {SlideDown} from 'react-slidedown';
 import 'react-slidedown/lib/slidedown.css';
 import SelectedColors from './SelectedColors';
 import {CSSTransition} from 'react-transition-group';
-import Modal from './Modal'
+import Modal from './Modal';
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 function CoverLetter (props) {
   const contextData = useContext (Context);
   const componentRef = useRef (null);
@@ -27,14 +29,14 @@ function CoverLetter (props) {
     return () => clearTimeout (timer);
   }, []);
   const handleAfterPrint = React.useCallback (() => {
-    console.log ('`onAfterPrint` called');
+    console.log ('`onAfterPrint 123333` called');
   }, []);
   const handleBeforePrint = React.useCallback (() => {
-    console.log ('`onBeforePrint` called');
+    console.log ('`onBeforePrint 12 12   ` called 123');
   }, []);
   const handleOnBeforeGetContent = React.useCallback (
     () => {
-      console.log ('`onBeforeGetContent` called');
+      console.log ('`onBeforeGetContent 12 12` called');
       setText ('Loading new text...');
       return new Promise (resolve => {
         onBeforeGetContentResolve.current = resolve;
@@ -51,16 +53,30 @@ function CoverLetter (props) {
       <div
         className="d-flex align-items-center DownloadButton FontWeight CommonCssClassCursorPointer fontSize14"
         style={{gap: '6px'}}
-        onClick={() => {}}
       >
         <MdDownloadForOffline style={{fontSize: '22px'}} />
         <div className="FontWeight ">Download</div>
       </div>
     );
   }, []);
+
   const reactToPrintContent = React.useCallback (
     () => {
-      return componentRef.current;
+      let value = localStorage.getItem ('Users');
+      value = JSON.parse (value);
+      if (value === null) {
+        confirmAlert ({
+          title: 'Please Login First',
+          buttons: [
+            {
+              label: 'OK',
+            },
+          ],
+        });
+        return null;
+      } else {
+        return componentRef.current;
+      }
     },
     [componentRef.current]
   );
@@ -186,16 +202,16 @@ function CoverLetter (props) {
           </SlideDown>
         </div>
         <CSSTransition
-            in={contextData.ShowModal}
-            timeout={500}
-            classNames="alert"
-            unmountOnExit
-          >
-            <Modal
-              contentDisplay={contextData.ToggleModal}
-              otherClass={contextData.ToggleModalCssClass}
-            />
-          </CSSTransition>
+          in={contextData.ShowModal}
+          timeout={500}
+          classNames="alert"
+          unmountOnExit
+        >
+          <Modal
+            contentDisplay={contextData.ToggleModal}
+            otherClass={contextData.ToggleModalCssClass}
+          />
+        </CSSTransition>
       </div>
     );
   }

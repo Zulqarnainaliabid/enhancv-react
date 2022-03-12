@@ -1,0 +1,1 @@
+export let BaseURL = 'https://perfactcv.azurewebsites.net';

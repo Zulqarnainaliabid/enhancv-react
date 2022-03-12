@@ -172,8 +172,11 @@ textarea:focus {
     padding: 0px 36px 0px 36px;
     border-radius: 10px;
     background-color: $WhiteColor;
-    z-index: 999;
+    z-index: 9;
     position: fixed;
+}
+h1 {
+    font-size: 1.5rem;
 }
 .outerWrapperModalImagePicker {
     width: 32%;
@@ -439,11 +442,6 @@ input {
     text-align: center;
     font-size: 25px;
 }
-.OuterWrapperCheckBox {
-    grid-gap: 12px;
-    gap: 12px;
-    margin: 18px 0px 0px -15px;
-}
 .CheckBox {
     background-color: transparent;
     border: 1px solid #e6e6e6;
@@ -453,7 +451,7 @@ input {
     margin: 7px 15px 0 0px;
 }
 .InnerTextCheckBox {
-    gap: 7px;
+    gap: 3px;
     color: #576064;
 }
 .SubmitButtons {
