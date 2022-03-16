@@ -12,6 +12,7 @@ import {IoIosColorPalette} from 'react-icons/io';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import {HandleUpdateCV} from './Services'
 export default function Resume (props) {
   const [state, setState] = useState (true);
   const contextData = useContext (Context);
@@ -20,6 +21,7 @@ export default function Resume (props) {
   const onBeforeGetContentResolve = useRef (null);
   const [loading, setLoading] = useState (false);
   const [text, setText] = useState ('old boring text');
+  const [Subject, setSubject] = useState (false);
 
   const handleAfterPrint = React.useCallback (() => {
     console.log ('`onAfterPrint` called');
@@ -55,6 +57,7 @@ export default function Resume (props) {
     },
     [onBeforeGetContentResolve.current, text]
   );
+
   const reactToPrintContent = React.useCallback (
     () => {
       let value = localStorage.getItem ('Users');
@@ -68,15 +71,17 @@ export default function Resume (props) {
             },
           ],
         });
-        return (null);
+        return null;
       } else {
-        console.log("heo")
+        // contextData.HandleToggleModal ('AddSubjectName');
+        // contextData.HandleShowModal (true);
+        // contextData.HandleBackGroundColorOfModal (true);
+        HandleUpdateCV()
         return componentRef.current;
       }
     },
     [componentRef.current]
   );
-
   const reactToPrintTrigger = React.useCallback (() => {
     return (
       <div
@@ -96,11 +101,14 @@ export default function Resume (props) {
   };
   let Resume = (
     <span>
-      <ComponentToPrint text={text} ref={ref} HandleState={setState} />
+      <ComponentToPrint
+        text={text}
+        ref={ref}
+        HandleState={setState}
+      />
       <button onClick={() => childRef.current.getAlert ()}>Click</button>
     </span>
   );
-  console.log ('y', state);
   return (
     <div>
       <div className="pb-5">
