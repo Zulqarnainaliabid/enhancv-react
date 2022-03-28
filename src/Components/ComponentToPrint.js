@@ -185,10 +185,12 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     Right: [],
   });
 
-  const [AlternateResume, setAlternateResume] = useState ({
+  const [AlternateResume, setAlternateResume] = useState (
+    {
     Left: [],
     Right: [],
-  });
+  }
+  );
 
   useEffect (
     () => {

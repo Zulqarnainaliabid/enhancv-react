@@ -1,13 +1,22 @@
 import React, {useState, useEffect, useContext} from 'react';
 import EducationInnerSection from './EducationInnerSection';
+import TextareaAutosize from 'react-autosize-textarea';
+
 export default function EducationOuterSection (props) {
   return (
     <div>
       <div className="outerWrapperCompleteBox">
         <div className="HeadingNameBox BorderRadius">
-          <input placeHolder="Education" />
+        <TextareaAutosize
+            className='outerWrapperSectionsHeadingValue'
+            placeholder="Education" value={props.HeadingValue}
+            onChange={() => {
+              console.log ('ll');
+            }}
+            draggable="false"
+          />
         </div>
-        <div>
+        <div className="BorderOuterSectionBackUpCv">
           {props.list &&
             props.list.map ((item, index) => {
               let display_dashesLine = true;
@@ -21,6 +30,9 @@ export default function EducationOuterSection (props) {
                     index={index}
                     list={props.list}
                     display_dashesLine={display_dashesLine}
+                    Colors={props.Colors}
+                    Template={props.Template}
+                    Sections={props.Sections}
                   />
                 </div>
               );

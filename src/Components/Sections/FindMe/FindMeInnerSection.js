@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../../Context/Context';
 import Switch from 'react-switch';
 import {
@@ -17,7 +17,7 @@ import styles from '../../Style';
 import injectSheet from 'react-jss';
 import InputField from '../../InputField';
 import {SlideDown} from 'react-slidedown';
-import RichTextEditor from '../../RichTextEditor'
+import RichTextEditor from '../../RichTextEditor';
 function FindMeInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
@@ -110,7 +110,7 @@ function FindMeInnerSection (props) {
         temp[index].selected = true;
         break;
       }
-    } 
+    }
     props.list[props.index].toggleSwitch = temp;
     props.setList ([...props.list]);
     localStorage.setItem ('FindMeOnline', JSON.stringify (props.list));
@@ -140,26 +140,39 @@ function FindMeInnerSection (props) {
     setDisplayToggleSwitch (!DisplayToggleSwitch);
     HandleCloseIconList ();
   }
-  function HandleEditorWidth(){
-    if(!contextData.ToggleTemplate){
-      return "751px"
-    }else {
+  function HandleEditorWidth () {
+    if (!contextData.ToggleTemplate) {
+      return '751px';
+    } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
-      if(value!==null){
-        for(let i=0; i<value.Left.length; i++){
-          if(value.Left[i]==="FindMe"){
+      if (value !== null) {
+        for (let i = 0; i < value.Left.length; i++) {
+          if (value.Left[i] === 'FindMe') {
             return '404px';
           }
         }
-        for(let i=0; i<value.Right.length; i++){
-          if(value.Right[i]==="FindMe"){
+        for (let i = 0; i < value.Right.length; i++) {
+          if (value.Right[i] === 'FindMe') {
             return '246px';
           }
         }
       }
     }
   }
+
+  useEffect (() => {
+    let value = localStorage.getItem ('FindMeOnline');
+    value = JSON.parse (value);
+    if (value) {
+      for (let i = 0; i < iconList.length; i++) {
+        if (value[props.index].iconName === iconList[i].name) {
+          setIcon (iconList[i].icon);
+        }
+      }
+    }
+  }, []);
+
   return (
     <div>
       <div
@@ -335,6 +348,12 @@ function FindMeInnerSection (props) {
                           className="iconsList CommonCssClassCursorPointer"
                           onClick={() => {
                             setIcon (item.icon);
+                            props.list[props.index].iconName = item.name;
+                            props.setList (props.list);
+                            localStorage.setItem (
+                              'FindMeOnline',
+                              JSON.stringify (props.list)
+                            );
                           }}
                         >
                           {item.icon}
@@ -372,13 +391,13 @@ function FindMeInnerSection (props) {
                 {Icon}
               </div>}
             <div
-              style={{width:"100%"}}
+              style={{width: '100%'}}
               className="d-flex flex-column ms-2"
               onClick={() => {
                 handleCloseToggleSwitch ();
                 HandleCloseIconList ();
               }}
-            > 
+            >
               <InputField
                 placeHolder={'Social Network'}
                 otherStyle={'TextHolderSectionOuterHeader'}
@@ -397,7 +416,7 @@ function FindMeInnerSection (props) {
                       index={props.index}
                       name={'username'}
                       handleInputData={handleInputData}
-                      EditorWidth={HandleEditorWidth()}
+                      EditorWidth={HandleEditorWidth ()}
                     />
                   </div>
                 </div>}

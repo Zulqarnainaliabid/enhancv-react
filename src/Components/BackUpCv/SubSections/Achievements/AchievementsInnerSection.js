@@ -1,11 +1,41 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Star} from '../../../JasonData';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
 import TextareaAutosize from 'react-autosize-textarea';
+import Editor from 'react-medium-editor';
+import {iconList} from '../../../JasonData';
+require ('medium-editor/dist/css/medium-editor.css');
+require ('medium-editor/dist/css/themes/default.css');
 function AchievementsInnerSection (props) {
-  console.log ('ioioio==', props.item.toggleSwitch[0].selected);
   const [Icon, setIcon] = useState (<Star />);
+  useEffect (() => {
+    for (let i = 0; i < iconList.length; i++) {
+      if (props.list[props.index].iconName === iconList[i].name) {
+        setIcon (iconList[i].icon);
+      }
+    }
+  }, []);
+  console.log("props.Template",props.Template)
+  
+  function HandleEditorWidth () {
+    if (!props.Template) {
+      return '355px';
+    } else {
+      if (props.Sections !== null) {
+        for (let i = 0; i < props.Sections.Left.length; i++) {
+          if (props.Sections.Left[i] === 'Achievements') {
+            return '179px';
+          }
+        }
+        for (let i = 0; i < props.Sections.Right.length; i++) {
+          if (props.Sections.Right[i] === 'Achievements') {
+            return '114px';
+          }
+        }
+      }
+    }
+  }
 
   return (
     <div>
@@ -20,7 +50,7 @@ function AchievementsInnerSection (props) {
         >
           <div style={{position: 'relative', display: 'flex'}}>
             {props.item.toggleSwitch[0].selected &&
-              <div>
+              <div className={props.Colors}>
                 {Icon}
               </div>}
             <div style={{width: '100%'}} className="d-flex flex-column ms-2">
@@ -30,13 +60,21 @@ function AchievementsInnerSection (props) {
                 draggable="false"
                 value={props.item.title}
               />
-              {props.item.toggleSwitch[0].selected &&
-                <TextareaAutosize
-                  className="InputFieldBachUpCv"
-                  placeholder="Why are you proud of this achievement?"
-                  draggable="false"
-                  value={props.item.username}
-                />}
+              <div
+                style={{width: HandleEditorWidth ()}}
+              >
+                {props.item.toggleSwitch[0].selected &&
+                  <Editor
+                    className="InputFieldBachUpCv"
+                    options={{
+                      placeholder: {
+                        text: 'Why are you proud of this achievement?',
+                        hideOnClick: true,
+                      },
+                    }}
+                    text={props.item.username}
+                  />}
+              </div>
             </div>
           </div>
           {props.display_dashesLine &&

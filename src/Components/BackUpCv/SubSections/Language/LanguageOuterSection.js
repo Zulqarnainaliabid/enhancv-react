@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import LanguageInnerSection from './LanguageInnerSection';
+import TextareaAutosize from 'react-autosize-textarea';
+
 export default function LanguageOuterSection (props) {
   const [HighLighter, setHighLighter] = useState (false);
   return (
@@ -9,9 +11,17 @@ export default function LanguageOuterSection (props) {
           style={{backgroundColor: HighLighter ? 'white' : '', width: '100%'}}
           className="HeadingNameBox BorderRadius"
         >
-          <input placeHolder="Language" />
+          <TextareaAutosize
+            className="outerWrapperSectionsHeadingValue"
+            placeholder="Language"
+            value={props.HeadingValue}
+            onChange={() => {
+              console.log ('ll');
+            }}
+            draggable="false"
+          />
         </div>
-        <div>
+        <div className="BorderOuterSectionBackUpCv">
           {props.list &&
             props.list.map ((item, index) => {
               let display_dashesLine = true;
@@ -25,6 +35,7 @@ export default function LanguageOuterSection (props) {
                     index={index}
                     list={props.list}
                     display_dashesLine={display_dashesLine}
+                    Colors={props.Colors}
                   />
                 </div>
               );

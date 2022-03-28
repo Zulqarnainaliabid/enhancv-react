@@ -3,6 +3,9 @@ import {Date, Location} from '../../../JasonData';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
 import TextareaAutosize from 'react-autosize-textarea';
+import Editor from 'react-medium-editor';
+require ('medium-editor/dist/css/medium-editor.css');
+require ('medium-editor/dist/css/themes/default.css');
 function EducationInnerSection (props) {
   const SlashFrom = () => {
     if (
@@ -50,6 +53,25 @@ function EducationInnerSection (props) {
     }
   };
 
+  function HandleEditorWidth () {
+    if (!props.Template) {
+      return '355px';
+    } else {
+      if (props.Sections !== null) {
+        for (let i = 0; i < props.Sections.Left.length; i++) {
+          if (props.Sections.Left[i] === 'Education') {
+            return '179px';
+          }
+        }
+        for (let i = 0; i < props.Sections.Right.length; i++) {
+          if (props.Sections.Right[i] === 'Education') {
+            return '114px';
+          }
+        }
+      }
+    }
+  }
+
   return (
     <div>
       <div>
@@ -60,13 +82,13 @@ function EducationInnerSection (props) {
                 <div className="d-flex flex-column">
                   <TextareaAutosize
                     className="InputFieldBachUpCv"
-                    placeHolder={'Degree and Field of Study'}
+                    placeholder={'Degree and Field of Study'}
                     draggable="false"
                     value={props.list[props.index].value.degree}
                   />
                   <TextareaAutosize
-                    className="InputFieldBachUpCv"
-                    placeHolder={'School or University'}
+                    className={`InputFieldBachUpCv ${props.Colors}`}
+                    placeholder={'School or University'}
                     draggable="false"
                     value={props.list[props.index].value.university}
                   />
@@ -80,7 +102,7 @@ function EducationInnerSection (props) {
                         style={{gap: '5px'}}
                       >
                         <Date className="IconsFontSize12" />
-                        {ShowDatePeriod () && <p>Date Period</p>}
+                        {ShowDatePeriod () && <p className='InputFieldBachUpCv'>Date Period</p>}
                         <div className="d-flex TextHolderSectionLocationAndTime">
                           <div>{props.list[props.index].date.monthFrom}</div>
                           {SlashFrom ()}
@@ -105,7 +127,7 @@ function EducationInnerSection (props) {
                         <Location className="IconsFontSize12" />
                         <TextareaAutosize
                           className="InputFieldBachUpCv"
-                          placeHolder={'Location'}
+                          placeholder={'Location'}
                           draggable="false"
                           value={props.list[props.index].value.location}
                         />
@@ -115,14 +137,21 @@ function EducationInnerSection (props) {
               </div>
               {props.list[props.index].toggleSwitch[3].selected &&
                 <div style={{marginLeft: '13px'}}>
-                  <div className="summary">
-                    <TextareaAutosize
+                  <div
+                    className="summary"
+                    style={{
+                      width: HandleEditorWidth (),
+                    }}
+                  >
+                    <Editor
                       className="InputFieldBachUpCv"
-                      placeHolder={
-                        'What knowledge or experience did you acquire during your studies there? (e.g. Delivered a comprehensive marketing strategy)'
-                      }
-                      draggable="false"
-                      value={props.list[props.index].value.bullets}
+                      options={{
+                        placeholder: {
+                          text: 'What knowledge or experience did you acquire during your studies there? (e.g. Delivered a comprehensive marketing strategy)',
+                          hideOnClick: true,
+                        },
+                      }}
+                      text={props.list[props.index].value.bullets}
                     />
                   </div>
                 </div>}
@@ -137,7 +166,7 @@ function EducationInnerSection (props) {
                 >
                   <TextareaAutosize
                     className="InputFieldBachUpCv"
-                    placeHolder={'GPA'}
+                    placeholder={'GPA'}
                     draggable="false"
                     value={props.list[props.index].value.gpa}
                   />
@@ -146,8 +175,8 @@ function EducationInnerSection (props) {
                     style={{gap: '5px'}}
                   >
                     <TextareaAutosize
-                      className="InputFieldBachUpCv"
-                      placeHolder={'4.0'}
+                      className={`InputFieldBachUpCv ${props.Colors}`}
+                      placeholder={'4.0'}
                       draggable="false"
                       value={props.list[props.index].value.gpaTotal}
                     />
@@ -155,7 +184,7 @@ function EducationInnerSection (props) {
                     <p>/</p>
                     <TextareaAutosize
                       className="InputFieldBachUpCv"
-                      placeHolder={'4.1'}
+                      placeholder={'4.1'}
                       draggable="false"
                       value={props.list[props.index].value.gpaObtain}
                     />

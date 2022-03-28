@@ -924,22 +924,22 @@ input {
     height: 19px;
     border-radius: 19px;
 }
-.outerWraperInputFieldSlice {
+.outerWrapperInputFieldSlice {
     width: 28%;
 }
-.outerWraperName {
+.outerWrapperName {
     background: black;
-    padding: 3px;
-    margin: 3px;
+    padding: 10px;
+    margin: 4px;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    align-items: center;
-    font-size: 13px;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
     display: flex;
     color: white;
     font-weight: 600;
     justify-content: center;
+    align-items: center;
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -1024,9 +1024,105 @@ input[type="number"] {
 }
 .BorderOuterSectionBackUpCv {
     border: 1px solid rgb(96, 213, 186);
+    border-radius: 5px;
 }
 .InputFieldBachUpCv {
     font-size: 11px;
     border: unset;
     width: 100%;
+}
+.outerContainerBachUpCv {
+    overflow-y: scroll;
+    height: 590px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.outerContainerBachUpCv::-webkit-scrollbar {
+    width: 10px;
+    background-color: white;
+}
+
+/* Track */
+.outerContainerBachUpCv::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.outerContainerBachUpCv::-webkit-scrollbar-thumb {
+    background: #888;
+    width: 12px;
+    height: 12px;
+}
+
+/* Handle on hover */
+.outerContainerBachUpCv::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    width: 12px;
+}
+.outerWrapperBackUpCvSection {
+    background-color: white;
+    padding: 12px;
+    border-radius: 9px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    position: relative;
+}
+.AddNewCv {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 430px;
+}
+.AddNewCvIcons {
+    font-size: 160px;
+    color: white;
+}
+.AddNewCvIcons:hover {
+    color: #60d5ba;
+    transition: color 1.3s;
+}
+.RangesIndustryExperience {
+    color: red !important;
+    background-color: #00b400 !important;
+    border: 1px solid !important;
+}
+
+.sliderinput::-ms-ticks-after,
+.sliderinput::-ms-ticks-before {
+    color: transparent;
+}
+
+.sliderinput::-ms-fill-upper {
+    background: transparent;
+}
+.sliderinput::-ms-fill-lower {
+    background: transparent;
+}
+.sliderinput::-ms-track {
+    color: transparent;
+    border-radius: 5px;
+    border-color: transparent;
+    height: 5px;
+    margin-top: 0px;
+    margin: 5px;
+    background: #c8c8c8;
+}
+.sliderinput::-ms-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #00a886;
+    cursor: pointer;
+}
+.outerWrapperSectionsHeadingValue {
+    border: none;
+    outline: none;
+    font-weight: 700;
+    width: 100%;
+}
+.medium-editor-element {
+    word-wrap: break-word;
+    overflow: hidden;
 }

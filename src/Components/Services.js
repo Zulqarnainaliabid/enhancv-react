@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {BaseURL} from './ApiEnviroment';
-
+import UserImg from './Images/UserEmptyImage.PNG';
 export async function HandleSignUpPostRequest (data) {
   let data1 = null;
   await axios
@@ -28,34 +28,124 @@ export async function HandleSignInPostRequest (data) {
   return data1;
 }
 
-export async function HandleGetCvBackUp () {
-  let data = null
+function GetToken () {
   let token = localStorage.getItem ('Users');
   token = JSON.parse (token);
-  const AuthStr = 'Bearer '.concat (token);
+  return token;
+}
+
+export async function HandleGetCvBackUp () {
+  let data = null;
+  const AuthStr = 'Bearer '.concat (GetToken ());
   await axios
     .get (`${BaseURL}/api/CVBackup`, {
       headers: {Authorization: AuthStr},
     })
     .then (function (response) {
       console.log ('loki', response);
-      data = response
+      data = response;
     })
     .catch (error => {
       console.log ('loki', error);
-      data = error
+      data = error;
     });
-    return data
+  return data;
 }
 
-export async function HandleUpdateCV () {
+function GetPreviousData () {
   let CVData = {
-    SectionArray: '',
+    ChartData: {
+      InputFieldCartMyTime: '',
+      arraySeries: '',
+      arraySlice: '',
+    },
   };
+
+  let Template = localStorage.getItem ('Template');
+  Template = JSON.parse (Template);
+  if (Template !== null) {
+    CVData.Template = Template;
+  } else {
+    CVData.Template = false;
+  }
+
+  console.log ('calling==', CVData);
+
   let SectionArray = localStorage.getItem ('SectionsArray');
   SectionArray = JSON.parse (SectionArray);
   if (SectionArray) {
     CVData.SectionArray = SectionArray;
+  }
+
+  for (let i = 0; i < SectionArray.Left.length; i++) {
+    if (SectionArray.Left[i] === 'MyTime') {
+      let InputFieldCartMyTime = localStorage.getItem ('InputFieldCartMyTime');
+      InputFieldCartMyTime = JSON.parse (InputFieldCartMyTime);
+      if (InputFieldCartMyTime) {
+        CVData.ChartData.InputFieldCartMyTime = InputFieldCartMyTime;
+      } else {
+        CVData.ChartData.InputFieldCartMyTime = [
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'A'},
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'B'},
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'C'},
+        ];
+      }
+      let arraySeries = localStorage.getItem ('arraySeries');
+      arraySeries = JSON.parse (arraySeries);
+      if (arraySeries) {
+        CVData.ChartData.arraySeries = arraySeries;
+      } else {
+        CVData.ChartData.arraySeries = [5, 5, 5];
+      }
+      let arraySlice = localStorage.getItem ('arraySlice');
+      arraySlice = JSON.parse (arraySlice);
+      if (arraySlice) {
+        CVData.ChartData.arraySlice = arraySlice;
+      } else {
+        CVData.ChartData.arraySlice = {
+          NumberOfSlice6: '#ccc',
+          NumberOfSlice3: '#00c091',
+          NumberOfSlice9: '#ccc',
+          labels: ['A', 'B', 'C'],
+        };
+      }
+      break;
+    }
+  }
+
+  for (let i = 0; i < SectionArray.Right.length; i++) {
+    if (SectionArray.Right[i] === 'MyTime') {
+      let InputFieldCartMyTime = localStorage.getItem ('InputFieldCartMyTime');
+      InputFieldCartMyTime = JSON.parse (InputFieldCartMyTime);
+      if (InputFieldCartMyTime) {
+        CVData.ChartData.InputFieldCartMyTime = InputFieldCartMyTime;
+      } else {
+        CVData.ChartData.InputFieldCartMyTime = [
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'A'},
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'B'},
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'C'},
+        ];
+      }
+      let arraySeries = localStorage.getItem ('arraySeries');
+      arraySeries = JSON.parse (arraySeries);
+      if (arraySeries) {
+        CVData.ChartData.arraySeries = arraySeries;
+      } else {
+        CVData.ChartData.arraySeries = [5, 5, 5];
+      }
+      let arraySlice = localStorage.getItem ('arraySlice');
+      arraySlice = JSON.parse (arraySlice);
+      if (arraySlice) {
+        CVData.ChartData.arraySlice = arraySlice;
+      } else {
+        CVData.ChartData.arraySlice = [
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'A'},
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'B'},
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'C'},
+        ];
+      }
+      break;
+    }
   }
 
   let UserImageShape = localStorage.getItem ('UserImageShape');
@@ -69,17 +159,76 @@ export async function HandleUpdateCV () {
   if (HeadingValueSkills) {
     CVData.HeadingValueSkills = HeadingValueSkills;
   }
+  let HeadingValueStrength = localStorage.getItem ('HeadingValueStrength');
+  HeadingValueStrength = JSON.parse (HeadingValueStrength);
+  if (HeadingValueStrength) {
+    CVData.HeadingValueStrength = HeadingValueStrength;
+  }
+
+  let HeadingValueSummary = localStorage.getItem ('HeadingValueSummary');
+  HeadingValueSummary = JSON.parse (HeadingValueSummary);
+  if (HeadingValueSummary) {
+    CVData.HeadingValueSummary = HeadingValueSummary;
+  }
+
+  let HeadingValueTraining = localStorage.getItem ('HeadingValueTraining');
+  HeadingValueTraining = JSON.parse (HeadingValueTraining);
+  if (HeadingValueTraining) {
+    CVData.HeadingValueTraining = HeadingValueTraining;
+  }
+
+  let HeadingValueVolunteering = localStorage.getItem (
+    'HeadingValueVolunteering'
+  );
+  HeadingValueVolunteering = JSON.parse (HeadingValueVolunteering);
+  if (HeadingValueVolunteering) {
+    CVData.HeadingValueVolunteering = HeadingValueVolunteering;
+  }
+
+  let HeadingValueMyTime = localStorage.getItem ('HeadingValueMyTime');
+  HeadingValueMyTime = JSON.parse (HeadingValueMyTime);
+  if (HeadingValueMyTime) {
+    CVData.HeadingValueMyTime = HeadingValueMyTime;
+  }
 
   let HeaderSettingsList = localStorage.getItem ('HeaderSettingsList');
   HeaderSettingsList = JSON.parse (HeaderSettingsList);
   if (HeaderSettingsList) {
     CVData.HeaderSettingsList = HeaderSettingsList;
+  } else {
+    CVData.HeaderSettingsList = [
+      {Label: 'Show Title', selected: true},
+      {Label: 'Show Phone', selected: true},
+      {Label: 'Show Link', selected: true},
+      {Label: 'Show Email', selected: true},
+      {Label: 'Show Location', selected: true},
+      {Label: 'Uppercase Name', selected: true},
+      {Label: 'Show Photo', selected: true},
+    ];
   }
 
   let Summary = localStorage.getItem ('Summary');
   Summary = JSON.parse (Summary);
   if (Summary) {
     CVData.Summary = Summary;
+  }
+
+  let Training = localStorage.getItem ('Training');
+  Training = JSON.parse (Training);
+  if (Training) {
+    CVData.Training = Training;
+  }
+
+  let FindMeOnline = localStorage.getItem ('FindMeOnline');
+  FindMeOnline = JSON.parse (FindMeOnline);
+  if (FindMeOnline) {
+    CVData.FindMeOnline = FindMeOnline;
+  }
+
+  let Projects = localStorage.getItem ('Projects');
+  Projects = JSON.parse (Projects);
+  if (Projects) {
+    CVData.Projects = Projects;
   }
 
   let ArrayLower = localStorage.getItem ('ArrayLower');
@@ -98,12 +247,23 @@ export async function HandleUpdateCV () {
   indexOfUserImageShape = JSON.parse (indexOfUserImageShape);
   if (indexOfUserImageShape) {
     CVData.indexOfUserImageShape = indexOfUserImageShape;
+  } else {
+    CVData.indexOfUserImageShape = '1';
   }
 
   let HeaderInputValue = localStorage.getItem ('HeaderInputValue');
   HeaderInputValue = JSON.parse (HeaderInputValue);
   if (HeaderInputValue) {
     CVData.HeaderInputValue = HeaderInputValue;
+  } else {
+    CVData.HeaderInputValue = {
+      email: '',
+      location: '',
+      name: 'z',
+      phone: '',
+      title: '',
+      webLink: '',
+    };
   }
 
   let SelectedColorIndex = localStorage.getItem ('SelectedColorIndex');
@@ -122,6 +282,10 @@ export async function HandleUpdateCV () {
   UserImage = JSON.parse (UserImage);
   if (UserImage) {
     CVData.UserImage = UserImage;
+  } else {
+    {
+      CVData.UserImage = UserImg;
+    }
   }
 
   let BackImage = localStorage.getItem ('BackImage');
@@ -136,6 +300,52 @@ export async function HandleUpdateCV () {
   HeadingValueAchievements = JSON.parse (HeadingValueAchievements);
   if (HeadingValueAchievements) {
     CVData.HeadingValueAchievements = HeadingValueAchievements;
+  }
+
+  let HeadingValueEducation = localStorage.getItem ('HeadingValueEducation');
+  HeadingValueEducation = JSON.parse (HeadingValueEducation);
+  if (HeadingValueEducation) {
+    CVData.HeadingValueEducation = HeadingValueEducation;
+  }
+
+  let HeadingValueExperience = localStorage.getItem ('HeadingValueExperience');
+  HeadingValueExperience = JSON.parse (HeadingValueExperience);
+  if (HeadingValueExperience) {
+    CVData.HeadingValueExperience = HeadingValueExperience;
+  }
+
+  let HeadingValueFindMeOnline = localStorage.getItem (
+    'HeadingValueFindMeOnline'
+  );
+  HeadingValueFindMeOnline = JSON.parse (HeadingValueFindMeOnline);
+  if (HeadingValueFindMeOnline) {
+    CVData.HeadingValueFindMeOnline = HeadingValueFindMeOnline;
+  }
+
+  let HeadingValueIndustryExperience = localStorage.getItem (
+    'HeadingValueIndustryExperience'
+  );
+  HeadingValueIndustryExperience = JSON.parse (HeadingValueIndustryExperience);
+  if (HeadingValueIndustryExperience) {
+    CVData.HeadingValueIndustryExperience = HeadingValueIndustryExperience;
+  }
+
+  let HeadingValueLanguage = localStorage.getItem ('HeadingValueLanguage');
+  HeadingValueLanguage = JSON.parse (HeadingValueLanguage);
+  if (HeadingValueLanguage) {
+    CVData.HeadingValueLanguage = HeadingValueLanguage;
+  }
+
+  let HeadingValuePassion = localStorage.getItem ('HeadingValuePassion');
+  HeadingValuePassion = JSON.parse (HeadingValuePassion);
+  if (HeadingValuePassion) {
+    CVData.HeadingValuePassion = HeadingValuePassion;
+  }
+
+  let HeadingValueProjects = localStorage.getItem ('HeadingValueProjects');
+  HeadingValueProjects = JSON.parse (HeadingValueProjects);
+  if (HeadingValueProjects) {
+    CVData.HeadingValueProjects = HeadingValueProjects;
   }
 
   let Colors = localStorage.getItem ('Colors');
@@ -168,30 +378,105 @@ export async function HandleUpdateCV () {
     CVData.Experience = Experience;
   }
 
+  let Strength = localStorage.getItem ('Strength');
+  Strength = JSON.parse (Strength);
+  if (Strength) {
+    CVData.Strength = Strength;
+  }
+
+  let IndustryExperience = localStorage.getItem ('IndustryExperience');
+  IndustryExperience = JSON.parse (IndustryExperience);
+  if (IndustryExperience) {
+    CVData.IndustryExperience = IndustryExperience;
+  }
+
+  let Volunteering = localStorage.getItem ('Volunteering');
+  Volunteering = JSON.parse (Volunteering);
+  if (Volunteering) {
+    CVData.Volunteering = Volunteering;
+  }
+
+  let Passion = localStorage.getItem ('Passion');
+  Passion = JSON.parse (Passion);
+  if (Passion) {
+    CVData.Passion = Passion;
+  }
+
   let Skills = localStorage.getItem ('Skills');
   Skills = JSON.parse (Skills);
   if (Skills) {
     CVData.Skills = Skills;
   }
+  console.log ('cartyoo', CVData);
 
   let data = {
-    subject: 'zaka',
+    subject: 'Please Add Subject Name for this CV',
     data: JSON.stringify (CVData),
     dateAdded: '2022-03-14T04:39:02.471Z',
     dateUpdated: '2022-03-14T04:39:02.471Z',
   };
+  return data;
+}
 
-  let token = localStorage.getItem ('Users');
-  token = JSON.parse (token);
-  const AuthStr = 'Bearer '.concat (token);
+export async function HandleUpdateCV () {
+  let data = GetPreviousData ();
+  const AuthStr = 'Bearer '.concat (GetToken ());
   axios
     .post (`${BaseURL}/api/CVBackup`, data, {
       headers: {Authorization: AuthStr},
     })
     .then (function (response) {
-      console.log ('log', response);
+      console.log ('log 1234==', response);
     })
     .catch (error => {
       console.log ('error', error);
     });
+}
+
+export async function HandleDeleteCvBackUp (id) {
+  const AuthStr = 'Bearer '.concat (GetToken ());
+  axios
+    .delete (`${BaseURL}/api/CVBackup/${id}`, {
+      headers: {Authorization: AuthStr},
+    })
+    .then (() => {
+      console.log ('success');
+      window.location.reload (false);
+    })
+    .catch (error => {
+      console.log ('loki', error);
+    });
+}
+
+export async function HandlePutCvBackUp (id) {
+  let data = GetPreviousData ();
+  const AuthStr = 'Bearer '.concat (GetToken ());
+  axios
+    .put (`${BaseURL}/api/CVBackup/${id}`, data, {
+      headers: {Authorization: AuthStr},
+    })
+    .then (() => {
+      console.log ('success');
+      // window.location.reload (false);
+    })
+    .catch (error => {
+      console.log ('loki,,,', error);
+    });
+}
+
+
+export async function HandlePatchCvBackUp (InputValueSubjectName,id) {
+ console.log("value = = =",InputValueSubjectName,id,GetToken())
+
+  const AuthStr = 'Bearer '.concat (GetToken ());
+  await axios.patch (`${BaseURL}/api/CVBackup/${id}/${JSON.stringify(InputValueSubjectName)}`,{}, {
+      headers: {authorization:AuthStr},
+    })
+    .then (function (response) {
+      console.log ('loki = res', response);
+    })
+    .catch (error => {
+      console.log ('loki = error', error);
+    });
+
 }

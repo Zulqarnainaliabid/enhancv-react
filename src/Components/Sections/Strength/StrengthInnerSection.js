@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../../Context/Context';
 import Switch from 'react-switch';
 import {
@@ -159,6 +159,17 @@ function StrengthInnerSection (props) {
       }
     }
   }
+  useEffect (() => {
+    let value = localStorage.getItem ('Strength');
+    value = JSON.parse (value);
+    if (value) {
+      for (let i = 0; i < iconList.length; i++) {
+        if (value[props.index].iconName === iconList[i].name) {
+          setIcon (iconList[i].icon);
+        }
+      }
+    }
+  }, []);
   return (
     <div>
       <div
@@ -334,6 +345,12 @@ function StrengthInnerSection (props) {
                           className="iconsList CommonCssClassCursorPointer"
                           onClick={() => {
                             setIcon (item.icon);
+                            props.list[props.index].iconName = item.name;
+                            props.setList (props.list);
+                            localStorage.setItem (
+                              'Strength',
+                              JSON.stringify (props.list)
+                            );
                           }}
                         >
                           {item.icon}

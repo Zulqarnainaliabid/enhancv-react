@@ -14,14 +14,21 @@ import 'react-slidedown/lib/slidedown.css';
 import backImage from './Images/backImagesMemory.jpg';
 import {HandleGetCvBackUp} from './Services';
 import Section from './BackUpCv/Section';
+import {ImPlus} from 'react-icons/im';
+import UserImg from '../Components/Images/UserEmptyImage.PNG';
+import {css} from '@emotion/react';
+import FadeLoader from 'react-spinners/FadeLoader';
+
 function Home () {
   const [displayPreLoader, setdisplayPreLoader] = useState (true);
   const contextData = useContext (Context);
   const [BackUpCvToggle, setBackUpCvToggle] = useState (false);
   const [BackUpCV, setBackUpCV] = useState ([]);
+  let [LoaderColor, setLoaderColor] = useState ('#ffffff');
+  let [loading, setLoading] = useState (true);
+  
   useEffect (() => {
     const timer = setTimeout (() => {
-      console.log ('This will run after 1 second!');
       setdisplayPreLoader (false);
     }, 1000);
     return () => clearTimeout (timer);
@@ -33,7 +40,9 @@ function Home () {
     if (value) {
       setBackUpCvToggle (true);
       let data = await HandleGetCvBackUp ();
-      console.log ('pp--', data.data);
+      if (data.data) {
+        setLoading (false);
+      }
       setBackUpCV ([...data.data]);
     } else {
       contextData.HandleToggleModal ('Login');
@@ -42,6 +51,80 @@ function Home () {
     }
   }, []);
 
+  function HandleRemovePreviousData () {
+    setBackUpCvToggle (false);
+
+    localStorage.setItem (
+      'HeaderSettingsList',
+      JSON.stringify ([
+        {Label: 'Show Title', selected: true},
+        {Label: 'Show Phone', selected: true},
+        {Label: 'Show Link', selected: true},
+        {Label: 'Show Email', selected: true},
+        {Label: 'Show Location', selected: true},
+        {Label: 'Uppercase Name', selected: true},
+        {Label: 'Show Photo', selected: true},
+      ])
+    );
+
+    localStorage.setItem (
+      'SectionsArray',
+      JSON.stringify ({
+        Left: [],
+        Right: [],
+      })
+    );
+    localStorage.removeItem ('UserImageShape');
+    localStorage.removeItem ('UserImageShape');
+    localStorage.removeItem ('Skills');
+    localStorage.removeItem ('HeadingValueSkills');
+    localStorage.removeItem ('Summary');
+    localStorage.removeItem ('ArrayLower');
+    localStorage.removeItem ('ArrayUper');
+    localStorage.removeItem ('indexOfUserImageShape');
+    localStorage.removeItem ('HeaderInputValue');
+    localStorage.removeItem ('SelectedColorIndex');
+    localStorage.removeItem ('BorderStyle');
+    localStorage.removeItem ('UserImage');
+    localStorage.removeItem ('BackImage');
+    localStorage.removeItem ('HeadingValueAchievements');
+    localStorage.removeItem ('Colors');
+    localStorage.removeItem ('Language');
+    localStorage.removeItem ('Achievements');
+    localStorage.removeItem ('Education');
+    localStorage.removeItem ('Experience');
+    localStorage.removeItem ('Training');
+    localStorage.removeItem ('Projects');
+    localStorage.removeItem ('Passion');
+    localStorage.removeItem ('Volunteering');
+    localStorage.removeItem ('IndustryExperience');
+    localStorage.removeItem ('Strength');
+    localStorage.removeItem ('FindMeOnline');
+    localStorage.removeItem ('Template');
+    contextData.HandleUpdateUserImage (UserImg);
+    localStorage.removeItem ('HeadingValueEducation');
+    localStorage.removeItem ('HeadingValueExperience');
+    localStorage.removeItem ('HeadingValueFindMeOnline');
+    localStorage.removeItem ('HeadingValueIndustryExperience');
+    localStorage.removeItem ('HeadingValueLanguage');
+    localStorage.removeItem ('HeadingValueMyTime');
+    localStorage.removeItem ('HeadingValuePassion');
+    localStorage.removeItem ('HeadingValueProjects');
+    localStorage.removeItem ('HeadingValueStrength');
+    localStorage.removeItem ('HeadingValueSummary');
+    localStorage.removeItem ('HeadingValueTraining');
+    localStorage.removeItem ('HeadingValueVolunteering');
+    localStorage.removeItem ('arraySlice');
+    localStorage.removeItem ('InputFieldCartMyTime');
+    localStorage.removeItem ('arraySeries');
+    localStorage.removeItem ('indexOfUserImageShape');
+  }
+
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
   if (displayPreLoader) {
     return (
       <div
@@ -53,35 +136,72 @@ function Home () {
           flexDirection: 'column',
         }}
       >
-        <BallTriangle
-          heigth="100"
-          width="100"
-          color="#00C091"
-          ariaLabel="loading"
-        />
+        <BallTriangle width="100" color="#00C091" ariaLabel="loading" />
         <p>
-          Pay special attention to your career objective and cover letter, which play an even more important role when you lack work experience.
+        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
         </p>
       </div>
     );
+
   } else if (BackUpCvToggle) {
     return (
       <div
         className="BackGroundImage"
         style={{
           backgroundImage: `url(${backImage})`,
+          padding: '12px',
         }}
       >
-        {BackUpCV.map ((item, index) => {
-          console.log ('oo', item);
-          if (index === 1) {
+        {loading &&
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{
+              position: 'absolute',
+              left: '0',
+              right: '0',
+              top: '0',
+              bottom: '0',
+              backgroundColor: 'black',
+              opacity: '0.5',
+              zIndex: '10',
+            }}
+          >
+            <FadeLoader
+              color={LoaderColor}
+              loading={loading}
+              css={override}
+              size={250}
+            />
+          </div>}
+        <div className="outerContainerBachUpCv">
+          {BackUpCV.map ((item, index) => {
+            console.log("subject NAme",item.subject)
             return (
               <div key={index}>
-                <Section list={item.data} />
+                <Section
+                  id={item.id}
+                  list={item.data}
+                  Subject={item.subject}
+                  HandleRemovePreviousData={HandleRemovePreviousData}
+                />
               </div>
             );
-          }
-        })}
+          })}
+          <div
+            onClick={() => {
+              HandleRemovePreviousData ();
+            }}
+          >
+            <p
+              className="text-center text-white mb-2"
+              style={{fontSize: '30px', fontWeight: 'bolder'}}
+            >
+              Add New CV
+            </p> <div className="outerWrapperBackUpCvSection AddNewCv">
+              <ImPlus className="AddNewCvIcons" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   } else {

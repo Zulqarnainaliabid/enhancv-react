@@ -1,5 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ExperienceInnerSection from './ExperienceInnerSection';
+import TextareaAutosize from 'react-autosize-textarea';
+
+var HtmlToReact = require ('html-to-react');
+var HtmlToReactParser = require ('html-to-react').Parser;
 export default function ExperienceOuterSection (props) {
   const [HighLighter, setHighLighter] = useState (false);
   const [array, setState] = useState ([
@@ -91,13 +95,45 @@ export default function ExperienceOuterSection (props) {
       ],
     },
   ]);
+
+  var htmlToReactParser = new HtmlToReactParser ();
+  var isValidNode = function () {
+    return true;
+  };
+  var processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions (React);
+  var processingInstructions = [
+    {
+      replaceChildren: true,
+      shouldProcessNode: function (node) {
+        return node.attribs && node.attribs['data-test'] === 'foo';
+      },
+      processNode: function (node, children, index) {
+        return React.createElement ('h1', {key: index}, 'Heading');
+      },
+    },
+    {
+      shouldProcessNode: function (node) {
+        return true;
+      },
+      processNode: processNodeDefinitions.processDefaultNode,
+    },
+  ];
+
   return (
     <div>
-      <div className="outerWrapperCompleteBox BorderOuterSectionBackUpCv">
+      <div className="outerWrapperCompleteBox">
         <div className="HeadingNameBox BorderRadius">
-          <input placeholder="EXPERIENCE" />
+          <TextareaAutosize
+            className="outerWrapperSectionsHeadingValue"
+            placeholder="EXPERIENCE"
+            value={props.HeadingValue}
+            onChange={() => {
+              console.log ('ll');
+            }}
+            draggable="false"
+          />
         </div>
-        <div>
+        <div className="BorderOuterSectionBackUpCv">
           {props.list &&
             props.list.map ((item, index) => {
               let display_dashesLine = true;
@@ -111,6 +147,9 @@ export default function ExperienceOuterSection (props) {
                     index={index}
                     list={props.list}
                     display_dashesLine={display_dashesLine}
+                    Colors={props.Colors}
+                    Template={props.Template}
+                    Sections={props.Sections}
                   />
                 </div>
               );

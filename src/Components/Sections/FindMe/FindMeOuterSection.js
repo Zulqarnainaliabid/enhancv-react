@@ -15,6 +15,7 @@ export default function FindMeOuterSection (props) {
         {name: 'Show UserName', selected: true},
         {name: 'Show Icons', selected: true},
       ],
+      iconName:"",
       value: {
         title: '',
         username: '',
@@ -79,6 +80,7 @@ export default function FindMeOuterSection (props) {
           {name: 'Show UserName', selected: true},
           {name: 'Show Icons', selected: true},
         ],
+        iconName:"",
         value: {
           title: '',
           username: '',
@@ -156,6 +158,13 @@ export default function FindMeOuterSection (props) {
       JSON.stringify (data.value)
     );
   }
+
+  useEffect(() => {
+    if(contextData.AddSectionName==="FindMeOuterSection"){
+      localStorage.setItem ('FindMeOnline', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
 
   return (
     <div>

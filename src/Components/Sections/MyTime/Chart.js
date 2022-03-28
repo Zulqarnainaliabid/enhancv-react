@@ -1,76 +1,65 @@
-import React, {useState, useEffect,useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Chart from 'react-apexcharts';
 import {Context} from '../../Context/Context';
 
 export function InputFieldSlice (props) {
-  const [Number, setNumber] = useState ('');
-  const [Text, setText] = useState ('');
-
-  useEffect (() => {
-    if (localStorage.getItem (props.itme + 'heloitem') !== null) {
-      let value = localStorage.getItem (props.itme + 'heloitem');
-      value = JSON.parse (value);
-      setText (value);
-    }
-    if (localStorage.getItem (props.itme) !== null) {
-      let value = localStorage.getItem (props.itme);
-      value = JSON.parse (value);
-      value = parseInt (value);
-      setNumber (value);
-    }
-  }, []);
   return (
     <div className="d-flex mb-1" style={{position: 'relative'}}>
       <div>
-        <p className="outerWraperName">{props.itme}</p>
+        <p className="outerWrapperName">{props.item.label}</p>
       </div>
       <input
-       style={{width:"140px"}}
-        value={Text}
+        style={{width: '140px'}}
+        value={props.list[props.index].InputFieldActivity}
         className="Lebel"
         type="text"
-        placeholder="Activity/inititative"
+        placeholder="Activity / Occupation"
         onChange={e => {
-          setText (e.target.value);
-          localStorage.setItem (
-            props.itme + 'heloitem',
-            JSON.stringify (e.target.value)
-          );
+          props.handleInputFiled (props.index, e.target.value);
         }}
       />
       <input
         className="Lebel"
         type="number"
         placeholder="%"
-        value={Number}
-        style={{width: '10px'}}
+        value={props.list[props.index].InputFieldPercentage}
+        style={{width: '25px'}}
         onChange={e => {
-          if (e.target.value > 0 && e.target.value < 101) {
-            setNumber (e.target.value);
-            let array = props.temp;
-            array[props.index] = e.target.value;
-            props.setTemp ([...array]);
-            props.HandleSeries (array);
-            localStorage.setItem (props.itme, JSON.stringify (e.target.value));
-            localStorage.setItem ('arraySeries', JSON.stringify (array));
-          } else {
-            alert ('degit should be less then 30 and greater then 0');
-          }
+          let array = props.Temp;
+          array[props.index] = e.target.value;
+
+          props.setTemp ([...array]);
+          props.HandleSeries (array);
+          props.handleInputFiledTypePercentage (props.index, e.target.value);
+          localStorage.setItem ('arraySeries', JSON.stringify (array));
         }}
       />
       <div>%</div>
     </div>
   );
 }
-const {forwardRef, useRef, useImperativeHandle} = React;
+const {forwardRef} = React;
 const ApexChart = forwardRef ((props, ref) => {
   const contextData = useContext (Context);
   const [Temp, setTemp] = useState ([5, 5, 5, 5, 5, 5, 5, 5]);
-  const [Clor, setClor] = useState ('#00B400');
+
+  let Color = '#686868';
+  if (contextData.SelectedColor === 'darkColor') {
+    Color = '#686868';
+  }
+  if (contextData.SelectedColor === 'blueColor') {
+    Color = '#008cff';
+  }
+  if (contextData.SelectedColor === 'greenColor') {
+    Color = '#00b400';
+  }
+  if (contextData.SelectedColor === 'redColor') {
+    Color = '#ff0001';
+  }
 
   let options = {
     fill: {
-      colors: [Clor, Clor, Clor],
+      colors: [Color, Color, Color],
     },
     labels: props.labels,
     dataLabels: {
@@ -83,11 +72,24 @@ const ApexChart = forwardRef ((props, ref) => {
       show: false,
     },
   };
+
   return (
-    <div style={{width:"100%"}}>
-      <div className="d-flex align-items-center" 
-      style={{width:"100%",justifyContent:contextData.ToggleTemplate?"start":"space-between"}}>
-        <div style={{width:"50%",marginLeft:contextData.ToggleTemplate?"-40px":""}}>
+    <div style={{width: '100%'}}>
+      <div
+        className="d-flex align-items-center"
+        style={{
+          width: '100%',
+          justifyContent: contextData.ToggleTemplate
+            ? 'start'
+            : 'space-between',
+        }}
+      >
+        <div
+          style={{
+            width: '50%',
+            marginLeft: contextData.ToggleTemplate ? '-40px' : '',
+          }}
+        >
           <Chart
             className={`${contextData.SelectedColor}`}
             options={options}
@@ -97,18 +99,21 @@ const ApexChart = forwardRef ((props, ref) => {
             labels={props.labels}
           />
         </div>
-        <div className="outerWraperInputFieldSlice">
-          {props.labels &&
-            props.labels.map ((item, index) => {
+        <div className="outerWrapperInputFieldSlice">
+          {props.InputFieldChart &&
+            props.InputFieldChart.map ((item, index) => {
               return (
                 <div key={index}>
                   <InputFieldSlice
-                    itme={item}
-                    setArraysliceinputField={props.setArraysliceinputField}
-                    ArraysliceinputField={props.ArraysliceinputField}
+                    item={item}
+                    list={props.InputFieldChart}
                     index={index}
+                    handleInputFiled={props.handleInputFiled}
                     HandleSeries={props.HandleSeries}
-                    temp={Temp}
+                    handleInputFiledTypePercentage={
+                      props.handleInputFiledTypePercentage
+                    }
+                    Temp={Temp}
                     setTemp={setTemp}
                   />
                 </div>

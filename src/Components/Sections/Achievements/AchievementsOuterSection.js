@@ -14,6 +14,7 @@ export default function AchievementsOuterSection (props) {
         {name: 'Show UserName', selected: true},
         {name: 'Show Icons', selected: true},
       ],
+      iconName: '',
       value: {
         title: '',
         username: '',
@@ -28,6 +29,9 @@ export default function AchievementsOuterSection (props) {
   function GetItemFindMeOnline () {
     let value = localStorage.getItem ('Achievements');
     value = JSON.parse (value);
+    if (value) {
+      setState (value);
+    }
     return value;
   }
 
@@ -78,6 +82,7 @@ export default function AchievementsOuterSection (props) {
           {name: 'Show UserName', selected: true},
           {name: 'Show Icons', selected: true},
         ],
+        iconName: '',
         value: {
           title: '',
           username: '',
@@ -106,6 +111,7 @@ export default function AchievementsOuterSection (props) {
   }
 
   useEffect (() => {
+    GetItemFindMeOnline ();
     let value = localStorage.getItem ('HeadingValueAchievements');
     value = JSON.parse (value);
     if (value === null || value === undefined) {
@@ -156,6 +162,13 @@ export default function AchievementsOuterSection (props) {
     );
   }
 
+  useEffect(() => {
+    if(contextData.AddSectionName==="AchievementsOuterSection"){
+      localStorage.setItem ('Achievements', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+
   return (
     <div>
       <div
@@ -194,8 +207,8 @@ export default function AchievementsOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />

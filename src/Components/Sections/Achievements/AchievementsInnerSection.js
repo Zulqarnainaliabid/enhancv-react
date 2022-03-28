@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../../Context/Context';
 import Switch from 'react-switch';
 import {
@@ -22,13 +22,30 @@ function AchievementsInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [IconsList, setIconsList] = useState (true);
+
   const [Icon, setIcon] = useState (<Star />);
+
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
   const [BorderColor, setBorderColor] = useState (false);
   const [SearchFieldInputValue, setSearchFieldInputValue] = useState ('');
   const [DisplayCloseIcon, setDisplayCloseIcon] = useState (false);
-  const [EditorWidth, setEditorWidth] = useState ('200px');
   const {classes} = props;
+
+  useEffect (() => {
+
+    let value = localStorage.getItem ('Achievements');
+    value = JSON.parse (value);
+    if (value) {
+      console.log ('lloo', value[props.index].iconName);
+      for (let i = 0; i < iconList.length; i++) {
+        if (value[props.index].iconName === iconList[i].name) {
+          setIcon (iconList[i].icon);
+        }
+      }
+    }
+    
+  }, []);
+
   function handleCloseToggleSwitch () {
     setDisplayToggleSwitch (false);
   }
@@ -141,6 +158,7 @@ function AchievementsInnerSection (props) {
     setDisplayToggleSwitch (!DisplayToggleSwitch);
     HandleCloseIconList ();
   }
+  
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
       return '751px';
@@ -336,6 +354,13 @@ function AchievementsInnerSection (props) {
                           className="iconsList CommonCssClassCursorPointer"
                           onClick={() => {
                             setIcon (item.icon);
+
+                            props.list[props.index].iconName = item.name;
+                            props.setList (props.list);
+                            localStorage.setItem (
+                              'Achievements',
+                              JSON.stringify (props.list)
+                            );
                           }}
                         >
                           {item.icon}

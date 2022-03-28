@@ -1,11 +1,30 @@
-.rangeslider-horizontal .rangeslider__fill {
+
+
+/* .rangeslider-horizontal .rangeslider__fill {
     height: 100%;
-    background-color: #008cff !important;
+    background-color: red !important;
     border-radius: 10px;
     top: 0;
+} */
+
+.Dark .rangeslider__fill{
+    background-color: #686868 !important;
 }
+
+.Blue .rangeslider__fill{
+    background-color: #008cff !important;
+}
+
+.Green .rangeslider__fill{
+    background-color: #00b400 !important;
+}
+
+.Red .rangeslider__fill{
+    background-color: #ff0001 !important;
+}
+
 .rangeslider-horizontal {
-    height: 9px;
+    height: 12px;
     border-radius: 10px;
 }
 .rangeslider,

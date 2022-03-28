@@ -13,11 +13,13 @@ export default function IndustryExperienceOuterSection (props) {
       toggleSwitch: [
         {name: 'Show Slider', selected: true},
       ],
+      Range:["20"],
       value: {
         language: '',
       },
     },
   ]);
+
   const [ToggleArrowDown, setToggleArrowDown] = useState (true);
   const [ToggleArrowUp, setToggleArrowUp] = useState (true);
   const [DisplayLoader, setDisplayLoader] = useState (false);
@@ -75,6 +77,7 @@ export default function IndustryExperienceOuterSection (props) {
         toggleSwitch: [
           {name: 'Show Slider', selected: true},
         ],
+        Range:["20"],
         value: {
           tittle: '',
         },
@@ -148,6 +151,14 @@ export default function IndustryExperienceOuterSection (props) {
     }
     localStorage.setItem ('HeadingValueIndustryExperience', JSON.stringify (data.value));
   }
+
+  useEffect(() => {
+    if(contextData.AddSectionName==="IndustryExperienceOuterSection"){
+      localStorage.setItem ('IndustryExperience', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+  
 
   return (
     <div>

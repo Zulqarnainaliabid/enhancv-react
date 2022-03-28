@@ -6,12 +6,15 @@ import {CSSTransition} from 'react-transition-group';
 import styles from '../../Style';
 import injectSheet from 'react-jss';
 import InputField from '../../InputField';
-import {RangeStepInput} from 'react-range-step-input';
+import {Range, getTrackBackground} from 'react-range';
 function IndustryExperienceInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
   const {classes} = props;
+  const [RangesValue, setRangesValue] = useState (
+    props.list[props.index].Range
+  );
   function handleCloseToggleSwitch () {
     setDisplayToggleSwitch (false);
   }
@@ -88,7 +91,7 @@ function IndustryExperienceInnerSection (props) {
         temp[index].selected = true;
         break;
       }
-    } 
+    }
     props.list[props.index].toggleSwitch = temp;
     props.setList ([...props.list]);
     localStorage.setItem ('IndustryExperience', JSON.stringify (props.list));
@@ -109,6 +112,25 @@ function IndustryExperienceInnerSection (props) {
   }
   function HandleSetting () {
     setDisplayToggleSwitch (!DisplayToggleSwitch);
+  }
+
+  const STEP = 0.1;
+  const MIN = 0;
+  const MAX = 100;
+
+  let Color = '#686868';
+  console.log ('jj', contextData.SelectedColor);
+  if (contextData.SelectedColor === 'darkColor') {
+    Color = '#686868';
+  }
+  if (contextData.SelectedColor === 'blueColor') {
+    Color = '#008cff';
+  }
+  if (contextData.SelectedColor === 'greenColor') {
+    Color = '#00b400';
+  }
+  if (contextData.SelectedColor === 'redColor') {
+    Color = '#ff0001';
   }
 
   return (
@@ -251,7 +273,61 @@ function IndustryExperienceInnerSection (props) {
             </div>
           </div>
           {props.list[props.index].toggleSwitch[0].selected &&
-            <RangeStepInput />}
+            <div>
+              <Range
+                values={RangesValue}
+                step={STEP}
+                min={MIN}
+                max={MAX}
+                onChange={values => {
+                  props.list[props.index].Range = values;
+                  props.setList (props.list);
+                  localStorage.setItem (
+                    'IndustryExperience',
+                    JSON.stringify (props.list)
+                  );
+                  console.log ('number', values);
+                  setRangesValue (values);
+                }}
+                renderTrack={({props, children}) => (
+                  <div>
+                    <div
+                      ref={props.ref}
+                      style={{
+                        height: '10px',
+                        width: '100%',
+                        borderRadius: '4px',
+                        background: getTrackBackground ({
+                          values: RangesValue,
+                          colors: [Color, '#ccc'],
+                          min: MIN,
+                          max: MAX,
+                        }),
+                        alignSelf: 'center',
+                      }}
+                    >
+                      {children}
+                    </div>
+                  </div>
+                )}
+                renderThumb={({props, isDragged}) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: '20px',
+                      width: '20px',
+                      borderRadius: '50%',
+                      backgroundColor: Color,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      outline: 'none',
+                    }}
+                  />
+                )}
+              />
+            </div>}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>

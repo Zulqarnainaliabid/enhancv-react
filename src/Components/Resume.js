@@ -12,7 +12,7 @@ import {IoIosColorPalette} from 'react-icons/io';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import {HandleUpdateCV} from './Services'
+import {HandleUpdateCV, HandlePutCvBackUp} from './Services';
 export default function Resume (props) {
   const [state, setState] = useState (true);
   const contextData = useContext (Context);
@@ -73,10 +73,13 @@ export default function Resume (props) {
         });
         return null;
       } else {
-        // contextData.HandleToggleModal ('AddSubjectName');
-        // contextData.HandleShowModal (true);
-        // contextData.HandleBackGroundColorOfModal (true);
-        HandleUpdateCV()
+        if (contextData.UpdateBackUpCv) {
+          HandlePutCvBackUp (contextData.UpdateBackUpCv);
+          contextData.HandleUpdateBackUpCv (null);
+        } else {
+          HandleUpdateCV ();
+        }
+
         return componentRef.current;
       }
     },
@@ -101,11 +104,7 @@ export default function Resume (props) {
   };
   let Resume = (
     <span>
-      <ComponentToPrint
-        text={text}
-        ref={ref}
-        HandleState={setState}
-      />
+      <ComponentToPrint text={text} ref={ref} HandleState={setState} />
       <button onClick={() => childRef.current.getAlert ()}>Click</button>
     </span>
   );

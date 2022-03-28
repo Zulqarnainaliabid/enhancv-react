@@ -14,6 +14,7 @@ export default function StrengthOuterSection (props) {
         {name: 'Show UserName', selected: true},
         {name: 'Show Icons', selected: true},
       ],
+      iconName:"",
       value: {
         title: '',
         username: '',
@@ -78,6 +79,7 @@ export default function StrengthOuterSection (props) {
           {name: 'Show UserName', selected: true},
           {name: 'Show Icons', selected: true},
         ],
+        iconName:"",
         value: {
           title: '',
           username: '',
@@ -152,6 +154,13 @@ export default function StrengthOuterSection (props) {
     }
     localStorage.setItem ('HeadingValueStrength', JSON.stringify (data.value));
   }
+
+  useEffect(() => {
+    if(contextData.AddSectionName==="StrengthOuterSection"){
+      localStorage.setItem ('Strength', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
 
   return (
     <div>

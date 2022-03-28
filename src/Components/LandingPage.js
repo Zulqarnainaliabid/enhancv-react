@@ -1,4 +1,4 @@
-import React, {useContext,useState,useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import {Context} from './Context/Context';
 import {Link} from 'react-router-dom';
@@ -37,7 +37,7 @@ function LandingPage (props) {
           ariaLabel="loading"
         />
         <p>
-          Pay special attention to your career objective and cover letter, which play an even more important role when you lack work experience.
+          In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
         </p>
       </div>
     );

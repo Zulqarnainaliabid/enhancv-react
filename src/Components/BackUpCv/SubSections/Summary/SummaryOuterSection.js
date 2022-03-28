@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import SummaryInnerSection from './SummaryInnerSection';
+import TextareaAutosize from 'react-autosize-textarea';
+
 export default function SummaryOuterSection (props) {
   const [array, setState] = useState ([
     {
@@ -15,9 +17,17 @@ export default function SummaryOuterSection (props) {
     <div>
       <div className="outerWrapperCompleteBox">
         <div className="HeadingNameBox BorderRadius">
-          <input placeHolder="SUMMARY" />
+          <TextareaAutosize
+            className="outerWrapperSectionsHeadingValue"
+            placeholder="SUMMARY"
+            value={props.HeadingValue}
+            onChange={() => {
+              console.log ('ll');
+            }}
+            draggable="false"
+          />
         </div>
-        <div>
+        <div className="BorderOuterSectionBackUpCv">
           {props.list &&
             props.list.map ((item, index) => {
               let display_dashesLine = true;
@@ -31,6 +41,8 @@ export default function SummaryOuterSection (props) {
                     index={index}
                     list={props.list}
                     display_dashesLine={display_dashesLine}
+                    Template={props.Template}
+                    Sections={props.Sections}
                   />
                 </div>
               );

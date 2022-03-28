@@ -1,35 +1,23 @@
 import React, {useState, useEffect, useContext} from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
 import AchievementsInnerSection from './AchievementsInnerSection';
 export default function AchievementsOuterSection (props) {
-  console.log ('88', props.list);
-  const [array, setState] = useState ([
-    {
-      selected: false,
-      toggleSwitch: [
-        {name: 'Show UserName', selected: true},
-        {name: 'Show Icons', selected: true},
-      ],
-      value: {
-        title: '',
-        username: '',
-      },
-    },
-  ]);
-
+  console.log ('88', props.HeadingValue);
   return (
     <div>
-      <div className="outerWrapperCompleteBox BorderOuterSectionBackUpCv">
+      <div className="outerWrapperCompleteBox">
         <div className="HeadingNameBox BorderRadius">
-          <input
-            style={{width: '270px', fontSize: '11px'}}
+          <TextareaAutosize
+            className='outerWrapperSectionsHeadingValue'
             placeholder="ACHIEVEMENTS"
-            // value={props.HeaderInputValue.title}
+            value={props.HeadingValue}
             onChange={() => {
               console.log ('ll');
             }}
+            draggable="false"
           />
         </div>
-        <div>
+        <div className="BorderOuterSectionBackUpCv">
           {props.list &&
             props.list.map ((item, index) => {
               let display_dashesLine = true;
@@ -43,6 +31,9 @@ export default function AchievementsOuterSection (props) {
                     index={index}
                     list={props.list}
                     display_dashesLine={display_dashesLine}
+                    Colors={props.Colors}
+                    Template={props.Template}
+                    Sections={props.Sections}
                   />
                 </div>
               );

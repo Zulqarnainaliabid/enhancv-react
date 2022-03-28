@@ -14,6 +14,7 @@ export default function PassionOuterSection (props) {
         {name: 'Show UserName', selected: true},
         {name: 'Show Icons', selected: true},
       ],
+      iconName:"",
       value: {
         title: '',
         username: '',
@@ -78,6 +79,7 @@ export default function PassionOuterSection (props) {
           {name: 'Show UserName', selected: true},
           {name: 'Show Icons', selected: true},
         ],
+        iconName:"",
         value: {
           title: '',
           username: '',
@@ -152,6 +154,15 @@ export default function PassionOuterSection (props) {
     }
     localStorage.setItem ('HeadingValuePassion', JSON.stringify (data.value));
   }
+
+  useEffect(() => {
+    if(contextData.AddSectionName==="PassionOuterSection"){
+      localStorage.setItem ('Passion', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+
+  
 
   return (
     <div>

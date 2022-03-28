@@ -307,6 +307,16 @@ export default function VolunteeringOuterSection (props) {
     );
   }
 
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'VolunteeringOuterSection') {
+        localStorage.setItem ('Volunteering', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
+
   return (
     <div>
       <div
@@ -345,8 +355,8 @@ export default function VolunteeringOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />

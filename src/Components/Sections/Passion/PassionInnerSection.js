@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../../Context/Context';
 import Switch from 'react-switch';
 import {
@@ -145,7 +145,7 @@ function PassionInnerSection (props) {
       return '751px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
-      value = JSON.parse (value); 
+      value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Passion') {
@@ -160,6 +160,18 @@ function PassionInnerSection (props) {
       }
     }
   }
+
+  useEffect (() => {
+    let value = localStorage.getItem ('Passion');
+    value = JSON.parse (value);
+    if (value) {
+      for (let i = 0; i < iconList.length; i++) {
+        if (value[props.index].iconName === iconList[i].name) {
+          setIcon (iconList[i].icon);
+        }
+      }
+    }
+  }, []);
   return (
     <div>
       <div
@@ -335,6 +347,12 @@ function PassionInnerSection (props) {
                           className="iconsList CommonCssClassCursorPointer"
                           onClick={() => {
                             setIcon (item.icon);
+                            props.list[props.index].iconName = item.name;
+                            props.setList (props.list);
+                            localStorage.setItem (
+                              'Passion',
+                              JSON.stringify (props.list)
+                            );
                           }}
                         >
                           {item.icon}

@@ -35,7 +35,7 @@ function Settings (props) {
       setRadioValue (IndexOfUserImageShape);
     }
   }, []);
-  
+
   return (
     <div className={classes.container}>
       <CSSTransition
@@ -53,7 +53,14 @@ function Settings (props) {
         <div className={classes.listBody}>
           {List.map ((item, index) => {
             return (
-              <div key={index} style={{display: 'flex', paddingBottom: '4px',justifyContent:"space-between"}}>
+              <div
+                key={index}
+                style={{
+                  display: 'flex',
+                  paddingBottom: '4px',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <div
                   className="ToggleButtonsLabel CommonCssClassCursorPointer fontSize14"
                   onClick={() => {
@@ -82,7 +89,7 @@ function Settings (props) {
             );
           })}
           <div className="d-flex align-items-center outerContainerRadioButtons">
-            <label  className="LabelPhotoStyle CommonCssClassCursorPointer fontSize14">
+            <label className="LabelPhotoStyle CommonCssClassCursorPointer fontSize14">
               Photo Style
             </label>
             <div
@@ -90,14 +97,14 @@ function Settings (props) {
               style={{gap: '7px'}}
             >
               <input
-               className='CommonCssClassCursorPointer'
+                className="CommonCssClassCursorPointer"
                 type="radio"
                 name="radio"
                 value="Square"
                 checked={2 === radioValue}
                 onChange={e => {
                   setRadioValue (2);
-                  
+
                   contextData.HandleUserImageShape (true);
                   localStorage.setItem (
                     'indexOfUserImageShape',
@@ -106,7 +113,7 @@ function Settings (props) {
                 }}
               />
               <input
-              className='CommonCssClassCursorPointer'
+                className="CommonCssClassCursorPointer"
                 type="radio"
                 value="Circle"
                 name="radio"

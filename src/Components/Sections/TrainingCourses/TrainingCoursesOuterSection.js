@@ -151,6 +151,13 @@ export default function TrainingOuterSection (props) {
     localStorage.setItem ('HeadingValueTraining', JSON.stringify (data.value));
   }
 
+  useEffect(() => {
+    if(contextData.AddSectionName==="TrainingOuterSection"){
+      localStorage.setItem ('Training', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+
   return (
     <div>
       <div

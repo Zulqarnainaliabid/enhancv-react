@@ -6,6 +6,20 @@ import 'react-rangeslider/lib/index.css';
 import '../../../index.css';
 import TextareaAutosize from 'react-autosize-textarea';
 function LanguageInnerSection (props) {
+  console.log("value",props.list)
+  let CssClass = 'Dark';
+  if (props.Colors === 'darkColor') {
+    CssClass = 'Dark';
+  }
+  if (props.Colors === 'blueColor') {
+    CssClass = 'Blue';
+  }
+  if (props.Colors === 'greenColor') {
+    CssClass = 'Green';
+  }
+  if (props.Colors === 'redColor') {
+    CssClass = 'Red';
+  }
   return (
     <div>
       <div>
@@ -23,8 +37,8 @@ function LanguageInnerSection (props) {
             >
               <div style={{width: '80px'}}>
                 <TextareaAutosize
-                  className="InputFieldBachUpCv"
-                  placeHolder="Language"
+                  className="InputFieldBachUpCv" 
+                  placeholder="Language"
                   draggable="false"
                   value={props.list[props.index].value.language}
                 />
@@ -33,15 +47,17 @@ function LanguageInnerSection (props) {
                 <div style={{width: '89px'}}>
                   <TextareaAutosize
                     className="InputFieldBachUpCv"
-                    // placeHolder={Language}
                     draggable="false"
-                    value={props.list[props.index].value.proficiency}
+                    value={props.list[props.index].language}
                   />
-                </div>}
+                </div>} 
             </div>
           </div>
           {props.list[props.index].toggleSwitch[1].selected &&
-            <Slider min={1} max={5} tooltip={false} />}
+            <Slider 
+            value={props.list[props.index].proficiencyValue}
+            className={CssClass}
+            min={1} max={5} tooltip={false} />}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>

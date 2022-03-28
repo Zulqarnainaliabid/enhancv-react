@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {PhoneHeader, LinkHeader, LocationHeader} from '../JasonData';
 function Header (props) {
-  console.log ('header==', props.HeaderSettingsList);
-  console.log ('img', props.HeaderInputValue);
+  const [Shape, setShape] = useState (true);
+console.log("logg",props.ImageShape)
+  useEffect (() => {
+    if (props.ImageShape === 2) {
+      setShape (true);
+    } else {
+      setShape (false);
+    }
+  }, []);
 
   return (
     <div>
@@ -22,6 +29,7 @@ function Header (props) {
             />
             {props.HeaderSettingsList[0].selected &&
               <input
+                className={`${props.Colors}`}
                 style={{width: '270px', fontSize: '11px'}}
                 placeholder={'Your next desired role?'}
                 value={props.HeaderInputValue.title}
@@ -36,7 +44,7 @@ function Header (props) {
                 className="d-flex align-items-center mb-2"
                 style={{gap: '12px', width: '50%'}}
               >
-                <PhoneHeader className={`HeaderIcons`} />
+                <PhoneHeader className={`HeaderIcons ${props.Colors}`} />
                 <input
                   style={{width: '110px', fontSize: '11px'}}
                   placeholder={'phone'}
@@ -51,7 +59,7 @@ function Header (props) {
                 className="d-flex align-items-center mb-2"
                 style={{gap: '12px', width: '50%'}}
               >
-                <div className={`HeaderIcons`}>
+                <div className={`HeaderIcons ${props.Colors}`}>
                   @
                 </div>
                 <input
@@ -70,7 +78,7 @@ function Header (props) {
                 className="d-flex align-items-center mb-2"
                 style={{gap: '12px', width: '50%'}}
               >
-                <LinkHeader className={`HeaderIcons`} />
+                <LinkHeader className={`HeaderIcons ${props.Colors}`} />
                 <input
                   style={{width: '110px', fontSize: '11px'}}
                   placeholder={'Website/Link'}
@@ -85,7 +93,7 @@ function Header (props) {
                 className="d-flex align-items-center mb-2"
                 style={{gap: '12px', width: '50%'}}
               >
-                <LocationHeader className={`HeaderIcons`} />
+                <LocationHeader className={`HeaderIcons ${props.Colors}`} />
                 <input
                   style={{width: '100px', fontSize: '11px'}}
                   placeholder={'Location'}
@@ -101,7 +109,7 @@ function Header (props) {
           <div>
             <img
               style={{
-                // borderRadius: contextData.UserImageShape ? '50%' : ''
+                borderRadius: Shape ? '50%' : '',
                 height: '90px',
                 width: '90px',
               }}

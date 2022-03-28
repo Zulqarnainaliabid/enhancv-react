@@ -1,4 +1,4 @@
-import React, {useState, useContext,useEffect} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../../Context/Context';
 import Switch from 'react-switch';
 import {Setting, Plus, Delete, Text, ArrowDown, ArrowUp} from '../../JasonData';
@@ -121,19 +121,19 @@ function LanguageInnerSection (props) {
     temp[props.index].proficiencyValue = value;
     if (value === 1) {
       setLanguage ('Beginner');
-      temp[props.index].language="Beginner"
+      temp[props.index].language = 'Beginner';
     } else if (value === 2) {
       setLanguage ('Intermediate');
-      temp[props.index].language="Intermediate"
+      temp[props.index].language = 'Intermediate';
     } else if (value === 3) {
       setLanguage ('Advanced');
-      temp[props.index].language="Advanced"
+      temp[props.index].language = 'Advanced';
     } else if (value === 4) {
       setLanguage ('Proficient');
-      temp[props.index].language="Proficient"
+      temp[props.index].language = 'Proficient';
     } else if (value === 5) {
       setLanguage ('Native');
-      temp[props.index].language="Native"
+      temp[props.index].language = 'Native';
     }
     localStorage.setItem ('Language', JSON.stringify (temp));
   };
@@ -143,11 +143,25 @@ function LanguageInnerSection (props) {
     if (value !== null) {
       setvalue (value[props.index].proficiencyValue);
       setLanguage (value[props.index].language);
-    }else{
+    } else {
       setvalue (0);
-      setLanguage ("Beginner");
+      setLanguage ('Beginner');
     }
   }, []);
+
+  let CssClass = 'Dark';
+  if (contextData.SelectedColor === 'darkColor') {
+    CssClass = 'Dark';
+  }
+  if (contextData.SelectedColor === 'blueColor') {
+    CssClass = 'Blue';
+  }
+  if (contextData.SelectedColor === 'greenColor') {
+    CssClass = 'Green';
+  }
+  if (contextData.SelectedColor === 'redColor') {
+    CssClass = 'Red';
+  }
 
   return (
     <div>
@@ -288,7 +302,7 @@ function LanguageInnerSection (props) {
               </div>
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{width: '89px'}}>
-                  <InputField 
+                  <InputField
                     placeHolder={Language}
                     otherStyle={'TextHolderSectionsTitle'}
                     value={props.list[props.index].value.proficiency}
@@ -300,14 +314,16 @@ function LanguageInnerSection (props) {
             </div>
           </div>
           {props.list[props.index].toggleSwitch[1].selected &&
-            <Slider
-            className={`${contextData.SelectedColor}`}
-              min={1}
-              max={5}
-              tooltip={false}
-              value={value}
-              onChange={handleChangeSlider}
-            />}
+            <div>
+              <Slider
+                className={CssClass}
+                min={1}
+                max={5}
+                tooltip={false}
+                value={value}
+                onChange={handleChangeSlider}
+              />
+            </div>}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>

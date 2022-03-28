@@ -153,6 +153,13 @@ export default function LanguageOuterSection (props) {
     localStorage.setItem ('HeadingValueLanguage', JSON.stringify (data.value));
   }
 
+  useEffect(() => {
+    if(contextData.AddSectionName==="LanguageOuterSection"){
+      localStorage.setItem ('Language', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+
   return (
     <div>
       <div

@@ -1,52 +1,18 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Context} from '../../Context/Context';
 import MyTimeInnerSection from './MyTimeInnerSection';
-import {Rings} from 'react-loader-spinner';
 import InputField from '../../InputField';
-import {Plus, Delete, Template} from '../../JasonData';
+import {Delete, Template} from '../../JasonData';
 export default function MyTimeOuterSection (props) {
   const contextData = useContext (Context);
   const [HighLighter, setHighLighter] = useState (false);
-  const [array, setState] = useState ([
-    {
-      selected: false,
-      toggleSwitch: [
-        {name: 'Show UserName', selected: true},
-        {name: 'Show Icons', selected: true},
-      ],
-      value: {
-        title: '',
-        username: '',
-      },
-    },
-  ]);
-
   const [DisplayLoader, setDisplayLoader] = useState (false);
   const [ValueFindMeMeOnline, setValueFindMeMeOnline] = useState ('');
-
-  function GetItemFindMeOnline () {
-    let value = localStorage.getItem ('MyTime');
-    value = JSON.parse (value);
-    return value;
-  }
-
-  function handleInnerHight () {
-    let temp = GetItemFindMeOnline ();
-    if (temp === null || temp == undefined) {
-      temp = array;
-    }
-    temp.map ((item, index) => {
-      temp[index].selected = false;
-    });
-    setState ([...temp]);
-  }
+  const [ActiveBackGroundColor, setActiveBackGroundColor] = useState (false);
 
   function HandleCompleteBoarderSelected () {
     setHighLighter (true);
-    handleInnerHight ();
   }
-
-
 
   useEffect (() => {
     let value = localStorage.getItem ('HeadingValueMyTime');
@@ -63,17 +29,15 @@ export default function MyTimeOuterSection (props) {
     },
     [contextData.UpdateBachGroundHighLitter]
   );
-
   function alertUser () {
     setHighLighter (false);
-    handleInnerHight ();
+    setActiveBackGroundColor (false);
   }
-
   useEffect (
     () => {
       if (contextData.BackGroundHighLitter !== 'MyTime') {
         setHighLighter (false);
-        handleInnerHight ();
+        setActiveBackGroundColor (false);
       }
     },
     [contextData.BackGroundHighLitter]
@@ -112,9 +76,11 @@ export default function MyTimeOuterSection (props) {
           style={{position: 'relative'}}
         >
           {HighLighter &&
-            <div className="headingOptionBoxRight d-flex CommonCssClassAbsolutePosition"
-            style={{top:"-20px"}}> 
-              <div className="outerWrapperHeaderIcons" style={{padding:"8px"}}>
+            <div
+              className="headingOptionBoxRight d-flex CommonCssClassAbsolutePosition"
+              style={{top: '-20px'}}
+            >
+              <div className="outerWrapperHeaderIcons" style={{padding: '8px'}}>
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('MyTimeOuterSection');
@@ -125,9 +91,9 @@ export default function MyTimeOuterSection (props) {
               </div>
               <div
                 className="outerWrapperHeaderIcons"
-                style={{border: 'unset',padding:"8px"}}
-                onClick={()=>{
-                  props.HandleState(false)
+                style={{border: 'unset', padding: '8px'}}
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -148,36 +114,15 @@ export default function MyTimeOuterSection (props) {
             handleInputData={handleInputData}
           />
         </div>
-        {DisplayLoader
-          ? <div
-              className="d-flex justify-content-center align-items-center"
-              style={{
-                background: 'rgba(0, 0, 0, 0.712)',
-              }}
-            >
-              <Rings color="white" height={180} width={180} />
-            </div>
-          : <div>
-              {array &&
-                array.map ((item, index) => {
-                  let display_dashesLine = true;
-                  if (array.length - 1 === index) {
-                    display_dashesLine = false;
-                  }
-                  return (
-                    <div key={index}>
-                      <MyTimeInnerSection
-                        item={item}
-                        index={index}
-                        list={array}
-                        setList={setState}
-                        setHighLighter={setHighLighter}
-                        display_dashesLine={display_dashesLine}
-                      />
-                    </div>
-                  );
-                })}
-            </div>}
+        <div>
+          <div>
+            <MyTimeInnerSection
+              setHighLighter={setHighLighter}
+              ActiveBackGroundColor={ActiveBackGroundColor}
+              setActiveBackGroundColor={setActiveBackGroundColor}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

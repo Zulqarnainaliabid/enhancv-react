@@ -1,16 +1,35 @@
 import React, {useState, useContext} from 'react';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
-import TextareaAutosize from 'react-autosize-textarea';
+import Editor from 'react-medium-editor';
+require ('medium-editor/dist/css/medium-editor.css');
+require ('medium-editor/dist/css/themes/default.css');
+
 function SummaryInnerSection (props) {
+  function HandleEditorWidth () {
+    if (!props.Template) {
+      return '355px';
+    } else {
+      if (props.Sections !== null) {
+        for (let i = 0; i < props.Sections.Left.length; i++) {
+          if (props.Sections.Left[i] === 'Summary') {
+            return '179px';
+          }
+        }
+        for (let i = 0; i < props.Sections.Right.length; i++) {
+          if (props.Sections.Right[i] === 'Summary') {
+            return '114px';
+          }
+        }
+      }
+    }
+  }
   return (
     <div>
       <div>
         <div
           className="outerWrapperBox BorderRadius d-flex flex-column flex-wrap"
           style={{
-            backgroundColor: props.item.selected ? 'white' : '',
-            border: props.item.selected ? '1px solid #60d5ba' : '',
             alignItems: 'unset',
             position: 'relative',
           }}
@@ -19,12 +38,17 @@ function SummaryInnerSection (props) {
             <div style={{width: '100%'}} className="d-flex flex-column">
               <div
                 className={`${props.list[props.index].toggleSwitch[0].selected ? 'summary' : ''}`}
+                style={{width: HandleEditorWidth ()}}
               >
-                <TextareaAutosize
+                <Editor
                   className="InputFieldBachUpCv"
-                  placeHolder="What's the one thing you want someone to remember after reading your resume?"
-                  draggable="false"
-                  value={props.list[props.index].title}
+                  options={{
+                    placeholder: {
+                      text: "What's the one thing you want someone to remember after reading your resume?",
+                      hideOnClick: true,
+                    },
+                  }}
+                  text={props.list[props.index].title}
                 />
               </div>
             </div>

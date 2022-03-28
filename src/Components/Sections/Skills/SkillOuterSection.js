@@ -151,6 +151,13 @@ export default function SkillsOuterSection (props) {
     localStorage.setItem ('HeadingValueSkills', JSON.stringify (data.value));
   }
 
+  useEffect(() => {
+    if(contextData.AddSectionName==="SkillsOuterSection"){
+      localStorage.setItem ('Skills', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+
   return (
     <div>
       <div

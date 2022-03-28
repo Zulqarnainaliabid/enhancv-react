@@ -304,6 +304,14 @@ export default function ProjectsOuterSection (props) {
     );
   }
 
+
+  useEffect(() => {
+    if(contextData.AddSectionName==="ProjectsOuterSection"){
+      localStorage.setItem ('Projects', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+
   return (
     <div>
       <div

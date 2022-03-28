@@ -299,6 +299,14 @@ export default function EducationOuterSection (props) {
     localStorage.setItem ('HeadingValueEducation', JSON.stringify (data.value));
   }
 
+
+  useEffect(() => {
+    if(contextData.AddSectionName==="EducationOuterSection"){
+      localStorage.setItem ('Education', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+
   return (
     <div>
       <div

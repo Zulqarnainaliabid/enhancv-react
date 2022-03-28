@@ -31,13 +31,15 @@ export const ContextProvider = ({children}) => {
   );
   const [RemoveSectionInArray, setRemoveSectionInArray] = useState (null);
   const [UpdateIndexes, setUpdateIndexes] = useState (false);
+  const [AddSectionName, setAddSectionName] = useState(null)
+  const [UpdateBackUpCv, setUpdateBackUpCv] = useState(null)
 
   function HandleBackGroundColorOfModal (toggle) {
     setBackgroundColorOfModal (toggle);
   }
 
   function HandleUpdateUserImage (image) {
-    setUserEmptyImage (image);
+    setUserEmptyImage (image); 
     localStorage.setItem ('UserImage', JSON.stringify (image));
   }
   function HandleDisplaySettings (Toggle) {
@@ -62,7 +64,19 @@ export const ContextProvider = ({children}) => {
     setToggleModalCssClass (toggleCssClass);
   }
 
+  useEffect(() => {
+    let Template = localStorage.getItem ('Template');
+    Template = JSON.parse (Template);
+    if (Template) {
+      HandleToggleTemplate(Template)
+    }else{
+      HandleToggleTemplate(false)
+    }
+  }, [])
+  
+
   function HandleToggleTemplate (toggleTemplate) {
+    localStorage.setItem ('Template', JSON.stringify (toggleTemplate));
     setToggleTemplate (toggleTemplate);
   }
 
@@ -147,6 +161,14 @@ export const ContextProvider = ({children}) => {
     setUpdateIndexes (!UpdateIndexes);
   }
 
+  function HandleAddSectionName(name){
+    setAddSectionName(name)
+  }
+
+  function HandleUpdateBackUpCv(Toggle){
+    setUpdateBackUpCv(Toggle)
+  }
+
   return (
     <Context.Provider
       value={{
@@ -192,6 +214,10 @@ export const ContextProvider = ({children}) => {
         RemoveSectionInArray,
         HandleUpdateIndexes,
         UpdateIndexes,
+        HandleAddSectionName,
+        AddSectionName,
+        UpdateBackUpCv,
+        HandleUpdateBackUpCv,
       }}
     >
       {children}

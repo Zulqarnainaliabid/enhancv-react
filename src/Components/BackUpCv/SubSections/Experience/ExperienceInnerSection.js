@@ -3,6 +3,9 @@ import {Date, Location, LinkHeader} from '../../../JasonData';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
 import TextareaAutosize from 'react-autosize-textarea';
+import Editor from 'react-medium-editor';
+require ('medium-editor/dist/css/medium-editor.css');
+require ('medium-editor/dist/css/themes/default.css');
 function ExperienceInnerSection (props) {
   const Minus = () => {
     if (
@@ -48,6 +51,26 @@ function ExperienceInnerSection (props) {
       return <div />;
     }
   };
+
+  function HandleEditorWidth () {
+    if (!props.Template) {
+      return '355px';
+    } else {
+      if (props.Sections !== null) {
+        for (let i = 0; i < props.Sections.Left.length; i++) {
+          if (props.Sections.Left[i] === 'Experience') {
+            return '179px';
+          }
+        }
+        for (let i = 0; i < props.Sections.Right.length; i++) {
+          if (props.Sections.Right[i] === 'Experience') {
+            return '114px';
+          }
+        }
+      }
+    }
+  }
+
   return (
     <div>
       <div
@@ -60,8 +83,6 @@ function ExperienceInnerSection (props) {
         <div
           className="outerWrapperBox BorderRadius d-flex flex-column flex-wrap"
           style={{
-            backgroundColor: props.item.selected ? 'white' : '',
-            border: props.item.selected ? '1px solid #60d5ba' : '',
             alignItems: 'unset',
             position: 'relative',
           }}
@@ -71,14 +92,14 @@ function ExperienceInnerSection (props) {
               {props.list[props.index].toggleSwitch[0].selected &&
                 <TextareaAutosize
                   className="InputFieldBachUpCv"
-                  placeHolder="Title"
+                  placeholder="Title"
                   draggable="false"
                   value={props.list[props.index].value.title}
                 />}
               {props.list[props.index].toggleSwitch[1].selected &&
                 <TextareaAutosize
-                  className="InputFieldBachUpCv"
-                  placeHolder="Company Name"
+                  className={`InputFieldBachUpCv ${props.Colors}`}
+                  placeholder="Company Name"
                   draggable="false"
                   value={props.list[props.index].value.companyName}
                 />}
@@ -89,7 +110,7 @@ function ExperienceInnerSection (props) {
                     style={{gap: '5px'}}
                   >
                     <Date className="IconsFontSize12" />
-                    {ShowDatePeriod () && <p>Date Period</p>}
+                    {ShowDatePeriod () && <p className='InputFieldBachUpCv'>Date Period</p>}
                     <div className="d-flex TextHolderSectionLocationAndTime">
                       <div>{props.list[props.index].date.monthFrom}</div>
                       {SlashFrom ()}
@@ -114,7 +135,7 @@ function ExperienceInnerSection (props) {
                     <Location className="IconsFontSize12" />
                     <TextareaAutosize
                       className="InputFieldBachUpCv"
-                      placeHolder="Location"
+                      placeholder="Location"
                       draggable="false"
                       value={props.list[props.index].value.location}
                     />
@@ -128,7 +149,7 @@ function ExperienceInnerSection (props) {
                   <LinkHeader className="IconsFontSize12" />
                   <TextareaAutosize
                     className="InputFieldBachUpCv"
-                    placeHolder="URL"
+                    placeholder="URL"
                     draggable="false"
                     value={props.list[props.index].value.url}
                   />
@@ -136,7 +157,7 @@ function ExperienceInnerSection (props) {
               {props.list[props.index].toggleSwitch[2].selected &&
                 <TextareaAutosize
                   className="InputFieldBachUpCv"
-                  placeHolder="Company Description"
+                  placeholder="Company Description"
                   draggable="false"
                   value={props.list[props.index].value.companyDescription}
                 />}
@@ -144,12 +165,20 @@ function ExperienceInnerSection (props) {
           </div>
           {props.list[props.index].toggleSwitch[3].selected &&
             <div style={{marginLeft: '13px'}}>
-              <div className="summary">
-                <TextareaAutosize
+              <div
+                className="summary"
+                style={{width: HandleEditorWidth ()}}
+              >
+
+                <Editor
                   className="InputFieldBachUpCv"
-                  placeHolder="What did you achieve in this role?"
-                  draggable="false"
-                  value={props.list[props.index].value.bullets}
+                  options={{
+                    placeholder: {
+                      text: 'What did you achieve in this role?',
+                      hideOnClick: true,
+                    },
+                  }}
+                  text={props.list[props.index].value.bullets}
                 />
               </div>
             </div>}

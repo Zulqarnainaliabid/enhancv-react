@@ -308,6 +308,13 @@ export default function ExperienceOuterSection (props) {
     );
   }
 
+  useEffect(() => {
+    if(contextData.AddSectionName==="ExperienceOuterSection"){
+      localStorage.setItem ('Experience', JSON.stringify (array));
+      contextData.HandleAddSectionName(null)
+    }
+  }, [contextData.AddSectionName])
+
   return (
     <div>
       <div
