@@ -1,20 +1,22 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Context} from './Context/Context';
-import SectionImg1 from './SectionImages/section1.PNG';
-import SectionImg2 from './SectionImages/section2.PNG';
-import SectionImg3 from './SectionImages/section3.PNG';
-import SectionImg4 from './SectionImages/section4.PNG';
-import SectionImg5 from './SectionImages/section5.PNG';
-import SectionImg6 from './SectionImages/section6.PNG';
-import SectionImg7 from './SectionImages/section7.PNG';
-import SectionImg8 from './SectionImages/section8.PNG';
-import SectionImg9 from './SectionImages/section9.PNG';
-import SectionImg10 from './SectionImages/section10.PNG';
-import SectionImg11 from './SectionImages/section11.PNG';
-import SectionImg12 from './SectionImages/section12.PNG';
-import SectionImg13 from './SectionImages/Section13.PNG';
-import SectionImg14 from './SectionImages/Section14.PNG';
-import {MdKeyboardArrowDown} from 'react-icons/md';
+
+import Achievements from './SectionImages/Achievements.png';
+import Education from './SectionImages/Education.png';
+import Experience from './SectionImages/Experience.png';
+import findme from './SectionImages/findme.png';
+import language from './SectionImages/language.png';
+import passion from './SectionImages/passion.png';
+import project from './SectionImages/project.png';
+import skill from './SectionImages/skill.png';
+import strength from './SectionImages/strength.png';
+import summary from './SectionImages/summary.png';
+import time from './SectionImages/time.png';
+import training from './SectionImages/training.png';
+import volunteering from './SectionImages/volunteering.png';
+import industry from './SectionImages/industry.png';
+
+import {MdHeight, MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
 export function Section2ndBox (props) {
   function HandleRemoveSubSection () {
@@ -63,6 +65,9 @@ export function Section2ndBox (props) {
 }
 
 export function SectionBox (props) {
+
+  console.log ('helo12', props.item.imag);
+
   const contextData = useContext (Context);
   function HandlePopEvent () {
     let temp = props.ArrayUper;
@@ -84,7 +89,9 @@ export function SectionBox (props) {
           props.setArrayUper ([...temp]);
         }}
       >
-        <img src={props.item.imag} />
+        <div style={{width: '282px'}}>
+          <img src={props.item.imag} style={{width: '100%',height:"100%"}} alt="Logo" />
+        </div>
         {props.item.Hover &&
           <div
             key={props.item}
@@ -107,7 +114,7 @@ export function SectionBox (props) {
                 props.SetToggleAddnewSection (false);
                 HandlePopEvent ();
                 console.log ('ji', props.item.name);
-                contextData.HandleAddSectionName(props.item.name)
+                contextData.HandleAddSectionName (props.item.name);
                 contextData.handleAddSection (props.item.name);
               }}
             >
@@ -121,106 +128,108 @@ export function SectionBox (props) {
 
 export default function AddSection (props) {
   const contextData = useContext (Context);
+
   let data = [
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg1,
+      imag: Achievements,
       name: 'AchievementsOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg2,
+      imag: skill,
       name: 'SkillsOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg3,
+      imag: project,
       name: 'ProjectsOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg4,
+      imag: training,
       name: 'TrainingOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg5,
+      imag: time,
       name: 'MyTimeOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg6,
+      imag: language,
       name: 'LanguageOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg7,
+      imag: passion,
       name: 'PassionOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg8,
+      imag: industry,
       name: 'IndustryExperienceOuterSection',
     },
     {
       labelLowerArray: 'Remove  section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg9,
+      imag: findme,
       name: 'FindMeOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg10,
+      imag: summary,
       name: 'SummaryOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg11,
+      imag: strength,
       name: 'StrengthOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg12,
+      imag: volunteering,
       name: 'VolunteeringOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg13,
+      imag: Experience,
       name: 'ExperienceOuterSection',
     },
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
-      imag: SectionImg14,
+      imag: Education,
       name: 'EducationOuterSection',
     },
   ];
+
   const [ArrayUper, setArrayUper] = useState (data);
   const [ArrayLower, setArrayLower] = useState ([]);
   const [ShowText, setShowText] = useState ('Show Used Sections');

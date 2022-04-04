@@ -1,6 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react';
 import UserImg from '../Images/UserEmptyImage.PNG';
-import background from '../Images/BackImg0.png';
+import background from '../Images/BackImg0.jpg';
 export const Context = createContext ();
 export const ContextProvider = ({children}) => {
   const [BackgroundColorOfModal, setBackgroundColorOfModal] = useState (false);

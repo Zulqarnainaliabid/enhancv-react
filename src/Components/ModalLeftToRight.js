@@ -5,32 +5,14 @@ import {fadeInRight} from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import {RiCloseFill} from 'react-icons/ri';
 import {Context} from './Context/Context';
-import BackImg0 from './Images/BackImg0.png';
-import BackImg1 from './Images/BackImg1.jpg';
+import BackImg0 from './Images/BackImg0.jpg';
 import BackImg2 from './Images/BackImg2.jpg';
 import BackImg3 from './Images/BackImg3.jpg';
-import BackImg4 from './Images/BackImg4.png';
-import BackImg5 from './Images/BackImg5.png';
-import BackImg6 from './Images/BackImg6.png';
-import BackImg7 from './Images/BackImg7.png';
-import BackImg8 from './Images/BackImg8.png';
-import BackImg9 from './Images/BackImg9.png';
-import BackImg10 from './Images/BackImg10.png';
-import BackImg11 from './Images/BackImg11.png';
 function ModalLeftToRight (props) {
   const [ImgSource, setImgSource] = useState ([
     BackImg0,
-    BackImg1,
     BackImg2,
     BackImg3,
-    BackImg4,
-    BackImg5,
-    BackImg6,
-    BackImg7,
-    BackImg8,
-    BackImg9,
-    BackImg10,
-    BackImg11,
   ]);
   const contextData = useContext (Context);
 

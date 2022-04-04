@@ -74,7 +74,7 @@ function LandingPage (props) {
           <Container>
             <Row md={4} className="justify-content-center">
               <Col className="LandingPageMainHeading w-100 CommonCssClassWhiteColor align-items-center text-center">
-                Welcome to ZQ CV Builder gh
+                Welcome to Perfect CV Builder
               </Col>
             </Row>
             <Row className="justify-content-center mt-3">

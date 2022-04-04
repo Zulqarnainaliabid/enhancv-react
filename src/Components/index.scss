@@ -818,31 +818,27 @@ input {
     font-weight: 600;
 }
 .HoverImage1 {
-    /* border: 1px solid; */
     position: absolute;
     top: 0;
     left: 9px;
     right: 10px;
+    bottom: 0px;
     background-color: rgba(0, 0, 0, 0.493);
-    bottom: 39px;
-    transition: all 0.5s ease ease-out;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .AddtoResume {
     text-align: center;
     color: #fff;
     background-color: #8c7cdb;
     border-color: transparent;
-    display: inline;
-    padding: 15px;
-    font-size: 18px;
+    padding: 8px;
+    font-size: 14px;
     cursor: pointer;
-    margin: 0px 6px 5px 6px;
-    position: absolute;
-    text-align: center;
-    top: 77px;
-    border-radius: 6px;
+    border-radius: 5px;
     font-weight: 700;
-    right: 66px;
 }
 .outerContainerSection {
     padding: 0px 30px 51px 30px;

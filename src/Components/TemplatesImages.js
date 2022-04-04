@@ -2,8 +2,10 @@ import React, {useContext} from 'react';
 import {Context} from './Context/Context';
 import {zoomIn} from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
+
 import SingleColumn from './Images/SingleColumn.jpg';
 import DoubleColumn from './Images/DoubleColumn.jpg';
+
 function TemplatesImages (props) {
   const contextData = useContext (Context);
   const styles = {

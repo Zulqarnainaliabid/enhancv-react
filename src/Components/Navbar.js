@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
-import logo from './Images/Logo.jpg';
+import logo from './Images/Logo.svg';
 import {Link} from 'react-router-dom';
 import {Context} from './Context/Context';
 export default function Navbar (props) {
