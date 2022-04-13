@@ -207,10 +207,12 @@ function CoverLetter (props) {
           classNames="alert"
           unmountOnExit
         >
+          <div className='d-flex justify-content-center align-items-center'>
           <Modal
             contentDisplay={contextData.ToggleModal}
             otherClass={contextData.ToggleModalCssClass}
           />
+          </div>
         </CSSTransition>
       </div>
     );

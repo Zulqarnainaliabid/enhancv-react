@@ -52,7 +52,7 @@ function LandingPage (props) {
             classNames="alert"
             unmountOnExit
           >
-            <div>
+            <div className='d-flex justify-content-center align-items-center'>
               <Modal
                 contentDisplay={contextData.ToggleModal}
                 otherClass={contextData.ToggleModalCssClass}

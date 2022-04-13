@@ -17,7 +17,7 @@ const InputField = React.forwardRef ((props, ref) => {
 
   return (
     <TextareaAutosize
-      maxLength={props.maximumLength ? '3' : ''}
+      maxLength={props.maximumLength ? '4' : ''}
       ref={inputRef}
       style={{
         textTransform: props.UpperCaseHeaderInputField

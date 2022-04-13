@@ -13,6 +13,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {HandleUpdateCV, HandlePutCvBackUp} from './Services';
+import Footer from './Footer'
 export default function Resume (props) {
   const [state, setState] = useState (true);
   const contextData = useContext (Context);
@@ -105,7 +106,7 @@ export default function Resume (props) {
   let Resume = (
     <span>
       <ComponentToPrint text={text} ref={ref} HandleState={setState} />
-      <button onClick={() => childRef.current.getAlert ()}>Click</button>
+      {/* <button onClick={() => childRef.current.getAlert ()}>Click</button> */}
     </span>
   );
   return (
@@ -214,6 +215,9 @@ export default function Resume (props) {
             </SwitchTransition>
           </div>
         </div>
+      </div>
+      <div className='pb-4'>
+        <Footer/>
       </div>
     </div>
   );

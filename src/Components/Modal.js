@@ -56,7 +56,7 @@ function Modal (props) {
     }
   }, []);
 
-  return (
+  return ( 
     <div className={`outerWrapperModal ${props.otherClass}`}>
       <div className="outerWrapperCloseIconModal d-flex justify-content-between">
         <div className="PhotoLabelModal">

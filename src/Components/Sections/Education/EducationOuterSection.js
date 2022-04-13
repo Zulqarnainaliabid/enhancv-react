@@ -15,6 +15,8 @@ export default function EducationOuterSection (props) {
         {name: 'Show Location', selected: true},
         {name: 'Show Period', selected: true},
         {name: 'Show Bullets', selected: true},
+        {name: 'Marks In Percentage', selected: true},
+        {name: 'Marks', selected: true},
       ],
       value: {
         degree: '',
@@ -24,6 +26,9 @@ export default function EducationOuterSection (props) {
         gpa: '',
         gpaObtain: '',
         gpaTotal: '', 
+        percentage:'',
+        marksTotal:'',
+        marksObtain:'',
       },
       date: {
         monthFrom: '',
@@ -152,6 +157,8 @@ export default function EducationOuterSection (props) {
           {name: 'Show Location', selected: true},
           {name: 'Show Period', selected: true},
           {name: 'Show Bullets', selected: true},
+          {name: 'Marks In Percentage', selected: true},
+          {name: 'Marks', selected: true},
         ], 
         value: {
           degree: '',
@@ -161,6 +168,9 @@ export default function EducationOuterSection (props) {
           gpa: '',
           gpaObtain: '',
           gpaTotal: '',
+          percentage:'',
+          marksTotal:'',
+          marksObtain:'',
         },
         date: {
           monthFrom: '',

@@ -120,7 +120,14 @@ function EducationInnerSection (props) {
       temp[data.index].value.gpaTotal = data.value;
     } else if (data.name === 'gpaObtain') {
       temp[data.index].value.gpaObtain = data.value;
-    } 
+    } else if (data.name === 'gpaPercentage') {
+      temp[data.index].value.percentage = data.value;
+    } else if (data.name === 'marksTotal') {
+      temp[data.index].value.marksTotal = data.value;
+    } else if (data.name === 'marksObtain') {
+      temp[data.index].value.marksObtain = data.value;
+    }
+    
     props.setList ([...temp]);
     localStorage.setItem ('Education', JSON.stringify (temp));
   }
@@ -208,20 +215,20 @@ function EducationInnerSection (props) {
     }
   };
 
-  function HandleEditorWidth(){
-    if(!contextData.ToggleTemplate){
-      return "694px"
-    }else {
+  function HandleEditorWidth () {
+    if (!contextData.ToggleTemplate) {
+      return '694px';
+    } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
-      if(value!==null){
-        for(let i=0; i<value.Left.length; i++){
-          if(value.Left[i]==="Education"){
+      if (value !== null) {
+        for (let i = 0; i < value.Left.length; i++) {
+          if (value.Left[i] === 'Education') {
             return '200px';
           }
-        } 
-        for(let i=0; i<value.Right.length; i++){
-          if(value.Right[i]==="Education"){
+        }
+        for (let i = 0; i < value.Right.length; i++) {
+          if (value.Right[i] === 'Education') {
             return '193px';
           }
         }
@@ -230,7 +237,7 @@ function EducationInnerSection (props) {
   }
 
   return (
-    <div> 
+    <div>
       {ShowDate &&
         <div
           onClick={() => {
@@ -358,7 +365,7 @@ function EducationInnerSection (props) {
               HandleMonthOngoing={HandleMonthOngoing}
               handleYearOngoing={handleYearOngoing}
               HandleOngoing={HandleOngoing}
-              localStorageSection={"Education"}
+              localStorageSection={'Education'}
             />
           </div>}
       </div>
@@ -377,12 +384,12 @@ function EducationInnerSection (props) {
             <div>
               <div style={{position: 'relative', display: 'flex'}}>
                 <div
-                  style={{width:HandleEditorWidth()}}
+                  style={{width: HandleEditorWidth ()}}
                   className="d-flex flex-column"
                   onClick={() => {
                     handleCloseToggleSwitch ();
                   }}
-                > 
+                >
                   <InputField
                     placeHolder={'Degree and Field of Study'}
                     otherStyle={'TextHolderSectionOuterHeader'}
@@ -416,7 +423,7 @@ function EducationInnerSection (props) {
                           setShowDate (!ShowDate);
                         }}
                       >
-                        <Date  className='IconsFontSize12'/>
+                        <Date className="IconsFontSize12" />
                         {ShowDatePeriod () && <p>Date Period</p>}
                         <div className="d-flex TextHolderSectionLocationAndTime">
                           <div>{props.list[props.index].date.monthFrom}</div>
@@ -439,7 +446,7 @@ function EducationInnerSection (props) {
                       </div>}
                     {props.list[props.index].toggleSwitch[1].selected &&
                       <div className="d-flex align-items-center">
-                        <Location  className='IconsFontSize12'/>
+                        <Location className="IconsFontSize12" />
                         <InputField
                           placeHolder={'Location'}
                           otherStyle={'TextHolderSectionLocationAndTime'}
@@ -465,55 +472,110 @@ function EducationInnerSection (props) {
                       name={'bullets'}
                       handleInputData={handleInputData}
                       widthEducation={true}
-                      EditorWidth={HandleEditorWidth()}
+                      EditorWidth={HandleEditorWidth ()}
                     />
                   </div>
                 </div>}
               {props.display_dashesLine &&
                 <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
             </div>
+
             {props.list[props.index].toggleSwitch[0].selected &&
               <div className="d-flex align-items-center">
-                <div
+                {props.list[props.index].toggleSwitch[5].selected
+                  ? <div
+                      className=" text-center d-flex flex-column ps-3"
+                      style={{borderLeft: '1px solid ', gap: '5px'}}
+                    >
+                      {props.list[props.index].toggleSwitch[4].selected
+                        ? <InputField
+                            placeHolder={'GPA'}
+                            otherStyle={'TextHolderSectionsTitle'}
+                            value={props.list[props.index].value.gpa}
+                            index={props.index}
+                            name={'gpa'}
+                            handleInputData={handleInputData}
+                            CursorCenter={true}
+                            UpperCaseHeaderInputField={true}
+                          />
+                        : <p className="TextHolderSectionSubHeader">
+                            Percentage
+                          </p>}
+                      {props.list[props.index].toggleSwitch[4].selected
+                        ? <div
+                            className="d-flex justify-content-center"
+                            style={{gap: '5px'}}
+                          >
+                            <InputField
+                              placeHolder={'4.0'}
+                              otherStyle={'TextHolderSectionsTitle'}
+                              value={props.list[props.index].value.gpaTotal}
+                              index={props.index}
+                              name={'gpaTotal'}
+                              handleInputData={handleInputData}
+                              maximumLength={true}
+                              selectedColor={true}
+                            />
+                            <p>/</p>
+
+                            <InputField
+                              placeHolder={'4.1'}
+                              otherStyle={'TextHolderSectionsTitle'}
+                              value={props.list[props.index].value.gpaObtain}
+                              index={props.index}
+                              name={'gpaObtain'}
+                              handleInputData={handleInputData}
+                              maximumLength={true}
+                            />
+                          </div>
+                        : <div className="d-flex">
+
+                            <InputField
+                              placeHolder={'%'}
+                              otherStyle={'TextHolderSectionsTitle'}
+                              value={props.list[props.index].value.percentage}
+                              index={props.index}
+                              name={'gpaPercentage'}
+                              handleInputData={handleInputData}
+                              selectedColor={true}
+                              CursorCenter={true}
+                            />
+
+                          </div>}
+                    </div>
+                  : <div 
                   className=" text-center d-flex flex-column ps-3"
-                  style={{borderLeft: '1px solid ', gap: '5px'}}
-                >
-                  <InputField
-                    placeHolder={'GPA'}
-                    otherStyle={'TextHolderSectionsTitle'}
-                    value={props.list[props.index].value.gpa}
-                    index={props.index}
-                    name={'gpa'}
-                    handleInputData={handleInputData}
-                    CursorCenter={true}
-                    UpperCaseHeaderInputField={true}
-                  />
-                  <div
-                    className="d-flex justify-content-center"
-                    style={{gap: '5px'}}
-                  >
-                    <InputField
-                      placeHolder={'4.0'}
-                      otherStyle={'TextHolderSectionsTitle'}
-                      value={props.list[props.index].value.gpaTotal}
-                      index={props.index}
-                      name={'gpaTotal'}
-                      handleInputData={handleInputData}
-                      maximumLength={true}
-                      selectedColor={true}
-                    />
-                    <p>/</p>
-                    <InputField
-                      placeHolder={'4.1'}
-                      otherStyle={'TextHolderSectionsTitle'}
-                      value={props.list[props.index].value.gpaObtain}
-                      index={props.index}
-                      name={'gpaObtain'}
-                      handleInputData={handleInputData}
-                      maximumLength={true}
-                    />
-                  </div>
-                </div>
+                  style={{borderLeft: '1px solid ', gap: '5px'}}>
+                      <p className="TextHolderSectionSubHeader">
+                        Marks
+                      </p>
+                      <div
+                        className="d-flex justify-content-center"
+                        style={{gap: '5px'}}
+                      >
+                        <InputField
+                          placeHolder={'1100'}
+                          otherStyle={'TextHolderSectionsTitle'}
+                          value={props.list[props.index].value.marksTotal}
+                          index={props.index}
+                          name={'marksTotal'}
+                          handleInputData={handleInputData}
+                          maximumLength={true}
+                          selectedColor={true}
+                        />
+                        <p>/</p>
+                        <InputField
+                          placeHolder={'1100'}
+                          otherStyle={'TextHolderSectionsTitle'}
+                          value={props.list[props.index].value.marksObtain}
+                          index={props.index}
+                          name={'marksObtain'}
+                          handleInputData={handleInputData}
+                          maximumLength={true}
+                        />
+                      </div>
+                    </div>}
+
               </div>}
           </div>
         </div>
