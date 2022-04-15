@@ -1,1 +1,1 @@
-export let BaseURL = 'https://perfactcv.azurewebsites.net';
+export let BaseURL = 'Http://168.119.99.69:8090';
