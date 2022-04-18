@@ -44,7 +44,7 @@ export function Section2ndBox (props) {
           props.setArrayLower ([...temp]);
         }}
       >
-        <img src={props.item.imag} />
+          <img src={props.item.imag} />
         {props.item.Hover &&
           <div
             onMouseLeave={() => {
@@ -57,6 +57,7 @@ export function Section2ndBox (props) {
           >
             <div className="RemoveSection" onClick={HandleRemoveSubSection}>
               {props.item.labelLowerArray}
+          
             </div>
           </div>}
       </div>
@@ -90,7 +91,8 @@ export function SectionBox (props) {
         }}
       >
         <div style={{width: '282px'}}>
-          <img src={props.item.imag} style={{width: '100%',height:"100%"}} alt="Logo" />
+          <img src={props.item.imag} style={{width: '100%',height:"130px"}} alt="Logo" />
+          <p className='text-center' style={{fontSize:"18px",fontWeight:"bolder"}}>{props.item.labelName}</p>
         </div>
         {props.item.Hover &&
           <div
@@ -136,6 +138,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: Achievements,
       name: 'AchievementsOuterSection',
+      labelName:"Achievements",
     },
     {
       labelLowerArray: 'Remove section',
@@ -143,6 +146,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: skill,
       name: 'SkillsOuterSection',
+      labelName:"skill",
     },
     {
       labelLowerArray: 'Remove section',
@@ -150,6 +154,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: project,
       name: 'ProjectsOuterSection',
+      labelName:"Project",
     },
     {
       labelLowerArray: 'Remove section',
@@ -157,6 +162,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: training,
       name: 'TrainingOuterSection',
+      labelName:"Training",
     },
     {
       labelLowerArray: 'Remove section',
@@ -164,6 +170,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: time,
       name: 'MyTimeOuterSection',
+      labelName:"My Time",
     },
     {
       labelLowerArray: 'Remove section',
@@ -171,6 +178,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: language,
       name: 'LanguageOuterSection',
+      labelName:"Language",
     },
     {
       labelLowerArray: 'Remove section',
@@ -178,6 +186,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: passion,
       name: 'PassionOuterSection',
+      labelName:"Passion",
     },
     {
       labelLowerArray: 'Remove section',
@@ -185,6 +194,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: industry,
       name: 'IndustryExperienceOuterSection',
+      labelName:"Industry",
     },
     {
       labelLowerArray: 'Remove  section',
@@ -192,6 +202,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: findme,
       name: 'FindMeOuterSection',
+      labelName:"FindMe",
     },
     {
       labelLowerArray: 'Remove section',
@@ -199,6 +210,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: summary,
       name: 'SummaryOuterSection',
+      labelName:"Summary",
     },
     {
       labelLowerArray: 'Remove section',
@@ -206,6 +218,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: strength,
       name: 'StrengthOuterSection',
+      labelName:"Strength",
     },
     {
       labelLowerArray: 'Remove section',
@@ -213,13 +226,16 @@ export default function AddSection (props) {
       Hover: false,
       imag: volunteering,
       name: 'VolunteeringOuterSection',
+      labelName:"Volunteering",
     },
+
     {
       labelLowerArray: 'Remove section',
       label: 'Add to resume',
       Hover: false,
       imag: Experience,
       name: 'ExperienceOuterSection',
+      labelName:"Experience",
     },
     {
       labelLowerArray: 'Remove section',
@@ -227,6 +243,7 @@ export default function AddSection (props) {
       Hover: false,
       imag: Education,
       name: 'EducationOuterSection',
+      labelName:"Education",
     },
   ];
 
@@ -268,7 +285,7 @@ export default function AddSection (props) {
           Click on a section to add it to your resume
         </div>
         <div className="outerWraperSection">
-          <div className="d-flex flex-wrap justify-content-center">
+          <div className="d-flex flex-wrap justify-content-center" style={{gap:"25px"}}>
             {ArrayUper.map ((item, index) => {
               return (
                 <SectionBox
