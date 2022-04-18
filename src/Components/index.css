@@ -1,46 +1,1621 @@
-
-
-/* .rangeslider-horizontal .rangeslider__fill {
-    height: 100%;
-    background-color: red !important;
-    border-radius: 10px;
-    top: 0;
-} */
-
-.Dark .rangeslider__fill{
-    background-color: #686868 !important;
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: opacity 1.3s;
+  transition: opacity 1.3s;
 }
 
-.Blue .rangeslider__fill{
-    background-color: #008cff !important;
+p {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0rem !important;
 }
 
-.Green .rangeslider__fill{
-    background-color: #00b400 !important;
+.OuterContainer {
+  position: relative;
 }
 
-.Red .rangeslider__fill{
-    background-color: #ff0001 !important;
+.BottomPageCurve {
+  position: absolute;
+  margin-top: -41px;
 }
 
-.rangeslider-horizontal {
-    height: 12px;
-    border-radius: 10px;
-}
-.rangeslider,
-.rangeslider .rangeslider__fill {
-    display: block;
-    box-shadow: unset;
+.BottomPageCurveCoverLetter {
+  position: absolute;
+  bottom: 78px;
+  left: 202px;
+  z-index: 0;
 }
 
-.rangeslider {
-    margin: 5px 0;
-    position: relative;
-    background: black;
-    touch-action: none;
-    cursor: pointer;
+.darkColor {
+  color: #686868 !important;
 }
-.rangeslider-horizontal .rangeslider__handle {
-    display: none;
-    color: #9b9b9b;
+
+.darkColor::-webkit-input-placeholder {
+  color: #6868688a !important;
 }
+
+.darkColor:-ms-input-placeholder {
+  color: #6868688a !important;
+}
+
+.darkColor::-ms-input-placeholder {
+  color: #6868688a !important;
+}
+
+.darkColor::placeholder {
+  color: #6868688a !important;
+}
+
+.blueColor {
+  color: #008cff !important;
+}
+
+.blueColor::-webkit-input-placeholder {
+  color: #008cffb0 !important;
+}
+
+.blueColor:-ms-input-placeholder {
+  color: #008cffb0 !important;
+}
+
+.blueColor::-ms-input-placeholder {
+  color: #008cffb0 !important;
+}
+
+.blueColor::placeholder {
+  color: #008cffb0 !important;
+}
+
+.redColor {
+  color: #ff0001 !important;
+}
+
+.redColor::-webkit-input-placeholder {
+  color: #ff8080 !important;
+}
+
+.redColor:-ms-input-placeholder {
+  color: #ff8080 !important;
+}
+
+.redColor::-ms-input-placeholder {
+  color: #ff8080 !important;
+}
+
+.redColor::placeholder {
+  color: #ff8080 !important;
+}
+
+.greenColor {
+  color: #00b400 !important;
+}
+
+.greenColor::-webkit-input-placeholder {
+  color: #80da80 !important;
+}
+
+.greenColor:-ms-input-placeholder {
+  color: #80da80 !important;
+}
+
+.greenColor::-ms-input-placeholder {
+  color: #80da80 !important;
+}
+
+.greenColor::placeholder {
+  color: #80da80 !important;
+}
+
+.CommonCssClassWhiteColor {
+  color: white !important;
+}
+
+.CommonCssClassAbsolutePosition {
+  position: absolute;
+}
+
+.CommonCssClassCursorPointer {
+  cursor: pointer;
+}
+
+.BorderRadius {
+  border-radius: 4px;
+}
+
+.fontSize14 {
+  font-size: 14px;
+}
+
+.IconsFontSize12 {
+  font-size: 12px;
+  color: #384347;
+}
+
+.FontWeight {
+  font-weight: 700;
+}
+
+.LeftRightTopBottomZero {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.outerContainerResume {
+  background-color: white;
+  color: black;
+  min-height: 770px;
+  width: 940px;
+  padding: 50px;
+  position: relative;
+  z-index: 3;
+  -webkit-box-shadow: 0 0 2px 0 #d4d4d4;
+          box-shadow: 0 0 2px 0 #d4d4d4;
+}
+
+.outerWrapperOfBox {
+  z-index: 4;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+}
+
+.HoverBackgroundColor {
+  z-index: -1;
+}
+
+.outerWrapperOfBox:hover {
+  border: 1px solid #60d5ba;
+}
+
+.textarea {
+  border: none;
+  resize: none;
+  overflow: hidden;
+  width: 100%;
+  font-weight: 700;
+  background-color: transparent;
+}
+
+.textareaHeaderTitle {
+  font-size: 42px;
+  line-height: 50px;
+  color: black;
+}
+
+.textareaHeaderSubTitle {
+  font-size: 21px;
+  line-height: 25px;
+  color: #686868;
+  margin-top: -12px;
+}
+
+.HeaderIcons {
+  color: #686868;
+  font-size: 14px;
+}
+
+.textareaHeaderLinksTitle {
+  font-size: 13px;
+  line-height: 16px;
+  color: #384347;
+  font-weight: 500;
+}
+
+.textareaHeaderLinksTitle::-webkit-input-placeholder {
+  color: #9ca1a3;
+}
+
+.textareaHeaderLinksTitle:-ms-input-placeholder {
+  color: #9ca1a3;
+}
+
+.textareaHeaderLinksTitle::-ms-input-placeholder {
+  color: #9ca1a3;
+}
+
+.textareaHeaderLinksTitle::placeholder {
+  color: #9ca1a3;
+}
+
+.textareaHeaderSubTitle::-webkit-input-placeholder {
+  color: #b4b4b4;
+}
+
+.textareaHeaderSubTitle:-ms-input-placeholder {
+  color: #b4b4b4;
+}
+
+.textareaHeaderSubTitle::-ms-input-placeholder {
+  color: #b4b4b4;
+}
+
+.textareaHeaderSubTitle::placeholder {
+  color: #b4b4b4;
+}
+
+.textareaHeaderTitle::-webkit-input-placeholder {
+  color: #808080;
+}
+
+.textareaHeaderTitle:-ms-input-placeholder {
+  color: #808080;
+}
+
+.textareaHeaderTitle::-ms-input-placeholder {
+  color: #808080;
+}
+
+.textareaHeaderTitle::placeholder {
+  color: #808080;
+}
+
+.OpacityInPlaceHolder::-webkit-input-placeholder {
+  opacity: 0.5;
+}
+
+.OpacityInPlaceHolder:-ms-input-placeholder {
+  opacity: 0.5;
+}
+
+.OpacityInPlaceHolder::-ms-input-placeholder {
+  opacity: 0.5;
+}
+
+.OpacityInPlaceHolder::placeholder {
+  opacity: 0.5;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.OuterWrapperInputFieldHeader {
+  width: 100%;
+}
+
+.outerWrapperUserImgHover {
+  -webkit-transition: all 1.3s ease !important;
+  transition: all 1.3s ease !important;
+}
+
+.outerWrapperUserImgHover:hover {
+  background-color: rgba(0, 0, 0, 0.568);
+}
+
+.UploadIconUserImg:hover {
+  background-color: #038162;
+}
+
+.CommonCssClassUploadIconAndEyeIcon {
+  font-size: 35px;
+  padding: 7px;
+}
+
+.UploadIconUserImg {
+  margin: 0px 5px 0 0;
+  background-color: #00c091;
+}
+
+.EyeIconUserImg {
+  margin: 0px 0px 0px 6px;
+  background-color: #ff576f;
+}
+
+.EyeIconUserImg:hover {
+  background-color: #92051a;
+}
+
+.outerWrapperModal {
+  padding: 0px 36px 0px 36px;
+  border-radius: 10px;
+  background-color: white;
+  z-index: 9;
+  position: fixed;
+  top: 45px;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+.outerWrapperModalImagePicker {
+  width: 32%;
+  left: 35%;
+  top: 67px;
+}
+
+.outerWrapperModalSignIn {
+  width: 33%;
+  left: 32%;
+  top: 65px;
+  padding-bottom: 30px;
+}
+
+.outerWrapperModalAddSections {
+  width: 1293px;
+}
+
+.facebookIconModal {
+  margin: 4px 0px 0px 8px;
+}
+
+.backGroundOfModal {
+  left: 0;
+  right: 0;
+  top: -80px;
+  bottom: 0;
+  z-index: 7;
+}
+
+.outerWrapperCloseIconModal {
+  margin: 20px 0 0 0;
+}
+
+.PhotoLabelModal {
+  color: #b2b4b6;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.closeModal {
+  font-size: 25px;
+  color: #b2b4b6;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.closeModal:hover {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: -webkit-transform 0.4s ease-in-out;
+  transition: -webkit-transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out, -webkit-transform 0.4s ease-in-out;
+}
+
+.UserImgHover {
+  z-index: 1;
+  text-align: center;
+  color: aliceblue;
+  border-radius: 96px;
+}
+
+.UserImgHover:hover {
+  background-color: rgba(0, 0, 0, 0.712);
+}
+
+.deleteIconUserImage {
+  padding: 10px;
+  font-size: 59px;
+  margin: 47px 0px 0px 0px;
+}
+
+.UserImg {
+  height: 140px;
+  width: 140px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.outerWrapperBackButtonsUserUploadPhoto {
+  margin: 19px 0 0 0;
+  gap: 18px;
+}
+
+.backButtonsUserUploadPhoto {
+  border: 1px solid #8c7cdb;
+  color: #8c7cdb;
+  font-size: 21px;
+  padding: 9px 25px 9px 25px;
+}
+
+.AcceptButtonsUserUploadPhoto {
+  font-size: 21px;
+  padding: 9px 25px 9px 25px;
+  background-color: #8c7cdb;
+}
+
+.outerWrapperTextLabelImportPhoto {
+  color: #b2b4b6;
+  font-size: 18px;
+  margin: 17px 0 10px 0;
+}
+
+.outerWrapperFromComputer {
+  border: 1px solid #8c7cdb;
+  font-size: 19px;
+  padding: 4px;
+  color: #8c7cdb;
+  width: 145px;
+}
+
+.outerWrapperOKButtonModal {
+  padding: 0px 35px 0px 35px;
+  background-color: #8c7cdb;
+}
+
+.outerWrapperOKButtonModal:hover {
+  background-color: #3a1bd6;
+  color: white;
+}
+
+.outerWrapperNotesLabelModal {
+  bottom: -93px;
+  left: 0;
+  z-index: 0;
+  background-color: #e6e6e6;
+  font-size: 17px;
+  line-height: 22px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 30px 40px 30px;
+  color: rgba(0, 0, 0, 0.527);
+}
+
+.SettingContainerInTopOfHeader {
+  background-color: white;
+  right: 48%;
+  padding: 11px;
+  top: 19px;
+  border-radius: 20px;
+  gap: 14px;
+}
+
+.IconsInTopOfHeader {
+  color: #384347;
+  font-size: 16px;
+  position: relative;
+}
+
+.IconsInTopOfHeader:hover {
+  color: #00c091;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+.alert-enter {
+  opacity: 0;
+  -webkit-transition: opacity 1300ms, -webkit-transform 300ms;
+  transition: opacity 1300ms, -webkit-transform 300ms;
+  transition: opacity 1300ms, transform 300ms;
+  transition: opacity 1300ms, transform 300ms, -webkit-transform 300ms;
+}
+
+.alert-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 1300ms, -webkit-transform 300ms;
+  transition: opacity 1300ms, -webkit-transform 300ms;
+  transition: opacity 1300ms, transform 300ms;
+  transition: opacity 1300ms, transform 300ms, -webkit-transform 300ms;
+}
+
+.alert-exit {
+  opacity: 1;
+}
+
+.alert-exit-active {
+  opacity: 0;
+  -webkit-transition: opacity 1300ms, -webkit-transform 300ms;
+  transition: opacity 1300ms, -webkit-transform 300ms;
+  transition: opacity 1300ms, transform 300ms;
+  transition: opacity 1300ms, transform 300ms, -webkit-transform 300ms;
+}
+
+.outerContainerRadioButtons {
+  border-top: 2px solid #eeeeee;
+  padding-top: 12px;
+  gap: 13px;
+  margin-top: 10px;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  border-radius: 50%;
+  outline: none;
+  background-color: #cccccc;
+}
+
+input[type="radio"]:hover {
+  color: #a0a0a0;
+}
+
+input[type="radio"]:before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+input[type="radio"]:checked {
+  border-color: #54caff;
+}
+
+input[type="radio"]:checked:before {
+  background: #00c091;
+}
+
+.LabelPhotoStyle {
+  color: #384347;
+  font-weight: 400;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+.LandingPageMainHeading {
+  font-size: 50px;
+  font-weight: bolder;
+  margin-top: 135px !important;
+}
+
+.outerRapperLandingPagerButtonCreateCV {
+  width: 200px;
+}
+
+.LandingPagerButtonCreateCV {
+  text-align: center;
+  font-size: 30px;
+  background-color: #00c091;
+  padding: 5px 10px;
+  width: 15% !important;
+  font-weight: 500;
+}
+
+.LandingPagerButtonCreateCV:hover {
+  background-color: #038564;
+}
+
+.LoginButton:hover {
+  background-color: #058061;
+}
+
+.LoginButton {
+  background-color: #00c091;
+}
+
+.CommonSccClassSignInAndLogInButton {
+  padding: 6px 16px;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.SignInButton {
+  background-color: #efefef;
+  color: black;
+}
+
+.SignInButton:hover {
+  background-color: #a7a7a7;
+}
+
+.PlusIconInAddSectionButtonColor {
+  color: #8c7cdb;
+}
+
+.PlusIconInAddSectionButtonColor:hover {
+  color: #8c7cdb9f;
+  -webkit-transition: color 1.3s;
+  transition: color 1.3s;
+}
+
+.PlusIconInAddSectionButton {
+  font-size: 23px;
+}
+
+.RearrangeButtons {
+  color: #626b6e;
+}
+
+.RearrangeButtons:hover {
+  -webkit-transition: color 1.3s;
+  transition: color 1.3s;
+  color: #626b6e8e;
+}
+
+.DownloadButton {
+  color: #626b6e;
+}
+
+.DownloadButton:hover {
+  -webkit-transition: color 1.3s;
+  transition: color 1.3s;
+  color: #626b6e8e;
+}
+
+.linkColorHeader {
+  color: #384347;
+}
+
+.linkColorHeader:hover {
+  color: #8c7cf1;
+  -webkit-transition: color 1.3s;
+  transition: color 1.3s;
+}
+
+input {
+  outline: none;
+  border: none;
+  background-color: unset;
+}
+
+.SignUPName {
+  border: 1px solid #b3b3b3;
+  width: 100%;
+  padding: 11px;
+}
+
+.HeadingTextHolderSignIn {
+  color: #485255;
+  text-align: center;
+  font-size: 25px;
+}
+
+.CheckBox {
+  background-color: transparent;
+  border: 1px solid #e6e6e6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 7px 15px 0 0px;
+}
+
+.InnerTextCheckBox {
+  gap: 3px;
+  color: #576064;
+}
+
+.SubmitButtons {
+  background-color: #00c091;
+  border-color: #00c091;
+  padding: 11px 75px;
+  font-size: 18px;
+  text-align: center;
+  margin: 18px 0 0 0;
+}
+
+.SubmitButtons:hover {
+  color: #fff;
+  background-color: #008d6a;
+}
+
+.RotateRightSideCurveAtTheBottomOfResumeContent {
+  -webkit-transform: skew(2deg) rotate(3deg);
+          transform: skew(2deg) rotate(3deg);
+}
+
+.RotateLeftSideCurveAtTheBottomOfResumeContent {
+  -webkit-transform: rotate(-2deg);
+          transform: rotate(-2deg);
+}
+
+.CurveAtTheBottomOfResumeContent {
+  -webkit-box-shadow: 0 31px 10px #0c0c0c;
+          box-shadow: 0 31px 10px #0c0c0c;
+  height: 10px;
+  width: 467px;
+  margin-left: 4px;
+}
+
+.fade-enter .btnRusme {
+  opacity: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.fade-enter-active .btnRusme {
+  opacity: 1;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.fade-exit .btnRusme {
+  opacity: 1;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.fade-exit-active .btnRusme {
+  opacity: 0;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.fade-enter-active .btnRusme,
+.fade-exit-active .btnRusme {
+  -webkit-transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, transform 500ms;
+  transition: opacity 500ms, transform 500ms, -webkit-transform 500ms;
+}
+
+.HeaderDragAndDrop {
+  background-color: #e6e6e6;
+  padding: 15px 0px;
+  text-align: center;
+  color: #535d60;
+  font-weight: 500;
+}
+
+.outerWrapperHeaderDragAndDrop {
+  width: 359px;
+  padding: 10px;
+  background: #fff;
+}
+
+.OuterWrapperDragAndDropComponent {
+  padding: 1px 10px;
+  background: #fff;
+}
+
+.DragAndDropContinueButton {
+  background-color: #00c091;
+  position: fixed;
+  bottom: 40px;
+  text-align: center;
+  line-height: 1.428571429;
+  padding: 6px 14px;
+  margin-left: 120px;
+}
+
+.DragAndDropContinueButton:hover {
+  color: #fff;
+  background-color: #008d6a;
+}
+
+.DNDItems {
+  background-color: #3e9ad9;
+  cursor: all-scroll !important;
+  position: relative;
+}
+
+.CloseIconInDnd {
+  right: 2px;
+  top: 2px;
+  font-size: 21px;
+}
+
+.ColonIconInDnd {
+  left: 4px;
+  top: -6px;
+  font-size: 21px;
+}
+
+.DNDItems:active {
+  background-color: #2dc08d;
+}
+
+.DNDItems:hover {
+  background-color: #2dc08d;
+  -webkit-transition: none;
+  transition: none;
+}
+
+.DNDMainHeading {
+  font-size: 20px;
+  text-align-last: center;
+}
+
+.outerWrapperAddItemsLeftSection {
+  width: 60%;
+  padding: 15px;
+}
+
+.outerWrapperAddItemsRightSection {
+  width: 100%;
+  padding: 15px;
+}
+
+.outerWrapperButtonRightSection {
+  background-color: #d3d2d6;
+  height: 350px;
+}
+
+.outerWrapperButtonLeftSection {
+  background-color: #d3d2d6;
+  height: 350px;
+}
+
+.ButtonAddNewSection {
+  background-color: #8b7cda;
+  padding: 10px;
+  width: 160px;
+  height: 45px;
+  margin-top: -17px;
+}
+
+.ButtonAddNewSection:hover {
+  background-color: #5338db;
+}
+
+.OuterWrapperModalTemplate {
+  position: fixed;
+  right: 0;
+  top: 80px;
+  width: 25%;
+  height: 692px;
+}
+
+.DropDown {
+  background-color: white;
+  padding: 3px;
+  -webkit-box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+          box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+.TextHolderDropDown {
+  text-align: center;
+  padding: 2px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.CheckMark {
+  color: white;
+  font-size: 50px;
+}
+
+.borderColor {
+  border: 6px solid black;
+}
+
+.OuterWrapperDropDown {
+  position: fixed;
+  right: 42%;
+  top: 123px;
+  width: 15%;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.OuterWrapperDropDownAlertMessage {
+  position: fixed;
+  right: 35%;
+  top: 30%;
+  width: 30%;
+  z-index: 999;
+}
+
+.TextHolderTemplate {
+  text-align: center;
+  margin: 1px;
+}
+
+.menu-enter {
+  max-height: 0px;
+  -webkit-transition: max-height 1s ease;
+  overflow: hidden;
+}
+
+.OuterWrapperBackGroundImg {
+  overflow-y: scroll;
+  height: 451px;
+  padding: 16px;
+}
+
+.menu-enter.menu-enter-active {
+  height: auto;
+  max-height: 100px;
+}
+
+.menu-leave {
+  max-height: 100px;
+  -webkit-transition: max-height 1s ease;
+}
+
+.menu-leave.menu-leave-active {
+  overflow: hidden;
+  -webkit-transition: max-height 1s ease;
+  max-height: 0px;
+}
+
+.testModalBackGroundImg {
+  background-color: white;
+  padding: 1px 0px 80px 0;
+}
+
+.TemplateBackgroundImg {
+  width: 87px;
+  margin: 3px 9px 0 0;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: 1px solid transparent;
+}
+
+.TemplateBackgroundImg:hover {
+  border: 1px solid #008d6a;
+}
+
+.TemplateImg {
+  width: 98%;
+  -webkit-box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+          box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  border: 1px solid transparent;
+}
+
+.TemplateImg:hover {
+  border: 1px solid #008d6a;
+}
+
+.outerWrapperCompleteBox {
+  border-radius: 5px;
+  z-index: 3;
+}
+
+.headingOptionBoxRight {
+  top: -39px;
+  z-index: 4;
+  background-color: white;
+  border-radius: 24px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.outerWrapperHeaderIcons {
+  padding: 0px 5px;
+  border-right: 1px solid #ebebeb;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.outerWrapperPlusAndNewEntry {
+  color: white;
+  background-color: #00c091;
+  border-right: 1px solid;
+  border-radius: 24px 0px 0 24px;
+  padding: 4px 12px;
+}
+
+.outerWrapperPlusAndNewEntry:hover {
+  background-color: #01775a;
+}
+
+.newEntryPlusIcon {
+  font-size: 16px;
+}
+
+.newEntryText {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px;
+}
+
+.DeleteIcon {
+  font-size: 19px;
+  color: #384347;
+}
+
+.DeleteIcon:hover {
+  color: red;
+}
+
+.ArrangeIcon {
+  color: #384347;
+}
+
+.ArrangeIcon:hover {
+  color: #00c091;
+}
+
+.HeadingNameBox {
+  position: relative;
+  padding-left: 14px;
+  padding-right: 14px;
+  z-index: 1;
+}
+
+.SectionHeaderTextHolder {
+  font-size: 28px;
+  width: 100%;
+  border-bottom: 3px solid #000;
+  text-transform: uppercase !important;
+  font-weight: 700;
+  margin-bottom: -6px;
+}
+
+.SectionHeaderTextHolder::-webkit-input-placeholder {
+  color: black;
+}
+
+.SectionHeaderTextHolder:-ms-input-placeholder {
+  color: black;
+}
+
+.SectionHeaderTextHolder::-ms-input-placeholder {
+  color: black;
+}
+
+.SectionHeaderTextHolder::placeholder {
+  color: black;
+}
+
+.outerWrapperListIcon {
+  width: 261px;
+  right: 33px;
+  top: 49px;
+  background-color: white;
+  padding: 10px 10px;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.iconsList {
+  padding: 9px;
+  text-align: center;
+  font-size: 26px;
+}
+
+.outerWrapperBox {
+  position: relative;
+  border: 1px solid transparent;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 8px 16px;
+}
+
+.outerWrapperBox:hover {
+  border: 1px solid #60d5ba;
+}
+
+.TextHolderSectionsTitle {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: capitalize !important;
+}
+
+.TextHolderSectionOuterHeader {
+  font-size: 21px;
+  color: black;
+  font-weight: unset !important;
+  text-transform: capitalize !important;
+}
+
+.TextHolderSectionOuterHeader:focus::-webkit-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionOuterHeader:focus:-ms-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionOuterHeader:focus::-ms-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionOuterHeader:focus::placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionSubHeader {
+  font-size: 15px;
+  color: #808080;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.TextHolderSectionLocationAndTime {
+  font-size: 11px;
+  color: #808080;
+  font-weight: unset !important;
+}
+
+.OuterWrapperDatePicker:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.TextHolderSectionLocationAndTime:focus::-webkit-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionLocationAndTime:focus:-ms-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionLocationAndTime:focus::-ms-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionLocationAndTime:focus::placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionSubHeader:focus::-webkit-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionSubHeader:focus:-ms-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionSubHeader:focus::-ms-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionSubHeader:focus::placeholder {
+  color: #808080;
+}
+
+.Bullets {
+  font-size: 13px;
+  font-weight: unset !important;
+  color: #384347;
+}
+
+.Bullets:focus::-webkit-input-placeholder {
+  color: #9ca1a3;
+}
+
+.Bullets:focus:-ms-input-placeholder {
+  color: #9ca1a3;
+}
+
+.Bullets:focus::-ms-input-placeholder {
+  color: #9ca1a3;
+}
+
+.Bullets:focus::placeholder {
+  color: #9ca1a3;
+}
+
+.TextHolderSectionsTitle:focus::-webkit-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionsTitle:focus:-ms-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionsTitle:focus::-ms-input-placeholder {
+  color: #808080;
+}
+
+.TextHolderSectionsTitle:focus::placeholder {
+  color: #808080;
+}
+
+.SectionBorderBottom {
+  border-top: 1px dashed #a2a1a5;
+  z-index: 999;
+  width: 93.5%;
+  bottom: -1px;
+}
+
+.SearchFieldInputPlaceHolder::-webkit-input-placeholder {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.SearchFieldInputPlaceHolder:-ms-input-placeholder {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.SearchFieldInputPlaceHolder::-ms-input-placeholder {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.SearchFieldInputPlaceHolder::placeholder {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.HoverImage1 {
+  position: absolute;
+  top: 0;
+  left: 9px;
+  right: 10px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.493);
+  bottom: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.AddtoResume {
+  text-align: center;
+  color: #fff;
+  background-color: #8c7cdb;
+  border-color: transparent;
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.outerContainerSection {
+  padding: 0px 30px 51px 30px;
+}
+
+.HeadingSection {
+  text-align: center;
+  font-size: 33px;
+}
+
+.subHeadingSection {
+  text-align: center;
+  font-size: 20px;
+  margin: 5px 0px 10px 0;
+}
+
+.outerWraperSection {
+  overflow-y: scroll;
+  height: 370px;
+}
+
+.outerWraperMidButtons {
+  /* border: 1px solid red; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 5px;
+  font-size: 19px;
+  color: rgba(71, 72, 75, 0.81);
+  cursor: pointer;
+}
+
+.RemoveSection {
+  text-align: center;
+  border: 1px solid white;
+  color: #fff;
+  display: inline;
+  padding: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0px 6px 5px 6px;
+  font-weight: 700;
+  position: absolute;
+  text-align: center;
+  top: 77px;
+  border-radius: 6px;
+  right: 66px;
+}
+
+.summary p::before {
+  content: "\A";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.479);
+  margin: 9px 0px 0px -9px;
+  display: inline;
+  position: absolute;
+}
+
+.medium-editor-element {
+  word-wrap: break-word;
+  min-height: unset !important;
+  outline: none !important;
+}
+
+.medium-editor-placeholder:after {
+  pointer-events: none;
+}
+
+.InnerWraperToggleButtonsSlice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+}
+
+.ToggleButtonsLabelSlice {
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  font-size: 17px;
+  color: #384347;
+  cursor: pointer;
+}
+
+.RadioButtonsToggleButtons {
+  display: block;
+  cursor: pointer;
+  width: 19px;
+  height: 19px;
+  border-radius: 19px;
+}
+
+.outerWrapperInputFieldSlice {
+  width: 28%;
+}
+
+.outerWrapperName {
+  background: black;
+  padding: 10px;
+  margin: 4px;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  font-weight: 600;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.outerWraperBorderStyle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 1px solid rgba(0, 0, 0, 0.151);
+  margin: 12px 0px 0 0;
+  padding: 10px 0px 5px 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.InputFiledToolAndTechnology {
+  text-align: center;
+}
+
+.backGroundColorDatePicker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+.BulletsCoverSections {
+  font-size: 20px;
+  margin: 8px;
+}
+
+.HeightCoverLetter {
+  min-height: 226px;
+}
+
+.BackGroundImage {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Printer {
+  border: 1px solid;
+}
+
+.backGroundColorDeleteIconBackUpCV {
+  background-color: red;
+}
+
+.backGroundColorDeleteIconBackUpCV:hover {
+  background-color: #8f0a0a;
+}
+
+.backGroundColorEditIconBackUpCV {
+  background-color: #60d5ba;
+}
+
+.backGroundColorEditIconBackUpCV:hover {
+  background-color: #2cd4ad;
+}
+
+.DeleteIconBackUpCV {
+  font-size: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.BackGroundColorSectionBackupCv {
+  background: black;
+  opacity: 0.5;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 9px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
+  z-index: 9;
+}
+
+.BorderOuterSectionBackUpCv {
+  border: 1px solid #60d5ba;
+  border-radius: 5px;
+}
+
+.InputFieldBachUpCv {
+  font-size: 11px;
+  border: unset;
+  width: 100%;
+}
+
+.outerContainerBachUpCv {
+  overflow-y: scroll;
+  height: 590px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 12px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.outerContainerBachUpCv::-webkit-scrollbar {
+  width: 10px;
+  background-color: white;
+}
+
+/* Track */
+.outerContainerBachUpCv::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.outerContainerBachUpCv::-webkit-scrollbar-thumb {
+  background: #888;
+  width: 12px;
+  height: 12px;
+}
+
+/* Handle on hover */
+.outerContainerBachUpCv::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  width: 12px;
+}
+
+.outerWrapperBackUpCvSection {
+  background-color: white;
+  padding: 12px;
+  border-radius: 9px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  position: relative;
+}
+
+.AddNewCv {
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  width: 430px;
+}
+
+.AddNewCvIcons {
+  font-size: 160px;
+  color: white;
+}
+
+.AddNewCvIcons:hover {
+  color: #60d5ba;
+  -webkit-transition: color 1.3s;
+  transition: color 1.3s;
+}
+
+.RangesIndustryExperience {
+  color: red !important;
+  background-color: #00b400 !important;
+  border: 1px solid !important;
+}
+
+.sliderinput::-ms-ticks-after,
+.sliderinput::-ms-ticks-before {
+  color: transparent;
+}
+
+.sliderinput::-ms-fill-upper {
+  background: transparent;
+}
+
+.sliderinput::-ms-fill-lower {
+  background: transparent;
+}
+
+.sliderinput::-ms-track {
+  color: transparent;
+  border-radius: 5px;
+  border-color: transparent;
+  height: 5px;
+  margin-top: 0px;
+  margin: 5px;
+  background: #c8c8c8;
+}
+
+.sliderinput::-ms-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #00a886;
+  cursor: pointer;
+}
+
+.outerWrapperSectionsHeadingValue {
+  border: none;
+  outline: none;
+  font-weight: 700;
+  width: 100%;
+}
+
+.medium-editor-element {
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.FooterLeftHeading {
+  color: #384347;
+  opacity: .4;
+  font-size: 14px;
+}
+
+.IconFacebookInFooter:hover {
+  color: #0a58ca;
+}
+
+.DatePeriodCustomSection {
+  font-size: 13px !important;
+  width: 68px;
+}
+/*# sourceMappingURL=index.css.map */

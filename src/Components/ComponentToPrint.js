@@ -11,7 +11,6 @@ import {Context} from '../Components/Context/Context';
 import AchievementsOuterSection
   from './Sections/Achievements/AchievementsOuterSection';
 import FindMeOuterSection from './Sections/FindMe/FindMeOuterSection';
-import CustomOuterSection from './Sections/Custom/CustomOuterSection';
 import EducationOuterSection from './Sections/Education/EducationOuterSection';
 import ExperienceOuterSection
   from './Sections/Experience/ExperienceOuterSection';
@@ -28,6 +27,17 @@ import TrainingOuterSection
   from './Sections/TrainingCourses/TrainingCoursesOuterSection';
 import VolunteeringOuterSection
   from './Sections/Volunteering/VolunteeringOuterSection';
+
+import AwardsOuterSection from './Sections/Awards/AwardsOuterSection';
+import BookOuterSection from './Sections/Book/BookOuterSection';
+import CertificationOuterSection
+  from './Sections/Certification/CertificationOuterSection';
+import CustomOuterSection from './Sections/Custom/CustomOuterSection';
+import PublicationOuterSection
+  from './Sections/Publicatoin/PublicationOuterSection';
+import ReferenceOuterSection from './Sections/Reference/ReferenceOuterSection';
+import PhilosophyOuterSection from './Sections/Philosophy/PhilosophyOuterSection'
+
 export const ComponentToPrint = React.forwardRef ((props, ref) => {
   const contextData = useContext (Context);
   const {ref1, ref2} = ref;
@@ -46,6 +56,65 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     console.log ('h', toggle);
   }
 
+  let Philosophy = (
+    <PhilosophyOuterSection
+      setDisplayBackGroundColor={setDisplayBackGroundColor}
+      HandleBackGroundColor={handleChildClick}
+      HandleRemoveElement={HandleRemoveElement}
+      HandleState={props.HandleState}
+    />
+  );
+
+  let Awards = (
+    <AwardsOuterSection
+      setDisplayBackGroundColor={setDisplayBackGroundColor}
+      HandleBackGroundColor={handleChildClick}
+      HandleRemoveElement={HandleRemoveElement}
+      HandleState={props.HandleState}
+    />
+  );
+
+  let Book = (
+    <BookOuterSection
+      setDisplayBackGroundColor={setDisplayBackGroundColor}
+      HandleBackGroundColor={handleChildClick}
+      HandleRemoveElement={HandleRemoveElement}
+      HandleState={props.HandleState}
+    />
+  );
+  let Certification = (
+    <CertificationOuterSection
+      setDisplayBackGroundColor={setDisplayBackGroundColor}
+      HandleBackGroundColor={handleChildClick}
+      HandleRemoveElement={HandleRemoveElement}
+      HandleState={props.HandleState}
+    />
+  );
+  let Publication = (
+    <PublicationOuterSection
+      setDisplayBackGroundColor={setDisplayBackGroundColor}
+      HandleBackGroundColor={handleChildClick}
+      HandleRemoveElement={HandleRemoveElement}
+      HandleState={props.HandleState}
+    />
+  );
+  let Reference = (
+    <ReferenceOuterSection
+      setDisplayBackGroundColor={setDisplayBackGroundColor}
+      HandleBackGroundColor={handleChildClick}
+      HandleRemoveElement={HandleRemoveElement}
+      HandleState={props.HandleState}
+    />
+  );
+  let Custom = (
+    <CustomOuterSection
+      setDisplayBackGroundColor={setDisplayBackGroundColor}
+      HandleBackGroundColor={handleChildClick}
+      HandleRemoveElement={HandleRemoveElement}
+      HandleState={props.HandleState}
+    />
+  );
+
   let FindMe = (
     <FindMeOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -56,15 +125,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   );
   let Achievements = (
     <AchievementsOuterSection
-      setDisplayBackGroundColor={setDisplayBackGroundColor}
-      HandleBackGroundColor={handleChildClick}
-      HandleRemoveElement={HandleRemoveElement}
-      HandleState={props.HandleState}
-    />
-  );
-
-  let Custom = (
-    <CustomOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
       HandleBackGroundColor={handleChildClick}
       HandleRemoveElement={HandleRemoveElement}
@@ -185,12 +245,10 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     Right: [],
   });
 
-  const [AlternateResume, setAlternateResume] = useState (
-    {
+  const [AlternateResume, setAlternateResume] = useState ({
     Left: [],
     Right: [],
-  }
-  );
+  });
 
   useEffect (
     () => {
@@ -316,6 +374,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   }, []);
 
   function HandleAddElement (data) {
+    console.log("yes00",data)
     if (data === 'AchievementsOuterSection') {
       Resume.Right.push (Achievements);
       AlternateResume.Right.push ('Achievements');
@@ -400,6 +459,49 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       setResume (Resume);
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
+    } else if (data === 'AwardsOuterSection') {
+      Resume.Left.push (Awards);
+      AlternateResume.Left.push ('Awards');
+      setResume (Resume);
+      setAlternateResume (AlternateResume);
+      localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
+    } else if (data === 'BookOuterSection') {
+      Resume.Left.push (Book);
+      AlternateResume.Left.push ('Book');
+      setResume (Resume);
+      setAlternateResume (AlternateResume);
+      localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
+    } else if (data === 'CertificationOuterSection') {
+      console.log("yes00")
+      Resume.Left.push (Certification);
+      AlternateResume.Left.push ('Certification');
+      setResume (Resume);
+      setAlternateResume (AlternateResume);
+      localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
+    } else if (data === 'CustomOuterSection') {
+      Resume.Left.push (Custom);
+      AlternateResume.Left.push ('Custom');
+      setResume (Resume);
+      setAlternateResume (AlternateResume);
+      localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
+    } else if (data === 'PublicationOuterSection') {
+      Resume.Left.push (Publication);
+      AlternateResume.Left.push ('Publication');
+      setResume (Resume);
+      setAlternateResume (AlternateResume);
+      localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
+    } else if (data === 'ReferenceOuterSection') {
+      Resume.Left.push (Reference);
+      AlternateResume.Left.push ('Reference');
+      setResume (Resume);
+      setAlternateResume (AlternateResume);
+      localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
+    }  else if (data === 'PhilosophyOuterSection') {
+      Resume.Left.push (Philosophy);
+      AlternateResume.Left.push ('Philosophy');
+      setResume (Resume);
+      setAlternateResume (AlternateResume);
+      localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
     }
   }
 
@@ -439,6 +541,20 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
               Resume.Left.push (Experience);
             } else if (value.Left[j] === 'Education') {
               Resume.Left.push (Education);
+            } else if (value.Left[j] === 'Awards') {
+              Resume.Left.push (Awards);
+            } else if (value.Left[j] === 'Book') {
+              Resume.Left.push (Book);
+            } else if (value.Left[j] === 'Certification') {
+              Resume.Left.push (Certification);
+            } else if (value.Left[j] === 'Custom') {
+              Resume.Left.push (Custom);
+            } else if (value.Left[j] === 'Publication') {
+              Resume.Left.push (Publication);
+            } else if (value.Left[j] === 'Reference') {
+              Resume.Left.push (Reference);
+            } else if (value.Left[j] === 'Philosophy') {
+              Resume.Left.push (Philosophy);
             }
           }
         if (value.Right.length !== 0) {
@@ -471,6 +587,20 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
               Resume.Right.push (Experience);
             } else if (value.Right[j] === 'Education') {
               Resume.Right.push (Education);
+            } else if (value.Left[j] === 'Awards') {
+              Resume.Left.push (Awards);
+            } else if (value.Left[j] === 'Book') {
+              Resume.Left.push (Book);
+            } else if (value.Left[j] === 'Certification') {
+              Resume.Left.push (Certification);
+            } else if (value.Left[j] === 'Custom') {
+              Resume.Left.push (Custom);
+            } else if (value.Left[j] === 'Publication') {
+              Resume.Left.push (Publication);
+            } else if (value.Left[j] === 'Reference') {
+              Resume.Left.push (Reference);
+            } else if (value.Left[j] === 'Philosophy') {
+              Resume.Left.push (Philosophy);
             }
           }
         }

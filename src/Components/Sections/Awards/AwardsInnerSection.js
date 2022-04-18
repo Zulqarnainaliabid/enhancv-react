@@ -11,16 +11,14 @@ import {
   ArrowUp,
   Star,
   Close,
-  Date
 } from '../../JasonData';
 import {CSSTransition} from 'react-transition-group';
-import styles from '../../Style'; 
+import styles from '../../Style';
 import injectSheet from 'react-jss';
 import InputField from '../../InputField';
 import {SlideDown} from 'react-slidedown';
 import RichTextEditor from '../../RichTextEditor';
-import DatePicker from '../../DatePicker';
-function CustomInnerSection (props) {
+function AwardsInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [IconsList, setIconsList] = useState (true);
@@ -29,7 +27,6 @@ function CustomInnerSection (props) {
   const [BorderColor, setBorderColor] = useState (false);
   const [SearchFieldInputValue, setSearchFieldInputValue] = useState ('');
   const [DisplayCloseIcon, setDisplayCloseIcon] = useState (false);
-  const [ShowDate, setShowDate] = useState (false);
   const {classes} = props;
   function handleCloseToggleSwitch () {
     setDisplayToggleSwitch (false);
@@ -116,7 +113,7 @@ function CustomInnerSection (props) {
     }
     props.list[props.index].toggleSwitch = temp;
     props.setList ([...props.list]);
-    localStorage.setItem ('Custom', JSON.stringify (props.list));
+    localStorage.setItem ('Awards', JSON.stringify (props.list));
   }
   function handleInputData (data) {
     let temp = props.list;
@@ -126,7 +123,7 @@ function CustomInnerSection (props) {
       temp[data.index].value.username = data.value;
     }
     props.setList ([...temp]);
-    localStorage.setItem ('Custom', JSON.stringify (temp));
+    localStorage.setItem ('Awards', JSON.stringify (temp));
   }
   function HandleAddNewItem () {
     HandleCloseIconList ();
@@ -151,12 +148,12 @@ function CustomInnerSection (props) {
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
-          if (value.Left[i] === 'Custom') {
+          if (value.Left[i] === 'Awards') {
             return '404px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
-          if (value.Right[i] === 'Custom') {
+          if (value.Right[i] === 'Awards') {
             return '246px';
           }
         }
@@ -165,7 +162,7 @@ function CustomInnerSection (props) {
   }
 
   useEffect (() => {
-    let value = localStorage.getItem ('Custom');
+    let value = localStorage.getItem ('Awards');
     value = JSON.parse (value);
     if (value) {
       for (let i = 0; i < iconList.length; i++) {
@@ -175,107 +172,8 @@ function CustomInnerSection (props) {
       }
     }
   }, []);
-  function handleInputData (data) {
-    let temp = props.list;
-    if (data.name === 'title') {
-      temp[data.index].value.title = data.value;
-    } else if (data.name === 'companyName') {
-      temp[data.index].value.companyName = data.value;
-    } else if (data.name === 'location') {
-      temp[data.index].value.location = data.value;
-    } else if (data.name === 'url') {
-      temp[data.index].value.url = data.value;
-    } else if (data.name === 'companyDescription') {
-      temp[data.index].value.companyDescription = data.value;
-    } else if (data.name === 'bullets') {
-      temp[data.index].value.bullets = data.value;
-    }
-    props.setList ([...temp]);
-    localStorage.setItem ('Experience', JSON.stringify (temp));
-  }
-
-  function handleYearFrom (yearFrom) {
-    props.list[props.index].date.yearFrom = yearFrom;
-    props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
-  }
-  function handleMonthFrom (monthFrom) {
-    props.list[props.index].date.monthFrom = monthFrom;
-    props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
-  }
-  function HandleMonthOngoing (MonthOnGoing) {
-    props.list[props.index].date.monthOngoing = MonthOnGoing;
-    props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
-  }
-  function handleYearOngoing (yearOnGoing) {
-    props.list[props.index].date.yearOngoing = yearOnGoing;
-    props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
-  }
-
-  function HandleOngoing (toggle) {
-    props.list[props.index].date.onGoing = toggle;
-    props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
-  }
-  const SlashFrom = () => {
-    if (
-      props.list[props.index].date.monthFrom &&
-      props.list[props.index].date.yearFrom
-    ) {
-      return <div>/</div>;
-    } else {
-      return <div />;
-    }
-  };
-
-  const Minus = () => {
-    if (
-      !props.list[props.index].date.monthFrom &&
-      !props.list[props.index].date.yearFrom &&
-      !props.list[props.index].date.monthOngoing &&
-      !props.list[props.index].date.yearOngoing
-    ) {
-      return <div />;
-    } else {
-      return <div>-</div>;
-    }
-  };
-
-  const ShowDatePeriod = () => {
-    if (
-      !props.list[props.index].date.monthFrom &&
-      !props.list[props.index].date.yearFrom &&
-      !props.list[props.index].date.monthOngoing &&
-      !props.list[props.index].date.yearOngoing
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const SlashTo = () => {
-    if (
-      props.list[props.index].date.monthOngoing &&
-      props.list[props.index].date.yearOngoing
-    ) {
-      return <div>/</div>;
-    } else {
-      return <div />;
-    }
-  };
   return (
     <div>
-      {ShowDate &&
-        <div
-          onClick={() => {
-            setShowDate (false);
-          }}
-          className="backGroundColorDatePicker"
-        />}
       <div
         className="d-flex justify-content-center align-items-center"
         style={{
@@ -388,24 +286,6 @@ function CustomInnerSection (props) {
               </CSSTransition>
             </div>
           </div>
-          {ShowDate &&
-            <div>
-              <DatePicker
-                monthFrom={props.list[props.index].monthFromPicker}
-                monthTo={props.list[props.index].monthToPicker}
-                yearFrom={props.list[props.index].yearFromPicker}
-                yearTo={props.list[props.index].yearToPicker}
-                outerIndex={props.index}
-                list={props.list}
-                setList={props.setList}
-                handleYearFrom={handleYearFrom}
-                handleMonthFrom={handleMonthFrom}
-                HandleMonthOngoing={HandleMonthOngoing}
-                handleYearOngoing={handleYearOngoing}
-                HandleOngoing={HandleOngoing}
-                localStorageSection={'Custom'}
-              />
-            </div>}
           {IconsList &&
             <div>
               <SlideDown className="outerWrapperListIcon BorderRadius CommonCssClassAbsolutePosition ">
@@ -470,7 +350,7 @@ function CustomInnerSection (props) {
                             props.list[props.index].iconName = item.name;
                             props.setList (props.list);
                             localStorage.setItem (
-                              'Custom',
+                              'Awards',
                               JSON.stringify (props.list)
                             );
                           }}
@@ -517,60 +397,21 @@ function CustomInnerSection (props) {
                 HandleCloseIconList ();
               }}
             >
-              <div className="d-flex justify-content-center">
-                <InputField
-                  placeHolder={'Custom Title'}
-                  otherStyle={'TextHolderSectionOuterHeader'}
-                  value={props.list[props.index].value.title}
-                  index={props.index}
-                  name={'title'}
-                  handleInputData={handleInputData}
-                />
-                <div
-                  className="d-flex align-items-center "
-                  style={{gap: '12px'}}
-                >
-                  {props.list[props.index].toggleSwitch[2].selected &&
-                    <div
-                      className="d-flex align-items-center OuterWrapperDatePicker"
-                      style={{gap: '5px'}}
-                      onBlur={() => {
-                        setShowDate (false);
-                        console.log ('blur');
-                      }}
-                      onClick={() => {
-                        setShowDate (!ShowDate);
-                      }}
-                    >
-                      <Date className="IconsFontSize12" />
-                      {ShowDatePeriod () && <p className='DatePeriodCustomSection'>Date Period</p>}
-                      <div className="d-flex TextHolderSectionLocationAndTime">
-                        <div>{props.list[props.index].date.monthFrom}</div>
-                        {SlashFrom ()}
-                        <div>{props.list[props.index].date.yearFrom}</div>
-                        <div>{Minus ()}</div>
-
-                        {props.list[props.index].date.onGoing
-                          ? <div>OnGoing</div>
-                          : <div className="d-flex ">
-                              <div>
-                                {props.list[props.index].date.monthOngoing}
-                              </div>
-                              {SlashTo ()}
-                              <div>
-                                {props.list[props.index].date.yearOngoing}
-                              </div>
-                            </div>}
-                      </div>
-                    </div>}
-                </div>
-              </div>
-
+              <InputField
+                placeHolder={'Awards'}
+                otherStyle={'TextHolderSectionOuterHeader'}
+                value={props.list[props.index].value.title}
+                index={props.index}
+                name={'title'}
+                handleInputData={handleInputData}
+              />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={'Custom Description'}
+                      placeHolder={
+                        'What are you looking for in your next company? (e.g. Learning Opportunities)'
+                      }
                       otherStyle={'Bullets'}
                       value={props.list[props.index].value.username}
                       index={props.index}
@@ -589,5 +430,5 @@ function CustomInnerSection (props) {
     </div>
   );
 }
-const StyledApp = injectSheet (styles) (CustomInnerSection);
+const StyledApp = injectSheet (styles) (AwardsInnerSection);
 export default StyledApp;

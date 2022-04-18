@@ -1,41 +1,33 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import {Context} from '../../Context/Context';
 import Switch from 'react-switch';
 import {
-  iconList,
   Setting,
   Plus,
   Delete,
   Text,
   ArrowDown,
   ArrowUp,
-  Star,
-  Close,
-  Date
+  Date,
+  Location,
+  LinkHeader,
 } from '../../JasonData';
 import {CSSTransition} from 'react-transition-group';
-import styles from '../../Style'; 
+import styles from '../../Style';
 import injectSheet from 'react-jss';
 import InputField from '../../InputField';
-import {SlideDown} from 'react-slidedown';
 import RichTextEditor from '../../RichTextEditor';
 import DatePicker from '../../DatePicker';
-function CustomInnerSection (props) {
+function PublicationInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
-  const [IconsList, setIconsList] = useState (true);
-  const [Icon, setIcon] = useState (<Star />);
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
-  const [BorderColor, setBorderColor] = useState (false);
-  const [SearchFieldInputValue, setSearchFieldInputValue] = useState ('');
-  const [DisplayCloseIcon, setDisplayCloseIcon] = useState (false);
   const [ShowDate, setShowDate] = useState (false);
   const {classes} = props;
   function handleCloseToggleSwitch () {
     setDisplayToggleSwitch (false);
   }
   function HandleSetBackGroundColor (e) {
-    HandleCloseIconList ();
     handleCloseToggleSwitch ();
     contextData.HandleUpdateBackGroundHighLitter ();
     props.setHighLighter (false);
@@ -68,7 +60,6 @@ function CustomInnerSection (props) {
     }
   }
   function HandleArrowDown () {
-    HandleCloseIconList ();
     handleCloseToggleSwitch ();
     props.IsActiveUp (true);
     let temp = props.list;
@@ -83,11 +74,7 @@ function CustomInnerSection (props) {
       props.IsActive (true);
     }
   }
-  function HandleCloseIconList () {
-    setIconsList (false);
-  }
   const HandleArrowUP = () => {
-    HandleCloseIconList ();
     handleCloseToggleSwitch ();
     let index = props.index - 1;
     props.IsActive (true);
@@ -116,65 +103,7 @@ function CustomInnerSection (props) {
     }
     props.list[props.index].toggleSwitch = temp;
     props.setList ([...props.list]);
-    localStorage.setItem ('Custom', JSON.stringify (props.list));
   }
-  function handleInputData (data) {
-    let temp = props.list;
-    if (data.name === 'title') {
-      temp[data.index].value.title = data.value;
-    } else {
-      temp[data.index].value.username = data.value;
-    }
-    props.setList ([...temp]);
-    localStorage.setItem ('Custom', JSON.stringify (temp));
-  }
-  function HandleAddNewItem () {
-    HandleCloseIconList ();
-    handleCloseToggleSwitch ();
-    props.HandlerAddItemInArray ();
-    props.IsActiveUp (true);
-    props.IsActive (false);
-  }
-  function HandleIcon () {
-    setIconsList (!IconsList);
-    handleCloseToggleSwitch ();
-  }
-  function HandleSetting () {
-    setDisplayToggleSwitch (!DisplayToggleSwitch);
-    HandleCloseIconList ();
-  }
-  function HandleEditorWidth () {
-    if (!contextData.ToggleTemplate) {
-      return '751px';
-    } else {
-      let value = localStorage.getItem ('SectionsArray');
-      value = JSON.parse (value);
-      if (value !== null) {
-        for (let i = 0; i < value.Left.length; i++) {
-          if (value.Left[i] === 'Custom') {
-            return '404px';
-          }
-        }
-        for (let i = 0; i < value.Right.length; i++) {
-          if (value.Right[i] === 'Custom') {
-            return '246px';
-          }
-        }
-      }
-    }
-  }
-
-  useEffect (() => {
-    let value = localStorage.getItem ('Custom');
-    value = JSON.parse (value);
-    if (value) {
-      for (let i = 0; i < iconList.length; i++) {
-        if (value[props.index].iconName === iconList[i].name) {
-          setIcon (iconList[i].icon);
-        }
-      }
-    }
-  }, []);
   function handleInputData (data) {
     let temp = props.list;
     if (data.name === 'title') {
@@ -187,38 +116,47 @@ function CustomInnerSection (props) {
       temp[data.index].value.url = data.value;
     } else if (data.name === 'companyDescription') {
       temp[data.index].value.companyDescription = data.value;
-    } else if (data.name === 'bullets') {
-      temp[data.index].value.bullets = data.value;
+    } else if (data.name === 'CoAuthors') {
+      temp[data.index].value.CoAuthors = data.value;
     }
     props.setList ([...temp]);
-    localStorage.setItem ('Experience', JSON.stringify (temp));
+    localStorage.setItem ('Publication', JSON.stringify (temp));
+  }
+  function HandleAddNewItem () {
+    handleCloseToggleSwitch ();
+    props.HandlerAddItemInArray ();
+    props.IsActiveUp (true);
+    props.IsActive (false);
+  }
+  function HandleSetting () {
+    setDisplayToggleSwitch (!DisplayToggleSwitch);
   }
 
   function handleYearFrom (yearFrom) {
     props.list[props.index].date.yearFrom = yearFrom;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Publication', JSON.stringify (props.list));
   }
   function handleMonthFrom (monthFrom) {
     props.list[props.index].date.monthFrom = monthFrom;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Publication', JSON.stringify (props.list));
   }
   function HandleMonthOngoing (MonthOnGoing) {
     props.list[props.index].date.monthOngoing = MonthOnGoing;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Publication', JSON.stringify (props.list));
   }
   function handleYearOngoing (yearOnGoing) {
     props.list[props.index].date.yearOngoing = yearOnGoing;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Publication', JSON.stringify (props.list));
   }
 
   function HandleOngoing (toggle) {
     props.list[props.index].date.onGoing = toggle;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Publication', JSON.stringify (props.list));
   }
   const SlashFrom = () => {
     if (
@@ -267,6 +205,26 @@ function CustomInnerSection (props) {
       return <div />;
     }
   };
+  function HandleEditorWidth () {
+    if (!contextData.ToggleTemplate) {
+      return '784px';
+    } else {
+      let value = localStorage.getItem ('SectionsArray');
+      value = JSON.parse (value);
+      if (value !== null) {
+        for (let i = 0; i < value.Left.length; i++) {
+          if (value.Left[i] === 'Publication') {
+            return '437px';
+          }
+        }
+        for (let i = 0; i < value.Right.length; i++) {
+          if (value.Right[i] === 'Publication') {
+            return '280px';
+          }
+        }
+      } 
+    }
+  }
   return (
     <div>
       {ShowDate &&
@@ -324,14 +282,6 @@ function CustomInnerSection (props) {
               className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer"
             />
           </div>
-          <div className="outerWrapperHeaderIcons">
-            <div
-              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mb-1"
-              onClick={HandleIcon}
-            >
-              {Icon}
-            </div>
-          </div>
           <div className="outerWrapperHeaderIcons" style={{border: 'unset'}}>
             <Setting
               onClick={HandleSetting}
@@ -341,7 +291,7 @@ function CustomInnerSection (props) {
               <CSSTransition
                 in={DisplayToggleSwitch}
                 timeout={400}
-                classNames="list-transition"
+                // classNames="list-transition"
                 unmountOnExit
                 classNames={{
                   enter: classes.listTransitionEnter,
@@ -388,101 +338,25 @@ function CustomInnerSection (props) {
               </CSSTransition>
             </div>
           </div>
-          {ShowDate &&
-            <div>
-              <DatePicker
-                monthFrom={props.list[props.index].monthFromPicker}
-                monthTo={props.list[props.index].monthToPicker}
-                yearFrom={props.list[props.index].yearFromPicker}
-                yearTo={props.list[props.index].yearToPicker}
-                outerIndex={props.index}
-                list={props.list}
-                setList={props.setList}
-                handleYearFrom={handleYearFrom}
-                handleMonthFrom={handleMonthFrom}
-                HandleMonthOngoing={HandleMonthOngoing}
-                handleYearOngoing={handleYearOngoing}
-                HandleOngoing={HandleOngoing}
-                localStorageSection={'Custom'}
-              />
-            </div>}
-          {IconsList &&
-            <div>
-              <SlideDown className="outerWrapperListIcon BorderRadius CommonCssClassAbsolutePosition ">
-                <div className="BorderRadius SignUPName mb-2 d-flex  justify-content-between align-items-center">
-                  <input
-                    className="SearchFieldInputPlaceHolder"
-                    placeholder="Search Icons"
-                    style={{borderColor: BorderColor ? 'green' : ''}}
-                    onFocus={() => {
-                      setBorderColor (true);
-                    }}
-                    onBlur={() => {
-                      setBorderColor (false);
-                    }}
-                    value={SearchFieldInputValue}
-                    onChange={ev => {
-                      setSearchFieldInputValue (ev.target.value);
-                      if (ev.target.value) {
-                        setDisplayCloseIcon (true);
-                      } else {
-                        setDisplayCloseIcon (false);
-                      }
-                    }}
-                  />
-                  {DisplayCloseIcon &&
-                    <Close
-                      style={{color: 'green', cursor: 'pointer'}}
-                      onClick={() => {
-                        setSearchFieldInputValue ('');
-                        setDisplayCloseIcon (false);
-                      }}
-                    />}
-                </div>
-                <div
-                  style={{
-                    height: '250px',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    overflowY: 'scroll',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {iconList
-                    .filter (val => {
-                      if (SearchFieldInputValue == '') {
-                        return val;
-                      } else if (
-                        val.name
-                          .toLowerCase ()
-                          .includes (SearchFieldInputValue.toLowerCase ())
-                      ) {
-                        return val;
-                      }
-                    })
-                    .map ((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="iconsList CommonCssClassCursorPointer"
-                          onClick={() => {
-                            setIcon (item.icon);
-                            props.list[props.index].iconName = item.name;
-                            props.setList (props.list);
-                            localStorage.setItem (
-                              'Custom',
-                              JSON.stringify (props.list)
-                            );
-                          }}
-                        >
-                          {item.icon}
-                        </div>
-                      );
-                    })}
-                </div>
-              </SlideDown>
-            </div>}
         </div>
+        {ShowDate &&
+          <div>
+            <DatePicker
+              monthFrom={props.list[props.index].monthFromPicker}
+              monthTo={props.list[props.index].monthToPicker}
+              yearFrom={props.list[props.index].yearFromPicker}
+              yearTo={props.list[props.index].yearToPicker}
+              outerIndex={props.index}
+              list={props.list}
+              setList={props.setList}
+              handleYearFrom={handleYearFrom}
+              handleMonthFrom={handleMonthFrom}
+              HandleMonthOngoing={HandleMonthOngoing}
+              handleYearOngoing={handleYearOngoing}
+              HandleOngoing={HandleOngoing}
+              localStorageSection={'Publication'}
+            />
+          </div>}
       </div>
       <div>
         <div
@@ -496,92 +370,115 @@ function CustomInnerSection (props) {
           }}
         >
           <div style={{position: 'relative', display: 'flex'}}>
-            {props.list[props.index].toggleSwitch[1].selected &&
-              <div
-                onClick={() => {
-                  setIconsList (!IconsList);
-                }}
-                className={`${contextData.SelectedColor}`}
-                style={{
-                  color: '#008CFF',
-                  fontSize: '25px',
-                }}
-              >
-                {Icon}
-              </div>}
             <div
               style={{width: '100%'}}
-              className="d-flex flex-column ms-2"
+              className="d-flex flex-column"
               onClick={() => {
                 handleCloseToggleSwitch ();
-                HandleCloseIconList ();
               }}
             >
-              <div className="d-flex justify-content-center">
+              {props.list[props.index].toggleSwitch[0].selected &&
                 <InputField
-                  placeHolder={'Custom Title'}
+                  placeHolder={'Name Of Article'}
                   otherStyle={'TextHolderSectionOuterHeader'}
                   value={props.list[props.index].value.title}
                   index={props.index}
                   name={'title'}
                   handleInputData={handleInputData}
-                />
-                <div
-                  className="d-flex align-items-center "
-                  style={{gap: '12px'}}
-                >
-                  {props.list[props.index].toggleSwitch[2].selected &&
-                    <div
-                      className="d-flex align-items-center OuterWrapperDatePicker"
-                      style={{gap: '5px'}}
-                      onBlur={() => {
-                        setShowDate (false);
-                        console.log ('blur');
-                      }}
-                      onClick={() => {
-                        setShowDate (!ShowDate);
-                      }}
-                    >
-                      <Date className="IconsFontSize12" />
-                      {ShowDatePeriod () && <p className='DatePeriodCustomSection'>Date Period</p>}
-                      <div className="d-flex TextHolderSectionLocationAndTime">
-                        <div>{props.list[props.index].date.monthFrom}</div>
-                        {SlashFrom ()}
-                        <div>{props.list[props.index].date.yearFrom}</div>
-                        <div>{Minus ()}</div>
+                />}
+              {props.list[props.index].toggleSwitch[1].selected &&
+                <InputField
+                  placeHolder={'Publishing Company / Journal'}
+                  otherStyle={'TextHolderSectionSubHeader'}
+                  value={props.list[props.index].value.companyName}
+                  index={props.index}
+                  name={'companyName'}
+                  handleInputData={handleInputData}
+                  selectedColor={true}
+                />}
+                 {props.list[props.index].toggleSwitch[6].selected &&
+                <InputField
+                  placeHolder={'Authors / Co-authors'}
+                  otherStyle={'TextHolderSectionSubHeader'}
+                  value={props.list[props.index].value.CoAuthors}
+                  index={props.index}
+                  name={'CoAuthors'}
+                  handleInputData={handleInputData}
+                  selectedColor={true}
+                />}
+              <div className="d-flex align-items-center" style={{gap: '10px'}}>
+                {props.list[props.index].toggleSwitch[5].selected &&
+                  <div
+                    className="d-flex align-items-center OuterWrapperDatePicker"
+                    style={{gap: '5px'}}
+                    onBlur={() => {
+                      setShowDate (false);
+                      console.log ('blur');
+                    }}
+                    onClick={() => {
+                      setShowDate (!ShowDate);
+                    }}
+                  >
+                    <Date className="IconsFontSize12" />
+                    {ShowDatePeriod () && <p>Date Period</p>}
+                    <div className="d-flex TextHolderSectionLocationAndTime">
+                      <div>{props.list[props.index].date.monthFrom}</div>
+                      {SlashFrom ()}
+                      <div>{props.list[props.index].date.yearFrom}</div>
+                      <div>{Minus ()}</div>
 
-                        {props.list[props.index].date.onGoing
-                          ? <div>OnGoing</div>
-                          : <div className="d-flex ">
-                              <div>
-                                {props.list[props.index].date.monthOngoing}
-                              </div>
-                              {SlashTo ()}
-                              <div>
-                                {props.list[props.index].date.yearOngoing}
-                              </div>
-                            </div>}
-                      </div>
-                    </div>}
-                </div>
-              </div>
-
-              {props.list[props.index].toggleSwitch[0].selected &&
-                <div style={{marginLeft: '13px'}}>
-                  <div className="summary">
-                    <RichTextEditor
-                      placeHolder={'Custom Description'}
-                      otherStyle={'Bullets'}
-                      value={props.list[props.index].value.username}
+                      {props.list[props.index].date.onGoing
+                        ? <div>OnGoing</div>
+                        : <div className="d-flex">
+                            <div>
+                              {props.list[props.index].date.monthOngoing}
+                            </div>
+                            {SlashTo ()}
+                            <div>
+                              {props.list[props.index].date.yearOngoing}
+                            </div>
+                          </div>}
+                    </div>
+                  </div>}
+                {props.list[props.index].toggleSwitch[4].selected &&
+                  <div className="d-flex align-items-center">
+                    <Location className="IconsFontSize12" />
+                    <InputField
+                      placeHolder={'Location'}
+                      otherStyle={'TextHolderSectionLocationAndTime'}
+                      value={props.list[props.index].value.location}
                       index={props.index}
-                      name={'username'}
+                      name={'location'}
                       handleInputData={handleInputData}
-                      EditorWidth={HandleEditorWidth ()}
                     />
-                  </div>
+                  </div>}
+              </div>
+              {props.list[props.index].toggleSwitch[6].selected &&
+                <div
+                  className="d-flex align-items-center"
+                  style={{gap: '10px'}}
+                >
+                  <LinkHeader className="IconsFontSize12" />
+                  <InputField
+                    placeHolder={'URL'}
+                    otherStyle={'TextHolderSectionLocationAndTime'}
+                    value={props.list[props.index].value.url}
+                    index={props.index}
+                    name={'url'}
+                    handleInputData={handleInputData}
+                  />
                 </div>}
             </div>
           </div>
+          {props.list[props.index].toggleSwitch[2].selected &&
+            <InputField
+              placeHolder={'Publication Description'}
+              otherStyle={'Bullets'}
+              value={props.list[props.index].value.companyDescription}
+              index={props.index}
+              name={'companyDescription'}
+              handleInputData={handleInputData}
+            />}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>
@@ -589,5 +486,5 @@ function CustomInnerSection (props) {
     </div>
   );
 }
-const StyledApp = injectSheet (styles) (CustomInnerSection);
+const StyledApp = injectSheet (styles) (PublicationInnerSection);
 export default StyledApp;

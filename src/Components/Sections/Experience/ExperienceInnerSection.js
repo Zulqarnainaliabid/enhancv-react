@@ -9,7 +9,7 @@ import {
   ArrowDown,
   ArrowUp,
   Date,
-  Location,
+  Location, 
   LinkHeader,
 } from '../../JasonData';
 import {CSSTransition} from 'react-transition-group';
@@ -55,7 +55,7 @@ function ExperienceInnerSection (props) {
         props.IsActiveUp (true);
       }
     } else {
-      props.IsActive (false);
+      props.IsActive (false); 
       props.IsActiveUp (false);
     }
   }
@@ -349,7 +349,7 @@ function ExperienceInnerSection (props) {
               yearTo={props.list[props.index].yearToPicker}
               outerIndex={props.index}
               list={props.list}
-              setList={props.setList}
+              setList={props.setList} 
               handleYearFrom={handleYearFrom}
               handleMonthFrom={handleMonthFrom}
               HandleMonthOngoing={HandleMonthOngoing}

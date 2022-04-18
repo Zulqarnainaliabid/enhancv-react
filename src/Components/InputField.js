@@ -23,7 +23,8 @@ const InputField = React.forwardRef ((props, ref) => {
         textTransform: props.UpperCaseHeaderInputField
           ? 'uppercase'
           : 'lowercase',
-          textAlign:props.CursorCenter?"center":""
+          textAlign:props.CursorCenter?"center":"",
+          width:props.CustomWidth
       }}
       onFocus={HandleFocus}
       onBlur={HandleBlur}

@@ -1,24 +1,32 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Context} from '../../Context/Context';
-import CustomInnerSection from './CustomInnerSection';
+import PublicationInnerSection from './PublicationInnerSection';
 import {Rings} from 'react-loader-spinner';
 import InputField from '../../InputField';
 import {Plus, Delete, Template} from '../../JasonData';
-export default function CustomOuterSection (props) {
+export default function PublicationOuterSection (props) {
   const contextData = useContext (Context);
   const [HighLighter, setHighLighter] = useState (false);
   const [array, setState] = useState ([
     {
       selected: false,
       toggleSwitch: [
-        {name: 'Show UserName', selected: true},
-        {name: 'Show Icons', selected: true},
-        {name: 'Show Date', selected: true},
+        {name: 'Show Title', selected: true},
+        {name: 'Show CompanyName', selected: true},
+        {name: 'Show Description', selected: true},
+        {name: 'Show Location', selected: true},
+        {name: 'Show Period', selected: true},
+        {name: 'Show Link', selected: true},
+        {name: 'Show Co-authors', selected: true},
       ],
-      iconName: '',
       value: {
         title: '',
-        username: '',
+        companyName: '',
+        timePeriod: '',
+        location: '',
+        url: '',
+        companyDescription: '',
+        CoAuthors:''
       },
       date: {
         monthFrom: '',
@@ -94,7 +102,7 @@ export default function CustomOuterSection (props) {
   const [ValueFindMeMeOnline, setValueFindMeMeOnline] = useState ('');
 
   function GetItemFindMeOnline () {
-    let value = localStorage.getItem ('Custom');
+    let value = localStorage.getItem ('Publication');
     value = JSON.parse (value);
     return value;
   }
@@ -143,14 +151,21 @@ export default function CustomOuterSection (props) {
       array.push ({
         selected: false,
         toggleSwitch: [
-          {name: 'Show UserName', selected: true},
-          {name: 'Show Icons', selected: true},
-          {name: 'Show Date', selected: true},
+          {name: 'Show Title', selected: true},
+          {name: 'Show CompanyName', selected: true},
+          {name: 'Show Description', selected: true},
+          {name: 'Show Location', selected: true},
+          {name: 'Show Period', selected: true},
+          {name: 'Show Link', selected: true},
+          {name: 'Show Co-authors', selected: true},
         ],
-        iconName: '',
         value: {
           title: '',
-          username: '',
+          companyName: '',
+          location: '',
+          url: '',
+          companyDescription: '',
+          CoAuthors:''
         },
         date: {
           monthFrom: '',
@@ -227,7 +242,7 @@ export default function CustomOuterSection (props) {
       let index = temp.length - 1;
       temp[index].selected = true;
       setState ([...temp]);
-      localStorage.setItem ('Custom', JSON.stringify (array));
+      localStorage.setItem ('Publication', JSON.stringify (array));
     } else {
       contextData.HandleBackGroundColorOfModal (true);
       contextData.HandleDisplayDropDownAlertMessage (true);
@@ -237,12 +252,12 @@ export default function CustomOuterSection (props) {
   function DeleteOneItemInArray (index) {
     array.splice (index, 1);
     setState ([...array]);
-    localStorage.setItem ('Custom', JSON.stringify (array));
+    localStorage.setItem ('Publication', JSON.stringify (array));
     setDisplayLoader (true);
   }
 
   useEffect (() => {
-    let value = localStorage.getItem ('HeadingValueCustom');
+    let value = localStorage.getItem ('HeadingValuePublication');
     value = JSON.parse (value);
     if (value === null || value === undefined) {
       value = '';
@@ -264,7 +279,7 @@ export default function CustomOuterSection (props) {
 
   useEffect (
     () => {
-      if (contextData.BackGroundHighLitter !== 'Custom') {
+      if (contextData.BackGroundHighLitter !== 'Publication') {
         setHighLighter (false);
         handleInnerHight ();
       }
@@ -283,16 +298,19 @@ export default function CustomOuterSection (props) {
   );
 
   function handleInputData (data) {
-    if (data.name === 'Custom') {
+    if (data.name === 'Publication') {
       setValueFindMeMeOnline (data.value);
     }
-    localStorage.setItem ('HeadingValueCustom', JSON.stringify (data.value));
+    localStorage.setItem (
+      'HeadingValuePublication',
+      JSON.stringify (data.value)
+    );
   }
 
   useEffect (
     () => {
-      if (contextData.AddSectionName === 'CustomOuterSection') {
-        localStorage.setItem ('Custom', JSON.stringify (array));
+      if (contextData.AddSectionName === 'PublicationOuterSection') {
+        localStorage.setItem ('Publication', JSON.stringify (array));
         contextData.HandleAddSectionName (null);
       }
     },
@@ -307,7 +325,7 @@ export default function CustomOuterSection (props) {
         onClick={e => {
           props.setDisplayBackGroundColor (true);
           props.HandleBackGroundColor (e);
-          contextData.HandleUpdateBackGroundHighLitter ('Custom');
+          contextData.HandleUpdateBackGroundHighLitter ('Publication');
         }}
       >
         <div
@@ -326,8 +344,10 @@ export default function CustomOuterSection (props) {
               <div className="outerWrapperHeaderIcons">
                 <Delete
                   onClick={() => {
-                    props.HandleRemoveElement ('CustomOuterSection');
-                    contextData.HandleRemoveElement ('CustomOuterSection');
+                    props.HandleRemoveElement ('PublicationOuterSection');
+                    contextData.HandleRemoveElement (
+                      'PublicationOuterSection'
+                    );
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />
@@ -349,11 +369,11 @@ export default function CustomOuterSection (props) {
           onClick={HandleCompleteBoarderSelected}
         >
           <InputField
-            placeHolder={'Custom'}
+            placeHolder={'Publication'}
             otherStyle={'SectionHeaderTextHolder'}
             value={ValueFindMeMeOnline}
             index={0}
-            name={'Custom'}
+            name={'Publication'}
             handleInputData={handleInputData}
           />
         </div>
@@ -375,7 +395,7 @@ export default function CustomOuterSection (props) {
                   }
                   return (
                     <div key={index}>
-                      <CustomInnerSection
+                      <PublicationInnerSection
                         item={item}
                         IsActive={IsActive}
                         IsActiveUp={IsActiveUp}

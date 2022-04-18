@@ -16,8 +16,184 @@ import training from './SectionImages/training.png';
 import volunteering from './SectionImages/volunteering.png';
 import industry from './SectionImages/industry.png';
 
+import Philosophy from './SectionImages/Philosophy.JPG';
+import Certification from './SectionImages/Certificatoin.JPG';
+import Publication from './SectionImages/Publication.JPG';
+import Book from './SectionImages/Book.JPG';
+import Custom from './SectionImages/Custom.JPG';
+import Awards from './SectionImages/Awards.JPG';
+import Reference from './SectionImages/Reference.JPG';
+
 import {MdHeight, MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
+
+let data = [
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Philosophy,
+    name: 'PhilosophyOuterSection',
+    labelName:"Philosophy",
+  },{
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Certification,
+    name: 'CertificationOuterSection',
+    labelName:"Certificatoin",
+  },{
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Publication,
+    name: 'PublicationOuterSection',
+    labelName:"Publication",
+  },{
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Book,
+    name: 'BookOuterSection',
+    labelName:"Book",
+  },{
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Custom,
+    name: 'CustomOuterSection',
+    labelName:"Custom",
+  },{
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Awards,
+    name: 'AwardsOuterSection',
+    labelName:"Awards",
+  },{
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Reference,
+    name: 'ReferenceOuterSection',
+    labelName:"Reference",
+  },
+
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Achievements,
+    name: 'AchievementsOuterSection',
+    labelName:"Achievements",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: skill,
+    name: 'SkillsOuterSection',
+    labelName:"skill",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: project,
+    name: 'ProjectsOuterSection',
+    labelName:"Project",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: training,
+    name: 'TrainingOuterSection',
+    labelName:"Training",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: time,
+    name: 'MyTimeOuterSection',
+    labelName:"My Time",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: language,
+    name: 'LanguageOuterSection',
+    labelName:"Language",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: passion,
+    name: 'PassionOuterSection',
+    labelName:"Passion",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: industry,
+    name: 'IndustryExperienceOuterSection',
+    labelName:"Industry",
+  },
+  {
+    labelLowerArray: 'Remove  section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: findme,
+    name: 'FindMeOuterSection',
+    labelName:"FindMe",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: summary,
+    name: 'SummaryOuterSection',
+    labelName:"Summary",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: strength,
+    name: 'StrengthOuterSection',
+    labelName:"Strength",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: volunteering,
+    name: 'VolunteeringOuterSection',
+    labelName:"Volunteering",
+  },
+
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Experience,
+    name: 'ExperienceOuterSection',
+    labelName:"Experience",
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Education,
+    name: 'EducationOuterSection',
+    labelName:"Education",
+  },
+];
+
 export function Section2ndBox (props) {
   function HandleRemoveSubSection () {
     let temp = [];
@@ -67,8 +243,6 @@ export function Section2ndBox (props) {
 
 export function SectionBox (props) {
 
-  console.log ('helo12', props.item.imag);
-
   const contextData = useContext (Context);
   function HandlePopEvent () {
     let temp = props.ArrayUper;
@@ -108,11 +282,7 @@ export function SectionBox (props) {
             <div
               className="AddtoResume"
               onClick={() => {
-                if (true) {
-                  props.funHandleSection (props.item.name, true);
-                } else {
-                  props.funHandleSection (props.item.name, false);
-                }
+                props.funHandleSection (props.item.name, true);
                 props.SetToggleAddnewSection (false);
                 HandlePopEvent ();
                 console.log ('ji', props.item.name);
@@ -130,123 +300,6 @@ export function SectionBox (props) {
 
 export default function AddSection (props) {
   const contextData = useContext (Context);
-
-  let data = [
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: Achievements,
-      name: 'AchievementsOuterSection',
-      labelName:"Achievements",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: skill,
-      name: 'SkillsOuterSection',
-      labelName:"skill",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: project,
-      name: 'ProjectsOuterSection',
-      labelName:"Project",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: training,
-      name: 'TrainingOuterSection',
-      labelName:"Training",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: time,
-      name: 'MyTimeOuterSection',
-      labelName:"My Time",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: language,
-      name: 'LanguageOuterSection',
-      labelName:"Language",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: passion,
-      name: 'PassionOuterSection',
-      labelName:"Passion",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: industry,
-      name: 'IndustryExperienceOuterSection',
-      labelName:"Industry",
-    },
-    {
-      labelLowerArray: 'Remove  section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: findme,
-      name: 'FindMeOuterSection',
-      labelName:"FindMe",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: summary,
-      name: 'SummaryOuterSection',
-      labelName:"Summary",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: strength,
-      name: 'StrengthOuterSection',
-      labelName:"Strength",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: volunteering,
-      name: 'VolunteeringOuterSection',
-      labelName:"Volunteering",
-    },
-
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: Experience,
-      name: 'ExperienceOuterSection',
-      labelName:"Experience",
-    },
-    {
-      labelLowerArray: 'Remove section',
-      label: 'Add to resume',
-      Hover: false,
-      imag: Education,
-      name: 'EducationOuterSection',
-      labelName:"Education",
-    },
-  ];
-
   const [ArrayUper, setArrayUper] = useState (data);
   const [ArrayLower, setArrayLower] = useState ([]);
   const [ShowText, setShowText] = useState ('Show Used Sections');
