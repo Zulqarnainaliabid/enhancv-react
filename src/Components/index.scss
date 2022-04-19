@@ -1135,3 +1135,20 @@ color: #0a58ca;
     font-size: 13px !important;
     width: 68px;
 }
+.PlusIconBookSections{
+    border:1px solid white;
+    padding: 12px;
+    border-radius:50%;
+    font-size: 55px;
+    color: white;
+}
+.OuterWrapperPlusIconBookSections{
+    background-color: #CCCCCC;
+    border: 1px solid #A3A3A3;
+    cursor: pointer;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

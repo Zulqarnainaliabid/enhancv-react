@@ -190,7 +190,6 @@ function ReferenceInnerSection (props) {
               <CSSTransition
                 in={DisplayToggleSwitch}
                 timeout={400}
-                classNames="list-transition"
                 unmountOnExit
                 classNames={{
                   enter: classes.listTransitionEnter,

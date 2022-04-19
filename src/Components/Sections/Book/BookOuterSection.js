@@ -11,11 +11,13 @@ export default function BookOuterSection (props) {
     {
       selected: false,
       toggleSwitch: [
-        {name: 'Show Slider', selected: true},
+        {name: 'Show Title', selected: true},
+        {name: 'Show Author', selected: true},
       ],
-      Range:["20"],
       value: {
-        language: '',
+        tittle: '',
+        author: '',
+        bookUri:null,
       },
     },
   ]);
@@ -75,11 +77,13 @@ export default function BookOuterSection (props) {
       array.push ({
         selected: false,
         toggleSwitch: [
-          {name: 'Show Slider', selected: true},
+          {name: 'Show Title', selected: true},
+          {name: 'Show Author', selected: true},
         ],
-        Range:["20"],
         value: {
           tittle: '',
+          author: '', 
+          bookUri:null,
         },
       });
       let temp = [];
@@ -109,7 +113,7 @@ export default function BookOuterSection (props) {
     value = JSON.parse (value);
     if (value === null || value === undefined) {
       value = '';
-    } 
+    }
     setValueFindMeMeOnline (value);
   }, []);
 
@@ -152,13 +156,15 @@ export default function BookOuterSection (props) {
     localStorage.setItem ('HeadingValueBook', JSON.stringify (data.value));
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="BookOuterSection"){
-      localStorage.setItem ('Book', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
-  
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'BookOuterSection') {
+        localStorage.setItem ('Book', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -196,8 +202,8 @@ export default function BookOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />

@@ -6,15 +6,12 @@ import {CSSTransition} from 'react-transition-group';
 import styles from '../../Style';
 import injectSheet from 'react-jss';
 import InputField from '../../InputField';
-import {Range, getTrackBackground} from 'react-range';
+import {HiPlus} from 'react-icons/hi';
 function BookInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
   const {classes} = props;
-  const [RangesValue, setRangesValue] = useState (
-    props.list[props.index].Range
-  );
   function handleCloseToggleSwitch () {
     setDisplayToggleSwitch (false);
   }
@@ -98,8 +95,10 @@ function BookInnerSection (props) {
   }
   function handleInputData (data) {
     let temp = props.list;
-    if (data.name === 'language') {
+    if (data.name === 'title') {
       temp[data.index].value.title = data.value;
+    } else if (data.name === 'author') {
+      temp[data.index].value.author = data.value;
     }
     props.setList ([...temp]);
     localStorage.setItem ('Book', JSON.stringify (temp));
@@ -114,12 +113,8 @@ function BookInnerSection (props) {
     setDisplayToggleSwitch (!DisplayToggleSwitch);
   }
 
-  const STEP = 0.1;
-  const MIN = 0;
-  const MAX = 100;
-
   let Color = '#686868';
-  console.log ('jj', contextData.SelectedColor);
+
   if (contextData.SelectedColor === 'darkColor') {
     Color = '#686868';
   }
@@ -133,6 +128,14 @@ function BookInnerSection (props) {
     Color = '#ff0001';
   }
 
+  const selectImage = fileChangeEvent => {
+    let temp = props.list;
+    temp[
+      localStorage.getItem ('BookImageIndex')
+    ].value.bookUri = URL.createObjectURL (fileChangeEvent.target.files[0]);
+    props.setList ([...temp]);
+    localStorage.setItem ('Book', JSON.stringify (temp));
+  };
   return (
     <div>
       <div
@@ -192,7 +195,6 @@ function BookInnerSection (props) {
               <CSSTransition
                 in={DisplayToggleSwitch}
                 timeout={400}
-                classNames="list-transition"
                 unmountOnExit
                 classNames={{
                   enter: classes.listTransitionEnter,
@@ -244,90 +246,78 @@ function BookInnerSection (props) {
       <div>
         <div
           onClick={HandleSetBackGroundColor}
-          className="outerWrapperBox BorderRadius d-flex flex-column flex-wrap"
+          className="outerWrapperBox BorderRadius d-flex"
           style={{
             backgroundColor: props.item.selected ? 'white' : '',
             border: props.item.selected ? '1px solid #60d5ba' : '',
             alignItems: 'unset',
             position: 'relative',
+            gap: '12px',
           }}
         >
+          {props.list[props.index].value.bookUri
+            ? <div
+                style={{width: '160px', height: '160px', border: '1px solid'}}
+              >
+                <img
+                  src={props.list[props.index].value.bookUri}
+                  alt="selectedImage"
+                  style={{width: '100%', height: '100%', objectFit: 'cover'}}
+                />
+              </div>
+            : <label
+                onClick={() => {
+                  localStorage.setItem (
+                    'BookImageIndex',
+                    JSON.stringify (props.index)
+                  );
+                }}
+                htmlFor="uploadFile"
+                className="OuterWrapperPlusIconBookSections"
+              >
+                <HiPlus className="PlusIconBookSections" />
+              </label>}
+          <input
+            style={{display: 'none'}}
+            type="file"
+            id="uploadFile"
+            accept="image/png, image/jpeg"
+            onChange={e => {
+              selectImage (e);
+            }}
+          />
           <div style={{position: 'relative', display: 'flex'}}>
             <div
               style={{width: '100%'}}
-              className="d-flex justify-content-between"
+              className=""
               onClick={() => {
                 handleCloseToggleSwitch ();
               }}
             >
-              <div>
-                <InputField
-                  placeHolder={'Area of expertise'}
-                  otherStyle={'TextHolderSectionsTitle'}
-                  value={props.list[props.index].value.title}
-                  index={props.index}
-                  name={'language'}
-                  handleInputData={handleInputData}
-                />
-              </div>
+              {props.list[props.index].toggleSwitch[0].selected &&
+                <div>
+                  <InputField
+                    placeHolder={'Title'}
+                    otherStyle={'TextHolderSectionsTitle'}
+                    value={props.list[props.index].value.title}
+                    index={props.index}
+                    name={'title'}
+                    handleInputData={handleInputData}
+                  />
+                </div>}
+              {props.list[props.index].toggleSwitch[1].selected &&
+                <div>
+                  <InputField
+                    placeHolder={'Author(s)'}
+                    otherStyle={'TextHolderSectionsTitle'}
+                    value={props.list[props.index].value.author}
+                    index={props.index}
+                    name={'author'}
+                    handleInputData={handleInputData}
+                  />
+                </div>}
             </div>
           </div>
-          {props.list[props.index].toggleSwitch[0].selected &&
-            <div>
-              <Range
-                values={RangesValue}
-                step={STEP}
-                min={MIN}
-                max={MAX}
-                onChange={values => {
-                  props.list[props.index].Range = values;
-                  props.setList (props.list);
-                  localStorage.setItem (
-                    'Book',
-                    JSON.stringify (props.list)
-                  );
-                  console.log ('number', values);
-                  setRangesValue (values);
-                }}
-                renderTrack={({props, children}) => (
-                  <div>
-                    <div
-                      ref={props.ref}
-                      style={{
-                        height: '10px',
-                        width: '100%',
-                        borderRadius: '4px',
-                        background: getTrackBackground ({
-                          values: RangesValue,
-                          colors: [Color, '#ccc'],
-                          min: MIN,
-                          max: MAX,
-                        }),
-                        alignSelf: 'center',
-                      }}
-                    >
-                      {children}
-                    </div>
-                  </div>
-                )}
-                renderThumb={({props, isDragged}) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '20px',
-                      width: '20px',
-                      borderRadius: '50%',
-                      backgroundColor: Color,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      outline: 'none',
-                    }}
-                  />
-                )}
-              />
-            </div>}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>
