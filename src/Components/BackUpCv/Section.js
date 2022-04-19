@@ -23,16 +23,29 @@ import VolunteeringOuterSection
 import {RiDeleteBinLine} from 'react-icons/ri';
 import PassionOuterSection from './SubSections/Passion/PassionOuterSection';
 import {BiPencil} from 'react-icons/bi';
-import {HandleDeleteCvBackUp,HandlePatchCvBackUp} from '../Services';
+import {HandleDeleteCvBackUp, HandlePatchCvBackUp} from '../Services';
+
+import AwardsOuterSection from './SubSections/Awards/AwardsOuterSection';
+import BookOuterSection from './SubSections/Book/BookOuterSection';
+import CertificationOuterSection
+  from './SubSections/Certification/CertificationOuterSection';
+import CustomOuterSection from './SubSections/Custom/CustomOuterSection';
+import PhilosophyOuterSection
+  from './SubSections/Philosophy/PhilosophyOuterSection';
+import PublicationOuterSection
+  from './SubSections/Publicatoin/PublicationOuterSection';
+import ReferenceOuterSection
+  from './SubSections/Reference/ReferenceOuterSection';
+
 function Section (props) {
   let CVBackUpData = JSON.parse (props.list);
   const contextData = useContext (Context);
-  
+
   console.log ('helodata', CVBackUpData);
 
   // console.log ('headingValue', CVBackUpData.Template);
   const [DisplayBackgroundColor, setDisplayBackgroundColor] = useState (false);
-  const [SubjectName, setSubjectName] = useState ("");
+  const [SubjectName, setSubjectName] = useState ('');
 
   function LeftSection () {
     if (CVBackUpData.SectionArray.Left.length === 0 && CVBackUpData.Template) {
@@ -49,6 +62,97 @@ function Section (props) {
       return (
         <div>
           {CVBackUpData.SectionArray.Left.map ((item, index) => {
+            if (item === 'Book') {
+              return (
+                <div key={index}>
+                  <BookOuterSection
+                    list={CVBackUpData.Book}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueBook}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Custom') {
+              return (
+                <div key={index}>
+                  <CustomOuterSection
+                    list={CVBackUpData.Custom}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueCustom}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Certification') {
+              return (
+                <div key={index}>
+                  <CertificationOuterSection
+                    list={CVBackUpData.Certification}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueCertification}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Philosophy') {
+              return (
+                <div key={index}>
+                  <PhilosophyOuterSection
+                    list={CVBackUpData.Philosophy}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValuePhilosophy}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Publication') {
+              return (
+                <div key={index}>
+                  <PublicationOuterSection
+                    list={CVBackUpData.Publication}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValuePublication}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Reference') {
+              return (
+                <div key={index}>
+                  <ReferenceOuterSection
+                    list={CVBackUpData.Reference}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueReference}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Awards') {
+              return (
+                <div key={index}>
+                  <AwardsOuterSection
+                    list={CVBackUpData.Awards}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueAwards}
+                  />
+                </div>
+              );
+            }
             if (item === 'Achievements') {
               return (
                 <div key={index}>
@@ -250,6 +354,97 @@ function Section (props) {
       return (
         <div>
           {CVBackUpData.SectionArray.Right.map ((item, index) => {
+            if (item === 'Book') {
+              return (
+                <div key={index}>
+                  <BookOuterSection
+                    list={CVBackUpData.Book}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueBook}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Custom') {
+              return (
+                <div key={index}>
+                  <CustomOuterSection
+                    list={CVBackUpData.Custom}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueCustom}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Certification') {
+              return (
+                <div key={index}>
+                  <CertificationOuterSection
+                    list={CVBackUpData.Certification}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueCertification}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Philosophy') {
+              return (
+                <div key={index}>
+                  <PhilosophyOuterSection
+                    list={CVBackUpData.Philosophy}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValuePhilosophy}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Publication') {
+              return (
+                <div key={index}>
+                  <PublicationOuterSection
+                    list={CVBackUpData.Publication}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValuePublication}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Reference') {
+              return (
+                <div key={index}>
+                  <ReferenceOuterSection
+                    list={CVBackUpData.Reference}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueReference}
+                  />
+                </div>
+              );
+            }
+            if (item === 'Awards') {
+              return (
+                <div key={index}>
+                  <AwardsOuterSection
+                    list={CVBackUpData.Awards}
+                    Colors={CVBackUpData.Colors}
+                    Template={CVBackUpData.Template}
+                    Sections={CVBackUpData.SectionArray}
+                    HeadingValue={CVBackUpData.HeadingValueAwards}
+                  />
+                </div>
+              );
+            }
             if (item === 'Achievements') {
               return (
                 <div key={index}>
@@ -438,10 +633,9 @@ function Section (props) {
     }
   }
 
-  useEffect(() => {
-    setSubjectName(props.Subject.replace(/['"]+/g, ''))
-  }, [])
-  
+  useEffect (() => {
+    setSubjectName (props.Subject.replace (/['"]+/g, ''));
+  }, []);
 
   return (
     <div>
@@ -457,15 +651,15 @@ function Section (props) {
           >
             <input
               type="text"
-              placeholder="SubjectName" 
+              placeholder="SubjectName"
               className="text-center text-white fw-bold"
               value={SubjectName}
               onChange={e => {
                 setSubjectName (e.target.value);
               }}
-              onBlur={()=>{
-                console.log("kk",SubjectName)
-                HandlePatchCvBackUp(SubjectName,props.id)
+              onBlur={() => {
+                console.log ('kk', SubjectName);
+                HandlePatchCvBackUp (SubjectName, props.id);
               }}
             />
 

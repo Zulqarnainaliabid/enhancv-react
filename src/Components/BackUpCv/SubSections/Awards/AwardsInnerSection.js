@@ -1,15 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {Star} from '../../../JasonData';
+import {Star,iconList} from '../../../JasonData';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
 import TextareaAutosize from 'react-autosize-textarea';
 import Editor from 'react-medium-editor';
-import {iconList} from '../../../JasonData';
 require ('medium-editor/dist/css/medium-editor.css');
 require ('medium-editor/dist/css/themes/default.css');
-
-function AchievementsInnerSection (props) {
-  
+function AwardsInnerSection (props) {
   const [Icon, setIcon] = useState (<Star />);
   useEffect (() => {
     for (let i = 0; i < iconList.length; i++) {
@@ -18,65 +15,51 @@ function AchievementsInnerSection (props) {
       }
     }
   }, []);
-  console.log("props.Template",props.Template)
-  
-  function HandleEditorWidth () {
-    if (!props.Template) {
-      return '355px';
-    } else {
-      if (props.Sections !== null) {
-        for (let i = 0; i < props.Sections.Left.length; i++) {
-          if (props.Sections.Left[i] === 'Achievements') {
-            return '179px';
-          }
-        }
-        for (let i = 0; i < props.Sections.Right.length; i++) {
-          if (props.Sections.Right[i] === 'Achievements') {
-            return '114px';
-          }
-        }
-      }
-    }
-  }
-
+  console.log ('props.Template', props.Template);
   return (
     <div>
       <div>
         <div
           className="outerWrapperBox BorderRadius d-flex flex-column flex-wrap"
           style={{
-            border: 'unset',
+            backgroundColor: props.item.selected ? 'white' : '',
+            border: props.item.selected ? '1px solid #60d5ba' : '',
             alignItems: 'unset',
             position: 'relative',
           }}
         >
           <div style={{position: 'relative', display: 'flex'}}>
-            {props.item.toggleSwitch[0].selected &&
-              <div className={props.Colors}>
+            {props.list[props.index].toggleSwitch[1].selected &&
+              <div
+                style={{
+                  color: '#008CFF',
+                  fontSize: '25px',
+                }}
+              >
                 {Icon}
               </div>}
             <div style={{width: '100%'}} className="d-flex flex-column ms-2">
               <TextareaAutosize
                 className="InputFieldBachUpCv"
-                placeholder="What are you most proud of?"
+                placeHolder={'Awards'}
                 draggable="false"
-                value={props.item.title}
+                value={props.list[props.index].value.title}
               />
-              <div
-                style={{width: HandleEditorWidth ()}}
-              >
-                {props.item.toggleSwitch[0].selected &&
+              {props.list[props.index].toggleSwitch[0].selected &&
+                <div style={{marginLeft: '13px'}}>
+                  <div className="summary">
                   <Editor
                     className="InputFieldBachUpCv"
                     options={{
                       placeholder: {
-                        text: 'Why are you proud of this achievement?',
+                        text: 'What are you looking for in your next company? (e.g. Learning Opportunities)',
                         hideOnClick: true,
                       },
                     }}
-                    text={props.item.username}
-                  />}
-              </div>
+                    text={props.list[props.index].value.username}
+                  />
+                  </div>
+                </div>}
             </div>
           </div>
           {props.display_dashesLine &&
@@ -86,5 +69,5 @@ function AchievementsInnerSection (props) {
     </div>
   );
 }
-const StyledApp = injectSheet (styles) (AchievementsInnerSection);
+const StyledApp = injectSheet (styles) (AwardsInnerSection);
 export default StyledApp;

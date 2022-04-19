@@ -118,6 +118,13 @@ function Home () {
     localStorage.removeItem ('InputFieldCartMyTime');
     localStorage.removeItem ('arraySeries');
     localStorage.removeItem ('indexOfUserImageShape');
+    localStorage.removeItem ('Book');
+    localStorage.removeItem ('Custom');
+    localStorage.removeItem ('Certification');
+    localStorage.removeItem ('Philosophy');
+    localStorage.removeItem ('Publication');
+    localStorage.removeItem ('Reference');
+    localStorage.removeItem ('Awards');
   }
 
   const override = css`

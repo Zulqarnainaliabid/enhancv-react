@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
-import CustomInnerSection from './CustomInnerSection';
+import AwardsInnerSection from './AwardsInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-export default function CustomOuterSection (props) {
+export default function AwardsOuterSection (props) {
   return (
     <div>
       <div className="outerWrapperCompleteBox">
@@ -24,7 +24,7 @@ export default function CustomOuterSection (props) {
               }
               return (
                 <div key={index}>
-                  <CustomInnerSection
+                  <AwardsInnerSection
                     item={item}
                     index={index}
                     list={props.list}
@@ -41,4 +41,3 @@ export default function CustomOuterSection (props) {
     </div>
   );
 }
-
