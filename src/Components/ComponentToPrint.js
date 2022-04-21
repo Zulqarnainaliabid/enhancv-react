@@ -36,7 +36,8 @@ import CustomOuterSection from './Sections/Custom/CustomOuterSection';
 import PublicationOuterSection
   from './Sections/Publicatoin/PublicationOuterSection';
 import ReferenceOuterSection from './Sections/Reference/ReferenceOuterSection';
-import PhilosophyOuterSection from './Sections/Philosophy/PhilosophyOuterSection'
+import PhilosophyOuterSection
+  from './Sections/Philosophy/PhilosophyOuterSection';
 
 export const ComponentToPrint = React.forwardRef ((props, ref) => {
   const contextData = useContext (Context);
@@ -51,10 +52,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleBackGroundColor={handleChildClick}
     />
   );
-
-  function handleState (toggle) {
-    console.log ('h', toggle);
-  }
 
   let Philosophy = (
     <PhilosophyOuterSection
@@ -263,13 +260,24 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   function handleLRBAddSection () {
     let value = localStorage.getItem ('SectionsArray');
     value = JSON.parse (value);
+    console.log ('value', value);
+    if (value === null) {
+      value = {
+        Left: [],
+        Right: [],
+      };
+    }
     if (Resume !== null) {
       if (contextData.ToggleTemplate) {
         if (Resume.Right.length === 0 && value.Right.length === 0) {
           setShowRightSection (true);
+        }else if(Resume.Right.length !== 0){
+          setShowRightSection (false);
         }
         if (Resume.Left.length === 0 && value.Left.length === 0) {
           setShowLeftSection (true);
+        } else if(Resume.Left.length !== 0){
+          setShowLeftSection (false);
         }
       } else {
         if (Resume.Left.length === 0 && Resume.Right.length === 0) {
@@ -374,7 +382,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   }, []);
 
   function HandleAddElement (data) {
-    console.log("yes00",data)
+    console.log ('yes00', data);
     if (data === 'AchievementsOuterSection') {
       Resume.Right.push (Achievements);
       AlternateResume.Right.push ('Achievements');
@@ -460,8 +468,8 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
     } else if (data === 'AwardsOuterSection') {
-      Resume.Left.push (Awards);
-      AlternateResume.Left.push ('Awards');
+      Resume.Right.push (Awards);
+      AlternateResume.Right.push ('Awards');
       setResume (Resume);
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
@@ -472,9 +480,9 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
     } else if (data === 'CertificationOuterSection') {
-      console.log("yes00")
-      Resume.Left.push (Certification);
-      AlternateResume.Left.push ('Certification');
+      console.log ('yes00');
+      Resume.Right.push (Certification);
+      AlternateResume.Right.push ('Certification');
       setResume (Resume);
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
@@ -485,8 +493,8 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
     } else if (data === 'PublicationOuterSection') {
-      Resume.Left.push (Publication);
-      AlternateResume.Left.push ('Publication');
+      Resume.Right.push (Publication);
+      AlternateResume.Right.push ('Publication');
       setResume (Resume);
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
@@ -496,9 +504,9 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       setResume (Resume);
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
-    }  else if (data === 'PhilosophyOuterSection') {
-      Resume.Left.push (Philosophy);
-      AlternateResume.Left.push ('Philosophy');
+    } else if (data === 'PhilosophyOuterSection') {
+      Resume.Right.push (Philosophy);
+      AlternateResume.Right.push ('Philosophy');
       setResume (Resume);
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
@@ -507,6 +515,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
 
   useEffect (
     () => {
+      console.log ('calling');
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
@@ -609,7 +618,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     },
     [contextData.UpdateIndexes]
   );
-
   return (
     <div>
       <div style={{position: 'sticky'}} />
@@ -685,6 +693,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
                     }}
                   >
                     {Resume.Right.map ((item, index) => {
+                      console.log ('kkk==', item);
                       return (
                         <div key={index}>
                           <div> {item}</div>

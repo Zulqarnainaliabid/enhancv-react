@@ -49,12 +49,12 @@ function DragAndDropComponent (props) {
     if (value !== null) {
       if (value.Left.length !== 0) {
         for (let i = 0; i < value.Left.length; i++) {
-          state[0].push ({id: value.Left[i]});
+          state[0].push ({id: value.Left[i],content:"not"});
         }
       }
       if (value.Right.length !== 0) {
         for (let j = 0; j < value.Right.length; j++) {
-          state[1].push ({id: value.Right[j]});
+          state[1].push ({id: value.Right[j],content:"not"});
         }
       }
       setState ([...state]);
@@ -62,6 +62,7 @@ function DragAndDropComponent (props) {
   }, []);
 
   function HandleIndexes(data){
+    console.log("new",data)
    let value = {
       Left: [],
       Right: [],
@@ -72,8 +73,8 @@ function DragAndDropComponent (props) {
     for(let j=1; j<data[1].length; j++){
       value.Right.push(data[1][j].id)
     }
+    console.log("hello12",value)
     localStorage.setItem ('SectionsArray', JSON.stringify (value));
-    
   }
 
   function onDragEnd (result) {
@@ -103,7 +104,6 @@ function DragAndDropComponent (props) {
 
   function HandleRemoveElement (data) {
     contextData.HandleRemoveElement (data);
-   
     let value = localStorage.getItem ('SectionsArray');
     value = JSON.parse (value);
     if (value !== null) {
@@ -127,6 +127,7 @@ function DragAndDropComponent (props) {
     }
   }
 
+console.log("log",state)
   return (
     <div style={{height: '500px'}}>
       {/* <button
@@ -165,6 +166,8 @@ function DragAndDropComponent (props) {
                     >
                       {el.map ((item, index) => {
                         let selected = true;
+                        console.log("jj",item.content)
+                        console.log("id=",item.id)
                         if (item.content === 'item') {
                           selected = false;
                         }

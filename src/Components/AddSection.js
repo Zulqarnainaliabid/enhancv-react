@@ -17,8 +17,8 @@ import volunteering from './SectionImages/volunteering.png';
 import industry from './SectionImages/industry.png';
 
 import Philosophy from './SectionImages/Philosophy.JPG';
-import Certification from './SectionImages/Certificatoin.JPG';
-import Publication from './SectionImages/Publication.JPG';
+import Certification from './SectionImages/Certification.JPG';
+import Publication from './SectionImages/Publications.JPG';
 import Book from './SectionImages/Book.JPG';
 import Custom from './SectionImages/Custom.JPG';
 import Awards from './SectionImages/Awards.JPG';
@@ -34,49 +34,55 @@ let data = [
     Hover: false,
     imag: Philosophy,
     name: 'PhilosophyOuterSection',
-    labelName:"Philosophy",
-  },{
+    labelName: 'Philosophy',
+  },
+  {
     labelLowerArray: 'Remove section',
     label: 'Add to resume',
     Hover: false,
     imag: Certification,
     name: 'CertificationOuterSection',
-    labelName:"Certificatoin",
-  },{
+    labelName: 'Certificatoin',
+  },
+  {
     labelLowerArray: 'Remove section',
     label: 'Add to resume',
     Hover: false,
     imag: Publication,
     name: 'PublicationOuterSection',
-    labelName:"Publication",
-  },{
+    labelName: 'Publication',
+  },
+  {
     labelLowerArray: 'Remove section',
     label: 'Add to resume',
     Hover: false,
     imag: Book,
     name: 'BookOuterSection',
-    labelName:"Book",
-  },{
+    labelName: 'Book',
+  },
+  {
     labelLowerArray: 'Remove section',
     label: 'Add to resume',
     Hover: false,
     imag: Custom,
     name: 'CustomOuterSection',
-    labelName:"Custom",
-  },{
+    labelName: 'Custom',
+  },
+  {
     labelLowerArray: 'Remove section',
     label: 'Add to resume',
     Hover: false,
     imag: Awards,
     name: 'AwardsOuterSection',
-    labelName:"Awards",
-  },{
+    labelName: 'Awards',
+  },
+  {
     labelLowerArray: 'Remove section',
     label: 'Add to resume',
     Hover: false,
     imag: Reference,
     name: 'ReferenceOuterSection',
-    labelName:"Reference",
+    labelName: 'Reference',
   },
 
   {
@@ -85,7 +91,7 @@ let data = [
     Hover: false,
     imag: Achievements,
     name: 'AchievementsOuterSection',
-    labelName:"Achievements",
+    labelName: 'Achievements',
   },
   {
     labelLowerArray: 'Remove section',
@@ -93,7 +99,7 @@ let data = [
     Hover: false,
     imag: skill,
     name: 'SkillsOuterSection',
-    labelName:"skill",
+    labelName: 'skill',
   },
   {
     labelLowerArray: 'Remove section',
@@ -101,7 +107,7 @@ let data = [
     Hover: false,
     imag: project,
     name: 'ProjectsOuterSection',
-    labelName:"Project",
+    labelName: 'Project',
   },
   {
     labelLowerArray: 'Remove section',
@@ -109,7 +115,7 @@ let data = [
     Hover: false,
     imag: training,
     name: 'TrainingOuterSection',
-    labelName:"Training",
+    labelName: 'Training',
   },
   {
     labelLowerArray: 'Remove section',
@@ -117,7 +123,7 @@ let data = [
     Hover: false,
     imag: time,
     name: 'MyTimeOuterSection',
-    labelName:"My Time",
+    labelName: 'My Time',
   },
   {
     labelLowerArray: 'Remove section',
@@ -125,7 +131,7 @@ let data = [
     Hover: false,
     imag: language,
     name: 'LanguageOuterSection',
-    labelName:"Language",
+    labelName: 'Language',
   },
   {
     labelLowerArray: 'Remove section',
@@ -133,7 +139,7 @@ let data = [
     Hover: false,
     imag: passion,
     name: 'PassionOuterSection',
-    labelName:"Passion",
+    labelName: 'Passion',
   },
   {
     labelLowerArray: 'Remove section',
@@ -141,7 +147,7 @@ let data = [
     Hover: false,
     imag: industry,
     name: 'IndustryExperienceOuterSection',
-    labelName:"Industry",
+    labelName: 'Industry',
   },
   {
     labelLowerArray: 'Remove  section',
@@ -149,7 +155,7 @@ let data = [
     Hover: false,
     imag: findme,
     name: 'FindMeOuterSection',
-    labelName:"FindMe",
+    labelName: 'FindMe',
   },
   {
     labelLowerArray: 'Remove section',
@@ -157,7 +163,7 @@ let data = [
     Hover: false,
     imag: summary,
     name: 'SummaryOuterSection',
-    labelName:"Summary",
+    labelName: 'Summary',
   },
   {
     labelLowerArray: 'Remove section',
@@ -165,7 +171,7 @@ let data = [
     Hover: false,
     imag: strength,
     name: 'StrengthOuterSection',
-    labelName:"Strength",
+    labelName: 'Strength',
   },
   {
     labelLowerArray: 'Remove section',
@@ -173,7 +179,7 @@ let data = [
     Hover: false,
     imag: volunteering,
     name: 'VolunteeringOuterSection',
-    labelName:"Volunteering",
+    labelName: 'Volunteering',
   },
 
   {
@@ -182,7 +188,7 @@ let data = [
     Hover: false,
     imag: Experience,
     name: 'ExperienceOuterSection',
-    labelName:"Experience",
+    labelName: 'Experience',
   },
   {
     labelLowerArray: 'Remove section',
@@ -190,7 +196,7 @@ let data = [
     Hover: false,
     imag: Education,
     name: 'EducationOuterSection',
-    labelName:"Education",
+    labelName: 'Education',
   },
 ];
 
@@ -220,7 +226,9 @@ export function Section2ndBox (props) {
           props.setArrayLower ([...temp]);
         }}
       >
-          <img src={props.item.imag} />
+        <div style={{width: '282px', height: '130px'}}>
+          <img src={props.item.imag} style={{width: '100%', height: '100%'}} />
+        </div>
         {props.item.Hover &&
           <div
             onMouseLeave={() => {
@@ -233,7 +241,6 @@ export function Section2ndBox (props) {
           >
             <div className="RemoveSection" onClick={HandleRemoveSubSection}>
               {props.item.labelLowerArray}
-          
             </div>
           </div>}
       </div>
@@ -242,7 +249,6 @@ export function Section2ndBox (props) {
 }
 
 export function SectionBox (props) {
-
   const contextData = useContext (Context);
   function HandlePopEvent () {
     let temp = props.ArrayUper;
@@ -265,8 +271,17 @@ export function SectionBox (props) {
         }}
       >
         <div style={{width: '282px'}}>
-          <img src={props.item.imag} style={{width: '100%',height:"130px"}} alt="Logo" />
-          <p className='text-center' style={{fontSize:"18px",fontWeight:"bolder"}}>{props.item.labelName}</p>
+          <img
+            src={props.item.imag}
+            style={{width: '100%', height: '130px'}}
+            alt="Logo"
+          />
+          <p
+            className="text-center"
+            style={{fontSize: '18px', fontWeight: 'bolder'}}
+          >
+            {props.item.labelName}
+          </p>
         </div>
         {props.item.Hover &&
           <div
@@ -338,7 +353,10 @@ export default function AddSection (props) {
           Click on a section to add it to your resume
         </div>
         <div className="outerWraperSection">
-          <div className="d-flex flex-wrap justify-content-center" style={{gap:"25px"}}>
+          <div
+            className="d-flex flex-wrap justify-content-center"
+            style={{gap: '25px'}}
+          >
             {ArrayUper.map ((item, index) => {
               return (
                 <SectionBox
@@ -387,7 +405,6 @@ export default function AddSection (props) {
                       setArrayLower={setArrayLower}
                       setArrayUper={setArrayUper}
                       ArrayUper={ArrayUper}
-                      item={item}
                       index={index}
                       HandleRemoveSection={HandleRemoveSection}
                     />

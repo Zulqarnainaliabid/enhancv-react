@@ -136,6 +136,8 @@ function BookInnerSection (props) {
     props.setList ([...temp]);
     localStorage.setItem ('Book', JSON.stringify (temp));
   };
+
+  console.log("hello",props.list[props.index].value.bookUri)
   return (
     <div>
       <div
