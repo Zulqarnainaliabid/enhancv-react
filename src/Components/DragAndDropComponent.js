@@ -230,7 +230,7 @@ console.log("log",state)
                           );
                         }
                       })}
-                      {/* {provided.placeholder} */}
+                      {provided.placeholder}
                     </div>
                   )}
                 </Droppable>

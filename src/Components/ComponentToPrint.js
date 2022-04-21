@@ -251,6 +251,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     () => {
       if (contextData.AddSectionInArray) {
         HandleAddElement (contextData.AddSectionInArray);
+        console.log("kkkkcalling")
         contextData.handleAddSection (null);
       }
     },
@@ -596,20 +597,20 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
               Resume.Right.push (Experience);
             } else if (value.Right[j] === 'Education') {
               Resume.Right.push (Education);
-            } else if (value.Left[j] === 'Awards') {
-              Resume.Left.push (Awards);
-            } else if (value.Left[j] === 'Book') {
-              Resume.Left.push (Book);
-            } else if (value.Left[j] === 'Certification') {
-              Resume.Left.push (Certification);
-            } else if (value.Left[j] === 'Custom') {
-              Resume.Left.push (Custom);
-            } else if (value.Left[j] === 'Publication') {
-              Resume.Left.push (Publication);
-            } else if (value.Left[j] === 'Reference') {
-              Resume.Left.push (Reference);
-            } else if (value.Left[j] === 'Philosophy') {
-              Resume.Left.push (Philosophy);
+            } else if (value.Right[j] === 'Awards') {
+              Resume.Right.push (Awards);
+            } else if (value.Right[j] === 'Book') {
+              Resume.Right.push (Book);
+            } else if (value.Right[j] === 'Certification') {
+              Resume.Right.push (Certification);
+            } else if (value.Right[j] === 'Custom') {
+              Resume.Right.push (Custom);
+            } else if (value.Right[j] === 'Publication') {
+              Resume.Right.push (Publication);
+            } else if (value.Right[j] === 'Reference') {
+              Resume.Right.push (Reference);
+            } else if (value.Right[j] === 'Philosophy') {
+              Resume.Right.push (Philosophy);
             }
           }
         }
