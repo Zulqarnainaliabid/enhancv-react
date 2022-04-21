@@ -355,6 +355,8 @@ export default function CustomOuterSection (props) {
             index={0}
             name={'Custom'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

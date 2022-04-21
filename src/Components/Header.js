@@ -1,7 +1,13 @@
 import React, {useContext, useState, useEffect} from 'react';
 import OuterWrapperBoxForHeader from './OuterWrapperBoxforHeader';
 import InputField from './InputField';
-import {PhoneHeader,LinkHeader,LocationHeader,SettingHeader,CameraHeader} from './JasonData'
+import {
+  PhoneHeader,
+  LinkHeader,
+  LocationHeader,
+  SettingHeader,
+  CameraHeader,
+} from './JasonData';
 import {Context} from '../Components/Context/Context';
 import UserImage from './UserImage';
 import Settings from './Context/Settings';
@@ -91,7 +97,7 @@ export function HeaderContent () {
     }
     localStorage.setItem ('HeaderInputValue', JSON.stringify (InputData));
   }
-
+  console.log ('i', UpperCase);
   return (
     <div>
       <div
@@ -101,8 +107,10 @@ export function HeaderContent () {
         }}
       >
         <div style={{width: '100%'}}>
+
           <InputField
             UpperCaseHeaderInputField={UpperCase}
+            useUpperCase={true}
             placeHolder={'Your Name'}
             otherStyle={'textareaHeaderTitle'}
             name={'HeaderValues_name'}
@@ -117,6 +125,8 @@ export function HeaderContent () {
               value={Title}
               handleInputData={handleInputData}
               color={contextData.SelectedColor}
+              useUpperCase={false}
+              UpperCaseHeaderInputField={false}
             />}
           <div className="d-flex align-items-center">
             {ShowPhone &&
@@ -133,6 +143,8 @@ export function HeaderContent () {
                   name={'HeaderValues_phone'}
                   value={Phone}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />
               </div>}
             {ShowEmail &&
@@ -140,13 +152,17 @@ export function HeaderContent () {
                 className="d-flex align-items-center mb-2"
                 style={{gap: '12px', width: '50%'}}
               >
-                <div className={`HeaderIcons ${contextData.SelectedColor}`}>@</div>
+                <div className={`HeaderIcons ${contextData.SelectedColor}`}>
+                  @
+                </div>
                 <InputField
                   placeHolder={'Email'}
                   otherStyle={'textareaHeaderLinksTitle'}
                   name={'HeaderValues_email'}
                   value={Email}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />
               </div>}
           </div>
@@ -156,13 +172,17 @@ export function HeaderContent () {
                 className="d-flex align-items-center mb-2"
                 style={{gap: '12px', width: '50%'}}
               >
-                <LinkHeader className={`HeaderIcons ${contextData.SelectedColor}`} />
+                <LinkHeader
+                  className={`HeaderIcons ${contextData.SelectedColor}`}
+                />
                 <InputField
                   placeHolder={'Website/Link'}
                   otherStyle={'textareaHeaderLinksTitle'}
                   value={WebLink}
                   name={'HeaderValues_link'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />
               </div>}
             {ShowLocation &&
@@ -170,18 +190,22 @@ export function HeaderContent () {
                 className="d-flex align-items-center mb-2"
                 style={{gap: '12px', width: '50%'}}
               >
-                <LocationHeader className={`HeaderIcons ${contextData.SelectedColor}`} />
+                <LocationHeader
+                  className={`HeaderIcons ${contextData.SelectedColor}`}
+                />
                 <InputField
                   placeHolder={'Location'}
                   otherStyle={'textareaHeaderLinksTitle'}
                   value={Location}
                   name={'HeaderValues_location'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />
               </div>}
           </div>
         </div>
-        {ShowPhoto && <div><UserImage /></div> }
+        {ShowPhoto && <div><UserImage /></div>}
       </div>
     </div>
   );
@@ -200,9 +224,12 @@ function Header (props) {
     {Label: 'Show Photo', selected: false},
   ]);
 
-  useEffect(() => {
-    alertUser()
-  }, [contextData.UpdateBachGroundHighLitter])
+  useEffect (
+    () => {
+      alertUser ();
+    },
+    [contextData.UpdateBachGroundHighLitter]
+  );
 
   function alertUser () {
     setHighLighter (false);

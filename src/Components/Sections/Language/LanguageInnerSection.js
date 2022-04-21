@@ -297,6 +297,8 @@ function LanguageInnerSection (props) {
                   index={props.index}
                   name={'language'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />
               </div>
               {props.list[props.index].toggleSwitch[0].selected &&
@@ -308,6 +310,8 @@ function LanguageInnerSection (props) {
                     index={props.index}
                     name={'proficiency'}
                     handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                 </div>}
             </div>

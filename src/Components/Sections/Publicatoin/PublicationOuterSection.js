@@ -26,7 +26,7 @@ export default function PublicationOuterSection (props) {
         location: '',
         url: '',
         companyDescription: '',
-        CoAuthors:''
+        CoAuthors: '',
       },
       date: {
         monthFrom: '',
@@ -165,7 +165,7 @@ export default function PublicationOuterSection (props) {
           location: '',
           url: '',
           companyDescription: '',
-          CoAuthors:''
+          CoAuthors: '',
         },
         date: {
           monthFrom: '',
@@ -345,9 +345,7 @@ export default function PublicationOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('PublicationOuterSection');
-                    contextData.HandleRemoveElement (
-                      'PublicationOuterSection'
-                    );
+                    contextData.HandleRemoveElement ('PublicationOuterSection');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />
@@ -375,6 +373,8 @@ export default function PublicationOuterSection (props) {
             index={0}
             name={'Publication'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

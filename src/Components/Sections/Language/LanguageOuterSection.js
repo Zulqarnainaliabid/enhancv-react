@@ -110,7 +110,7 @@ export default function LanguageOuterSection (props) {
     value = JSON.parse (value);
     if (value === null || value === undefined) {
       value = '';
-    } 
+    }
     setValueFindMeMeOnline (value);
   }, []);
 
@@ -153,12 +153,15 @@ export default function LanguageOuterSection (props) {
     localStorage.setItem ('HeadingValueLanguage', JSON.stringify (data.value));
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="LanguageOuterSection"){
-      localStorage.setItem ('Language', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'LanguageOuterSection') {
+        localStorage.setItem ('Language', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -196,8 +199,8 @@ export default function LanguageOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -209,13 +212,15 @@ export default function LanguageOuterSection (props) {
           className="HeadingNameBox BorderRadius"
           onClick={HandleCompleteBoarderSelected}
         >
-          <InputField 
+          <InputField
             placeHolder={'Language'}
             otherStyle={'SectionHeaderTextHolder'}
             value={ValueFindMeMeOnline}
             index={0}
             name={'Language'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

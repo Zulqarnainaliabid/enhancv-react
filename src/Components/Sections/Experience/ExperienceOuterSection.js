@@ -308,12 +308,15 @@ export default function ExperienceOuterSection (props) {
     );
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="ExperienceOuterSection"){
-      localStorage.setItem ('Experience', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'ExperienceOuterSection') {
+        localStorage.setItem ('Experience', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -351,8 +354,8 @@ export default function ExperienceOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -363,7 +366,7 @@ export default function ExperienceOuterSection (props) {
           style={{backgroundColor: HighLighter ? 'white' : '', width: '100%'}}
           className="HeadingNameBox BorderRadius"
           onClick={HandleCompleteBoarderSelected}
-        > 
+        >
           <InputField
             placeHolder={'EXPERIENCE'}
             otherStyle={'SectionHeaderTextHolder'}
@@ -371,6 +374,8 @@ export default function ExperienceOuterSection (props) {
             index={0}
             name={'Experience'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

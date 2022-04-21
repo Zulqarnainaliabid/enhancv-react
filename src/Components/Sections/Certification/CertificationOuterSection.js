@@ -10,9 +10,7 @@ export default function CertificationOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
-      toggleSwitch: [
-        {name: 'Show Bullets', selected: true},
-      ],
+      toggleSwitch: [{name: 'Show Bullets', selected: true}],
       value: {
         title: '',
         username: '',
@@ -73,9 +71,7 @@ export default function CertificationOuterSection (props) {
       }
       array.push ({
         selected: false,
-        toggleSwitch: [
-          {name: 'Show Bullets', selected: true},
-        ],
+        toggleSwitch: [{name: 'Show Bullets', selected: true}],
         value: {
           title: '',
           username: '',
@@ -148,15 +144,21 @@ export default function CertificationOuterSection (props) {
     if (data.name === 'Certification') {
       setValueFindMeMeOnline (data.value);
     }
-    localStorage.setItem ('HeadingValueCertification', JSON.stringify (data.value));
+    localStorage.setItem (
+      'HeadingValueCertification',
+      JSON.stringify (data.value)
+    );
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="CertificationOuterSection"){
-      localStorage.setItem ('Certification', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'CertificationOuterSection') {
+        localStorage.setItem ('Certification', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -186,7 +188,9 @@ export default function CertificationOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('CertificationOuterSection');
-                    contextData.HandleRemoveElement ('CertificationOuterSection');
+                    contextData.HandleRemoveElement (
+                      'CertificationOuterSection'
+                    );
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />
@@ -194,8 +198,8 @@ export default function CertificationOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -214,6 +218,8 @@ export default function CertificationOuterSection (props) {
             index={0}
             name={'Certification'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

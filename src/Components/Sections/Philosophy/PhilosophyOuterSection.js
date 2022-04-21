@@ -10,9 +10,7 @@ export default function PhilosophyOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
-      toggleSwitch: [
-        {name: 'Show Bullets', selected: true},
-      ],
+      toggleSwitch: [{name: 'Show Bullets', selected: true}],
       value: {
         title: '',
         username: '',
@@ -73,9 +71,7 @@ export default function PhilosophyOuterSection (props) {
       }
       array.push ({
         selected: false,
-        toggleSwitch: [
-          {name: 'Show Bullets', selected: true},
-        ],
+        toggleSwitch: [{name: 'Show Bullets', selected: true}],
         value: {
           title: '',
           username: '',
@@ -148,15 +144,21 @@ export default function PhilosophyOuterSection (props) {
     if (data.name === 'Philosophy') {
       setValueFindMeMeOnline (data.value);
     }
-    localStorage.setItem ('HeadingValuePhilosophy', JSON.stringify (data.value));
+    localStorage.setItem (
+      'HeadingValuePhilosophy',
+      JSON.stringify (data.value)
+    );
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="PhilosophyOuterSection"){
-      localStorage.setItem ('Philosophy', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'PhilosophyOuterSection') {
+        localStorage.setItem ('Philosophy', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -194,8 +196,8 @@ export default function PhilosophyOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -214,6 +216,8 @@ export default function PhilosophyOuterSection (props) {
             index={0}
             name={'Philosophy'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

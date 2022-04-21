@@ -14,7 +14,7 @@ export default function PassionOuterSection (props) {
         {name: 'Show UserName', selected: true},
         {name: 'Show Icons', selected: true},
       ],
-      iconName:"",
+      iconName: '',
       value: {
         title: '',
         username: '',
@@ -29,7 +29,7 @@ export default function PassionOuterSection (props) {
   function GetItemFindMeOnline () {
     let value = localStorage.getItem ('Passion');
     value = JSON.parse (value);
-    return value; 
+    return value;
   }
 
   function handleInnerHight () {
@@ -79,7 +79,7 @@ export default function PassionOuterSection (props) {
           {name: 'Show UserName', selected: true},
           {name: 'Show Icons', selected: true},
         ],
-        iconName:"",
+        iconName: '',
         value: {
           title: '',
           username: '',
@@ -155,14 +155,15 @@ export default function PassionOuterSection (props) {
     localStorage.setItem ('HeadingValuePassion', JSON.stringify (data.value));
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="PassionOuterSection"){
-      localStorage.setItem ('Passion', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
-
-  
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'PassionOuterSection') {
+        localStorage.setItem ('Passion', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -200,8 +201,8 @@ export default function PassionOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -213,13 +214,15 @@ export default function PassionOuterSection (props) {
           className="HeadingNameBox BorderRadius"
           onClick={HandleCompleteBoarderSelected}
         >
-          <InputField 
+          <InputField
             placeHolder={'PASSION'}
             otherStyle={'SectionHeaderTextHolder'}
             value={ValueFindMeMeOnline}
             index={0}
             name={'Passion'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

@@ -263,19 +263,23 @@ function PhilosophyInnerSection (props) {
                 name={'title'}
                 handleInputData={handleInputData}
                 selectedColor={true}
+                useUpperCase={false}
+                UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
-                <div className='d-flex text-end justify-content-end'>
-                    <InputField
-                      placeHolder={"Author"}
-                      otherStyle={'TextHolderSectionSubHeader'}
-                      value={props.list[props.index].username}
-                      index={props.index}
-                      name={'username'}
-                      handleInputData={handleInputData}
-                      selectedColor={true}
-                      CustomWidth={"50px"}
-                    />
+                <div className="d-flex text-end justify-content-end">
+                  <InputField
+                    placeHolder={'Author'}
+                    otherStyle={'TextHolderSectionSubHeader'}
+                    value={props.list[props.index].username}
+                    index={props.index}
+                    name={'username'}
+                    handleInputData={handleInputData}
+                    selectedColor={true}
+                    CustomWidth={'50px'}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
+                  />
                 </div>}
             </div>
           </div>

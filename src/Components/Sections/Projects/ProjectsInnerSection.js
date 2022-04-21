@@ -382,6 +382,8 @@ function ProjectsInnerSection (props) {
                   index={props.index}
                   name={'title'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[4].selected &&
@@ -431,6 +433,8 @@ function ProjectsInnerSection (props) {
                       index={props.index}
                       name={'location'}
                       handleInputData={handleInputData}
+                      useUpperCase={false}
+                      UpperCaseHeaderInputField={false}
                     />
                   </div>}
               </div>
@@ -444,6 +448,8 @@ function ProjectsInnerSection (props) {
                     index={props.index}
                     name={'url'}
                     handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                 </div>}
             </div>
@@ -456,6 +462,8 @@ function ProjectsInnerSection (props) {
               index={props.index}
               name={'companyDescription'}
               handleInputData={handleInputData}
+              useUpperCase={false}
+              UpperCaseHeaderInputField={false}
             />}
           {props.list[props.index].toggleSwitch[2].selected &&
             <div style={{marginLeft: '13px'}}>

@@ -265,6 +265,8 @@ function ReferenceInnerSection (props) {
                 name={'title'}
                 handleInputData={handleInputData}
                 selectedColor={true}
+                useUpperCase={false}
+                UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>

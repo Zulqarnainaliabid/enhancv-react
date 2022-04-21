@@ -516,7 +516,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
 
   useEffect (
     () => {
-      console.log ('calling');
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {

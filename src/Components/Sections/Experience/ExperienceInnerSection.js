@@ -9,7 +9,7 @@ import {
   ArrowDown,
   ArrowUp,
   Date,
-  Location, 
+  Location,
   LinkHeader,
 } from '../../JasonData';
 import {CSSTransition} from 'react-transition-group';
@@ -55,7 +55,7 @@ function ExperienceInnerSection (props) {
         props.IsActiveUp (true);
       }
     } else {
-      props.IsActive (false); 
+      props.IsActive (false);
       props.IsActiveUp (false);
     }
   }
@@ -209,17 +209,17 @@ function ExperienceInnerSection (props) {
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
       return '784px';
-    }else {
+    } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
-      if(value!==null){
-        for(let i=0; i<value.Left.length; i++){
-          if(value.Left[i]==="Experience"){
+      if (value !== null) {
+        for (let i = 0; i < value.Left.length; i++) {
+          if (value.Left[i] === 'Experience') {
             return '437px';
-          } 
+          }
         }
-        for(let i=0; i<value.Right.length; i++){
-          if(value.Right[i]==="Experience"){
+        for (let i = 0; i < value.Right.length; i++) {
+          if (value.Right[i] === 'Experience') {
             return '280px';
           }
         }
@@ -348,7 +348,7 @@ function ExperienceInnerSection (props) {
               yearTo={props.list[props.index].yearToPicker}
               outerIndex={props.index}
               list={props.list}
-              setList={props.setList} 
+              setList={props.setList}
               handleYearFrom={handleYearFrom}
               handleMonthFrom={handleMonthFrom}
               HandleMonthOngoing={HandleMonthOngoing}
@@ -385,6 +385,8 @@ function ExperienceInnerSection (props) {
                   index={props.index}
                   name={'title'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
               {props.list[props.index].toggleSwitch[1].selected &&
                 <InputField
@@ -395,6 +397,8 @@ function ExperienceInnerSection (props) {
                   name={'companyName'}
                   handleInputData={handleInputData}
                   selectedColor={true}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
               <div className="d-flex align-items-center " style={{gap: '12px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
@@ -440,6 +444,8 @@ function ExperienceInnerSection (props) {
                       index={props.index}
                       name={'location'}
                       handleInputData={handleInputData}
+                      useUpperCase={false}
+                      UpperCaseHeaderInputField={false}
                     />
                   </div>}
               </div>
@@ -456,6 +462,8 @@ function ExperienceInnerSection (props) {
                     index={props.index}
                     name={'url'}
                     handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                 </div>}
               {props.list[props.index].toggleSwitch[2].selected &&
@@ -466,6 +474,8 @@ function ExperienceInnerSection (props) {
                   index={props.index}
                   name={'companyDescription'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
             </div>
 

@@ -10,9 +10,7 @@ export default function TrainingOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
-      toggleSwitch: [
-        {name: 'Show Bullets', selected: true},
-      ],
+      toggleSwitch: [{name: 'Show Bullets', selected: true}],
       value: {
         title: '',
         username: '',
@@ -73,9 +71,7 @@ export default function TrainingOuterSection (props) {
       }
       array.push ({
         selected: false,
-        toggleSwitch: [
-          {name: 'Show Bullets', selected: true},
-        ],
+        toggleSwitch: [{name: 'Show Bullets', selected: true}],
         value: {
           title: '',
           username: '',
@@ -151,12 +147,15 @@ export default function TrainingOuterSection (props) {
     localStorage.setItem ('HeadingValueTraining', JSON.stringify (data.value));
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="TrainingOuterSection"){
-      localStorage.setItem ('Training', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'TrainingOuterSection') {
+        localStorage.setItem ('Training', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -194,8 +193,8 @@ export default function TrainingOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -214,6 +213,8 @@ export default function TrainingOuterSection (props) {
             index={0}
             name={'Training'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

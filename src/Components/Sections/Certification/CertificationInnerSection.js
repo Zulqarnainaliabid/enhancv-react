@@ -265,12 +265,16 @@ function CertificationInnerSection (props) {
                 name={'title'}
                 handleInputData={handleInputData}
                 selectedColor={true}
+                useUpperCase={false}
+                UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={'Which institution issued the Certification and When?'}
+                      placeHolder={
+                        'Which institution issued the Certification and When?'
+                      }
                       otherStyle={'Bullets'}
                       value={props.list[props.index].username}
                       index={props.index}

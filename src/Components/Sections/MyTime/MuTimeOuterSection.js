@@ -112,6 +112,8 @@ export default function MyTimeOuterSection (props) {
             index={0}
             name={'MyTime'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         <div>

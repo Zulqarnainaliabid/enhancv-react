@@ -222,7 +222,7 @@ function PublicationInnerSection (props) {
             return '280px';
           }
         }
-      } 
+      }
     }
   }
   return (
@@ -384,6 +384,8 @@ function PublicationInnerSection (props) {
                   index={props.index}
                   name={'title'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
               {props.list[props.index].toggleSwitch[1].selected &&
                 <InputField
@@ -394,8 +396,10 @@ function PublicationInnerSection (props) {
                   name={'companyName'}
                   handleInputData={handleInputData}
                   selectedColor={true}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
-                 {props.list[props.index].toggleSwitch[6].selected &&
+              {props.list[props.index].toggleSwitch[6].selected &&
                 <InputField
                   placeHolder={'Authors / Co-authors'}
                   otherStyle={'TextHolderSectionSubHeader'}
@@ -404,6 +408,8 @@ function PublicationInnerSection (props) {
                   name={'CoAuthors'}
                   handleInputData={handleInputData}
                   selectedColor={true}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
@@ -449,6 +455,8 @@ function PublicationInnerSection (props) {
                       index={props.index}
                       name={'location'}
                       handleInputData={handleInputData}
+                      useUpperCase={false}
+                      UpperCaseHeaderInputField={false}
                     />
                   </div>}
               </div>
@@ -465,6 +473,8 @@ function PublicationInnerSection (props) {
                     index={props.index}
                     name={'url'}
                     handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                 </div>}
             </div>
@@ -477,6 +487,8 @@ function PublicationInnerSection (props) {
               index={props.index}
               name={'companyDescription'}
               handleInputData={handleInputData}
+              useUpperCase={false}
+              UpperCaseHeaderInputField={false}
             />}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}

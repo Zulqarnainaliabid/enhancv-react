@@ -34,7 +34,7 @@ export default function ProjectsOuterSection (props) {
         selectedSlashFrom: false,
         selectedSlashOngoing: false,
         selectedMinus: false,
-        onGoing:false,
+        onGoing: false,
       },
       yearFromPicker: [
         {name: '2011', selected: false},
@@ -155,7 +155,7 @@ export default function ProjectsOuterSection (props) {
           {name: 'Show Location', selected: true},
           {name: 'Show Period', selected: true},
           {name: 'Show Link', selected: true},
-        ], 
+        ],
         value: {
           title: '',
           timePeriod: '',
@@ -172,7 +172,7 @@ export default function ProjectsOuterSection (props) {
           selectedSlashFrom: false,
           selectedSlashOngoing: false,
           selectedMinus: false,
-          onGoing:false,
+          onGoing: false,
         },
         yearFromPicker: [
           {name: '2011', selected: false},
@@ -298,19 +298,18 @@ export default function ProjectsOuterSection (props) {
     if (data.name === 'Projects') {
       setValueFindMeMeOnline (data.value);
     }
-    localStorage.setItem (
-      'HeadingValueProjects',
-      JSON.stringify (data.value)
-    );
+    localStorage.setItem ('HeadingValueProjects', JSON.stringify (data.value));
   }
 
-
-  useEffect(() => {
-    if(contextData.AddSectionName==="ProjectsOuterSection"){
-      localStorage.setItem ('Projects', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'ProjectsOuterSection') {
+        localStorage.setItem ('Projects', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -348,8 +347,8 @@ export default function ProjectsOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -368,6 +367,8 @@ export default function ProjectsOuterSection (props) {
             index={0}
             name={'Projects'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

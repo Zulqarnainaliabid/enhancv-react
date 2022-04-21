@@ -147,13 +147,15 @@ export default function SummaryOuterSection (props) {
     localStorage.setItem ('HeadingValueSummary', JSON.stringify (data.value));
   }
 
-
-  useEffect(() => {
-    if(contextData.AddSectionName==="SummaryOuterSection"){
-      localStorage.setItem ('Summary', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'SummaryOuterSection') {
+        localStorage.setItem ('Summary', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -211,6 +213,8 @@ export default function SummaryOuterSection (props) {
             index={0}
             name={'Summary'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

@@ -127,7 +127,7 @@ function EducationInnerSection (props) {
     } else if (data.name === 'marksObtain') {
       temp[data.index].value.marksObtain = data.value;
     }
-    
+
     props.setList ([...temp]);
     localStorage.setItem ('Education', JSON.stringify (temp));
   }
@@ -396,6 +396,8 @@ function EducationInnerSection (props) {
                     index={props.index}
                     name={'degree'}
                     handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                   <InputField
                     placeHolder={'School or University'}
@@ -405,6 +407,8 @@ function EducationInnerSection (props) {
                     name={'school'}
                     handleInputData={handleInputData}
                     selectedColor={true}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                   <div
                     className="d-flex align-items-center"
@@ -453,6 +457,8 @@ function EducationInnerSection (props) {
                           index={props.index}
                           name={'location'}
                           handleInputData={handleInputData}
+                          useUpperCase={false}
+                          UpperCaseHeaderInputField={false}
                         />
                       </div>}
                   </div>
@@ -495,7 +501,8 @@ function EducationInnerSection (props) {
                             name={'gpa'}
                             handleInputData={handleInputData}
                             CursorCenter={true}
-                            UpperCaseHeaderInputField={true}
+                            useUpperCase={false}
+                            UpperCaseHeaderInputField={false}
                           />
                         : <p className="TextHolderSectionSubHeader">
                             Percentage
@@ -514,6 +521,8 @@ function EducationInnerSection (props) {
                               handleInputData={handleInputData}
                               maximumLength={true}
                               selectedColor={true}
+                              useUpperCase={false}
+                              UpperCaseHeaderInputField={false}
                             />
                             <p>/</p>
 
@@ -525,6 +534,8 @@ function EducationInnerSection (props) {
                               name={'gpaObtain'}
                               handleInputData={handleInputData}
                               maximumLength={true}
+                              useUpperCase={false}
+                              UpperCaseHeaderInputField={false}
                             />
                           </div>
                         : <div className="d-flex">
@@ -538,13 +549,16 @@ function EducationInnerSection (props) {
                               handleInputData={handleInputData}
                               selectedColor={true}
                               CursorCenter={true}
+                              useUpperCase={false}
+                              UpperCaseHeaderInputField={false}
                             />
 
                           </div>}
                     </div>
-                  : <div 
-                  className=" text-center d-flex flex-column ps-3"
-                  style={{borderLeft: '1px solid ', gap: '5px'}}>
+                  : <div
+                      className=" text-center d-flex flex-column ps-3"
+                      style={{borderLeft: '1px solid ', gap: '5px'}}
+                    >
                       <p className="TextHolderSectionSubHeader">
                         Marks
                       </p>
@@ -561,6 +575,8 @@ function EducationInnerSection (props) {
                           handleInputData={handleInputData}
                           maximumLength={true}
                           selectedColor={true}
+                          useUpperCase={false}
+                          UpperCaseHeaderInputField={false}
                         />
                         <p>/</p>
                         <InputField
@@ -571,6 +587,8 @@ function EducationInnerSection (props) {
                           name={'marksObtain'}
                           handleInputData={handleInputData}
                           maximumLength={true}
+                          useUpperCase={false}
+                          UpperCaseHeaderInputField={false}
                         />
                       </div>
                     </div>}

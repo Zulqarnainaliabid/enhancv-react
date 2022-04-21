@@ -10,10 +10,8 @@ export default function IndustryExperienceOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
-      toggleSwitch: [
-        {name: 'Show Slider', selected: true},
-      ],
-      Range:["20"],
+      toggleSwitch: [{name: 'Show Slider', selected: true}],
+      Range: ['20'],
       value: {
         language: '',
       },
@@ -74,10 +72,8 @@ export default function IndustryExperienceOuterSection (props) {
       }
       array.push ({
         selected: false,
-        toggleSwitch: [
-          {name: 'Show Slider', selected: true},
-        ],
-        Range:["20"],
+        toggleSwitch: [{name: 'Show Slider', selected: true}],
+        Range: ['20'],
         value: {
           tittle: '',
         },
@@ -109,7 +105,7 @@ export default function IndustryExperienceOuterSection (props) {
     value = JSON.parse (value);
     if (value === null || value === undefined) {
       value = '';
-    } 
+    }
     setValueFindMeMeOnline (value);
   }, []);
 
@@ -149,16 +145,21 @@ export default function IndustryExperienceOuterSection (props) {
     if (data.name === 'IndustryExperience') {
       setValueFindMeMeOnline (data.value);
     }
-    localStorage.setItem ('HeadingValueIndustryExperience', JSON.stringify (data.value));
+    localStorage.setItem (
+      'HeadingValueIndustryExperience',
+      JSON.stringify (data.value)
+    );
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="IndustryExperienceOuterSection"){
-      localStorage.setItem ('IndustryExperience', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
-  
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'IndustryExperienceOuterSection') {
+        localStorage.setItem ('IndustryExperience', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -187,8 +188,12 @@ export default function IndustryExperienceOuterSection (props) {
               <div className="outerWrapperHeaderIcons">
                 <Delete
                   onClick={() => {
-                    props.HandleRemoveElement ('IndustryExperienceOuterSection');
-                    contextData.HandleRemoveElement ('IndustryExperienceOuterSection');
+                    props.HandleRemoveElement (
+                      'IndustryExperienceOuterSection'
+                    );
+                    contextData.HandleRemoveElement (
+                      'IndustryExperienceOuterSection'
+                    );
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />
@@ -196,8 +201,8 @@ export default function IndustryExperienceOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -216,6 +221,8 @@ export default function IndustryExperienceOuterSection (props) {
             index={0}
             name={'IndustryExperience'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

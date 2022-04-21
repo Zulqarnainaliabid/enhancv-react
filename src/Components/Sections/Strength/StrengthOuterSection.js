@@ -14,13 +14,13 @@ export default function StrengthOuterSection (props) {
         {name: 'Show UserName', selected: true},
         {name: 'Show Icons', selected: true},
       ],
-      iconName:"",
+      iconName: '',
       value: {
         title: '',
         username: '',
       },
     },
-  ]); 
+  ]);
   const [ToggleArrowDown, setToggleArrowDown] = useState (true);
   const [ToggleArrowUp, setToggleArrowUp] = useState (true);
   const [DisplayLoader, setDisplayLoader] = useState (false);
@@ -79,7 +79,7 @@ export default function StrengthOuterSection (props) {
           {name: 'Show UserName', selected: true},
           {name: 'Show Icons', selected: true},
         ],
-        iconName:"",
+        iconName: '',
         value: {
           title: '',
           username: '',
@@ -155,12 +155,15 @@ export default function StrengthOuterSection (props) {
     localStorage.setItem ('HeadingValueStrength', JSON.stringify (data.value));
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="StrengthOuterSection"){
-      localStorage.setItem ('Strength', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'StrengthOuterSection') {
+        localStorage.setItem ('Strength', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -198,8 +201,8 @@ export default function StrengthOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -218,6 +221,8 @@ export default function StrengthOuterSection (props) {
             index={0}
             name={'Strength'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

@@ -137,7 +137,7 @@ function BookInnerSection (props) {
     localStorage.setItem ('Book', JSON.stringify (temp));
   };
 
-  console.log("hello",props.list[props.index].value.bookUri)
+  console.log ('hello', props.list[props.index].value.bookUri);
   return (
     <div>
       <div
@@ -305,6 +305,8 @@ function BookInnerSection (props) {
                     index={props.index}
                     name={'title'}
                     handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                 </div>}
               {props.list[props.index].toggleSwitch[1].selected &&
@@ -316,6 +318,8 @@ function BookInnerSection (props) {
                     index={props.index}
                     name={'author'}
                     handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                 </div>}
             </div>

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect,useContext} from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import {Context} from './Context/Context';
 const InputField = React.forwardRef ((props, ref) => {
@@ -14,18 +14,27 @@ const InputField = React.forwardRef ((props, ref) => {
   useEffect (() => {
     inputRef.current.focus ();
   }, []);
-
+  let Style = null;
+  console.log ('jj', props.useUpperCase,"2",props.UpperCaseHeaderInputField);
+  if (props.useUpperCase) {
+    console.log("yesddddd")
+    Style = {
+      textTransform: props.UpperCaseHeaderInputField ? 'uppercase' : 'lower',
+      textAlign: props.CursorCenter ? 'center' : '',
+      width: props.CustomWidth,
+      // backgroundColor:"black"
+    };
+  } else {
+    Style = {
+      textAlign: props.CursorCenter ? 'center' : '',
+      width: props.CustomWidth,
+    };
+  }
   return (
     <TextareaAutosize
       maxLength={props.maximumLength ? '4' : ''}
       ref={inputRef}
-      style={{
-        textTransform: props.UpperCaseHeaderInputField
-          ? 'uppercase'
-          : 'lowercase',
-          textAlign:props.CursorCenter?"center":"",
-          width:props.CustomWidth
-      }}
+      style={Style}
       onFocus={HandleFocus}
       onBlur={HandleBlur}
       className={`textarea s

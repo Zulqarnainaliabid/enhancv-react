@@ -375,6 +375,8 @@ export default function VolunteeringOuterSection (props) {
             index={0}
             name={'Volunteering'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

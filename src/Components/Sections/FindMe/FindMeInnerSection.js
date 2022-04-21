@@ -404,6 +404,8 @@ function FindMeInnerSection (props) {
                 index={props.index}
                 name={'title'}
                 handleInputData={handleInputData}
+                useUpperCase={false}
+                UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>

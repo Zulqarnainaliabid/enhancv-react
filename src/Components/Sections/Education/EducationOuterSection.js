@@ -25,10 +25,10 @@ export default function EducationOuterSection (props) {
         bullets: '',
         gpa: '',
         gpaObtain: '',
-        gpaTotal: '', 
-        percentage:'',
-        marksTotal:'',
-        marksObtain:'',
+        gpaTotal: '',
+        percentage: '',
+        marksTotal: '',
+        marksObtain: '',
       },
       date: {
         monthFrom: '',
@@ -38,7 +38,7 @@ export default function EducationOuterSection (props) {
         selectedSlashFrom: false,
         selectedSlashOngoing: false,
         selectedMinus: false,
-        onGoing:false,
+        onGoing: false,
       },
       yearFromPicker: [
         {name: '2011', selected: false},
@@ -107,7 +107,7 @@ export default function EducationOuterSection (props) {
     let value = localStorage.getItem ('Education');
     value = JSON.parse (value);
     return value;
-  } 
+  }
 
   function handleInnerHight () {
     let temp = GetItemFindMeOnline ();
@@ -159,7 +159,7 @@ export default function EducationOuterSection (props) {
           {name: 'Show Bullets', selected: true},
           {name: 'Marks In Percentage', selected: true},
           {name: 'Marks', selected: true},
-        ], 
+        ],
         value: {
           degree: '',
           university: '',
@@ -168,9 +168,9 @@ export default function EducationOuterSection (props) {
           gpa: '',
           gpaObtain: '',
           gpaTotal: '',
-          percentage:'',
-          marksTotal:'',
-          marksObtain:'',
+          percentage: '',
+          marksTotal: '',
+          marksObtain: '',
         },
         date: {
           monthFrom: '',
@@ -180,7 +180,7 @@ export default function EducationOuterSection (props) {
           selectedSlashFrom: false,
           selectedSlashOngoing: false,
           selectedMinus: false,
-          onGoing:false,
+          onGoing: false,
         },
         yearFromPicker: [
           {name: '2011', selected: false},
@@ -309,13 +309,15 @@ export default function EducationOuterSection (props) {
     localStorage.setItem ('HeadingValueEducation', JSON.stringify (data.value));
   }
 
-
-  useEffect(() => {
-    if(contextData.AddSectionName==="EducationOuterSection"){
-      localStorage.setItem ('Education', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'EducationOuterSection') {
+        localStorage.setItem ('Education', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -353,8 +355,8 @@ export default function EducationOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -366,13 +368,15 @@ export default function EducationOuterSection (props) {
           className="HeadingNameBox BorderRadius"
           onClick={HandleCompleteBoarderSelected}
         >
-          <InputField 
+          <InputField
             placeHolder={'Education'}
             otherStyle={'SectionHeaderTextHolder'}
             value={ValueFindMeMeOnline}
             index={0}
             name={'Education'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

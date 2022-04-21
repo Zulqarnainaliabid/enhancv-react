@@ -222,7 +222,7 @@ function VolunteeringInnerSection (props) {
             return '280px';
           }
         }
-      } 
+      }
     }
   }
   return (
@@ -384,6 +384,8 @@ function VolunteeringInnerSection (props) {
                   index={props.index}
                   name={'title'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
               {props.list[props.index].toggleSwitch[1].selected &&
                 <InputField
@@ -394,6 +396,8 @@ function VolunteeringInnerSection (props) {
                   name={'companyName'}
                   handleInputData={handleInputData}
                   selectedColor={true}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />}
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
@@ -439,6 +443,8 @@ function VolunteeringInnerSection (props) {
                       index={props.index}
                       name={'location'}
                       handleInputData={handleInputData}
+                      useUpperCase={false}
+                      UpperCaseHeaderInputField={false}
                     />
                   </div>}
               </div>
@@ -455,6 +461,8 @@ function VolunteeringInnerSection (props) {
                     index={props.index}
                     name={'url'}
                     handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
                   />
                 </div>}
             </div>
@@ -467,6 +475,8 @@ function VolunteeringInnerSection (props) {
               index={props.index}
               name={'companyDescription'}
               handleInputData={handleInputData}
+              useUpperCase={false}
+              UpperCaseHeaderInputField={false}
             />}
           {props.list[props.index].toggleSwitch[3].selected &&
             <div style={{marginLeft: '13px'}}>

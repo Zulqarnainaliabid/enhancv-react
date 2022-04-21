@@ -344,6 +344,8 @@ function SkillsInnerSection (props) {
                   name={'groupTitle'}
                   handleInputData={handleInputData}
                   selectedColor={true}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />
               </div>}
           </div>
@@ -356,17 +358,24 @@ function SkillsInnerSection (props) {
                   <AutosizeInput
                     value={item.text}
                     onFocus={() => {
-                      props.list[props.index].value.ToolAndTechnology[index].selected = true;
+                      props.list[props.index].value.ToolAndTechnology[
+                        index
+                      ].selected = true;
                       props.setList ([...props.list]);
-                      localStorage.setItem ('Skills', JSON.stringify (props.list));
+                      localStorage.setItem (
+                        'Skills',
+                        JSON.stringify (props.list)
+                      );
                     }}
                     onBlur={() => {
                       props.list[props.index].value.ToolAndTechnology[
                         index
                       ].selected = false;
                       props.setList ([...props.list]);
-                      localStorage.setItem ('Skills', JSON.stringify (props.list));
-
+                      localStorage.setItem (
+                        'Skills',
+                        JSON.stringify (props.list)
+                      );
                     }}
                     inputStyle={
                       BorderStyle
@@ -378,11 +387,11 @@ function SkillsInnerSection (props) {
                             paddingLeft: '8px',
                             paddingRight: '8px',
                             fontSize: '14px',
-                            color:'black',
-                            fontWeight:"700",
-                            overflow:"hidden",
-                            minWidth:"20px",
-                            maxWidth:"350px",
+                            color: 'black',
+                            fontWeight: '700',
+                            overflow: 'hidden',
+                            minWidth: '20px',
+                            maxWidth: '350px',
                             opacity: props.list[props.index].value
                               .ToolAndTechnology[index].selected
                               ? '0.5'
@@ -392,12 +401,12 @@ function SkillsInnerSection (props) {
                             // textAlign: 'center',
                             borderBottom: '1px solid #A9A9A9',
                             padding: '5px',
-                            color:"black",
+                            color: 'black',
                             fontSize: '14px',
-                            fontWeight:"700",
-                            overflow:"hidden",
-                            minWidth:"20px",
-                            maxWidth:"350px",
+                            fontWeight: '700',
+                            overflow: 'hidden',
+                            minWidth: '20px',
+                            maxWidth: '350px',
                             opacity: props.list[props.index].value
                               .ToolAndTechnology[index].selected
                               ? '0.5'

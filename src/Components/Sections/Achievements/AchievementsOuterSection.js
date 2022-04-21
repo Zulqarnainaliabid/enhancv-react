@@ -162,12 +162,15 @@ export default function AchievementsOuterSection (props) {
     );
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="AchievementsOuterSection"){
-      localStorage.setItem ('Achievements', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'AchievementsOuterSection') {
+        localStorage.setItem ('Achievements', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -227,6 +230,8 @@ export default function AchievementsOuterSection (props) {
             index={0}
             name={'Achievements'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

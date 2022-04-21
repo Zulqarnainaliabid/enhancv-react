@@ -14,7 +14,7 @@ export default function AwardsOuterSection (props) {
         {name: 'Show UserName', selected: true},
         {name: 'Show Icons', selected: true},
       ],
-      iconName:"",
+      iconName: '',
       value: {
         title: '',
         username: '',
@@ -29,7 +29,7 @@ export default function AwardsOuterSection (props) {
   function GetItemFindMeOnline () {
     let value = localStorage.getItem ('Awards');
     value = JSON.parse (value);
-    return value; 
+    return value;
   }
 
   function handleInnerHight () {
@@ -79,7 +79,7 @@ export default function AwardsOuterSection (props) {
           {name: 'Show UserName', selected: true},
           {name: 'Show Icons', selected: true},
         ],
-        iconName:"",
+        iconName: '',
         value: {
           title: '',
           username: '',
@@ -155,14 +155,15 @@ export default function AwardsOuterSection (props) {
     localStorage.setItem ('HeadingValueAwards', JSON.stringify (data.value));
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="AwardsOuterSection"){
-      localStorage.setItem ('Awards', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
-
-  
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'AwardsOuterSection') {
+        localStorage.setItem ('Awards', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -200,8 +201,8 @@ export default function AwardsOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -213,13 +214,15 @@ export default function AwardsOuterSection (props) {
           className="HeadingNameBox BorderRadius"
           onClick={HandleCompleteBoarderSelected}
         >
-          <InputField 
+          <InputField
             placeHolder={'Awards'}
             otherStyle={'SectionHeaderTextHolder'}
             value={ValueFindMeMeOnline}
             index={0}
             name={'Awards'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

@@ -230,9 +230,11 @@ console.log("log",state)
                           );
                         }
                       })}
+                      <div style={{width:"160px",height:"1px"}} className="DNDItems CommonCssClassWhiteColor">kk</div>
                       {provided.placeholder}
                     </div>
                   )}
+                  
                 </Droppable>
               </div>
             );

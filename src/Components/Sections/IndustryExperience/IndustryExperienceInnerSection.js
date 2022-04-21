@@ -267,6 +267,8 @@ function IndustryExperienceInnerSection (props) {
                   index={props.index}
                   name={'language'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />
               </div>
             </div>

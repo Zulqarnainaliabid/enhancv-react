@@ -11,10 +11,10 @@ import {
   ArrowUp,
   Star,
   Close,
-  Date
+  Date,
 } from '../../JasonData';
 import {CSSTransition} from 'react-transition-group';
-import styles from '../../Style'; 
+import styles from '../../Style';
 import injectSheet from 'react-jss';
 import InputField from '../../InputField';
 import {SlideDown} from 'react-slidedown';
@@ -524,6 +524,8 @@ function CustomInnerSection (props) {
                   index={props.index}
                   name={'title'}
                   handleInputData={handleInputData}
+                  useUpperCase={false}
+                  UpperCaseHeaderInputField={false}
                 />
                 <div
                   className="d-flex align-items-center "
@@ -542,7 +544,8 @@ function CustomInnerSection (props) {
                       }}
                     >
                       <Date className="IconsFontSize12" />
-                      {ShowDatePeriod () && <p className='DatePeriodCustomSection'>Date Period</p>}
+                      {ShowDatePeriod () &&
+                        <p className="DatePeriodCustomSection">Date Period</p>}
                       <div className="d-flex TextHolderSectionLocationAndTime">
                         <div>{props.list[props.index].date.monthFrom}</div>
                         {SlashFrom ()}

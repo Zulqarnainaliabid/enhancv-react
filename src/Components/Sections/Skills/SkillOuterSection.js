@@ -10,12 +10,10 @@ export default function SkillsOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
-      toggleSwitch: [
-        {name: 'Show GroupName', selected: true},
-      ],
+      toggleSwitch: [{name: 'Show GroupName', selected: true}],
       value: {
         groupName: '',
-        ToolAndTechnology:[{text:"",selected:false}]
+        ToolAndTechnology: [{text: '', selected: false}],
       },
     },
   ]);
@@ -73,12 +71,10 @@ export default function SkillsOuterSection (props) {
       }
       array.push ({
         selected: false,
-        toggleSwitch: [
-          {name: 'Show GroupName', selected: true},
-        ],
+        toggleSwitch: [{name: 'Show GroupName', selected: true}],
         value: {
           groupName: '',
-          ToolAndTechnology:[{text:""}]
+          ToolAndTechnology: [{text: ''}],
         },
       });
       let temp = [];
@@ -151,12 +147,15 @@ export default function SkillsOuterSection (props) {
     localStorage.setItem ('HeadingValueSkills', JSON.stringify (data.value));
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="SkillsOuterSection"){
-      localStorage.setItem ('Skills', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'SkillsOuterSection') {
+        localStorage.setItem ('Skills', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -194,8 +193,8 @@ export default function SkillsOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -214,6 +213,8 @@ export default function SkillsOuterSection (props) {
             index={0}
             name={'Skills'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

@@ -32,7 +32,6 @@ function AchievementsInnerSection (props) {
   const {classes} = props;
 
   useEffect (() => {
-
     let value = localStorage.getItem ('Achievements');
     value = JSON.parse (value);
     if (value) {
@@ -43,7 +42,6 @@ function AchievementsInnerSection (props) {
         }
       }
     }
-    
   }, []);
 
   function handleCloseToggleSwitch () {
@@ -158,7 +156,7 @@ function AchievementsInnerSection (props) {
     setDisplayToggleSwitch (!DisplayToggleSwitch);
     HandleCloseIconList ();
   }
-  
+
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
       return '751px';
@@ -411,6 +409,8 @@ function AchievementsInnerSection (props) {
                 index={props.index}
                 name={'title'}
                 handleInputData={handleInputData}
+                useUpperCase={false}
+                UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>

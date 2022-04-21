@@ -15,7 +15,7 @@ export default function FindMeOuterSection (props) {
         {name: 'Show UserName', selected: true},
         {name: 'Show Icons', selected: true},
       ],
-      iconName:"",
+      iconName: '',
       value: {
         title: '',
         username: '',
@@ -80,7 +80,7 @@ export default function FindMeOuterSection (props) {
           {name: 'Show UserName', selected: true},
           {name: 'Show Icons', selected: true},
         ],
-        iconName:"",
+        iconName: '',
         value: {
           title: '',
           username: '',
@@ -159,12 +159,15 @@ export default function FindMeOuterSection (props) {
     );
   }
 
-  useEffect(() => {
-    if(contextData.AddSectionName==="FindMeOuterSection"){
-      localStorage.setItem ('FindMeOnline', JSON.stringify (array));
-      contextData.HandleAddSectionName(null)
-    }
-  }, [contextData.AddSectionName])
+  useEffect (
+    () => {
+      if (contextData.AddSectionName === 'FindMeOuterSection') {
+        localStorage.setItem ('FindMeOnline', JSON.stringify (array));
+        contextData.HandleAddSectionName (null);
+      }
+    },
+    [contextData.AddSectionName]
+  );
 
   return (
     <div>
@@ -202,8 +205,8 @@ export default function FindMeOuterSection (props) {
               <div
                 className="outerWrapperHeaderIcons"
                 style={{border: 'unset'}}
-                onClick={()=>{
-                  props.HandleState(false)
+                onClick={() => {
+                  props.HandleState (false);
                 }}
               >
                 <Template className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer" />
@@ -222,6 +225,8 @@ export default function FindMeOuterSection (props) {
             index={0}
             name={'findMeOnline'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader

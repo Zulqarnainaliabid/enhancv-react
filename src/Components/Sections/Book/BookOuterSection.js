@@ -17,7 +17,7 @@ export default function BookOuterSection (props) {
       value: {
         tittle: '',
         author: '',
-        bookUri:null,
+        bookUri: null,
       },
     },
   ]);
@@ -82,8 +82,8 @@ export default function BookOuterSection (props) {
         ],
         value: {
           tittle: '',
-          author: '', 
-          bookUri:null,
+          author: '',
+          bookUri: null,
         },
       });
       let temp = [];
@@ -222,6 +222,8 @@ export default function BookOuterSection (props) {
             index={0}
             name={'Book'}
             handleInputData={handleInputData}
+            useUpperCase={false}
+            UpperCaseHeaderInputField={false}
           />
         </div>
         {DisplayLoader
