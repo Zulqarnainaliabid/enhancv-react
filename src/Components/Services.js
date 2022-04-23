@@ -42,11 +42,11 @@ export async function HandleGetCvBackUp () {
       headers: {Authorization: AuthStr},
     })
     .then (function (response) {
-      console.log ('loki', response);
+      console.log ('res', response);
       data = response;
     })
     .catch (error => {
-      console.log ('loki', error);
+      console.log ('error', error);
       data = error;
     });
   return data;
@@ -63,13 +63,12 @@ function GetPreviousData () {
 
   let Template = localStorage.getItem ('Template');
   Template = JSON.parse (Template);
+
   if (Template !== null) {
     CVData.Template = Template;
   } else {
     CVData.Template = false;
   }
-
-  console.log ('calling==', CVData);
 
   let SectionArray = localStorage.getItem ('SectionsArray');
   SectionArray = JSON.parse (SectionArray);
@@ -171,6 +170,47 @@ function GetPreviousData () {
     CVData.HeadingValueSummary = HeadingValueSummary;
   }
 
+
+  let HeadingValueReference = localStorage.getItem ('HeadingValueReference');
+  HeadingValueReference = JSON.parse (HeadingValueReference);
+  if (HeadingValueReference) {
+    CVData.HeadingValueReference = HeadingValueReference;
+  }
+
+  let HeadingValuePublication = localStorage.getItem ('HeadingValuePublication');
+  HeadingValuePublication = JSON.parse (HeadingValuePublication);
+  if (HeadingValuePublication) {
+    CVData.HeadingValuePublication = HeadingValuePublication;
+  }
+
+  let HeadingValueAwards = localStorage.getItem ('HeadingValueAwards');
+  HeadingValueAwards = JSON.parse (HeadingValueAwards);
+  if (HeadingValueAwards) {
+    CVData.HeadingValueAwards = HeadingValueAwards;
+  }
+  let HeadingValueCustom = localStorage.getItem ('HeadingValueCustom');
+  HeadingValueCustom = JSON.parse (HeadingValueCustom);
+  if (HeadingValueCustom) {
+    CVData.HeadingValueCustom = HeadingValueCustom;
+  }
+  let HeadingValueBook = localStorage.getItem ('HeadingValueBook');
+  HeadingValueBook = JSON.parse (HeadingValueBook);
+  if (HeadingValueBook) {
+    CVData.HeadingValueBook = HeadingValueBook;
+  }
+  let HeadingValueCertification = localStorage.getItem ('HeadingValueCertification');
+  HeadingValueCertification = JSON.parse (HeadingValueCertification);
+  if (HeadingValueCertification) {
+    CVData.HeadingValueCertification = HeadingValueCertification;
+  }
+  let HeadingValuePhilosophy = localStorage.getItem ('HeadingValuePhilosophy');
+  HeadingValuePhilosophy = JSON.parse (HeadingValuePhilosophy);
+  if (HeadingValuePhilosophy) {
+    CVData.HeadingValuePhilosophy = HeadingValuePhilosophy;
+  }
+
+
+
   let HeadingValueTraining = localStorage.getItem ('HeadingValueTraining');
   HeadingValueTraining = JSON.parse (HeadingValueTraining);
   if (HeadingValueTraining) {
@@ -206,6 +246,44 @@ function GetPreviousData () {
       {Label: 'Show Photo', selected: true},
     ];
   }
+
+  let Philosophy = localStorage.getItem ('Philosophy');
+  Philosophy = JSON.parse (Philosophy);
+  if (Philosophy) {
+    CVData.Philosophy = Philosophy;
+  }
+
+  let Certification = localStorage.getItem ('Certification');
+  Certification = JSON.parse (Certification);
+  if (Certification) {
+    CVData.Certification = Certification;
+  }
+  let Reference = localStorage.getItem ('Reference');
+  Reference = JSON.parse (Reference);
+  if (Reference) {
+    CVData.Reference = Reference;
+  }
+  let Awards = localStorage.getItem ('Awards');
+  Awards = JSON.parse (Awards);
+  if (Awards) {
+    CVData.Awards = Awards;
+  }
+  let Custom = localStorage.getItem ('Custom');
+  Custom = JSON.parse (Custom);
+  if (Custom) {
+    CVData.Custom = Custom;
+  }
+  let Book = localStorage.getItem ('Book');
+  Book = JSON.parse (Book);
+  if (Book) {
+    CVData.Book = Book;
+  }
+  let Publication = localStorage.getItem ('Publication');
+  Publication = JSON.parse (Publication);
+  if (Publication) {
+    CVData.Publication = Publication;
+  }
+
 
   let Summary = localStorage.getItem ('Summary');
   Summary = JSON.parse (Summary);
@@ -407,7 +485,6 @@ function GetPreviousData () {
   if (Skills) {
     CVData.Skills = Skills;
   }
-  console.log ('cartyoo', CVData);
 
   let data = {
     subject: 'Please Add Subject Name for this CV',
@@ -426,7 +503,7 @@ export async function HandleUpdateCV () {
       headers: {Authorization: AuthStr},
     })
     .then (function (response) {
-      console.log ('log 1234==', response);
+      console.log ('res', response);
     })
     .catch (error => {
       console.log ('error', error);
@@ -444,7 +521,7 @@ export async function HandleDeleteCvBackUp (id) {
       window.location.reload (false);
     })
     .catch (error => {
-      console.log ('loki', error);
+      console.log ('error', error);
     });
 }
 
@@ -460,23 +537,22 @@ export async function HandlePutCvBackUp (id) {
       // window.location.reload (false);
     })
     .catch (error => {
-      console.log ('loki,,,', error);
+      console.log ('error', error);
     });
 }
 
 
 export async function HandlePatchCvBackUp (InputValueSubjectName,id) {
- console.log("value = = =",InputValueSubjectName,id,GetToken())
 
   const AuthStr = 'Bearer '.concat (GetToken ());
   await axios.patch (`${BaseURL}/api/CVBackup/${id}/${JSON.stringify(InputValueSubjectName)}`,{}, {
       headers: {authorization:AuthStr},
     })
     .then (function (response) {
-      console.log ('loki = res', response);
+      console.log ('res', response);
     })
     .catch (error => {
-      console.log ('loki = error', error);
+      console.log ('error', error);
     });
 
 }

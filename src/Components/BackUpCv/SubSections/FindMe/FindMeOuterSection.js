@@ -12,7 +12,7 @@ export default function FindMeOuterSection (props) {
             placeholder="FIND ME ONLINE"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

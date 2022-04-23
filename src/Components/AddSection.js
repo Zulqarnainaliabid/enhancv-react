@@ -300,7 +300,6 @@ export function SectionBox (props) {
                 props.funHandleSection (props.item.name, true);
                 props.SetToggleAddnewSection (false);
                 HandlePopEvent ();
-                console.log ('ji', props.item.name);
                 contextData.HandleAddSectionName (props.item.name);
                 contextData.handleAddSection (props.item.name);
               }}

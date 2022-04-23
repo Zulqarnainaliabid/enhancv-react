@@ -12,7 +12,7 @@ export default function SkillsOuterSection (props) {
             placeholder="SKILLS"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

@@ -18,8 +18,6 @@ function BackImages (props) {
   useEffect(()=>{
     Axios('./SectionImages').then(res => setText(res.data)); // This will have your text inside data attribute
   },[])
-
-  console.log("file",text)
   return (
     <StyleRoot>
       <div className="OuterWrapperBackGroundImg" style={styles.zoomIn}>

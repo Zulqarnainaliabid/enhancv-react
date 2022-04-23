@@ -3,8 +3,6 @@ import ApexChart from './MyTimeInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 
 export default function MyTimeOuterSection (props) {
-  console.log ('props.i', props.list);
-
   return (
     <div>
       <div className="outerWrapperCompleteBox">
@@ -14,7 +12,7 @@ export default function MyTimeOuterSection (props) {
             placeholder="MY TIME"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

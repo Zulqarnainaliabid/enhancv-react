@@ -18,7 +18,6 @@ function AchievementsInnerSection (props) {
       }
     }
   }, []);
-  console.log("props.Template",props.Template)
   
   function HandleEditorWidth () {
     if (!props.Template) {

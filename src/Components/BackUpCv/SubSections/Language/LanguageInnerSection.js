@@ -6,7 +6,6 @@ import 'react-rangeslider/lib/index.css';
 import '../../../index.css';
 import TextareaAutosize from 'react-autosize-textarea';
 function LanguageInnerSection (props) {
-  console.log("value",props.list)
   let CssClass = 'Dark';
   if (props.Colors === 'darkColor') {
     CssClass = 'Dark';

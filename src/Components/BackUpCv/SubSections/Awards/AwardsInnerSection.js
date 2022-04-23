@@ -15,7 +15,6 @@ function AwardsInnerSection (props) {
       }
     }
   }, []);
-  console.log ('props.Template', props.Template);
   return (
     <div>
       <div>

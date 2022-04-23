@@ -12,7 +12,7 @@ export default function PassionOuterSection (props) {
             placeholder="PASSION"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

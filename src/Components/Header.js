@@ -97,7 +97,6 @@ export function HeaderContent () {
     }
     localStorage.setItem ('HeaderInputValue', JSON.stringify (InputData));
   }
-  console.log ('i', UpperCase);
   return (
     <div>
       <div

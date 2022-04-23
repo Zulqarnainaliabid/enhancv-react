@@ -35,7 +35,6 @@ function AchievementsInnerSection (props) {
     let value = localStorage.getItem ('Achievements');
     value = JSON.parse (value);
     if (value) {
-      console.log ('lloo', value[props.index].iconName);
       for (let i = 0; i < iconList.length; i++) {
         if (value[props.index].iconName === iconList[i].name) {
           setIcon (iconList[i].icon);

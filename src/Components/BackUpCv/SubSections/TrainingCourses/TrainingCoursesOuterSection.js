@@ -12,7 +12,7 @@ export default function TrainingOuterSection (props) {
             placeholder="Training / Courses"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

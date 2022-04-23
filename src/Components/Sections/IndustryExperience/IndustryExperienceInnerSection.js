@@ -119,7 +119,6 @@ function IndustryExperienceInnerSection (props) {
   const MAX = 100;
 
   let Color = '#686868';
-  console.log ('jj', contextData.SelectedColor);
   if (contextData.SelectedColor === 'darkColor') {
     Color = '#686868';
   }
@@ -287,7 +286,6 @@ function IndustryExperienceInnerSection (props) {
                     'IndustryExperience',
                     JSON.stringify (props.list)
                   );
-                  console.log ('number', values);
                   setRangesValue (values);
                 }}
                 renderTrack={({props, children}) => (

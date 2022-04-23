@@ -10,9 +10,9 @@ export default function BookOuterSection (props) {
         <div className="HeadingNameBox BorderRadius">
         <TextareaAutosize
             className='outerWrapperSectionsHeadingValue'
-            placeholder="Education" value={props.HeadingValue}
+            placeholder="Book" value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

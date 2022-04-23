@@ -3,7 +3,6 @@ import VolunteeringInnerSection from './VolunteeringInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 
 export default function VolunteeringOuterSection (props) {
-  console.log ('volunterintll', props.list);
   return (
     <div>
       <div className="outerWrapperCompleteBox">
@@ -13,7 +12,7 @@ export default function VolunteeringOuterSection (props) {
             placeholder="Volunteering"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

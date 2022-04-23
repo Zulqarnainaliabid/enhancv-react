@@ -13,7 +13,6 @@ function LandingPage (props) {
   const [displayPreLoader, setdisplayPreLoader] = useState (true);
   useEffect (() => {
     const timer = setTimeout (() => {
-      console.log ('This will run after 1 second!');
       setdisplayPreLoader (false);
     }, 1000);
     return () => clearTimeout (timer);

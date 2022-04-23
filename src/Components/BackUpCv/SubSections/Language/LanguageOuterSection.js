@@ -16,7 +16,7 @@ export default function LanguageOuterSection (props) {
             placeholder="Language"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

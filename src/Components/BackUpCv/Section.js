@@ -40,10 +40,6 @@ import ReferenceOuterSection
 function Section (props) {
   let CVBackUpData = JSON.parse (props.list);
   const contextData = useContext (Context);
-
-  console.log ('helodata', CVBackUpData);
-
-  // console.log ('headingValue', CVBackUpData.Template);
   const [DisplayBackgroundColor, setDisplayBackgroundColor] = useState (false);
   const [SubjectName, setSubjectName] = useState ('');
 
@@ -354,6 +350,7 @@ function Section (props) {
       return (
         <div>
           {CVBackUpData.SectionArray.Right.map ((item, index) => {
+
             if (item === 'Book') {
               return (
                 <div key={index}>
@@ -658,7 +655,6 @@ function Section (props) {
                 setSubjectName (e.target.value);
               }}
               onBlur={() => {
-                console.log ('kk', SubjectName);
                 HandlePatchCvBackUp (SubjectName, props.id);
               }}
             />
@@ -678,17 +674,13 @@ function Section (props) {
                 className="BackGroundColorSectionBackupCv"
                 onMouseLeave={() => {
                   setDisplayBackgroundColor (false);
-                  // console.log ('id', props.id);
                 }}
               >
                 <BiPencil
                   className="DeleteIconBackUpCV backGroundColorEditIconBackUpCV  "
                   onClick={() => {
                     contextData.HandleUpdateBackUpCv (props.id);
-
                     props.HandleRemovePreviousData ();
-                    console.log ('helodata', CVBackUpData);
-
                     if (CVBackUpData.Achievements) {
                       localStorage.setItem (
                         'Achievements',

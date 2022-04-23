@@ -66,7 +66,7 @@ function CoverLetter (props) {
       value = JSON.parse (value);
       if (value === null) {
         confirmAlert ({
-          title: 'Please Login First',
+          title: 'Please SignUp First',
           buttons: [
             {
               label: 'OK',
@@ -166,7 +166,6 @@ function CoverLetter (props) {
               contextData.handleDisplayBackImageModal (true);
               contextData.HandleBackGroundColorOfModal (true);
               contextData.handleDisplayBackgroundTransparent (true);
-              console.log ('click');
             }}
           >
             <CgTemplate style={{fontSize: '17px'}} />

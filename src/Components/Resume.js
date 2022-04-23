@@ -64,7 +64,7 @@ export default function Resume (props) {
       value = JSON.parse (value);
       if (value === null) {
         confirmAlert ({
-          title: 'Please Login First',
+          title: 'Please SignUp First',
           buttons: [
             {
               label: 'OK',
@@ -85,6 +85,7 @@ export default function Resume (props) {
     },
     [componentRef.current]
   );
+  
   const reactToPrintTrigger = React.useCallback (() => {
     return (
       <div

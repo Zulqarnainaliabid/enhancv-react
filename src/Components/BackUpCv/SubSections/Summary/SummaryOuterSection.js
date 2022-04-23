@@ -22,7 +22,7 @@ export default function SummaryOuterSection (props) {
             placeholder="SUMMARY"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

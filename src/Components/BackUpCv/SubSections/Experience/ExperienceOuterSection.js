@@ -128,7 +128,7 @@ export default function ExperienceOuterSection (props) {
             placeholder="EXPERIENCE"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

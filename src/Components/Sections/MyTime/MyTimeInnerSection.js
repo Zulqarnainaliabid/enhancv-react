@@ -42,7 +42,6 @@ function MyTimeInnerSection (props) {
     setLabels (['A', 'B', 'C']);
     if (localStorage.getItem ('arraySeries') !== null) {
       let value = localStorage.getItem ('arraySeries');
-      console.log ('value9', value);
       let temp = [];
       value = JSON.parse (value);
       var result = value.map (function (x) {
@@ -59,7 +58,6 @@ function MyTimeInnerSection (props) {
     if (localStorage.getItem ('InputFieldCartMyTime') !== null) {
       let value = localStorage.getItem ('InputFieldCartMyTime');
       value = JSON.parse (value);
-      console.log ('o99==', value);
       let temp = [];
       for (let i = 0; i < 3; i++) {
         temp[i] = value[i];
@@ -89,7 +87,6 @@ function MyTimeInnerSection (props) {
     setLabels (['A', 'B', 'C', 'D', 'E', 'F']);
     if (localStorage.getItem ('arraySeries') !== null) {
       let value = localStorage.getItem ('arraySeries');
-      console.log ('value6', value);
       let temp = [];
       value = JSON.parse (value);
       var result = value.map (function (x) {
@@ -144,7 +141,6 @@ function MyTimeInnerSection (props) {
 
     if (localStorage.getItem ('arraySeries') !== null) {
       let value = localStorage.getItem ('arraySeries');
-      console.log ('value9', value);
       let temp = [];
       value = JSON.parse (value);
       var result = value.map (function (x) {

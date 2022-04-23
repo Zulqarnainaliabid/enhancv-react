@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {PhoneHeader, LinkHeader, LocationHeader} from '../JasonData';
 function Header (props) {
   const [Shape, setShape] = useState (true);
-console.log("logg",props.ImageShape)
   useEffect (() => {
     if (props.ImageShape === 2) {
       setShape (true);
@@ -24,7 +23,7 @@ console.log("logg",props.ImageShape)
               placeholder="Your Name"
               value={props.HeaderInputValue.name}
               onChange={() => {
-                console.log ('ll');
+                console.log ('onchange');
               }}
             />
             {props.HeaderSettingsList[0].selected &&
@@ -34,7 +33,7 @@ console.log("logg",props.ImageShape)
                 placeholder={'Your next desired role?'}
                 value={props.HeaderInputValue.title}
                 onChange={() => {
-                  console.log ('ll');
+                  console.log ('onchange');
                 }}
               />}
           </div>
@@ -50,7 +49,7 @@ console.log("logg",props.ImageShape)
                   placeholder={'phone'}
                   value={props.HeaderInputValue.phone}
                   onChange={() => {
-                    console.log ('ll');
+                    console.log ('onchange');
                   }}
                 />
               </div>}
@@ -67,7 +66,7 @@ console.log("logg",props.ImageShape)
                   placeholder={'Email'}
                   value={props.HeaderInputValue.email}
                   onChange={() => {
-                    console.log ('ll');
+                    console.log ('onchange');
                   }}
                 />
               </div>}
@@ -84,7 +83,7 @@ console.log("logg",props.ImageShape)
                   placeholder={'Website/Link'}
                   value={props.HeaderInputValue.webLink}
                   onChange={() => {
-                    console.log ('ll');
+                    console.log ('onchange');
                   }}
                 />
               </div>}
@@ -99,7 +98,7 @@ console.log("logg",props.ImageShape)
                   placeholder={'Location'}
                   value={props.HeaderInputValue.location}
                   onChange={() => {
-                    console.log ('ll');
+                    console.log ('onchange');
                   }}
                 />
               </div>}

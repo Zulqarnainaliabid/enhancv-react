@@ -15,9 +15,7 @@ const InputField = React.forwardRef ((props, ref) => {
     inputRef.current.focus ();
   }, []);
   let Style = null;
-  console.log ('jj', props.useUpperCase,"2",props.UpperCaseHeaderInputField);
   if (props.useUpperCase) {
-    console.log("yesddddd")
     Style = {
       textTransform: props.UpperCaseHeaderInputField ? 'uppercase' : 'lower',
       textAlign: props.CursorCenter ? 'center' : '',

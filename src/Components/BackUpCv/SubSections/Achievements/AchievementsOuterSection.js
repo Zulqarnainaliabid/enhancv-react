@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext} from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import AchievementsInnerSection from './AchievementsInnerSection';
 export default function AchievementsOuterSection (props) {
-  console.log ('88', props.HeadingValue);
   return (
     <div>
       <div className="outerWrapperCompleteBox">
@@ -12,7 +11,7 @@ export default function AchievementsOuterSection (props) {
             placeholder="ACHIEVEMENTS"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

@@ -125,8 +125,15 @@ function Home () {
     localStorage.removeItem ('Publication');
     localStorage.removeItem ('Reference');
     localStorage.removeItem ('Awards');
+    localStorage.removeItem ('Reference');
+    localStorage.removeItem ('HeadingValueBook');
+    localStorage.removeItem ('HeadingValueCustom');
+    localStorage.removeItem ('HeadingValueCertification');
+    localStorage.removeItem ('HeadingValuePhilosophy');
+    localStorage.removeItem ('HeadingValuePublication');
+    localStorage.removeItem ('HeadingValueReference');
+    localStorage.removeItem ('HeadingValueAwards');
   }
-
   const override = css`
   display: block;
   margin: 0 auto;
@@ -182,7 +189,6 @@ function Home () {
           </div>}
         <div className="outerContainerBachUpCv">
           {BackUpCV.map ((item, index) => {
-            console.log("subject NAme",item.subject)
             return (
               <div key={index}>
                 <Section

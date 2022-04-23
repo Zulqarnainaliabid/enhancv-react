@@ -251,7 +251,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     () => {
       if (contextData.AddSectionInArray) {
         HandleAddElement (contextData.AddSectionInArray);
-        console.log("kkkkcalling")
         contextData.handleAddSection (null);
       }
     },
@@ -261,7 +260,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   function handleLRBAddSection () {
     let value = localStorage.getItem ('SectionsArray');
     value = JSON.parse (value);
-    console.log ('value', value);
     if (value === null) {
       value = {
         Left: [],
@@ -272,12 +270,12 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       if (contextData.ToggleTemplate) {
         if (Resume.Right.length === 0 && value.Right.length === 0) {
           setShowRightSection (true);
-        }else if(Resume.Right.length !== 0){
+        } else if (Resume.Right.length !== 0) {
           setShowRightSection (false);
         }
         if (Resume.Left.length === 0 && value.Left.length === 0) {
           setShowLeftSection (true);
-        } else if(Resume.Left.length !== 0){
+        } else if (Resume.Left.length !== 0) {
           setShowLeftSection (false);
         }
       } else {
@@ -383,7 +381,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   }, []);
 
   function HandleAddElement (data) {
-    console.log ('yes00', data);
     if (data === 'AchievementsOuterSection') {
       Resume.Right.push (Achievements);
       AlternateResume.Right.push ('Achievements');
@@ -481,7 +478,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       setAlternateResume (AlternateResume);
       localStorage.setItem ('SectionsArray', JSON.stringify (AlternateResume));
     } else if (data === 'CertificationOuterSection') {
-      console.log ('yes00');
       Resume.Right.push (Certification);
       AlternateResume.Right.push ('Certification');
       setResume (Resume);
@@ -618,122 +614,118 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     },
     [contextData.UpdateIndexes]
   );
+
   return (
     <div>
       <div style={{position: 'sticky'}} />
-      <div className="p-1 ">
-        <div ref={ref1}>
-          <div>
-            <div
-              className="outerContainerResume"
-              style={{
-                backgroundImage: `url(${contextData.BackImage})`,
-              }}
-            >
-              <div style={{zIndex: '999'}}>
-                <div
-                  className="HoverBackgroundColor CommonCssClassAbsolutePosition LeftRightTopBottomZero"
-                  style={{
-                    backgroundColor: 'black',
-                    opacity: displayBackGroundColor ? '0.8' : '0',
-                  }}
-                  onClick={() => {
-                    HandleBackGroundColor ();
-                  }}
-                />
-                <div>
-                  {header}
-                </div>
-                <section
-                  style={{
-                    width: '100%',
-                    paddingTop: '12px',
-                    display: contextData.ToggleTemplate ? 'flex' : 'block',
-                    gap: '20px',
-                  }}
-                  onClick={handleParentClick}
-                >
-                  <div
-                    style={{
-                      width: contextData.ToggleTemplate ? '60%' : '100%',
-                    }}
-                  >
-                    {Resume.Left.map ((item, index) => {
-                      return (
-                        <div key={index}>
-                          <div> {item}</div>
-                        </div>
-                      );
-                    })}
-                    {ShowLeftSection &&
-                      <div className="outerWrapperAddItemsRightSection">
-                        <div className="outerWrapperButtonRightSection d-flex justify-content-center">
-                          <p
-                            className="ButtonAddNewSection FontWeight text-center text-white BorderRadius CommonCssClassCursorPointer"
-                            onClick={() => {
-                              contextData.HandleBackGroundColorOfModal (true);
-                              contextData.HandleShowModal (true);
-                              contextData.handleDisplayBackgroundTransparent (
-                                false
-                              );
-                              contextData.HandleToggleModalCSSClass (
-                                'outerWrapperModalAddSections'
-                              );
-                              contextData.HandleToggleModal ('AddSection');
-                            }}
-                          >
-                            Add New Section
-                          </p>
-                        </div>
-                      </div>}
-                  </div>
-                  <div
-                    style={{
-                      width: contextData.ToggleTemplate ? '40%' : '100%',
-                    }}
-                  >
-                    {Resume.Right.map ((item, index) => {
-                      console.log ('kkk==', item);
-                      return (
-                        <div key={index}>
-                          <div> {item}</div>
-                        </div>
-                      );
-                    })}
-                    {contextData.ToggleTemplate &&
-                      <div>
-                        {ShowRightSection &&
-                          <div className="outerWrapperAddItemsRightSection">
-                            <div className="outerWrapperButtonRightSection d-flex justify-content-center">
-                              <p
-                                className="ButtonAddNewSection FontWeight text-center text-white BorderRadius CommonCssClassCursorPointer"
-                                onClick={() => {
-                                  contextData.HandleBackGroundColorOfModal (
-                                    true
-                                  );
-                                  contextData.HandleShowModal (true);
-                                  contextData.handleDisplayBackgroundTransparent (
-                                    false
-                                  );
-                                  contextData.HandleToggleModalCSSClass (
-                                    'outerWrapperModalAddSections'
-                                  );
-                                  contextData.HandleToggleModal ('AddSection');
-                                }}
-                              >
-                                Add New Section
-                              </p>
-                            </div>
-                          </div>}
-                      </div>}
-                  </div>
-                </section>
+      <div className="p-1 " ref={ref1}>
+        <div>
+          <div
+            className="outerContainerResume"
+            style={{
+              backgroundImage: `url(${contextData.BackImage})`,
+            }}
+          >
+            <div style={{zIndex: '999'}}>
+              <div
+                className="HoverBackgroundColor CommonCssClassAbsolutePosition LeftRightTopBottomZero"
+                style={{
+                  backgroundColor: 'black',
+                  opacity: displayBackGroundColor ? '0.8' : '0',
+                }}
+                onClick={() => {
+                  HandleBackGroundColor ();
+                }}
+              />
+              <div>
+                {header}
               </div>
+              <section
+                style={{
+                  width: '100%',
+                  paddingTop: '12px',
+                  display: contextData.ToggleTemplate ? 'flex' : 'block',
+                  gap: '20px',
+                }}
+                onClick={handleParentClick}
+              >
+                <div
+                  style={{
+                    width: contextData.ToggleTemplate ? '60%' : '100%',
+                  }}
+                >
+                  {Resume.Left.map ((item, index) => {
+                    return (
+                      <div key={index}>
+                        <div> {item}</div>
+                      </div>
+                    );
+                  })}
+                  {ShowLeftSection &&
+                    <div className="outerWrapperAddItemsRightSection">
+                      <div className="outerWrapperButtonRightSection d-flex justify-content-center">
+                        <p
+                          className="ButtonAddNewSection FontWeight text-center text-white BorderRadius CommonCssClassCursorPointer"
+                          onClick={() => {
+                            contextData.HandleBackGroundColorOfModal (true);
+                            contextData.HandleShowModal (true);
+                            contextData.handleDisplayBackgroundTransparent (
+                              false
+                            );
+                            contextData.HandleToggleModalCSSClass (
+                              'outerWrapperModalAddSections'
+                            );
+                            contextData.HandleToggleModal ('AddSection');
+                          }}
+                        >
+                          Add New Section
+                        </p>
+                      </div>
+                    </div>}
+                </div>
+                <div
+                  style={{
+                    width: contextData.ToggleTemplate ? '40%' : '100%',
+                  }}
+                >
+                  {Resume.Right.map ((item, index) => {
+                    return (
+                      <div key={index}>
+                        <div> {item}</div>
+                      </div>
+                    );
+                  })}
+                  {contextData.ToggleTemplate &&
+                    <div>
+                      {ShowRightSection &&
+                        <div className="outerWrapperAddItemsRightSection">
+                          <div className="outerWrapperButtonRightSection d-flex justify-content-center">
+                            <p
+                              className="ButtonAddNewSection FontWeight text-center text-white BorderRadius CommonCssClassCursorPointer"
+                              onClick={() => {
+                                contextData.HandleBackGroundColorOfModal (true);
+                                contextData.HandleShowModal (true);
+                                contextData.handleDisplayBackgroundTransparent (
+                                  false
+                                );
+                                contextData.HandleToggleModalCSSClass (
+                                  'outerWrapperModalAddSections'
+                                );
+                                contextData.HandleToggleModal ('AddSection');
+                              }}
+                            >
+                              Add New Section
+                            </p>
+                          </div>
+                        </div>}
+                    </div>}
+                </div>
+              </section>
             </div>
-            <div className="d-flex justify-content-between BottomPageCurve">
-              <div className="CurveAtTheBottomOfResumeContent RotateLeftSideCurveAtTheBottomOfResumeContent" />
-              <div className="CurveAtTheBottomOfResumeContent RotateRightSideCurveAtTheBottomOfResumeContent" />
-            </div>
+          </div>
+          <div className="d-flex justify-content-between BottomPageCurve">
+            <div className="CurveAtTheBottomOfResumeContent RotateLeftSideCurveAtTheBottomOfResumeContent" />
+            <div className="CurveAtTheBottomOfResumeContent RotateRightSideCurveAtTheBottomOfResumeContent" />
           </div>
         </div>
       </div>

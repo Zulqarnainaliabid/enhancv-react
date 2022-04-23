@@ -420,7 +420,6 @@ function EducationInnerSection (props) {
                         style={{gap: '5px'}}
                         onBlur={() => {
                           setShowDate (false);
-                          console.log ('blur');
                         }}
                         onClick={() => {
                           setShowDate (!ShowDate);

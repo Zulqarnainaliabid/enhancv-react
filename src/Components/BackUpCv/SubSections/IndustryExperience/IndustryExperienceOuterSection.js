@@ -12,7 +12,7 @@ export default function IndustryExperienceOuterSection (props) {
             placeholder="Industry Experience"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

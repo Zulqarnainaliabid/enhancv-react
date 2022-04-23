@@ -14,7 +14,7 @@ export function InputFieldSlice (props) {
         type="text"
         placeholder="Activity / Occupation"
         onChange={e => {
-          console.log ('jj');
+          console.log ('onchange');
         }}
       />
       <input
@@ -24,7 +24,7 @@ export function InputFieldSlice (props) {
         value={props.list[props.index].InputFieldPercentage}
         style={{width: '25px'}}
         onChange={e => {
-          console.log ('jj');
+          console.log ('onchange');
         }}
       />
       <div>%</div>

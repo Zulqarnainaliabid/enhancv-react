@@ -11,7 +11,7 @@ export default function EducationOuterSection (props) {
             className='outerWrapperSectionsHeadingValue'
             placeholder="Education" value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />

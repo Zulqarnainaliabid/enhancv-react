@@ -3,7 +3,6 @@ import ProjectsInnerSection from './ProjectsInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 
 export default function ProjectsOuterSection (props) {
-  console.log ('oi9', props.list);
   return (
     <div>
       <div className="outerWrapperCompleteBox">
@@ -13,7 +12,7 @@ export default function ProjectsOuterSection (props) {
             placeholder="PROJECTS"
             value={props.HeadingValue}
             onChange={() => {
-              console.log ('ll');
+              console.log ('onchange');
             }}
             draggable="false"
           />
