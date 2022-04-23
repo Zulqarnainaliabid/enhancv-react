@@ -33,6 +33,7 @@ export const ContextProvider = ({children}) => {
   const [UpdateIndexes, setUpdateIndexes] = useState (false);
   const [AddSectionName, setAddSectionName] = useState(null)
   const [UpdateBackUpCv, setUpdateBackUpCv] = useState(null)
+  const [DisplayLoading, setDisplayLoading] = useState(false)
 
   function HandleBackGroundColorOfModal (toggle) {
     setBackgroundColorOfModal (toggle);
@@ -168,7 +169,9 @@ export const ContextProvider = ({children}) => {
   function HandleUpdateBackUpCv(Toggle){
     setUpdateBackUpCv(Toggle)
   }
-
+  function HandleDisplayLoading(Toggle){
+         setDisplayLoading(Toggle)
+  }
   return (
     <Context.Provider
       value={{
@@ -218,6 +221,8 @@ export const ContextProvider = ({children}) => {
         AddSectionName,
         UpdateBackUpCv,
         HandleUpdateBackUpCv,
+        HandleDisplayLoading,
+        DisplayLoading,
       }}
     >
       {children}

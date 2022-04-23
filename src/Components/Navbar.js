@@ -95,7 +95,7 @@ export default function Navbar (props) {
                   contextData.HandleToggleModalCSSClass("outerWrapperModalSignIn")
                 }}
               >
-                Sign In
+                Sign Up
               </p>
             </div>
           </Col>

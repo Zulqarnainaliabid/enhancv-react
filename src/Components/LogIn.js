@@ -21,12 +21,14 @@ export default function LoginIn (props) {
   const [ErrorMessage, setErrorMessage] = useState ('');
   const [CheckOnline, setCheckOnline] = useState (false);
   const [playOn] = useSound (sound, {volume: 0.25});
+  
 
   async function handleSubmit (fName, lName, Email, Password) {
     if (CheckOnline) {
       if (fName !== '' && lName !== '' && Email !== '' && Password !== '') {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test (Email)) {
+          contextData.HandleDisplayLoading(true)
           let userData = {
             email: Email,
             firstName: fName,
@@ -35,6 +37,7 @@ export default function LoginIn (props) {
           };
           let data = await HandleSignUpPostRequest (userData);
           if (data) {
+            contextData.HandleDisplayLoading(false)
             if (data === 201) {
               setCheckMArk (true);
             } else {
@@ -119,7 +122,6 @@ export default function LoginIn (props) {
     return (
       <div>
         <main className="wrapper">
-
           <main className="wrapper">
             <NetworkStatus>
               {({online}) => (

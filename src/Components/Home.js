@@ -34,22 +34,22 @@ function Home () {
     return () => clearTimeout (timer);
   }, []);
 
-  // useEffect (async () => {
-  //   let value = localStorage.getItem ('Users');
-  //   value = JSON.parse (value);
-  //   if (value) {
-  //     setBackUpCvToggle (true);
-  //     let data = await HandleGetCvBackUp ();
-  //     if (data.data) {
-  //       setLoading (false);
-  //     }
-  //     setBackUpCV ([...data.data]);
-  //   } else {
-  //     contextData.HandleToggleModal ('Login');
-  //     contextData.HandleShowModal (true);
-  //     contextData.HandleBackGroundColorOfModal (true);
-  //   }
-  // }, []);
+  useEffect (async () => {
+    let value = localStorage.getItem ('Users');
+    value = JSON.parse (value);
+    if (value) {
+      setBackUpCvToggle (true);
+      let data = await HandleGetCvBackUp ();
+      if (data.data) {
+        setLoading (false);
+      }
+      setBackUpCV ([...data.data]);
+    } else {
+      contextData.HandleToggleModal ('Login');
+      contextData.HandleShowModal (true);
+      contextData.HandleBackGroundColorOfModal (true);
+    }
+  }, []);
 
   function HandleRemovePreviousData () {
     setBackUpCvToggle (false);
@@ -215,6 +215,27 @@ function Home () {
     return (
       <div>
         <Navbar />
+        {contextData.DisplayLoading &&
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{
+              position: 'absolute',
+              left: '0',
+              right: '0',
+              top: '0',
+              bottom: '0',
+              backgroundColor: 'black',
+              opacity: '0.5',
+              zIndex: '10',
+            }}
+          >
+            <FadeLoader
+              color={LoaderColor}
+              loading={loading}
+              css={override}
+              size={250}
+            />
+          </div>}
         <div className="OuterContainer d-flex flex-column align-items-center">
           <CSSTransition
             in={contextData.ShowModal}
@@ -222,11 +243,10 @@ function Home () {
             classNames="alert"
             unmountOnExit
           >
-            <div className='d-flex justify-content-center align-items-center'>
             <Modal
               contentDisplay={contextData.ToggleModal}
               otherClass={contextData.ToggleModalCssClass}
-            /></div>
+            />
           </CSSTransition>
           <CSSTransition
             in={contextData.BackgroundColorOfModal}

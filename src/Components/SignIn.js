@@ -24,12 +24,14 @@ function SignIn (props) {
       if (Email !== '' && Password !== '') {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test (Email)) {
+          contextData.HandleDisplayLoading (true);
           let userData = {
             email: Email,
             password: Password,
           };
           let data = await HandleSignInPostRequest (userData);
           if (data) {
+            contextData.HandleDisplayLoading (false);
             if (data === 200) {
               setCheckMArk (true);
             } else {
@@ -114,7 +116,7 @@ function SignIn (props) {
           </NetworkStatus>
         </main>
         <div className="HeadingTextHolderSignIn">
-          Sign in to your account
+          Sign Up to your account
         </div>
         <div
           style={{
@@ -155,7 +157,7 @@ function SignIn (props) {
             handleSubmit (Email, Password);
           }}
         >
-          SIGN IN
+          SIGN UP
         </div>
       </div>
     );

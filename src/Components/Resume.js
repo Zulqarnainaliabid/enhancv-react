@@ -13,7 +13,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {HandleUpdateCV, HandlePutCvBackUp} from './Services';
-import Footer from './Footer'
+import Footer from './Footer';
 export default function Resume (props) {
   const [state, setState] = useState (true);
   const contextData = useContext (Context);
@@ -23,7 +23,6 @@ export default function Resume (props) {
   const [loading, setLoading] = useState (false);
   const [text, setText] = useState ('old boring text');
   const [Subject, setSubject] = useState (false);
-
   const handleAfterPrint = React.useCallback (() => {
     console.log ('`onAfterPrint` called');
   }, []);
@@ -216,9 +215,10 @@ export default function Resume (props) {
           </div>
         </div>
       </div>
-      <div className='pb-4'>
-        <Footer/>
-      </div>
+      {state &&
+        <div className="pb-4">
+          <Footer />
+        </div>}
     </div>
   );
 }
