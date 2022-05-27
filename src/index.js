@@ -6,7 +6,6 @@ import {ContextProvider} from './Components/Context/Context';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 
-
 ReactDOM.render (
   <ContextProvider>
       <App />
