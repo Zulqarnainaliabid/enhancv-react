@@ -116,7 +116,7 @@ function SignIn (props) {
           </NetworkStatus>
         </main>
         <div className="HeadingTextHolderSignIn">
-          Sign Up to your account
+          Login to your account
         </div>
         <div
           style={{
@@ -157,7 +157,7 @@ function SignIn (props) {
             handleSubmit (Email, Password);
           }}
         >
-          SIGN UP
+          LogIn
         </div>
       </div>
     );

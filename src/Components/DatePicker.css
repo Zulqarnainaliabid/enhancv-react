@@ -80,6 +80,28 @@
     cursor: pointer;
     margin: 0px 9px 0px 8px;
   }
+  .outerWrapperIcons{
+    display:flex;
+    justify-content: center;
+    gap:12px;
+    margin-top:7px;
+    margin-bottom: 7px;
+  }
+  .ArrowsButtons{
+    background-color:transparent !important;
+    border: transparent !important;
+  }
+  .ArrowsButtons:focus{
+    box-shadow: unset !important;
+  }
+  .LeftRightArrows{
+    font-size:25px;
+    cursor:pointer;
+    color: #9CA3AF;
+  }
+  .LeftRightArrows:hover{
+    color: #6B7280;
+  }
   .InnerContainerDatePicker {
     display: flex;
     grid-gap: 16px;

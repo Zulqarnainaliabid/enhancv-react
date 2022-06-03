@@ -26,7 +26,7 @@ import Reference from './SectionImages/Reference.JPG';
 
 import {MdHeight, MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
-
+//new
 let data = [
   {
     labelLowerArray: 'Remove section',
@@ -218,16 +218,19 @@ export function Section2ndBox (props) {
 
   return (
     <div style={{position: 'relative'}} className="Section">
-      <div
+      <div  
         onMouseEnter={() => {
-          let temp = [];
+          let temp = []; 
           temp = props.ArrayLower;
           temp[props.index].Hover = true;
           props.setArrayLower ([...temp]);
         }}
       >
-        <div style={{width: '282px', height: '130px'}}>
-          <img src={props.item.imag} style={{width: '100%', height: '100%'}} />
+        <div style={{width: '282px', height: '150px',}}>
+          <img
+            src={props.item.imag}
+            style={{width: '100%',height:"100%", objectFit: 'contain'}}
+          />
         </div>
         {props.item.Hover &&
           <div
@@ -270,19 +273,19 @@ export function SectionBox (props) {
           props.setArrayUper ([...temp]);
         }}
       >
-        <div style={{width: '282px'}}>
+        <div style={{width: '282px', height: '150px'}}>
           <img
             src={props.item.imag}
-            style={{width: '100%', height: '130px'}}
+            style={{width: '100%',height:"100%", objectFit: 'contain'}}
             alt="Logo"
           />
-          <p
-            className="text-center"
-            style={{fontSize: '18px', fontWeight: 'bolder'}}
-          >
-            {props.item.labelName}
-          </p>
         </div>
+        <p
+          className="text-center"
+          style={{fontSize: '18px', fontWeight: 'bolder'}}
+        >
+          {props.item.labelName}
+        </p>
         {props.item.Hover &&
           <div
             key={props.item}

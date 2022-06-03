@@ -13,7 +13,7 @@ export default function Navbar (props) {
         position: 'sticky',
         top: '0',
         height: '80px',
-        zIndex:"5",
+        zIndex: '5',
       }}
     >
       <Container fluid>
@@ -78,10 +78,11 @@ export default function Navbar (props) {
                 className="LoginButton CommonSccClassSignInAndLogInButton FontWeight CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius"
                 onClick={() => {
                   contextData.HandleBackGroundColorOfModal (true);
-                  contextData.HandleShowModal(true)
-                  contextData.HandleToggleModal("Login")
-                  contextData.HandleToggleModalCSSClass("outerWrapperModalSignIn")
-                  contextData.handleDisplayBackgroundTransparent(false)
+                  contextData.HandleShowModal (true);
+                  contextData.HandleToggleModal ('SignIn');
+                  contextData.HandleToggleModalCSSClass (
+                    'outerWrapperModalSignIn'
+                  );
                 }}
               >
                 Login
@@ -90,9 +91,12 @@ export default function Navbar (props) {
                 className="SignInButton CommonSccClassSignInAndLogInButton FontWeight CommonCssClassCursorPointer BorderRadius"
                 onClick={() => {
                   contextData.HandleBackGroundColorOfModal (true);
-                  contextData.HandleShowModal(true)
-                  contextData.HandleToggleModal("SignIn")
-                  contextData.HandleToggleModalCSSClass("outerWrapperModalSignIn")
+                  contextData.HandleShowModal (true);
+                  contextData.HandleToggleModal ('Login');
+                  contextData.HandleToggleModalCSSClass (
+                    'outerWrapperModalSignIn'
+                  );
+                  contextData.handleDisplayBackgroundTransparent (false);
                 }}
               >
                 Sign Up

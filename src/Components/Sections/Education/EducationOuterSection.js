@@ -4,6 +4,7 @@ import EducationInnerSection from './EducationInnerSection';
 import {Rings} from 'react-loader-spinner';
 import InputField from '../../InputField';
 import {Plus, Delete, Template} from '../../JasonData';
+import {DatePickerYears} from '../../DatePickersJsonData';
 export default function EducationOuterSection (props) {
   const contextData = useContext (Context);
   const [HighLighter, setHighLighter] = useState (false);
@@ -40,34 +41,8 @@ export default function EducationOuterSection (props) {
         selectedMinus: false,
         onGoing: false,
       },
-      yearFromPicker: [
-        {name: '2011', selected: false},
-        {name: '2012', selected: false},
-        {name: '2013', selected: false},
-        {name: '2014', selected: false},
-        {name: '2015', selected: false},
-        {name: '2016', selected: false},
-        {name: '2017', selected: false},
-        {name: '2018', selected: false},
-        {name: '2019', selected: false},
-        {name: '2020', selected: false},
-        {name: '2021', selected: false},
-        {name: '2022', selected: false},
-      ],
-      yearToPicker: [
-        {name: '2011', selected: false},
-        {name: '2012', selected: false},
-        {name: '2013', selected: false},
-        {name: '2014', selected: false},
-        {name: '2015', selected: false},
-        {name: '2016', selected: false},
-        {name: '2017', selected: false},
-        {name: '2018', selected: false},
-        {name: '2019', selected: false},
-        {name: '2020', selected: false},
-        {name: '2021', selected: false},
-        {name: '2022', selected: false},
-      ],
+      yearFromPicker:DatePickerYears,
+      yearToPicker:DatePickerYears,
       monthFromPicker: [
         {name: 'Jan', number: '01', selected: false},
         {name: 'Feb', number: '02', selected: false},
@@ -182,34 +157,8 @@ export default function EducationOuterSection (props) {
           selectedMinus: false,
           onGoing: false,
         },
-        yearFromPicker: [
-          {name: '2011', selected: false},
-          {name: '2012', selected: false},
-          {name: '2013', selected: false},
-          {name: '2014', selected: false},
-          {name: '2015', selected: false},
-          {name: '2016', selected: false},
-          {name: '2017', selected: false},
-          {name: '2018', selected: false},
-          {name: '2019', selected: false},
-          {name: '2020', selected: false},
-          {name: '2021', selected: false},
-          {name: '2022', selected: false},
-        ],
-        yearToPicker: [
-          {name: '2011', selected: false},
-          {name: '2012', selected: false},
-          {name: '2013', selected: false},
-          {name: '2014', selected: false},
-          {name: '2015', selected: false},
-          {name: '2016', selected: false},
-          {name: '2017', selected: false},
-          {name: '2018', selected: false},
-          {name: '2019', selected: false},
-          {name: '2020', selected: false},
-          {name: '2021', selected: false},
-          {name: '2022', selected: false},
-        ],
+        yearFromPicker: DatePickerYears,
+        yearToPicker:DatePickerYears,
         monthFromPicker: [
           {name: 'Jan', number: '01', selected: false},
           {name: 'Feb', number: '02', selected: false},
