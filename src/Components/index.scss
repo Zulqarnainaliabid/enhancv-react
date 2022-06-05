@@ -452,16 +452,16 @@ input {
     color: #576064;
 }
 .SubmitButtons {
-    background-color: #00c091;
-    border-color: #00c091;
+    background-color: #00c091 !important;
+    border-color: #00c091 !important;
     padding: 11px 75px;
     font-size: 18px;
     text-align: center;
     margin: 18px 0 0 0;
 }
 .SubmitButtons:hover {
-    color: #fff;
-    background-color: #008d6a;
+    color: #fff !important;
+    background-color: #008d6a !important;
 }
 .RotateRightSideCurveAtTheBottomOfResumeContent {
     transform: skew(2deg) rotate(3deg);
@@ -513,12 +513,11 @@ input {
 }
 .DragAndDropContinueButton {
     background-color: #00c091;
-    position: fixed;
+    // position: fixed;
     bottom: 40px;
     text-align: center;
     line-height: 1.428571429;
     padding: 6px 14px;
-    margin-left: 120px;
 }
 .DragAndDropContinueButton:hover {
     color: #fff;
@@ -649,7 +648,7 @@ input {
 }
 .testModalBackGroundImg {
     background-color: white;
-    padding: 1px 0px 80px 0;
+    padding: 1px 0px 106px 0;
 }
 .TemplateBackgroundImg {
     width: 87px;

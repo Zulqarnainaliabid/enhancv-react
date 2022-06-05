@@ -152,6 +152,7 @@ export default function ImagePicker (props) {
         Import Photo
       </div>
       <div style={{marginBottom: '70px'}}>
+        
         <input
           style={{display: 'none'}}
           type="file"

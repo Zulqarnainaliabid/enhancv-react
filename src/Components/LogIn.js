@@ -7,12 +7,21 @@ import useSound from 'use-sound';
 import sound from './Images/forever-alone_1.mp3';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import {Button} from 'react-bootstrap';
+import ExampleInputField from './Example/ExampleInputField';
+import ClickNHold from 'react-click-n-hold';
+import {BsEye} from 'react-icons/bs';
+
+const initialValues = {
+  FistName: '',
+  LastName: '',
+  Email: '',
+  Password: '',
+};
+
 export default function LoginIn (props) {
   const contextData = useContext (Context);
-  const [FistName, setFistName] = useState ('');
-  const [LastName, setLastName] = useState ('');
-  const [Email, setEmail] = useState ('');
-  const [Password, setPassword] = useState ('');
+  const [values, setValues] = useState (initialValues);
   const [CheckMArk, setCheckMArk] = useState (false);
   const [ValidationFName, setValidationFName] = useState (false);
   const [ValidationLName, setValidationLName] = useState (false);
@@ -20,15 +29,17 @@ export default function LoginIn (props) {
   const [ValidationPassword, setValidationPassword] = useState (false);
   const [ErrorMessage, setErrorMessage] = useState ('');
   const [CheckOnline, setCheckOnline] = useState (false);
-  const [playOn] = useSound (sound, {volume: 0.25});
-  
+  const [PasswordType, setPasswordType] = useState ('password');
+  const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
+    true
+  );
 
   async function handleSubmit (fName, lName, Email, Password) {
     if (CheckOnline) {
       if (fName !== '' && lName !== '' && Email !== '' && Password !== '') {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test (Email)) {
-          contextData.HandleDisplayLoading(true)
+          contextData.HandleDisplayLoading (true);
           let userData = {
             email: Email,
             firstName: fName,
@@ -37,7 +48,7 @@ export default function LoginIn (props) {
           };
           let data = await HandleSignUpPostRequest (userData);
           if (data) {
-            contextData.HandleDisplayLoading(false)
+            contextData.HandleDisplayLoading (false);
             if (data === 201) {
               setCheckMArk (true);
             } else {
@@ -78,8 +89,8 @@ export default function LoginIn (props) {
         }
       }
     } else {
-      playOn ();
-      confirmAlert ({ 
+      // playOn ();
+      confirmAlert ({
         title: 'Your Are Currently Off Line',
         buttons: [
           {
@@ -89,6 +100,26 @@ export default function LoginIn (props) {
       });
     }
   }
+
+  useEffect (
+    () => {
+      const timer = setTimeout (() => {
+        setValidationPassword (false);
+        setValidationEmail (false);
+        setValidationLName (false);
+        setValidationFName (false);
+        setErrorMessage ('');
+      }, 2000);
+      return () => clearTimeout (timer);
+    },
+    [
+      ValidationPassword,
+      ValidationEmail,
+      ValidationLName,
+      ValidationFName,
+      ErrorMessage,
+    ]
+  );
 
   const Alert = ({message}) => {
     if (message === 'online') {
@@ -111,6 +142,48 @@ export default function LoginIn (props) {
     },
     [CheckMArk]
   );
+
+  const handleInputChange = e => {
+    const {name, value} = e.target;
+    setValues ({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  useEffect (
+    () => {
+      if (
+        values.FistName === '' &&
+        values.LastName === '' &&
+        values.Email === '' &&
+        values.Password === ''
+      ) {
+        setToggleDisabledLoginButton (true);
+        console.log ('calling');
+      } else {
+        setToggleDisabledLoginButton (false);
+      }
+    },
+    [values]
+  );
+
+  function start (e) {
+    console.log ('START');
+    setPasswordType ('text');
+  }
+
+  function end (e, enough) {
+    console.log ('END');
+    setPasswordType ('password');
+    console.log (
+      enough ? 'Click released after enough time' : 'Click released too soon'
+    );
+  }
+
+  function clickNHold (e) {
+    console.log ('CLICK AND HOLD');
+  }
 
   if (CheckMArk) {
     return (
@@ -135,6 +208,7 @@ export default function LoginIn (props) {
 
         </main>
         <div className="HeadingTextHolderSignIn">Create your account</div>
+        {/* <ExampleInputField/> */}
         <div
           style={{
             display: 'flex',
@@ -148,45 +222,48 @@ export default function LoginIn (props) {
             className="SignUPName BorderRadius"
             placeholder="First Name*"
             style={{borderColor: ValidationFName ? 'red' : ''}}
-            value={FistName}
-            onChange={e => {
-              setFistName (e.target.value);
-              setValidationFName (false);
-            }}
+            value={values.FistName}
+            name="FistName"
+            onChange={handleInputChange}
           />
           <input
             className="SignUPName BorderRadius"
             placeholder="Last Name*"
             style={{borderColor: ValidationLName ? 'red' : ''}}
-            value={LastName}
-            onChange={e => {
-              setLastName (e.target.value);
-              setValidationLName (false);
-            }}
+            value={values.LastName}
+            name="LastName"
+            onChange={handleInputChange}
           />
           <input
             className="SignUPName BorderRadius"
             placeholder="Email*"
             style={{borderColor: ValidationEmail ? 'red' : ''}}
-            value={Email}
-            onChange={e => {
-              setEmail (e.target.value);
-              setValidationEmail (false);
-              setErrorMessage ('');
-            }}
+            value={values.Email}
+            name="Email"
+            onChange={handleInputChange}
           />
-          <input
-            className="SignUPName BorderRadius"
-            placeholder="Password*"
-            style={{borderColor: ValidationPassword ? 'red' : ''}}
-            value={Password}
-            onChange={e => {
-              setPassword (e.target.value);
-              setValidationPassword (false);
-              setErrorMessage ('');
-            }}
-          />
-          {ErrorMessage && <div>{ErrorMessage}</div>}
+          <div className="SignUPName BorderRadius justify-content-between d-flex align-items-center">
+            <input
+              className="w-100"
+              placeholder="Password*"
+              style={{borderColor: ValidationPassword ? 'red' : ''}}
+              value={values.Password}
+              type={PasswordType}
+              name="Password"
+              onChange={handleInputChange}
+            />
+            <ClickNHold
+              time={2} // Time to keep pressing. Default is 2
+              onStart={start} // Start callback
+              onClickNHold={clickNHold} //Timeout callback
+              onEnd={end}
+            >
+
+              <BsEye />
+            </ClickNHold>
+          </div>
+
+          {ErrorMessage && <div style={{color: 'red'}}>{ErrorMessage}</div>}
         </div>
         <div className="d-flex flex-column align-items-start">
           <div style={{display: 'flex'}}>
@@ -229,14 +306,20 @@ export default function LoginIn (props) {
             </div>
           </div>
         </div>
-        <div
-          className="SubmitButtons FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
+        <Button
+          disabled={ToggleDisabledLoginButton}
+          className="SubmitButtons w-100 FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
           onClick={() => {
-            handleSubmit (FistName, LastName, Email, Password);
+            handleSubmit (
+              values.FistName,
+              values.LastName,
+              values.Email,
+              values.Password
+            );
           }}
         >
           CREATE AN ACCOUNT
-        </div>
+        </Button>
       </div>
     );
   }

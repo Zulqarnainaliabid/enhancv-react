@@ -77,9 +77,11 @@ export default function Navbar (props) {
               <p
                 className="LoginButton CommonSccClassSignInAndLogInButton FontWeight CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius"
                 onClick={() => {
+
                   contextData.HandleBackGroundColorOfModal (true);
                   contextData.HandleShowModal (true);
                   contextData.HandleToggleModal ('SignIn');
+                  contextData.handleDisplayBackgroundTransparent (false);
                   contextData.HandleToggleModalCSSClass (
                     'outerWrapperModalSignIn'
                   );

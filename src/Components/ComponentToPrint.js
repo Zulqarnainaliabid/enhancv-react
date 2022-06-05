@@ -624,6 +624,9 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
             className="outerContainerResume"
             style={{
               backgroundImage: `url(${contextData.BackImage})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
             }}
           >
             <div style={{zIndex: '999'}}>

@@ -26,7 +26,6 @@ import Reference from './SectionImages/Reference.JPG';
 
 import {MdHeight, MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
-//new
 let data = [
   {
     labelLowerArray: 'Remove section',

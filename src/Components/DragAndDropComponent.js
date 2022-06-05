@@ -237,6 +237,7 @@ function DragAndDropComponent (props) {
       >
         Continue editing
       </p>
+      
     </div>
   );
 }

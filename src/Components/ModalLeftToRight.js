@@ -9,12 +9,31 @@ import BackImg0 from './Images/BackImg0.jpg';
 import BackImg2 from './Images/BackImg2.jpg';
 import BackImg3 from './Images/BackImg3.jpg';
 function ModalLeftToRight (props) {
-  const [ImgSource, setImgSource] = useState ([
-    BackImg0,
-    BackImg2,
-    BackImg3,
-  ]);
+  const [SelectImage, setsSelectImage] = useState ();
+  const [ImgSource, setImgSource] = useState ([BackImg0, BackImg2, BackImg3]);
   const contextData = useContext (Context);
+
+  const selectImage = fileChangeEvent => {
+    const file = fileChangeEvent.target.files[0];
+    const {type} = file;
+    if (
+      !(type.endsWith ('jpeg') ||
+        type.endsWith ('png') ||
+        type.endsWith ('jpg') ||
+        type.endsWith ('gif'))
+    ) {
+    } else {   
+      const url = URL.createObjectURL (fileChangeEvent.target.files[0]);
+      contextData.handleBackImageModal(url)
+      contextData.HandleBackGroundColorOfModal (true);
+      contextData.HandleShowModal (true);
+      contextData.HandleToggleModal ('BackImage');
+      contextData.HandleToggleModalCSSClass ('outerWrapperModalSignIn');
+      contextData.handleDisplayBackgroundTransparent (false);
+      contextData.handleDisplayBackImageModal (false);
+
+    }
+  };
 
   const styles = {
     fadeInRight: {
@@ -41,16 +60,38 @@ function ModalLeftToRight (props) {
             Select BackGroundImage
           </div>
           <BackImages ImgSource={ImgSource} />
-          <p
-            onClick={() => {
-              contextData.handleDisplayBackImageModal (false);
-              contextData.HandleBackGroundColorOfModal (false);
-            }}
-            style={{bottom: '17px', marginLeft: '106px'}}
-            className="DragAndDropContinueButton FontWeight CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius fontSize14"
+          <div
+            className="d-flex align-items-center justify-content-center mt-3"
+            style={{gap: '12px'}}
           >
-            Continue editing
-          </p>
+            <input
+              style={{display: 'none'}}
+              type="file"
+              id="uploadFile"
+              accept="image/png, image/jpeg"
+              onChange={e => {
+                selectImage (e);
+                e.target.value = null;
+              }}
+            />
+            <label
+              for="uploadFile"
+              className="DragAndDropContinueButton FontWeight CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius fontSize14"
+            >
+              Browse Image
+            </label>
+            <p
+              onClick={() => {
+                contextData.handleDisplayBackImageModal (false);
+                contextData.HandleBackGroundColorOfModal (false);
+              }}
+              // style={{bottom: '17px', marginLeft: '106px'}}
+              className="DragAndDropContinueButton FontWeight CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius fontSize14"
+            >
+              Continue editing
+            </p>
+          </div>
+
         </div>
       </StyleRoot>
     );

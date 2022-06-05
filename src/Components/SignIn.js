@@ -7,9 +7,19 @@ import useSound from 'use-sound';
 import sound from './Images/forever-alone_1.mp3';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import {Button} from 'react-bootstrap';
+import ClickNHold from 'react-click-n-hold';
+import {BsEye} from 'react-icons/bs';
+
+const initialValues = {
+  Email: '',
+  Password: '',
+};
 
 function SignIn (props) {
   const contextData = useContext (Context);
+  const [Values, setValues] = useState (initialValues);
+
   const [Email, setEmail] = useState ('');
   const [Password, setPassword] = useState ('');
   const [CheckMArk, setCheckMArk] = useState (false);
@@ -17,7 +27,10 @@ function SignIn (props) {
   const [ValidationPassword, setValidationPassword] = useState (false);
   const [ErrorMessage, setErrorMessage] = useState ('');
   const [CheckOnline, setCheckOnline] = useState (false);
-  const [playOn] = useSound (sound, {volume: 0.25});
+  const [PasswordType, setPasswordType] = useState ('password');
+  const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
+    true
+  );
 
   async function handleSubmit (Email, Password) {
     if (CheckOnline) {
@@ -62,7 +75,6 @@ function SignIn (props) {
         }
       }
     } else {
-      playOn ();
       confirmAlert ({
         title: 'Your Are Currently Off Line',
         buttons: [
@@ -94,6 +106,54 @@ function SignIn (props) {
       }
     },
     [CheckMArk]
+  );
+
+  function start (e) {
+    console.log ('START');
+    setPasswordType ('text');
+  }
+
+  function end (e, enough) {
+    console.log ('END');
+    setPasswordType ('password');
+    console.log (
+      enough ? 'Click released after enough time' : 'Click released too soon'
+    );
+  }
+
+  function clickNHold (e) {
+    console.log ('CLICK AND HOLD');
+  }
+
+  const handleInputChange = e => {
+    const {name, value} = e.target;
+    setValues ({
+      ...Values,
+      [name]: value,
+    });
+  };
+
+  useEffect (
+    () => {
+      if (Values.Email === '' && Values.Password === '') {
+        setToggleDisabledLoginButton (true);
+      } else {
+        setToggleDisabledLoginButton (false);
+      }
+    },
+    [Values]
+  );
+
+  useEffect (
+    () => {
+      const timer = setTimeout (() => {
+        setValidationPassword (false);
+        setValidationEmail (false);
+        setErrorMessage ('');
+      }, 2000);
+      return () => clearTimeout (timer);
+    },
+    [ValidationPassword, ValidationEmail]
   );
 
   if (CheckMArk) {
@@ -131,34 +191,41 @@ function SignIn (props) {
             className="SignUPName BorderRadius"
             placeholder="Email*"
             style={{borderColor: ValidationEmail ? 'red' : ''}}
-            value={Email}
-            onChange={e => {
-              setEmail (e.target.value);
-              setValidationEmail (false);
-              setErrorMessage ('');
-            }}
+            value={Values.Email}
+            name="Email"
+            onChange={handleInputChange}
           />
-          <input
-            className="SignUPName BorderRadius"
-            placeholder="Password*"
-            style={{borderColor: ValidationPassword ? 'red' : ''}}
-            value={Password}
-            onChange={e => {
-              setPassword (e.target.value);
-              setValidationPassword (false);
-              setErrorMessage ('');
-            }}
-          />
+          <div className="SignUPName BorderRadius justify-content-between d-flex align-items-center">
+            <input
+             className='w-100'
+              placeholder="Password*"
+              style={{borderColor: ValidationPassword ? 'red' : ''}}
+              value={Values.Password}
+              type={PasswordType}
+              name="Password"
+              onChange={handleInputChange}
+            />
+            <ClickNHold
+              time={1}
+              onStart={start}
+              onClickNHold={clickNHold}
+              onEnd={end}
+            >
+
+              <BsEye />
+            </ClickNHold>
+          </div>
           {ErrorMessage && <div>{ErrorMessage}</div>}
         </div>
-        <div
-          className="SubmitButtons FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
+        <Button
+          disabled={ToggleDisabledLoginButton}
+          className="SubmitButtons w-100 FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
           onClick={() => {
             handleSubmit (Email, Password);
           }}
         >
           LogIn
-        </div>
+        </Button>
       </div>
     );
   }

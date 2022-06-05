@@ -5,6 +5,7 @@ import {RiCloseFill} from 'react-icons/ri';
 import LoginIn from './LogIn';
 import SignIn from './SignIn';
 import AddSection from './AddSection';
+import BackImage from './BackImageModal'
 function Modal (props) {
   const [ToggleAddNewSection, setToggleAddNewSection] = useState (false);
   const contextData = useContext (Context);
@@ -53,8 +54,11 @@ function Modal (props) {
       setShowContent (<SignIn />);
     } else if (props.contentDisplay === 'AddSubjectName') {
       setShowContent (SubJectName);
+    } else if (props.contentDisplay === 'BackImage') {
+      setShowContent (<BackImage/>);
     }
   }, []);
+  
 
   return ( 
     <div className={`outerWrapperModal ${props.otherClass}`}>

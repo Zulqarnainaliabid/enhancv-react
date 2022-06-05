@@ -13,6 +13,7 @@ export const ContextProvider = ({children}) => {
   const [BackImage, setBackImage] = useState (background);
   const [SelectedColor, setSelectedColor] = useState ('darkColor');
   const [AddSectionInArray, setAddSectionInArray] = useState (null);
+  const [BackImageModal, setBackImageModal] = useState('')
   const [ToggleModalCssClass, setToggleModalCssClass] = useState (
     'outerWrapperModalImagePicker'
   );
@@ -37,6 +38,10 @@ export const ContextProvider = ({children}) => {
 
   function HandleBackGroundColorOfModal (toggle) {
     setBackgroundColorOfModal (toggle);
+  }
+  
+  function handleBackImageModal(img){
+    setBackImageModal(img)
   }
 
   function HandleUpdateUserImage (image) {
@@ -223,6 +228,8 @@ export const ContextProvider = ({children}) => {
         HandleUpdateBackUpCv,
         HandleDisplayLoading,
         DisplayLoading,
+        handleBackImageModal,
+        BackImageModal,
       }}
     >
       {children}
