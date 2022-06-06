@@ -639,7 +639,7 @@ function Section (props) {
       <div>
         <div
           style={{
-            width: '430px',
+            width: '515px',
           }}
         >
           <p

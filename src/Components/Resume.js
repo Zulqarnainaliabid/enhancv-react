@@ -1,4 +1,4 @@
-import React, {useRef, useContext, useState} from 'react';
+import React, {useRef, useContext, useState,useEffect} from 'react';
 import ReactToPrint from 'react-to-print';
 import {ComponentToPrint} from './ComponentToPrint';
 import {HiPlusCircle} from 'react-icons/hi';
@@ -17,12 +17,14 @@ import Footer from './Footer';
 export default function Resume (props) {
   const [state, setState] = useState (true);
   const contextData = useContext (Context);
+  const [ResumeName, setResumeName] = useState("")
+
   const componentRef = useRef (null);
   const childRef = useRef ();
   const onBeforeGetContentResolve = useRef (null);
   const [loading, setLoading] = useState (false);
   const [text, setText] = useState ('old boring text');
-  const [Subject, setSubject] = useState (false);
+ 
   const handleAfterPrint = React.useCallback (() => {
     console.log ('`onAfterPrint` called');
   }, []);
@@ -97,6 +99,16 @@ export default function Resume (props) {
         <div className="FontWeight ">Download</div>
       </div>
     );
+  }, []);
+
+
+  useEffect (() => {
+    if (localStorage.getItem ('HeaderInputValue') !== null) {
+      let value = localStorage.getItem ('HeaderInputValue');
+      value = JSON.parse (value);
+      setResumeName (value.name);
+    }
+
   }, []);
 
   let ref = {
@@ -186,7 +198,7 @@ export default function Resume (props) {
             </div>
             <ReactToPrint
               content={reactToPrintContent}
-              documentTitle="AwesomeFileName"
+              documentTitle={ResumeName}
               onAfterPrint={handleAfterPrint}
               onBeforeGetContent={handleOnBeforeGetContent}
               onBeforePrint={handleBeforePrint}

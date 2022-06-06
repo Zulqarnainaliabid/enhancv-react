@@ -487,7 +487,7 @@ function GetPreviousData () {
   }
 
   let data = {
-    subject: 'Please Add Subject Name for this CV',
+    subject: 'Please Add Subject Name',
     data: JSON.stringify (CVData),
     dateAdded: '2022-03-14T04:39:02.471Z',
     dateUpdated: '2022-03-14T04:39:02.471Z',

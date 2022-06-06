@@ -136,7 +136,7 @@ export default function LoginIn (props) {
         const timer = setTimeout (() => {
           contextData.HandleBackGroundColorOfModal (false);
           contextData.HandleShowModal (false);
-        }, 2000);
+        }, 3000);
         return () => clearTimeout (timer);
       }
     },

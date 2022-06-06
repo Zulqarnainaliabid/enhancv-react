@@ -94,7 +94,7 @@ function EducationInnerSection (props) {
                   />
                   <div
                     className="d-flex align-items-center"
-                    style={{gap: '10px'}}
+                    style={{gap: '6px'}}
                   >
                     {props.list[props.index].toggleSwitch[2].selected &&
                       <div
@@ -102,7 +102,8 @@ function EducationInnerSection (props) {
                         style={{gap: '5px'}}
                       >
                         <Date className="IconsFontSize12" />
-                        {ShowDatePeriod () && <p className='InputFieldBachUpCv'>Date Period</p>}
+                        {ShowDatePeriod () &&
+                          <p className="InputFieldBachUpCv">Date Period</p>}
                         <div className="d-flex TextHolderSectionLocationAndTime">
                           <div>{props.list[props.index].date.monthFrom}</div>
                           {SlashFrom ()}
@@ -135,6 +136,7 @@ function EducationInnerSection (props) {
                   </div>
                 </div>
               </div>
+
               {props.list[props.index].toggleSwitch[3].selected &&
                 <div style={{marginLeft: '13px'}}>
                   <div
@@ -158,35 +160,35 @@ function EducationInnerSection (props) {
               {props.display_dashesLine &&
                 <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
             </div>
+          </div>
+          <div>
             {props.list[props.index].toggleSwitch[0].selected &&
-              <div className="d-flex align-items-center">
-                <div
-                  className=" text-center d-flex flex-column ps-3"
-                  style={{borderLeft: '1px solid ', gap: '5px'}}
-                >
+              <div className="d-flex justify-content-center mt-2 align-items-center">
+                <div className="d-flex flex-column justify-content-center align-items-center">
                   <TextareaAutosize
-                    className="InputFieldBachUpCv"
+                    className="InputFieldBachUpCv w-25"
                     placeholder={'GPA'}
                     draggable="false"
                     value={props.list[props.index].value.gpa}
                   />
                   <div
-                    className="d-flex justify-content-center"
-                    style={{gap: '5px'}}
+                    className="d-flex justify-content-center align-items-center"
+                    style={{gap: '12px'}}
                   >
                     <TextareaAutosize
-                      className={`InputFieldBachUpCv ${props.Colors}`}
+                      className={`InputFieldBachUpCv  ${props.Colors}`}
                       placeholder={'4.0'}
                       draggable="false"
                       value={props.list[props.index].value.gpaTotal}
+                      style={{textAlign:"right"}}
                     />
-
                     <p>/</p>
                     <TextareaAutosize
                       className="InputFieldBachUpCv"
-                      placeholder={'4.1'}
+                      placeholder={'4.0'}
                       draggable="false"
                       value={props.list[props.index].value.gpaObtain}
+                      
                     />
                   </div>
                 </div>

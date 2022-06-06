@@ -21,6 +21,7 @@ function CoverLetter (props) {
   const componentRef = useRef (null);
   const onBeforeGetContentResolve = useRef (null);
   const [text, setText] = useState ('old boring text');
+  const [ResumeName, setResumeName] = useState("")
   const [displayPreLoader, setdisplayPreLoader] = useState (true);
   useEffect (() => {
     const timer = setTimeout (() => {
@@ -80,6 +81,16 @@ function CoverLetter (props) {
     },
     [componentRef.current]
   );
+
+
+  useEffect (() => {
+    if (localStorage.getItem ('HeaderInputValue') !== null) {
+      let value = localStorage.getItem ('HeaderInputValue');
+      value = JSON.parse (value);
+      setResumeName (value.name);
+    }
+
+  }, []);
 
   function BackColor () {
     if (
@@ -173,7 +184,7 @@ function CoverLetter (props) {
           </div>
           <ReactToPrint
             content={reactToPrintContent}
-            documentTitle="AwesomeFileName"
+            documentTitle={ResumeName}
             onAfterPrint={handleAfterPrint}
             onBeforeGetContent={handleOnBeforeGetContent}
             onBeforePrint={handleBeforePrint}

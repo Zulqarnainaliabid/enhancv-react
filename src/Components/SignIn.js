@@ -19,8 +19,6 @@ const initialValues = {
 function SignIn (props) {
   const contextData = useContext (Context);
   const [Values, setValues] = useState (initialValues);
-
-  const [Email, setEmail] = useState ('');
   const [Password, setPassword] = useState ('');
   const [CheckMArk, setCheckMArk] = useState (false);
   const [ValidationEmail, setValidationEmail] = useState (false);
@@ -31,6 +29,8 @@ function SignIn (props) {
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
     true
   );
+
+ console.log("hello",Values)
 
   async function handleSubmit (Email, Password) {
     if (CheckOnline) {
@@ -150,7 +150,7 @@ function SignIn (props) {
         setValidationPassword (false);
         setValidationEmail (false);
         setErrorMessage ('');
-      }, 2000);
+      }, 3000);
       return () => clearTimeout (timer);
     },
     [ValidationPassword, ValidationEmail]
@@ -221,7 +221,7 @@ function SignIn (props) {
           disabled={ToggleDisabledLoginButton}
           className="SubmitButtons w-100 FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
           onClick={() => {
-            handleSubmit (Email, Password);
+            handleSubmit (Values.Email, Values.Password);
           }}
         >
           LogIn

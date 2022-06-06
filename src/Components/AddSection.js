@@ -324,6 +324,7 @@ export default function AddSection (props) {
   );
   const [Toggle, setToggle] = useState (false);
   const [MidButton, setMidButton] = useState (true);
+
   useEffect (() => {
     if (localStorage.getItem ('ArrayUper') !== null) {
       let value = localStorage.getItem ('ArrayUper');
@@ -342,6 +343,7 @@ export default function AddSection (props) {
       setMidButton (true);
     }
   }, []);
+  
   function HandleRemoveSection (name) {
     contextData.HandleRemoveElement (name);
   }
