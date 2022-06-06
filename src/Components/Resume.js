@@ -4,6 +4,7 @@ import {ComponentToPrint} from './ComponentToPrint';
 import {HiPlusCircle} from 'react-icons/hi';
 import {CgTemplate} from 'react-icons/cg';
 import {MdDownloadForOffline} from 'react-icons/md';
+import {BsPencil} from 'react-icons/bs';
 import {Context} from '../Components/Context/Context';
 import {SwitchTransition, CSSTransition} from 'react-transition-group';
 import DragAndDropComponent from './DragAndDropComponent';
@@ -195,6 +196,16 @@ export default function Resume (props) {
             >
               <CgTemplate style={{fontSize: '17px'}} />
               <p>Select Image</p>
+            </div>
+            <div
+              className="d-flex align-items-center FontWeight RearrangeButtons CommonCssClassCursorPointer"
+              style={{gap: '6px'}}
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
+              <BsPencil style={{fontSize: '17px'}} />
+              <p>Edit CV</p>
             </div>
             <ReactToPrint
               content={reactToPrintContent}

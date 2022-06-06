@@ -168,7 +168,7 @@ function EducationInnerSection (props) {
                   <TextareaAutosize
                     className="InputFieldBachUpCv w-25"
                     placeholder={'GPA'}
-                    draggable="false"
+                    draggable="false" 
                     value={props.list[props.index].value.gpa}
                   />
                   <div
