@@ -3,6 +3,7 @@ import {bounceInDown} from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import {Context} from './Context/Context';
 import SelectedColors from './SelectedColors'
+import NaveBarDropDown from './NaveBarDropDown'
 export default function DropDown (props) {
   const contextData = useContext (Context);
 
@@ -34,7 +35,9 @@ export default function DropDown (props) {
   useEffect (() => {
     if (props.ContentDisplay) {
       setContentDisplay (alert);
-    } 
+    } else{
+      setContentDisplay (<NaveBarDropDown />);
+    }
   }, []);
 
   return (

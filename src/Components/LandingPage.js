@@ -8,6 +8,7 @@ import Modal from './Modal';
 import {CSSTransition, SwitchTransition} from 'react-transition-group';
 import {BallTriangle} from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import DropDown from './DropDown'
 function LandingPage (props) {
   const contextData = useContext (Context);
   const [displayPreLoader, setdisplayPreLoader] = useState (true);
@@ -51,7 +52,7 @@ function LandingPage (props) {
             classNames="alert"
             unmountOnExit
           >
-            <div className='d-flex justify-content-center align-items-center'>
+            <div className="d-flex justify-content-center align-items-center">
               <Modal
                 contentDisplay={contextData.ToggleModal}
                 otherClass={contextData.ToggleModalCssClass}
@@ -92,6 +93,16 @@ function LandingPage (props) {
             </Row>
           </Container>
         </div>
+        <div style={{position: 'relative'}}>
+          {contextData.DisplayNaveBarDropDown &&
+            <div
+              className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar"
+              style={{top: '18%'}}
+            >
+
+              <DropDown ContentDisplay={false} />
+            </div>}
+        </div>
         <CSSTransition
           in={contextData.BackgroundColorOfModal}
           timeout={500}
@@ -103,6 +114,7 @@ function LandingPage (props) {
             onClick={() => {
               contextData.HandleBackGroundColorOfModal (false);
               contextData.HandleShowModal (false);
+              contextData.HandleDisplayNaveBarDropDown (false);
             }}
           />
         </CSSTransition>

@@ -29,6 +29,7 @@ function CoverLetter (props) {
     }, 1000);
     return () => clearTimeout (timer);
   }, []);
+  
   const handleAfterPrint = React.useCallback (() => {
     console.log ('`onAfterPrint 123333` called');
   }, []);
@@ -49,6 +50,7 @@ function CoverLetter (props) {
     },
     [setText]
   );
+
   const reactToPrintTrigger = React.useCallback (() => {
     return (
       <div
@@ -113,6 +115,7 @@ function CoverLetter (props) {
             contextData.handleDisplayTemplateModal (false);
             contextData.handleDisplayBackImageModal (false);
             contextData.handleDisplayColorsDropDown (false);
+            contextData.HandleDisplayNaveBarDropDown(false)
           }}
         />
       );

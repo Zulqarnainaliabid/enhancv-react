@@ -149,20 +149,20 @@ function LanguageInnerSection (props) {
     }
   }, []);
 
-  let CssClass = 'Dark';
+  let CssClass = 'DarkColor';
   if (contextData.SelectedColor === 'darkColor') {
-    CssClass = 'Dark';
+    CssClass = 'DarkColor';
   }
   if (contextData.SelectedColor === 'blueColor') {
-    CssClass = 'Blue';
+    CssClass = 'BlueColor';
   }
   if (contextData.SelectedColor === 'greenColor') {
-    CssClass = 'Green';
+    CssClass = 'GreenColor';
   }
   if (contextData.SelectedColor === 'redColor') {
-    CssClass = 'Red';
+    CssClass = 'RedColor';
   }
-
+  console.log("hello",CssClass)
   return (
     <div>
       <div
@@ -319,7 +319,7 @@ function LanguageInnerSection (props) {
           {props.list[props.index].toggleSwitch[1].selected &&
             <div>
               <Slider
-                className={CssClass}
+                className={` ${CssClass} rangeslider__fill`}
                 min={1}
                 max={5}
                 tooltip={false}

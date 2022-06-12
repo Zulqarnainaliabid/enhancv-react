@@ -3,8 +3,6 @@ import {Context} from './Context/Context';
 import {HandleSignUpPostRequest} from './Services';
 import CheckMarkImage from './Images/CheckMark.gif';
 import NetworkStatus from './NetWorkStatus';
-import useSound from 'use-sound';
-import sound from './Images/forever-alone_1.mp3';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {Button} from 'react-bootstrap';
@@ -51,6 +49,17 @@ export default function LoginIn (props) {
             contextData.HandleDisplayLoading (false);
             if (data === 201) {
               setCheckMArk (true);
+              localStorage.setItem (
+                'Account',
+                JSON.stringify ({
+                  userFname: values.FistName,
+                  userLname: values.LastName,
+                  userEmail: values.Email,
+                  userPassword:values.Password
+                })
+                
+              );
+              contextData.UpdateHandleAccountSuccess(!contextData.UpdateAccountSuccess)
             } else {
               setErrorMessage (data);
               if (data.includes (Email)) {
@@ -205,7 +214,6 @@ export default function LoginIn (props) {
               )}
             </NetworkStatus>
           </main>
-
         </main>
         <div className="HeadingTextHolderSignIn">Create your account</div>
         {/* <ExampleInputField/> */}
@@ -258,7 +266,6 @@ export default function LoginIn (props) {
               onClickNHold={clickNHold} //Timeout callback
               onEnd={end}
             >
-
               <BsEye />
             </ClickNHold>
           </div>

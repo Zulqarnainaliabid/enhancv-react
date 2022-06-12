@@ -45,6 +45,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   const [displayBackGroundColor, setDisplayBackGroundColor] = useState (false);
   const [ShowLeftSection, setShowLeftSection] = useState (false);
   const [ShowRightSection, setShowRightSection] = useState (false);
+  const [DisplayBottomCurve, setDisplayBottomCurve] = useState("flex")
 
   let header = (
     <Header
@@ -263,7 +264,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     if (value === null) {
       value = {
         Left: [],
-        Right: [],
+        Right: [],  
       };
     }
     if (Resume !== null) {
@@ -295,8 +296,20 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   useImperativeHandle (ref2, () => ({
     getAlert () {
       HandleBackGroundColor ();
+      
     },
+    HandleDisplayCurve(){
+      setDisplayBottomCurve("none")
+      console.log("hellio98")
+    }
   }));
+
+  useEffect (() => {
+    const timer = setTimeout (() => {
+      setDisplayBottomCurve("flex")
+    }, 3000);
+    return () => clearTimeout (timer);
+  }, [DisplayBottomCurve]);
 
   function HandleBackGroundColor () {
     setDisplayBackGroundColor (false);
@@ -634,7 +647,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
                 className="HoverBackgroundColor CommonCssClassAbsolutePosition LeftRightTopBottomZero"
                 style={{
                   backgroundColor: 'black',
-                  opacity: displayBackGroundColor ? '0.8' : '0',
+                  opacity: displayBackGroundColor ? '0.6' : '0',
                 }}
                 onClick={() => {
                   HandleBackGroundColor ();
@@ -726,7 +739,8 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
               </section>
             </div>
           </div>
-          <div className="d-flex justify-content-between BottomPageCurve">
+          <div className="justify-content-between BottomPageCurve" 
+          style={{display:DisplayBottomCurve}}>
             <div className="CurveAtTheBottomOfResumeContent RotateLeftSideCurveAtTheBottomOfResumeContent" />
             <div className="CurveAtTheBottomOfResumeContent RotateRightSideCurveAtTheBottomOfResumeContent" />
           </div>

@@ -47,8 +47,11 @@ function SignIn (props) {
             contextData.HandleDisplayLoading (false);
             if (data === 200) {
               setCheckMArk (true);
+              contextData.UpdateHandleLoginSuccess(!contextData.UpdateLoginSuccess)
+              localStorage.setItem ('leLoginSuccess', JSON.stringify (data));
             } else {
               setErrorMessage (data);
+              localStorage.setItem ('leLoginSuccess', JSON.stringify (null));
               if (data.includes (Email)) {
                 setValidationEmail (true);
                 setValidationPassword (false);
@@ -226,6 +229,7 @@ function SignIn (props) {
         >
           LogIn
         </Button>
+        <p className='mt-3' style={{cursor:"pointer",color:"#4F46E5"}}>Forget Password</p>
       </div>
     );
   }

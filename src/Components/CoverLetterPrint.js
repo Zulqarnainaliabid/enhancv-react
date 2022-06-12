@@ -24,7 +24,7 @@ import SummaryCoverLetter from './SummaryCoverLetter'
               className="HoverBackgroundColor CommonCssClassAbsolutePosition LeftRightTopBottomZero"
               style={{
                 backgroundColor: 'black',
-                opacity: displayBackGroundColor ? '0.8' : '0',
+                opacity: displayBackGroundColor ? '0.6' : '0',
               }}
               onClick={() => {
                 setDisplayBackGroundColor (false);

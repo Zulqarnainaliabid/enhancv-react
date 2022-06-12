@@ -26,7 +26,7 @@ function Home () {
   const [BackUpCV, setBackUpCV] = useState ([]);
   let [LoaderColor, setLoaderColor] = useState ('#ffffff');
   let [loading, setLoading] = useState (true);
-  
+
   useEffect (() => {
     const timer = setTimeout (() => {
       setdisplayPreLoader (false);
@@ -44,7 +44,7 @@ function Home () {
         setLoading (false);
       }
       setBackUpCV ([...data.data]);
-    } else { 
+    } else {
       contextData.HandleToggleModal ('SignIn');
       contextData.HandleShowModal (true);
       contextData.HandleBackGroundColorOfModal (true);
@@ -152,11 +152,10 @@ function Home () {
       >
         <BallTriangle width="100" color="#00C091" ariaLabel="loading" />
         <p>
-        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
+          In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
         </p>
       </div>
     );
-
   } else if (BackUpCvToggle) {
     return (
       <div
@@ -276,16 +275,25 @@ function Home () {
                 contextData.handleDisplayTemplateModal (false);
                 contextData.handleDisplayBackImageModal (false);
                 contextData.handleDisplayColorsDropDown (false);
+                contextData.HandleDisplayNaveBarDropDown (false);
               }}
             />
           </CSSTransition>
           <div style={{position: 'relative'}}>
             <Resume />
-            {contextData.DisplayDropDownAlertMessage &&
+            {contextData.DisplayDropDownAlertMessage && 
               <div className="OuterWrapperDropDownAlertMessage">
                 <DropDown ContentDisplay={true} />
               </div>}
+            {contextData.DisplayNaveBarDropDown &&
+              <div
+                className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar"
+                // style={{right: '0px', top: '0px'}}
+              >
+                <DropDown ContentDisplay={false} />
+              </div>}
           </div>
+
           {contextData.DisplayTemplateModal &&
             <div
               className="OuterWrapperModalTemplate"

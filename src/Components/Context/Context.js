@@ -35,6 +35,18 @@ export const ContextProvider = ({children}) => {
   const [AddSectionName, setAddSectionName] = useState(null)
   const [UpdateBackUpCv, setUpdateBackUpCv] = useState(null)
   const [DisplayLoading, setDisplayLoading] = useState(false)
+  const [DisplayNaveBarDropDown, setDisplayNaveBarDropDown] = useState(false)
+  const [UpdateLoginSuccess, setUpdateLoginSuccess] = useState(false)
+  const [UpdateAccountSuccess, setUpdateAccountSuccess] = useState(false)
+
+
+  function UpdateHandleAccountSuccess(data){
+    setUpdateAccountSuccess(data)
+  }
+
+  function UpdateHandleLoginSuccess(data){
+    setUpdateLoginSuccess(data)
+  }
 
   function HandleBackGroundColorOfModal (toggle) {
     setBackgroundColorOfModal (toggle);
@@ -95,6 +107,10 @@ export const ContextProvider = ({children}) => {
   }
   function HandleDisplayDropDownAlertMessage (toggle) {
     setDisplayDropDownAlertMessage (toggle);
+  }
+
+  function HandleDisplayNaveBarDropDown (toggle) {
+    setDisplayNaveBarDropDown (toggle);
   }
 
   function handleGetColors () {
@@ -230,6 +246,12 @@ export const ContextProvider = ({children}) => {
         DisplayLoading,
         handleBackImageModal,
         BackImageModal,
+        DisplayNaveBarDropDown,
+        HandleDisplayNaveBarDropDown,
+        UpdateHandleAccountSuccess,
+        UpdateAccountSuccess,
+        UpdateHandleLoginSuccess,
+        UpdateLoginSuccess,
       }}
     >
       {children}

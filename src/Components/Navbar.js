@@ -1,10 +1,39 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import logo from './Images/Logo.svg';
 import {Link} from 'react-router-dom';
 import {Context} from './Context/Context';
+import DropDown from './DropDown';
 export default function Navbar (props) {
+  const [ToggleSignUpButton, setToggleSignUpButton] = useState (false);
+  const [ToggleLoginButton, setToggleLoginButton] = useState (false);
+
   const contextData = useContext (Context);
+  const [UserName, setUserName] = useState ('');
+
+  useEffect (
+    () => {
+      if (localStorage.getItem ('Account') !== null) {
+        let value = localStorage.getItem ('Account');
+        value = JSON.parse (value);
+        setToggleSignUpButton (true);
+        setUserName (value.userFname);
+      } else {
+        setToggleSignUpButton (false);
+      }
+
+      if (localStorage.getItem ('leLoginSuccess') !== null) {
+        let value = localStorage.getItem ('leLoginSuccess');
+        value = JSON.parse (value);
+        setToggleLoginButton (true);
+      } else {
+        setToggleLoginButton (false);
+      }
+    },
+    [contextData.UpdateAccountSuccess, contextData.UpdateLoginSuccess]
+  );
+  
+
   return (
     <div
       className="d-flex align-items-center"
@@ -74,35 +103,66 @@ export default function Navbar (props) {
               className="d-flex justify-content-center  align-items-center"
               style={{gap: '12px'}}
             >
-              <p
-                className="LoginButton CommonSccClassSignInAndLogInButton FontWeight CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius"
-                onClick={() => {
+              {ToggleLoginButton
+                ? <div>
+                    <Link
+                      onClick={() => {
+                        window.scrollTo (0, 0);
+                      }}
+                      className="text-decoration-none"
+                      to="/cv"
+                    >
+                      <p className="LoginButton CommonSccClassSignInAndLogInButton FontWeight CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius">
+                        My Documents
+                      </p>
+                    </Link>
+                  </div>
+                : <p
+                    className="LoginButton CommonSccClassSignInAndLogInButton FontWeight CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius"
+                    onClick={() => {
+                      contextData.HandleBackGroundColorOfModal (true);
+                      contextData.HandleShowModal (true);
+                      contextData.HandleToggleModal ('SignIn');
+                      contextData.handleDisplayBackgroundTransparent (false);
+                      contextData.HandleToggleModalCSSClass (
+                        'outerWrapperModalSignIn'
+                      );
+                    }}
+                  >
+                    Login
+                  </p>}
 
-                  contextData.HandleBackGroundColorOfModal (true);
-                  contextData.HandleShowModal (true);
-                  contextData.HandleToggleModal ('SignIn');
-                  contextData.handleDisplayBackgroundTransparent (false);
-                  contextData.HandleToggleModalCSSClass (
-                    'outerWrapperModalSignIn'
-                  );
-                }}
-              >
-                Login
-              </p>
-              <p
-                className="SignInButton CommonSccClassSignInAndLogInButton FontWeight CommonCssClassCursorPointer BorderRadius"
-                onClick={() => {
-                  contextData.HandleBackGroundColorOfModal (true);
-                  contextData.HandleShowModal (true);
-                  contextData.HandleToggleModal ('Login');
-                  contextData.HandleToggleModalCSSClass (
-                    'outerWrapperModalSignIn'
-                  );
-                  contextData.handleDisplayBackgroundTransparent (false);
-                }}
-              >
-                Sign Up
-              </p>
+              {ToggleSignUpButton
+                ? <div>
+                    <div
+                      className="d-flex text-white text-uppercase justify-content-center align-items-center outerWrapperUserInNaveBar"
+                      style={{gap: '2px'}}
+                      onClick={() => {
+                        contextData.HandleBackGroundColorOfModal (true);
+                        contextData.HandleDisplayNaveBarDropDown (
+                          !contextData.DisplayNaveBarDropDown
+                        );
+                      }}
+                    >
+                      <p>{UserName.charAt (0)}</p>
+                      <p>{UserName.charAt (1)}</p>
+                    </div>
+                  </div>
+                : <p
+                    className="SignInButton CommonSccClassSignInAndLogInButton FontWeight CommonCssClassCursorPointer BorderRadius"
+                    onClick={() => {
+                      contextData.HandleBackGroundColorOfModal (true);
+                      contextData.HandleShowModal (true);
+                      contextData.HandleToggleModal ('Login');
+                      contextData.HandleToggleModalCSSClass (
+                        'outerWrapperModalSignIn'
+                      );
+                      contextData.handleDisplayBackgroundTransparent (false);
+                    }}
+                  >
+                    Sign Up
+                  </p>}
+
             </div>
           </Col>
         </Row>

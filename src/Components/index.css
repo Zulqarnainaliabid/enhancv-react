@@ -64,6 +64,9 @@ p {
 .blueColor::-ms-input-placeholder {
   color: #008cffb0 !important;
 }
+.rangeslider-horizontal .rangeslider__handle{
+display: none !important;
+}
 
 .blueColor::placeholder {
   color: #008cffb0 !important;
@@ -93,6 +96,24 @@ p {
   color: #00b400 !important;
 }
 
+.RedColor
+.rangeslider__fill{
+  background-color: #ff8080 !important;
+}
+
+.GreenColor  .rangeslider__fill{
+  background-color: #00b400  !important;
+}
+.BlueColor  .rangeslider__fill{
+  background-color: #008cffb0 !important;
+}
+.DarkColor  .rangeslider__fill{
+  background-color: #686868 !important;
+}
+
+.slider-greenColor{
+  color: #00b400 !important;
+}
 .greenColor::-webkit-input-placeholder {
   color: #80da80 !important;
 }
@@ -212,7 +233,16 @@ p {
 .textareaHeaderLinksTitle:-ms-input-placeholder {
   color: #9ca1a3;
 }
-
+.outerWrapperUserInNaveBar{
+  background-color: #E68908;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  font-weight: 500;
+  cursor: pointer;
+}
 .textareaHeaderLinksTitle::-ms-input-placeholder {
   color: #9ca1a3;
 }
@@ -883,6 +913,13 @@ input {
   right: 35%;
   top: 30%;
   width: 30%;
+  z-index: 999;
+}
+.OuterWrapperDropDownNaveBar{
+  position: fixed;
+  right: 1%;
+  top: 10%;
+  width: 13%;
   z-index: 999;
 }
 
@@ -1609,5 +1646,19 @@ input[type="number"] {
   width:370px;
   height: 450px;
   border:2px solid #00a886;
+}
+.NaveBarDropDown{
+  padding: 16px;
+  color: #384347!important;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
+}
+.BorderBottomNaveBarDropDown{
+border-bottom: 1px solid #e6e6e6;
+}
+.NaveBarDropDown:hover{
+  background-color: #e6e6e6;
+  color: #384347!important;;
 }
 /*# sourceMappingURL=index.css.map */

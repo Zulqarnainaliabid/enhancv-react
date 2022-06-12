@@ -36,6 +36,7 @@ export default function Resume (props) {
     () => {
       console.log ('`onBeforeGetContent` called');
       childRef.current.getAlert ();
+      childRef.current.HandleDisplayCurve ();
       setLoading (true);
       setText ('Loading new text...');
       return new Promise (resolve => {
