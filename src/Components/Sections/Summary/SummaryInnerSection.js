@@ -132,6 +132,16 @@ function SummaryInnerSection (props) {
       }
     }
   }
+  console.log ('hello.....', props.list[props.index].title);
+
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return "What's the one thing you want someone to remember after reading your resume?";
+    } else {
+      return " ";
+    }
+  }
+
   return (
     <div>
       <div
@@ -262,9 +272,15 @@ function SummaryInnerSection (props) {
                 className={`${props.list[props.index].toggleSwitch[0].selected ? 'summary' : ''}`}
               >
                 <RichTextEditor
-                  placeHolder={
-                    "What's the one thing you want someone to remember after reading your resume?"
-                  }
+
+                  placeHolder=
+                  {HandleGetPlaceHolder (
+                    props.list[props.index].title
+                  )}
+                  
+                  //       (props.list[props.index].title ==="<p><br></p>" ? "kk" :
+                  //  "What's the one thing you want someone to remember after reading your resume?" )}
+
                   otherStyle={'Bullets'}
                   value={props.list[props.index].title}
                   index={props.index}

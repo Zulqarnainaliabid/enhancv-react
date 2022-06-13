@@ -11,8 +11,8 @@ import Account from './Account'
 function Routing () { 
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route exact path="/cv" element={<LandingPage />} />
+      <Route exact path="/cv" element={<Home />} />
+      <Route exact path="/" element={<LandingPage />} />
       <Route exact path="/cover-letter" element={<CoverLetter />} />
       <Route exact path="/account" element={<Account />} />
     </Routes> 

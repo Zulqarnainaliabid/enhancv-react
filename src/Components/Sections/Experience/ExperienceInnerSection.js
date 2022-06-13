@@ -226,6 +226,13 @@ function ExperienceInnerSection (props) {
       }
     }
   }
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'What did you achieve in this role?';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       {ShowDate &&
@@ -483,7 +490,9 @@ function ExperienceInnerSection (props) {
             <div style={{marginLeft: '13px'}}>
               <div className="summary">
                 <RichTextEditor
-                  placeHolder={'What did you achieve in this role?'}
+                  placeHolder={HandleGetPlaceHolder (
+                    props.list[props.index].value.bullets
+                  )}
                   otherStyle={'Bullets'}
                   value={props.list[props.index].value.bullets}
                   index={props.index}

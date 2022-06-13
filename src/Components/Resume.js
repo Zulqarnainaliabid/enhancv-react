@@ -110,7 +110,6 @@ export default function Resume (props) {
       value = JSON.parse (value);
       setResumeName (value.name);
     }
-
   }, []);
 
   let ref = {
@@ -123,6 +122,7 @@ export default function Resume (props) {
       {/* <button onClick={() => childRef.current.getAlert ()}>Click</button> */}
     </span>
   );
+  
   return (
     <div>
       <div className="pb-5">
@@ -209,6 +209,7 @@ export default function Resume (props) {
               <p>Edit CV</p>
             </div>
             <ReactToPrint
+              pageStyle="@page { size: auto; margin: 15mm; } }"
               content={reactToPrintContent}
               documentTitle={ResumeName}
               onAfterPrint={handleAfterPrint}

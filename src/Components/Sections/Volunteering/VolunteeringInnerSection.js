@@ -225,6 +225,14 @@ function VolunteeringInnerSection (props) {
       }
     }
   }
+
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'What was the impact of your efforts? (e.g. Brought on 12 corporate sponsors)';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       {ShowDate &&
@@ -481,9 +489,9 @@ function VolunteeringInnerSection (props) {
             <div style={{marginLeft: '13px'}}>
               <div className="summary" style={{width: '100%'}}>
                 <RichTextEditor
-                  placeHolder={
-                    'What was the impact of your efforts? (e.g. Brought on 12 corporate sponsors)'
-                  }
+                  placeHolder={HandleGetPlaceHolder (
+                    props.list[props.index].value.bullets
+                  )}
                   otherStyle={'Bullets'}
                   value={props.list[props.index].value.bullets}
                   index={props.index}

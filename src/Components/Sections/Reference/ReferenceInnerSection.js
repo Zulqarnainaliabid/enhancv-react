@@ -131,6 +131,14 @@ function ReferenceInnerSection (props) {
       }
     }
   }
+
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'Reference Contact';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       <div
@@ -272,7 +280,9 @@ function ReferenceInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={'Reference Contact'}
+                      placeHolder={HandleGetPlaceHolder (
+                        props.list[props.index].value.username
+                      )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].username}
                       index={props.index}

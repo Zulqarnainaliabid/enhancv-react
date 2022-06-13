@@ -173,6 +173,14 @@ function FindMeInnerSection (props) {
     }
   }, []);
 
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'Username';
+    } else {
+      return ' ';
+    }
+  }
+
   return (
     <div>
       <div
@@ -411,7 +419,9 @@ function FindMeInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={'Username'}
+                      placeHolder={HandleGetPlaceHolder (
+                        props.list[props.index].value.username
+                      )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].value.username}
                       index={props.index}

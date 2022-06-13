@@ -176,6 +176,14 @@ function AchievementsInnerSection (props) {
       }
     }
   }
+
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'Why are you proud of this achievement?';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       <div
@@ -415,7 +423,10 @@ function AchievementsInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={'Why are you proud of this achievement?'}
+                    placeHolder=
+                    {HandleGetPlaceHolder (
+                      props.list[props.index].username
+                    )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].username}
                       index={props.index}

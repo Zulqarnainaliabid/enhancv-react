@@ -172,6 +172,14 @@ function PassionInnerSection (props) {
       }
     }
   }, []);
+
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return "'What are you looking for in your next company? (e.g. Learning Opportunities)'";
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       <div
@@ -410,9 +418,9 @@ function PassionInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={
-                        'What are you looking for in your next company? (e.g. Learning Opportunities)'
-                      }
+                      placeHolder={HandleGetPlaceHolder (
+                        props.list[props.index].value.username
+                      )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].value.username}
                       index={props.index}

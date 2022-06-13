@@ -131,6 +131,13 @@ function CertificationInnerSection (props) {
       }
     }
   }
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'Which institution issued the Certification and When?';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       <div
@@ -272,9 +279,9 @@ function CertificationInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={
-                        'Which institution issued the Certification and When?'
-                      }
+                    placeHolder= {HandleGetPlaceHolder (
+                      props.list[props.index].username
+                     )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].username}
                       index={props.index}

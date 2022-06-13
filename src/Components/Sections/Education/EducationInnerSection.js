@@ -236,6 +236,14 @@ function EducationInnerSection (props) {
     }
   }
 
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'What knowledge or experience did you acquire during your studies there? (e.g. Delivered a comprehensive marketing strategy)';
+    } else {
+      return ' ';
+    }
+  }
+
   return (
     <div>
       {ShowDate &&
@@ -467,9 +475,9 @@ function EducationInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={
-                        'What knowledge or experience did you acquire during your studies there? (e.g. Delivered a comprehensive marketing strategy)'
-                      }
+                     placeHolder= {HandleGetPlaceHolder (
+                      props.list[props.index].value.bullets
+                     )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].value.bullets}
                       index={props.index}

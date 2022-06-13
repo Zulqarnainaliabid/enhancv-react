@@ -131,6 +131,13 @@ function TrainingInnerSection (props) {
       }
     }
   }
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'Which institution provided the course?';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       <div
@@ -272,7 +279,9 @@ function TrainingInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={'Which institution provided the course?'}
+                      placeHolder={HandleGetPlaceHolder (
+                        props.list[props.index].value.username
+                      )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].username}
                       index={props.index}

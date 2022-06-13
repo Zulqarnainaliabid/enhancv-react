@@ -638,12 +638,12 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
             style={{
               backgroundImage: `url(${contextData.BackImage})`,
               backgroundPosition: 'center',
-              backgroundSize: 'cover',
+              backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
             }}
           >
             <div style={{zIndex: '999'}}>
-              <div
+              <div 
                 className="HoverBackgroundColor CommonCssClassAbsolutePosition LeftRightTopBottomZero"
                 style={{
                   backgroundColor: 'black',

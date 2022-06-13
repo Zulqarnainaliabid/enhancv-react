@@ -267,6 +267,14 @@ function CustomInnerSection (props) {
       return <div />;
     }
   };
+
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'Custom Description';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       {ShowDate &&
@@ -571,7 +579,9 @@ function CustomInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={'Custom Description'}
+                     placeHolder= {HandleGetPlaceHolder (
+                      props.list[props.index].value.username
+                     )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].value.username}
                       index={props.index}

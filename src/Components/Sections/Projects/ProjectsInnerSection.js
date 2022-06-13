@@ -223,6 +223,14 @@ function ProjectsInnerSection (props) {
       }
     }
   }
+
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'What was a successful outcome of your work? (e.g. Raised $3,000 for the charity)';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       {ShowDate &&
@@ -467,10 +475,11 @@ function ProjectsInnerSection (props) {
           {props.list[props.index].toggleSwitch[2].selected &&
             <div style={{marginLeft: '13px'}}>
               <div className="summary">
+
                 <RichTextEditor
-                  placeHolder={
-                    'What was a successful outcome of your work? (e.g. Raised $3,000 for the charity)'
-                  }
+                  placeHolder={HandleGetPlaceHolder (
+                    props.list[props.index].value.bullets
+                  )}
                   otherStyle={'Bullets'}
                   value={props.list[props.index].value.bullets}
                   index={props.index}

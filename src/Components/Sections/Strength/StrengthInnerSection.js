@@ -170,6 +170,14 @@ function StrengthInnerSection (props) {
       }
     }
   }, []);
+
+  function HandleGetPlaceHolder (item) {
+    if (item === '<p><br></p>') {
+      return 'How did you acquire it? What did it result in?';
+    } else {
+      return ' ';
+    }
+  }
   return (
     <div>
       <div
@@ -408,9 +416,9 @@ function StrengthInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                      placeHolder={
-                        'How did you acquire it? What did it result in?'
-                      }
+                      placeHolder={HandleGetPlaceHolder (
+                        props.list[props.index].value.username
+                      )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].username}
                       index={props.index}
