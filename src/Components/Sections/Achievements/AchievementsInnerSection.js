@@ -178,7 +178,7 @@ function AchievementsInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>') {
+    if (item === '<p><br></p>' || item === undefined) {
       return 'Why are you proud of this achievement?';
     } else {
       return ' ';

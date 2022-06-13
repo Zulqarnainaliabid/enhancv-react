@@ -227,7 +227,7 @@ function ExperienceInnerSection (props) {
     }
   }
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>') {
+    if (item === '<p><br></p>' || item === undefined) {
       return 'What did you achieve in this role?';
     } else {
       return ' ';

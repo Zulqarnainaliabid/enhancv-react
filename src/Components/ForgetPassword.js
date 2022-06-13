@@ -13,49 +13,37 @@ import Modal from './Modal';
 import {CSSTransition, SwitchTransition} from 'react-transition-group';
 import {HandleSignUpPostRequest} from './Services';
 import DropDown from './DropDown';
-function Account (props) {
+function ForgetPassword (props) {
   const contextData = useContext (Context);
+  let initialValues = {
+    Password: '',
+    ConfirmPassword: '',
+  };
+  const [values, setValues] = useState (initialValues);
 
-  const [ValidationFName, setValidationFName] = useState (false);
-  const [ValidationLName, setValidationLName] = useState (false);
-  const [ValidationEmail, setValidationEmail] = useState (false);
+  const [ValidationConfirmPassword, setValidationConfirmPassword] = useState (
+    false
+  );
   const [ValidationPassword, setValidationPassword] = useState (false);
   const [ErrorMessage, setErrorMessage] = useState ('');
   const [PasswordType, setPasswordType] = useState ('password');
+  const [ConfirmPasswordType, setConfirmPasswordType] = useState ('password');
   const [CheckOnline, setCheckOnline] = useState (false);
   const [CheckMArk, setCheckMArk] = useState (false);
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
     true
   );
 
-  let initialValues = {
-    FistName: '',
-    LastName: '',
-    Email: '',
-    Password: '',
-  };
-
-  if (localStorage.getItem ('Account') !== null) {
-    let value = localStorage.getItem ('Account');
-    value = JSON.parse (value);
-    initialValues.FistName = value.userFname;
-    initialValues.LastName = value.userLname;
-    initialValues.Email = value.userEmail;
-    initialValues.Password = value.userPassword;
-  }
-  const [values, setValues] = useState (initialValues);
-
   useEffect (
     () => {
       const timer = setTimeout (() => {
         setValidationPassword (false);
-        setValidationEmail (false);
-        setValidationLName (false);
-        setValidationFName (false);
+        setValidationConfirmPassword (false);
+        setErrorMessage(false)
       }, 2000);
       return () => clearTimeout (timer);
     },
-    [ValidationPassword, ValidationEmail, ValidationLName, ValidationFName]
+    [ValidationPassword, ValidationConfirmPassword,ErrorMessage]
   );
 
   useEffect (
@@ -73,14 +61,8 @@ function Account (props) {
 
   useEffect (
     () => {
-      if (
-        values.FistName === '' &&
-        values.LastName === '' &&
-        values.Email === '' &&
-        values.Password === ''
-      ) {
+      if (values.ConfirmPassword === '' && values.Password === '') {
         setToggleDisabledLoginButton (true);
-        console.log ('calling');
       } else {
         setToggleDisabledLoginButton (false);
       }
@@ -104,6 +86,20 @@ function Account (props) {
     }
     return <div />;
   };
+
+  function startConfirmPassword (e) {
+    console.log ('START');
+    setConfirmPasswordType ('text');
+  }
+
+  function endConfirmPassword (e, enough) {
+    console.log ('END');
+    setConfirmPasswordType ('password');
+    console.log (
+      enough ? 'Click released after enough time' : 'Click released too soon'
+    );
+  }
+
   function start (e) {
     console.log ('START');
     setPasswordType ('text');
@@ -121,70 +117,39 @@ function Account (props) {
     console.log ('CLICK AND HOLD');
   }
 
-  async function handleSubmit (fName, lName, Email, Password) {
+  async function handleSubmit (Password, ConfirmPassword) {
     if (CheckOnline) {
-      if (fName !== '' && lName !== '' && Email !== '' && Password !== '') {
-        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (re.test (Email)) {
+      if (ConfirmPassword !== '' && Password !== '') {
+        if (ConfirmPassword !== Password) {
+          setErrorMessage ('Password don not match.');
+        } else {
           contextData.HandleDisplayLoading (true);
-          let userData = {
-            email: Email,
-            firstName: fName,
-            lastName: lName,
-            password: Password,
-          };
-          let data = await HandleSignUpPostRequest (userData);
+          let data = '00';
           if (data) {
             contextData.HandleDisplayLoading (false);
             if (data === 201) {
               setCheckMArk (true);
-              localStorage.setItem (
-                'Account',
-                JSON.stringify ({
-                  userFname: values.FistName,
-                  userLname: values.LastName,
-                  userEmail: Email,
-                })
-              );
             } else {
               setErrorMessage (data);
-              if (data.includes (Email)) {
-                setValidationEmail (true);
-                setValidationPassword (false);
-              } else {
-                setValidationPassword (true);
-                setValidationEmail (false);
-              }
+              setValidationPassword (true);
+              setValidationConfirmPassword (false);
             }
           }
-        } else {
-          setErrorMessage ('invalid Email');
-          setValidationEmail (true);
         }
       } else {
-        if (fName === '') {
-          setValidationFName (true);
+        if (ConfirmPassword === '') {
+          setValidationConfirmPassword (true);
         } else {
-          setValidationFName (false);
-        }
-        if (lName === '') {
-          setValidationLName (true);
-        } else {
-          setValidationLName (false);
-        }
-        if (Email === '') {
-          setValidationEmail (true);
-        } else {
-          setValidationEmail (false);
+          setValidationConfirmPassword (false);
         }
         if (Password === '') {
+          console.log ('hello', Password);
           setValidationPassword (true);
         } else {
           setValidationPassword (false);
         }
       }
     } else {
-      // playOn ();
       confirmAlert ({
         title: 'Your Are Currently Off Line',
         buttons: [
@@ -195,7 +160,7 @@ function Account (props) {
       });
     }
   }
-  console.log ('hello', contextData.DisplayColorsDropDown);
+
   function BackColor () {
     if (
       contextData.DisplayBackImageModal ||
@@ -290,7 +255,7 @@ function Account (props) {
           </main>
         </main>
         <div className="mb-5 ps-5 pe-5 pb-2 mt-2">
-          <div className="HeadingTextHolderSignIn">Edit your account</div>
+          <div className="HeadingTextHolderSignIn">Reset Password</div>
           <div className="bg-white mb-5 mt-3 ps-5 pe-5 pt-2 pb-4 rounded">
             <div
               style={{
@@ -302,57 +267,6 @@ function Account (props) {
                 paddingRight: '40px',
               }}
             >
-              <div className="mb-3">
-                <label
-                  htmlFor="fname"
-                  className="text-left"
-                  style={{fontSize: '18px', fontWeight: '500'}}
-                >
-                  First Name:
-                </label>
-                <input
-                  className="SignUPName BorderRadius"
-                  placeholder="First Name*"
-                  style={{borderColor: ValidationFName ? 'red' : ''}}
-                  value={values.FistName}
-                  name="FistName"
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="mb-3">
-                <label
-                  htmlFor="fname"
-                  className="text-left"
-                  style={{fontSize: '18px', fontWeight: '500'}}
-                >
-                  Last Name:
-                </label>
-                <input
-                  className="SignUPName BorderRadius"
-                  placeholder="Last Name*"
-                  style={{borderColor: ValidationLName ? 'red' : ''}}
-                  value={values.LastName}
-                  name="LastName"
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="mb-3">
-                <label
-                  htmlFor="fname"
-                  className="text-left"
-                  style={{fontSize: '18px', fontWeight: '500'}}
-                >
-                  Email:
-                </label>
-                <input
-                  className="SignUPName BorderRadius"
-                  placeholder="Email*"
-                  style={{borderColor: ValidationEmail ? 'red' : ''}}
-                  value={values.Email}
-                  name="Email"
-                  onChange={handleInputChange}
-                />
-              </div>
               <div>
                 <label
                   htmlFor="fname"
@@ -361,11 +275,13 @@ function Account (props) {
                 >
                   Password:
                 </label>
-                <div className="SignUPName BorderRadius  justify-content-between d-flex align-items-center">
+                <div
+                  className="SignUPName BorderRadius  justify-content-between d-flex align-items-center"
+                  style={{borderColor: ValidationPassword ? 'red' : ''}}
+                >
                   <input
                     className="w-100"
                     placeholder="Password*"
-                    style={{borderColor: ValidationPassword ? 'red' : ''}}
                     value={values.Password}
                     type={PasswordType}
                     name="Password"
@@ -381,27 +297,53 @@ function Account (props) {
                   </ClickNHold>
                 </div>
               </div>
+              <div>
+                <label
+                  htmlFor="fname"
+                  className="text-left"
+                  style={{fontSize: '18px', fontWeight: '500'}}
+                >
+                  Confirm Password:
+                </label>
+                <div
+                  className="SignUPName BorderRadius  justify-content-between d-flex align-items-center"
+                  style={{
+                    borderColor: ValidationConfirmPassword ? 'red' : '',
+                  }}
+                >
+                  <input
+                    className="w-100"
+                    placeholder="Confirm Password*"
+                    value={values.ConfirmPassword}
+                    type={ConfirmPasswordType}
+                    name="ConfirmPassword"
+                    onChange={handleInputChange}
+                  />
+                  <ClickNHold
+                    time={2} // Time to keep pressing. Default is 2
+                    onStart={startConfirmPassword} // Start callback
+                    onClickNHold={clickNHold} //Timeout callback
+                    onEnd={endConfirmPassword}
+                  >
+                    <BsEye />
+                  </ClickNHold>
+                </div>
+              </div>
               {ErrorMessage && <div style={{color: 'red'}}>{ErrorMessage}</div>}
             </div>
             <div
               style={{
                 paddingLeft: '40px',
-                // paddingRight:"40px"
               }}
             >
               <Button
                 disabled={ToggleDisabledLoginButton}
                 className="SubmitButtons  FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
                 onClick={() => {
-                  handleSubmit (
-                    values.FistName,
-                    values.LastName,
-                    values.Email,
-                    values.Password
-                  );
+                  handleSubmit (values.Password, values.ConfirmPassword);
                 }}
               >
-                SAVE CHANGING
+                SUBMIT
               </Button>
             </div>
           </div>
@@ -411,5 +353,4 @@ function Account (props) {
     );
   }
 }
-
-export default Account;
+export default ForgetPassword;

@@ -3,8 +3,7 @@ import {Context} from './Context/Context';
 import {HandleSignInPostRequest} from './Services';
 import CheckMarkImage from './Images/CheckMark.gif';
 import NetworkStatus from './NetWorkStatus';
-import useSound from 'use-sound';
-import sound from './Images/forever-alone_1.mp3';
+import {Link} from 'react-router-dom';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {Button} from 'react-bootstrap';
@@ -30,7 +29,7 @@ function SignIn (props) {
     true
   );
 
- console.log("hello",Values)
+  console.log ('hello', Values);
 
   async function handleSubmit (Email, Password) {
     if (CheckOnline) {
@@ -47,7 +46,9 @@ function SignIn (props) {
             contextData.HandleDisplayLoading (false);
             if (data === 200) {
               setCheckMArk (true);
-              contextData.UpdateHandleLoginSuccess(!contextData.UpdateLoginSuccess)
+              contextData.UpdateHandleLoginSuccess (
+                !contextData.UpdateLoginSuccess
+              );
               localStorage.setItem ('leLoginSuccess', JSON.stringify (data));
             } else {
               setErrorMessage (data);
@@ -200,7 +201,7 @@ function SignIn (props) {
           />
           <div className="SignUPName BorderRadius justify-content-between d-flex align-items-center">
             <input
-             className='w-100'
+              className="w-100"
               placeholder="Password*"
               style={{borderColor: ValidationPassword ? 'red' : ''}}
               value={Values.Password}
@@ -229,7 +230,18 @@ function SignIn (props) {
         >
           LogIn
         </Button>
-        <p className='mt-3' style={{cursor:"pointer",color:"#4F46E5"}}>Forget Password</p>
+        <Link
+          onClick={() => {
+            window.scrollTo (0, 0);
+          }}
+          className="text-decoration-none text-white"
+          to="/forget-password"
+        >
+          <p className="mt-3" style={{cursor: 'pointer', color: '#4F46E5'}}>
+            Forget Password
+          </p>
+        </Link>
+
       </div>
     );
   }

@@ -225,7 +225,7 @@ function ProjectsInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>') {
+    if (item === '<p><br></p>' || item === undefined) {
       return 'What was a successful outcome of your work? (e.g. Raised $3,000 for the charity)';
     } else {
       return ' ';

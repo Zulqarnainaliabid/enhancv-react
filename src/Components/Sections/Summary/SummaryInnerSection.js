@@ -135,10 +135,11 @@ function SummaryInnerSection (props) {
   console.log ('hello.....', props.list[props.index].title);
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>') {
+    console.log("heiiiiii===---",item)
+    if (item === '<p><br></p>' || item === undefined) {
       return "What's the one thing you want someone to remember after reading your resume?";
     } else {
-      return " ";
+      return ' ';
     }
   }
 
@@ -272,15 +273,9 @@ function SummaryInnerSection (props) {
                 className={`${props.list[props.index].toggleSwitch[0].selected ? 'summary' : ''}`}
               >
                 <RichTextEditor
-
-                  placeHolder=
-                  {HandleGetPlaceHolder (
+                  placeHolder={HandleGetPlaceHolder (
                     props.list[props.index].title
                   )}
-                  
-                  //       (props.list[props.index].title ==="<p><br></p>" ? "kk" :
-                  //  "What's the one thing you want someone to remember after reading your resume?" )}
-
                   otherStyle={'Bullets'}
                   value={props.list[props.index].title}
                   index={props.index}

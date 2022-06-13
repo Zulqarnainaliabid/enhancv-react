@@ -237,7 +237,7 @@ function EducationInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>') {
+    if (item === '<p><br></p>' || item === undefined) {
       return 'What knowledge or experience did you acquire during your studies there? (e.g. Delivered a comprehensive marketing strategy)';
     } else {
       return ' ';

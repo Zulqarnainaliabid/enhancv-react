@@ -80,7 +80,7 @@ function LandingPage (props) {
             <Row className="justify-content-center mt-3">
               <p className="LandingPagerButtonCreateCV CommonCssClassWhiteColor CommonCssClassCursorPointer BorderRadius
             align-items-center">
-                <Link
+                <Link 
                   onClick={() => {
                     window.scrollTo (0, 0);
                   }}

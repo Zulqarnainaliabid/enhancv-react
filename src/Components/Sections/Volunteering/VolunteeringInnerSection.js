@@ -202,7 +202,7 @@ function VolunteeringInnerSection (props) {
     ) {
       return <div>/</div>;
     } else {
-      return <div />;
+      return <div />;  
     }
   };
   function HandleEditorWidth () {
@@ -227,7 +227,7 @@ function VolunteeringInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>') {
+    if (item === '<p><br></p>' || item === undefined) {
       return 'What was the impact of your efforts? (e.g. Brought on 12 corporate sponsors)';
     } else {
       return ' ';

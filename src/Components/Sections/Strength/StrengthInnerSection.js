@@ -172,7 +172,7 @@ function StrengthInnerSection (props) {
   }, []);
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>') {
+    if (item === '<p><br></p>' || item === undefined) {
       return 'How did you acquire it? What did it result in?';
     } else {
       return ' ';

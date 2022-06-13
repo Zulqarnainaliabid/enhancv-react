@@ -174,7 +174,7 @@ function PassionInnerSection (props) {
   }, []);
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>') {
+    if (item === '<p><br></p>' || item === undefined) {
       return "'What are you looking for in your next company? (e.g. Learning Opportunities)'";
     } else {
       return ' ';
