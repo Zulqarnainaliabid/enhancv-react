@@ -45,7 +45,9 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   const [displayBackGroundColor, setDisplayBackGroundColor] = useState (false);
   const [ShowLeftSection, setShowLeftSection] = useState (false);
   const [ShowRightSection, setShowRightSection] = useState (false);
-  const [DisplayBottomCurve, setDisplayBottomCurve] = useState("flex")
+  const [DisplayBottomCurve, setDisplayBottomCurve] = useState ('flex');
+
+  const [DisplayShadow, setDisplayShadow] = useState (true);
 
   let header = (
     <Header
@@ -264,7 +266,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     if (value === null) {
       value = {
         Left: [],
-        Right: [],  
+        Right: [],
       };
     }
     if (Resume !== null) {
@@ -296,20 +298,23 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   useImperativeHandle (ref2, () => ({
     getAlert () {
       HandleBackGroundColor ();
-      
     },
-    HandleDisplayCurve(){
-      setDisplayBottomCurve("none")
-      console.log("hellio98")
-    }
+    HandleDisplayCurve () {
+      setDisplayBottomCurve ('none');
+      setDisplayShadow (true);
+    },
   }));
 
-  useEffect (() => {
-    const timer = setTimeout (() => {
-      setDisplayBottomCurve("flex")
-    }, 3000);
-    return () => clearTimeout (timer);
-  }, [DisplayBottomCurve]);
+  useEffect (
+    () => {
+      const timer = setTimeout (() => {
+        setDisplayBottomCurve ('flex');
+        setDisplayShadow (false);
+      }, 3000);
+      return () => clearTimeout (timer);
+    },
+    [DisplayBottomCurve, DisplayShadow]
+  );
 
   function HandleBackGroundColor () {
     setDisplayBackGroundColor (false);
@@ -640,10 +645,11 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
               backgroundPosition: 'center',
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
+              boxShadow: DisplayShadow ? '' : '0 0 2px 0 #d4d4d4',
             }}
           >
             <div style={{zIndex: '999'}}>
-              <div 
+              <div
                 className="HoverBackgroundColor CommonCssClassAbsolutePosition LeftRightTopBottomZero"
                 style={{
                   backgroundColor: 'black',
@@ -739,8 +745,10 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
               </section>
             </div>
           </div>
-          <div className="justify-content-between BottomPageCurve" 
-          style={{display:DisplayBottomCurve}}>
+          <div
+            className="justify-content-between BottomPageCurve"
+            style={{display: DisplayBottomCurve}}
+          >
             <div className="CurveAtTheBottomOfResumeContent RotateLeftSideCurveAtTheBottomOfResumeContent" />
             <div className="CurveAtTheBottomOfResumeContent RotateRightSideCurveAtTheBottomOfResumeContent" />
           </div>

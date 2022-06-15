@@ -7,8 +7,10 @@ import styles from '../../Style';
 import injectSheet from 'react-jss';
 import InputField from '../../InputField';
 import {Range, getTrackBackground} from 'react-range';
+import InputRangeComponent from '../../Example/InputRane';
 function IndustryExperienceInnerSection (props) {
   const contextData = useContext (Context);
+  const [Value, setValue] = useState({ min: 2, max: 10 })
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
   const {classes} = props;
@@ -272,6 +274,10 @@ function IndustryExperienceInnerSection (props) {
               </div>
             </div>
           </div>
+
+          {/* <InputRangeComponent
+          /> */}
+
           {props.list[props.index].toggleSwitch[0].selected &&
             <div>
               <Range

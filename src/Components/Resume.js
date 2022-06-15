@@ -32,6 +32,7 @@ export default function Resume (props) {
   const handleBeforePrint = React.useCallback (() => {
     console.log ('`onBeforePrint` called');
   }, []);
+
   const handleOnBeforeGetContent = React.useCallback (
     () => {
       console.log ('`onBeforeGetContent` called');
@@ -50,6 +51,7 @@ export default function Resume (props) {
     },
     [setLoading, setText]
   );
+
   React.useEffect (
     () => {
       if (
@@ -67,6 +69,7 @@ export default function Resume (props) {
       let value = localStorage.getItem ('Users');
       value = JSON.parse (value);
       if (value === null) {
+        
         confirmAlert ({
           title: 'Please SignUp First',
           buttons: [
@@ -209,7 +212,7 @@ export default function Resume (props) {
               <p>Edit CV</p>
             </div>
             <ReactToPrint
-              pageStyle="@page { size: auto; margin: 15mm; } }"
+              pageStyle="@page { size: auto; margin: 18mm; } }"
               content={reactToPrintContent}
               documentTitle={ResumeName}
               onAfterPrint={handleAfterPrint}

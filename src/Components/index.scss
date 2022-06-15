@@ -84,7 +84,6 @@ p {
     padding: 50px;
     position: relative;
     z-index: 3;
-    box-shadow: 0 0 2px 0 #d4d4d4;
 }
 .outerWrapperOfBox {
     z-index: 4;
@@ -1116,28 +1115,28 @@ input[type="number"] {
     word-wrap: break-word;
     overflow: hidden;
 }
-.FooterLeftHeading{
+.FooterLeftHeading {
     color: #384347;
-    opacity: .4;
+    opacity: 0.4;
     font-size: 14px;
 }
-.IconFacebookInFooter:hover{
-color: #0a58ca;
+.IconFacebookInFooter:hover {
+    color: #0a58ca;
 }
-.DatePeriodCustomSection{
+.DatePeriodCustomSection {
     font-size: 13px !important;
     width: 68px;
 }
-.PlusIconBookSections{
-    border:1px solid white;
+.PlusIconBookSections {
+    border: 1px solid white;
     padding: 12px;
-    border-radius:50%;
+    border-radius: 50%;
     font-size: 55px;
     color: white;
 }
-.OuterWrapperPlusIconBookSections{
-    background-color: #CCCCCC;
-    border: 1px solid #A3A3A3;
+.OuterWrapperPlusIconBookSections {
+    background-color: #cccccc;
+    border: 1px solid #a3a3a3;
     cursor: pointer;
     width: 160px;
     height: 160px;
@@ -1146,36 +1145,27 @@ color: #0a58ca;
     align-items: center;
 }
 
-
-
-
-
-
-
-
 $theme-color-primary: #12203a;
 
 $theme-text-color-primary: $theme-color-primary;
 $theme-text-color-secondary: lighten($theme-text-color-primary, 20%);
 $theme-success-color: #5cb377;
-$theme-warning-color: #EEBF41;
+$theme-warning-color: #eebf41;
 $theme-info-color: #5b99ea;
-$theme-danger-color: #EC575B;
+$theme-danger-color: #ec575b;
 
 //override bootstrap
 $theme-colors: (
-  "primary":  $theme-color-primary, 
-  "secondary": $theme-text-color-secondary, 
-  "success": $theme-success-color,
-  "danger": $theme-danger-color,
-  "warning": $theme-warning-color,
-  "info": $theme-info-color,
+    "primary": $theme-color-primary,
+    "secondary": $theme-text-color-secondary,
+    "success": $theme-success-color,
+    "danger": $theme-danger-color,
+    "warning": $theme-warning-color,
+    "info": $theme-info-color,
 );
 
 // @import '~@fortawesome/fontawesome-free/css/all.css';
 // @import '~bootstrap/scss/bootstrap.scss';
-
-
 
 html,
 body,
@@ -1184,7 +1174,6 @@ body,
 }
 
 .btn {
-
     &:focus,
     &:active {
         outline: none !important;
@@ -1193,7 +1182,6 @@ body,
 }
 
 a {
-
     &:focus,
     &:active {
         outline: none !important;
@@ -1201,67 +1189,90 @@ a {
     }
 }
 
-.auth{
-	.auth-background-holder {
-		height: 100vh;
-		min-height: 100%;
-	}
+.auth {
+    .auth-background-holder {
+        height: 100vh;
+        min-height: 100%;
+    }
 }
 
-.auth-main-col, .auth-background-col{
-	position: relative;
+.auth-main-col,
+.auth-background-col {
+    position: relative;
 }
 
 .auth-main-col {
-	margin: auto;
+    margin: auto;
 }
 
 .auth-background-col {
-	background: rgba($theme-text-color-primary, 0.6);
+    background: rgba($theme-text-color-primary, 0.6);
 }
 
 .auth-background-mask {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	z-index: 10;
-	background: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .auth-wrapper {
-	background: white;
-	height: 100vh;
-	
-	.auth-body {
-		width: 360px;
-	}
-	
-	.auth-heading {
-		font-size: 1.5rem;
-	}
-	
-	.auth-option {
-		font-size: 0.875rem;
-		> a {
-			color: $theme-text-color-secondary
-		}
-	}
+    background: white;
+    height: 100vh;
 
-	.forgot-password {
-		> a {
-			color: $theme-text-color-secondary
-		}
-	}
+    .auth-body {
+        width: 360px;
+    }
 
-	input:focus {
-		box-shadow: none;
-	}
+    .auth-heading {
+        font-size: 1.5rem;
+    }
+
+    .auth-option {
+        font-size: 0.875rem;
+        > a {
+            color: $theme-text-color-secondary;
+        }
+    }
+
+    .forgot-password {
+        > a {
+            color: $theme-text-color-secondary;
+        }
+    }
+
+    input:focus {
+        box-shadow: none;
+    }
 }
 
-@media (max-width: 767.98px) { 
-	.auth-background-col {
-		display: none;
-	}	
+@media (max-width: 767.98px) {
+    .auth-background-col {
+        display: none;
+    }
+}
+
+.input-range__label--min,
+.input-range__label--max {
+    display: none !important;
+}
+.input-range__label-container {
+    display: none !important;
+}
+
+.input-range__track {
+    background: #eeeeee;
+    border-radius: 1.3rem !important;
+    cursor: pointer;
+    display: block;
+    height: 1rem !important;
+    position: relative;
+    transition: left 0.3s ease-out, width 0.3s ease-out;
+}
+
+.input-range__slider {
+    display: none !important;
 }

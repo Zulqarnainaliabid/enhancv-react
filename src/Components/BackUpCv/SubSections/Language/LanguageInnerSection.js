@@ -54,6 +54,7 @@ function LanguageInnerSection (props) {
           </div>
           {props.list[props.index].toggleSwitch[1].selected &&
             <Slider 
+            style={{width:"200px"}}
             value={props.list[props.index].proficiencyValue}
             className={CssClass}
             min={1} max={5} tooltip={false} />}

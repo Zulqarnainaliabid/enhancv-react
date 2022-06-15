@@ -174,8 +174,6 @@ display: none !important;
   padding: 50px;
   position: relative;
   z-index: 3;
-  -webkit-box-shadow: 0 0 2px 0 #d4d4d4;
-          box-shadow: 0 0 2px 0 #d4d4d4;
 }
 
 .outerWrapperOfBox {

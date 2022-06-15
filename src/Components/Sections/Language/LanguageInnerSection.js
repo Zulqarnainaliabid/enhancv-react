@@ -9,12 +9,16 @@ import InputField from '../../InputField';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css';
 import '../../index.css';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 function LanguageInnerSection (props) {
   const contextData = useContext (Context);
+  const [ValueRange, setValueRange] = useState (10);
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
   const [value, setvalue] = useState (0);
   const [Language, setLanguage] = useState ('Beginner');
+
   const {classes} = props;
   function handleCloseToggleSwitch () {
     setDisplayToggleSwitch (false);
@@ -146,7 +150,7 @@ function LanguageInnerSection (props) {
     } else {
       setvalue (0);
       setLanguage ('Beginner');
-    }
+    }  
   }, []);
 
   let CssClass = 'DarkColor';
@@ -162,7 +166,7 @@ function LanguageInnerSection (props) {
   if (contextData.SelectedColor === 'redColor') {
     CssClass = 'RedColor';
   }
-  console.log("hello",CssClass)
+  console.log ('hello', CssClass);
   return (
     <div>
       <div
@@ -316,6 +320,16 @@ function LanguageInnerSection (props) {
                 </div>}
             </div>
           </div>
+          {/* lll
+          <InputRange
+           allowSameValues={true}
+            className="input-range__track--active"
+            maxValue={20}
+            minValue={0}
+            value={ValueRange}
+            onChange={value => setValueRange (value)}
+          /> */}
+
           {props.list[props.index].toggleSwitch[1].selected &&
             <div>
               <Slider

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
 import {Range, getTrackBackground} from 'react-range';
@@ -7,7 +7,7 @@ function IndustryExperienceInnerSection (props) {
   const [RangesValue, setRangesValue] = useState (
     props.list[props.index].Range
   );
-  
+
   const STEP = 0.1;
   const MIN = 0;
   const MAX = 100;
@@ -50,6 +50,7 @@ function IndustryExperienceInnerSection (props) {
               </div>
             </div>
           </div>
+
           {props.list[props.index].toggleSwitch[0].selected &&
             <Range
               values={RangesValue}

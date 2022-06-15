@@ -31,7 +31,6 @@ export default function LoginIn (props) {
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
     true
   );
-
   async function handleSubmit (fName, lName, Email, Password) {
     if (CheckOnline) {
       if (fName !== '' && lName !== '' && Email !== '' && Password !== '') {
@@ -109,7 +108,6 @@ export default function LoginIn (props) {
       });
     }
   }
-
   useEffect (
     () => {
       const timer = setTimeout (() => {
@@ -129,7 +127,6 @@ export default function LoginIn (props) {
       ErrorMessage,
     ]
   );
-
   const Alert = ({message}) => {
     if (message === 'online') {
       setCheckOnline (true);

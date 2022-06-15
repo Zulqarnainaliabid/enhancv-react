@@ -349,7 +349,7 @@ function SkillsInnerSection (props) {
                 />
               </div>}
           </div>
-          <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
+          <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px',marginTop:"12px",marginBottom:"12px"}}>
             {props.list[
               props.index
             ].value.ToolAndTechnology.map ((item, index) => {

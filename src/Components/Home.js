@@ -34,22 +34,22 @@ function Home () {
     return () => clearTimeout (timer);
   }, []);
 
-  // useEffect (async () => {
-  //   let value = localStorage.getItem ('Users');
-  //   value = JSON.parse (value);
-  //   if (value) {
-  //     setBackUpCvToggle (true);
-  //     let data = await HandleGetCvBackUp ();
-  //     if (data.data) {
-  //       setLoading (false);
-  //     }
-  //     setBackUpCV ([...data.data]);
-  //   } else {
-  //     contextData.HandleToggleModal ('SignIn');
-  //     contextData.HandleShowModal (true);
-  //     contextData.HandleBackGroundColorOfModal (true);
-  //   }
-  // }, []);
+  useEffect (async () => {
+    let value = localStorage.getItem ('Users');
+    value = JSON.parse (value);
+    if (value) {
+      setBackUpCvToggle (true);
+      let data = await HandleGetCvBackUp ();
+      if (data.data) {
+        setLoading (false);
+      }
+      setBackUpCV ([...data.data]);
+    } else {
+      contextData.HandleToggleModal ('SignIn');
+      contextData.HandleShowModal (true);
+      contextData.HandleBackGroundColorOfModal (true);
+    }
+  }, []);
 
   function HandleRemovePreviousData () {
     setBackUpCvToggle (false);

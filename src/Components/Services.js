@@ -170,14 +170,15 @@ function GetPreviousData () {
     CVData.HeadingValueSummary = HeadingValueSummary;
   }
 
-
   let HeadingValueReference = localStorage.getItem ('HeadingValueReference');
   HeadingValueReference = JSON.parse (HeadingValueReference);
   if (HeadingValueReference) {
     CVData.HeadingValueReference = HeadingValueReference;
   }
 
-  let HeadingValuePublication = localStorage.getItem ('HeadingValuePublication');
+  let HeadingValuePublication = localStorage.getItem (
+    'HeadingValuePublication'
+  );
   HeadingValuePublication = JSON.parse (HeadingValuePublication);
   if (HeadingValuePublication) {
     CVData.HeadingValuePublication = HeadingValuePublication;
@@ -198,7 +199,9 @@ function GetPreviousData () {
   if (HeadingValueBook) {
     CVData.HeadingValueBook = HeadingValueBook;
   }
-  let HeadingValueCertification = localStorage.getItem ('HeadingValueCertification');
+  let HeadingValueCertification = localStorage.getItem (
+    'HeadingValueCertification'
+  );
   HeadingValueCertification = JSON.parse (HeadingValueCertification);
   if (HeadingValueCertification) {
     CVData.HeadingValueCertification = HeadingValueCertification;
@@ -208,8 +211,6 @@ function GetPreviousData () {
   if (HeadingValuePhilosophy) {
     CVData.HeadingValuePhilosophy = HeadingValuePhilosophy;
   }
-
-
 
   let HeadingValueTraining = localStorage.getItem ('HeadingValueTraining');
   HeadingValueTraining = JSON.parse (HeadingValueTraining);
@@ -283,7 +284,6 @@ function GetPreviousData () {
   if (Publication) {
     CVData.Publication = Publication;
   }
-
 
   let Summary = localStorage.getItem ('Summary');
   Summary = JSON.parse (Summary);
@@ -541,18 +541,38 @@ export async function HandlePutCvBackUp (id) {
     });
 }
 
-
-export async function HandlePatchCvBackUp (InputValueSubjectName,id) {
-
+export async function HandlePatchCvBackUp (InputValueSubjectName, id) {
   const AuthStr = 'Bearer '.concat (GetToken ());
-  await axios.patch (`${BaseURL}/api/CVBackup/${id}/${JSON.stringify(InputValueSubjectName)}`,{}, {
-      headers: {authorization:AuthStr},
-    })
+  await axios
+    .patch (
+      `${BaseURL}/api/CVBackup/${id}/${JSON.stringify (InputValueSubjectName)}`,
+      {},
+      {
+        headers: {authorization: AuthStr},
+      }
+    )
     .then (function (response) {
       console.log ('res', response);
     })
     .catch (error => {
       console.log ('error', error);
     });
+}
 
+export async function HandleForgetPassword (Email) {
+  let data1 = null;
+  const AuthStr = 'Bearer '.concat (GetToken ());
+ await axios
+    .post (`${BaseURL}/api/Auth/ForgotPassword`, Email, {
+      headers: {Authorization: AuthStr},
+    })
+    .then (function (response) {
+      console.log ('res...................oooo', response);
+      data1 = response.status;
+    })
+    .catch (error => {
+      console.log ('error............', error);
+      data1 = error.response.data.detail;
+    });
+  return data1;
 }
