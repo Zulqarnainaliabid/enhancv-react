@@ -216,10 +216,10 @@ function ForgetPassword (props) {
           </NetworkStatus>
         </main>
       </main>
-      <div className="mb-5 ps-5 pe-5 pb-2 mt-5 pt-5">
-        <div className="HeadingTextHolderSignIn">Forget Password</div>
+      <div className="mb-5 ps-5 pe-5 pb-2 pt-5">
+        <div className="HeadingTextHolderSignIn mb-3 mt-3">Forget Password</div>
         <div className="bg-white mb-5 mt-3 ps-5 pb-5 pe-4 pt-2  rounded">
-          <div
+          <div 
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -232,7 +232,7 @@ function ForgetPassword (props) {
             <div>
               <label
                 htmlFor="fname"
-                className="text-left"
+                className="text-left mb-2"
                 style={{fontSize: '18px', fontWeight: '500'}}
               >
                 Email:

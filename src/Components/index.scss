@@ -81,7 +81,7 @@ p {
     color: $ColorBlack;
     min-height: 770px;
     width: 940px;
-    padding: 30px;
+    padding: 10px;
     position: relative;
     z-index: 3;
 }
@@ -1276,3 +1276,12 @@ a {
 .input-range__slider {
     display: none !important;
 }
+
+
+@media print {
+    .page-break {
+      margin-top: 10rem;
+      display: block;
+      page-break-after: always;
+    }
+  }

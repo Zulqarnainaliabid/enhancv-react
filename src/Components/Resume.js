@@ -42,6 +42,7 @@ export default function Resume (props) {
       setText ('Loading new text...');
       return new Promise (resolve => {
         onBeforeGetContentResolve.current = resolve;
+        console.log("hello......................",onBeforeGetContentResolve)
         setTimeout (() => {
           setLoading (false);
           setText ('New, Updated Text!');
@@ -212,7 +213,7 @@ export default function Resume (props) {
               <p>Edit CV</p>
             </div>
             <ReactToPrint
-              pageStyle="@page { size: auto; margin: 18mm; } }"
+              pageStyle="@page { size: auto; margin: 18mm; } },"
               content={reactToPrintContent}
               documentTitle={ResumeName}
               onAfterPrint={handleAfterPrint}
