@@ -255,7 +255,7 @@ function ResetPassword (props) {
           </main>
         </main>
         <div className="mb-5 ps-5 pe-5 pb-2 mt-2">
-          <div className="HeadingTextHolderSignIn">Reset Password</div>
+          <div className="HeadingTextHolderSignIn mb-3">Reset Password</div>
           <div className="bg-white mb-5 mt-3 ps-5 pe-5 pt-2 pb-4 rounded">
             <div
               style={{

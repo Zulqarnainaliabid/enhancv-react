@@ -171,7 +171,7 @@ display: none !important;
   color: black;
   min-height: 770px;
   width: 940px;
-  padding: 50px;
+  padding: 30px;
   position: relative;
   z-index: 3;
 }
@@ -1324,7 +1324,7 @@ input {
   height: 5px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.479);
-  margin: 9px 0px 0px -9px;
+  margin: 8px 0px 0px -10px;
   display: inline;
   position: absolute;
 }

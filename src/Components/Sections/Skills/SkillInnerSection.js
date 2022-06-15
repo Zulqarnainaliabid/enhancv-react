@@ -349,7 +349,7 @@ function SkillsInnerSection (props) {
                 />
               </div>}
           </div>
-          <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px',marginTop:"12px",marginBottom:"12px"}}>
+          <div style={{display: 'flex', flexWrap: 'wrap',gap:"12px",marginTop:"12px",marginBottom:"12px"}}>
             {props.list[
               props.index
             ].value.ToolAndTechnology.map ((item, index) => {
@@ -382,6 +382,7 @@ function SkillsInnerSection (props) {
                         ? {
                             // textAlign: 'center',
                             border: '1px solid #A9A9A9',
+                            display:"block",
                             paddingTop: '3px',
                             paddingBottom: '3px',
                             paddingLeft: '8px',
@@ -390,8 +391,10 @@ function SkillsInnerSection (props) {
                             color: 'black',
                             fontWeight: '700',
                             overflow: 'hidden',
-                            minWidth: '20px',
+                            minWidth: '20px', 
                             maxWidth: '350px',
+                            lineHeight:"12px",
+                            margin:"auto",
                             opacity: props.list[props.index].value
                               .ToolAndTechnology[index].selected
                               ? '0.5'
@@ -400,6 +403,7 @@ function SkillsInnerSection (props) {
                         : {
                             // textAlign: 'center',
                             borderBottom: '1px solid #A9A9A9',
+                            display:"block",
                             padding: '5px',
                             color: 'black',
                             fontSize: '14px',
@@ -407,6 +411,7 @@ function SkillsInnerSection (props) {
                             overflow: 'hidden',
                             minWidth: '20px',
                             maxWidth: '350px',
+                            margin:"auto",
                             opacity: props.list[props.index].value
                               .ToolAndTechnology[index].selected
                               ? '0.5'
