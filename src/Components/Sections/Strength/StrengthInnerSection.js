@@ -141,19 +141,19 @@ function StrengthInnerSection (props) {
   }
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '751px';
+      return '842px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Strength') {
-            return '404px';
+            return '458px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
           if (value.Right[i] === 'Strength') {
-            return '246px';
+            return '280px';
           }
         }
       }
@@ -172,7 +172,7 @@ function StrengthInnerSection (props) {
   }, []);
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined) {
+    if (item === '<p><br></p>' || item === undefined || item==="") {
       return 'How did you acquire it? What did it result in?';
     } else {
       return ' ';

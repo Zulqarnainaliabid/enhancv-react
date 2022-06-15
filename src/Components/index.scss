@@ -81,7 +81,10 @@ p {
     color: $ColorBlack;
     min-height: 770px;
     width: 940px;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     position: relative;
     z-index: 3;
 }
@@ -290,7 +293,7 @@ h1 {
     background-color: $WhiteColor;
     right: 48%;
     padding: 11px;
-    top: 19px;
+    top: 0px;
     border-radius: 20px;
     gap: 14px;
 }

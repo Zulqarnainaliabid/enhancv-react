@@ -158,19 +158,19 @@ function AchievementsInnerSection (props) {
 
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '751px';
+      return '842px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Achievements') {
-            return '404px';
+            return '458px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
           if (value.Right[i] === 'Achievements') {
-            return '246px';
+            return '280px';
           }
         }
       }
@@ -178,7 +178,7 @@ function AchievementsInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined) {
+    if (item === '<p><br></p>' || item === undefined || item==="") {
       return 'Why are you proud of this achievement?';
     } else {
       return ' ';

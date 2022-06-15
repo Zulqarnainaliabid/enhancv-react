@@ -5,6 +5,7 @@
   padding: 0;
   -webkit-transition: opacity 1.3s;
   transition: opacity 1.3s;
+  font-family: 'Faustina', serif;
 }
 
 p {
@@ -171,7 +172,10 @@ display: none !important;
   color: black;
   min-height: 770px;
   width: 940px;
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   position: relative;
   z-index: 3;
 }
@@ -492,7 +496,7 @@ h1 {
   background-color: white;
   right: 48%;
   padding: 11px;
-  top: 19px;
+  top: 0px;
   border-radius: 20px;
   gap: 14px;
 }

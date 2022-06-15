@@ -113,19 +113,19 @@ function ReferenceInnerSection (props) {
   }
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '784px';
+      return '865px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Reference') {
-            return '437px';
+            return '482px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
           if (value.Right[i] === 'Reference') {
-            return '280px';
+            return '314px';
           }
         }
       }
@@ -133,7 +133,7 @@ function ReferenceInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined) {
+    if (item === '<p><br></p>' || item === undefined || item==="") {
       return 'Reference Contact';
     } else {
       return ' ';

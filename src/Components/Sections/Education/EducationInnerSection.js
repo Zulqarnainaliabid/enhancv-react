@@ -217,19 +217,19 @@ function EducationInnerSection (props) {
 
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '694px';
+      return '766px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Education') {
-            return '200px';
+            return '380px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
           if (value.Right[i] === 'Education') {
-            return '193px';
+            return '223px';
           }
         }
       }
@@ -237,7 +237,7 @@ function EducationInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined) {
+    if (item === '<p><br></p>' || item === undefined || item==="") {
       return 'What knowledge or experience did you acquire during your studies there? (e.g. Delivered a comprehensive marketing strategy)';
     } else {
       return ' ';
@@ -532,7 +532,6 @@ function EducationInnerSection (props) {
                               UpperCaseHeaderInputField={false}
                             />
                             <p>/</p>
-
                             <InputField
                               placeHolder={'4.1'}
                               otherStyle={'TextHolderSectionsTitle'}

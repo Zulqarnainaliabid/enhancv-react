@@ -167,6 +167,8 @@ function LanguageInnerSection (props) {
     CssClass = 'RedColor';
   }
   console.log ('hello', CssClass);
+
+  
   return (
     <div>
       <div

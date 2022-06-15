@@ -114,19 +114,19 @@ function SummaryInnerSection (props) {
 
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '802px';
+      return '884px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Summary') {
-            return '461px';
+            return '493px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
           if (value.Right[i] === 'Summary') {
-            return '292px';
+            return '325px';
           }
         }
       }
@@ -136,7 +136,7 @@ function SummaryInnerSection (props) {
 
   function HandleGetPlaceHolder (item) {
     console.log("heiiiiii===---",item)
-    if (item === '<p><br></p>' || item === undefined) {
+    if (item === '<p><br></p>' || item === undefined || item==="") {
       return "What's the one thing you want someone to remember after reading your resume?";
     } else {
       return ' ';

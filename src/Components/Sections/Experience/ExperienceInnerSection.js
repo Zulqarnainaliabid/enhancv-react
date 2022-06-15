@@ -208,26 +208,26 @@ function ExperienceInnerSection (props) {
   };
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '784px';
+      return '856px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Experience') {
-            return '437px';
+            return '482px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
           if (value.Right[i] === 'Experience') {
-            return '280px';
+            return '314px';
           }
         }
       }
     }
   }
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined) {
+    if (item === '<p><br></p>' || item === undefined || item==="") {
       return 'What did you achieve in this role?';
     } else {
       return ' ';

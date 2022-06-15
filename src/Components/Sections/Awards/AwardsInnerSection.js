@@ -142,19 +142,19 @@ function AwardsInnerSection (props) {
   }
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '751px';
+      return '842px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Awards') {
-            return '404px';
+            return '458px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
           if (value.Right[i] === 'Awards') {
-            return '246px';
+            return '280px';
           }
         }
       }
@@ -173,7 +173,7 @@ function AwardsInnerSection (props) {
     }
   }, []);
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined) {
+    if (item === '<p><br></p>' || item === undefined || item==="") {
       return "What are you looking for in your next company? (e.g. Learning Opportunities)";
     } else {
       return ' ';

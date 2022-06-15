@@ -207,19 +207,19 @@ function VolunteeringInnerSection (props) {
   };
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '784px';
+      return '865px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Volunteering') {
-            return '437px';
+            return '482px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
           if (value.Right[i] === 'Volunteering') {
-            return '280px';
+            return '314px';
           }
         }
       }
@@ -227,7 +227,7 @@ function VolunteeringInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined) {
+    if (item === '<p><br></p>' || item === undefined || item==="") {
       return 'What was the impact of your efforts? (e.g. Brought on 12 corporate sponsors)';
     } else {
       return ' ';

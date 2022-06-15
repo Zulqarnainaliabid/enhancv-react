@@ -110,26 +110,7 @@ function PhilosophyInnerSection (props) {
   function HandleSetting () {
     setDisplayToggleSwitch (!DisplayToggleSwitch);
   }
-  function HandleEditorWidth () {
-    if (!contextData.ToggleTemplate) {
-      return '784px';
-    } else {
-      let value = localStorage.getItem ('SectionsArray');
-      value = JSON.parse (value);
-      if (value !== null) {
-        for (let i = 0; i < value.Left.length; i++) {
-          if (value.Left[i] === 'Philosophy') {
-            return '437px';
-          }
-        }
-        for (let i = 0; i < value.Right.length; i++) {
-          if (value.Right[i] === 'Philosophy') {
-            return '280px';
-          }
-        }
-      }
-    }
-  }
+
   return (
     <div>
       <div

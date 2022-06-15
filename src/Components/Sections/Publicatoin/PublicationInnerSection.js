@@ -207,14 +207,14 @@ function PublicationInnerSection (props) {
   };
   function HandleEditorWidth () {
     if (!contextData.ToggleTemplate) {
-      return '784px';
+      return '865px';
     } else {
       let value = localStorage.getItem ('SectionsArray');
       value = JSON.parse (value);
       if (value !== null) {
         for (let i = 0; i < value.Left.length; i++) {
           if (value.Left[i] === 'Publication') {
-            return '437px';
+            return '482px';
           }
         }
         for (let i = 0; i < value.Right.length; i++) {
