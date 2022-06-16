@@ -132,7 +132,6 @@ function TrainingInnerSection (props) {
     }
   }
   function HandleGetPlaceHolder (item) {
-    console.log("name--",item)
     if (item === '<p><br></p>' || item === undefined || item==="") {
       return 'Which institution provided the course?';
     } else {

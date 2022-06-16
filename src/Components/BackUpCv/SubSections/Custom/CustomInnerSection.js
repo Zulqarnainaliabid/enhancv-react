@@ -66,22 +66,16 @@ function CustomInnerSection (props) {
           }}
         >
           <div style={{position: 'relative', display: 'flex'}}>
-            {/* {props.list[props.index].toggleSwitch[1].selected &&
-              <div
-                style={{
-                  color: '#008CFF',
-                  fontSize: '25px',
-                }}
-              >
-                {Icon}
-              </div>} */}
             <div style={{width: '100%'}} className="d-flex flex-column ms-2">
               <div className="d-flex justify-content-center">
                 <TextareaAutosize
                   className="InputFieldBachUpCv"
-                  placeHolder={'Custom Title'}
+                  placeholder="Custom Title"
                   draggable="false"
                   value={props.list[props.index].value.title}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />
                 <div
                   className="d-flex align-items-center "
@@ -119,16 +113,16 @@ function CustomInnerSection (props) {
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
-                  <Editor
-                    className="InputFieldBachUpCv"
-                    options={{
-                      placeholder: {
-                        text: 'Custom Description',
-                        hideOnClick: true,
-                      },
-                    }}
-                    text={props.list[props.index].value.username}
-                  />
+                    <Editor
+                      className="InputFieldBachUpCv"
+                      options={{
+                        placeholder: {
+                          text: 'Custom Description',
+                          hideOnClick: true,
+                        },
+                      }}
+                      text={props.list[props.index].value.username}
+                    />
                   </div>
                 </div>}
             </div>

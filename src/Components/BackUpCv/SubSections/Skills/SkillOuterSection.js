@@ -1,7 +1,6 @@
 import React from 'react';
 import SkillsInnerSection from './SkillInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-
 export default function SkillsOuterSection (props) {
   return (
     <div>

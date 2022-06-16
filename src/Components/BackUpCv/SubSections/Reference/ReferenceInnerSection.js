@@ -6,26 +6,6 @@ import Editor from 'react-medium-editor';
 require ('medium-editor/dist/css/medium-editor.css');
 require ('medium-editor/dist/css/themes/default.css');
 function ReferenceInnerSection (props) {
-  // function HandleEditorWidth () {
-  //   if (!contextData.ToggleTemplate) {
-  //     return '784px';
-  //   } else {
-  //     let value = localStorage.getItem ('SectionsArray');
-  //     value = JSON.parse (value);
-  //     if (value !== null) {
-  //       for (let i = 0; i < value.Left.length; i++) {
-  //         if (value.Left[i] === 'Reference') {
-  //           return '437px';
-  //         }
-  //       }
-  //       for (let i = 0; i < value.Right.length; i++) {
-  //         if (value.Right[i] === 'Reference') {
-  //           return '280px';
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
   return (
     <div>
       <div>
@@ -40,9 +20,12 @@ function ReferenceInnerSection (props) {
             <div style={{width: '100%'}} className="d-flex flex-column">
               <TextareaAutosize
                 className="InputFieldBachUpCv"
-                placeHolder={'Reference Name'}
+                placeholder='Reference Name'
                 draggable="false"
                 value={props.list[props.index].title}
+                onChange={() => {
+                  console.log ('onchange');
+                }}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
@@ -56,6 +39,9 @@ function ReferenceInnerSection (props) {
                         },
                       }}
                       text={props.list[props.index].username}
+                      onChange={() => {
+                        console.log ('onchange');
+                      }}
                     />
                   </div>
                 </div>}

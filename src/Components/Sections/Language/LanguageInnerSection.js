@@ -6,17 +6,14 @@ import {CSSTransition} from 'react-transition-group';
 import styles from '../../Style';
 import injectSheet from 'react-jss';
 import InputField from '../../InputField';
-import Slider from 'react-rangeslider';
-import 'react-rangeslider/lib/index.css';
 import '../../index.css';
-import InputRange from 'react-input-range';
-import 'react-input-range/lib/css/index.css';
+import Slider from 'react-input-slider';
 function LanguageInnerSection (props) {
   const contextData = useContext (Context);
   const [ValueRange, setValueRange] = useState (10);
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
-  const [value, setvalue] = useState (0);
+  const [state, setState] = useState (10);
   const [Language, setLanguage] = useState ('Beginner');
 
   const {classes} = props;
@@ -120,22 +117,23 @@ function LanguageInnerSection (props) {
     setDisplayToggleSwitch (!DisplayToggleSwitch);
   }
   const handleChangeSlider = value => {
-    setvalue (value);
+    setState (value);
     let temp = props.list;
     temp[props.index].proficiencyValue = value;
-    if (value === 1) {
+
+    if (value < 40) {
       setLanguage ('Beginner');
       temp[props.index].language = 'Beginner';
-    } else if (value === 2) {
+    } else if (value >= 40 && value < 60) {
       setLanguage ('Intermediate');
       temp[props.index].language = 'Intermediate';
-    } else if (value === 3) {
+    } else if (value >= 60 && value < 80) {
       setLanguage ('Advanced');
       temp[props.index].language = 'Advanced';
-    } else if (value === 4) {
+    } else if (value >= 80 && value < 100) {
       setLanguage ('Proficient');
       temp[props.index].language = 'Proficient';
-    } else if (value === 5) {
+    } else if (value === 100) {
       setLanguage ('Native');
       temp[props.index].language = 'Native';
     }
@@ -145,30 +143,31 @@ function LanguageInnerSection (props) {
     let value = localStorage.getItem ('Language');
     value = JSON.parse (value);
     if (value !== null) {
-      setvalue (value[props.index].proficiencyValue);
+      if (value[props.index].proficiencyValue === 5) {
+        setState (1);
+      }
+      setState (value[props.index].proficiencyValue);
       setLanguage (value[props.index].language);
     } else {
-      setvalue (0);
+      setState (0);
       setLanguage ('Beginner');
-    }  
+    }
   }, []);
 
-  let CssClass = 'DarkColor';
+  let CssClass = '#686868';
   if (contextData.SelectedColor === 'darkColor') {
-    CssClass = 'DarkColor';
+    CssClass = '#686868';
   }
   if (contextData.SelectedColor === 'blueColor') {
-    CssClass = 'BlueColor';
+    CssClass = '#008cffb0';
   }
   if (contextData.SelectedColor === 'greenColor') {
-    CssClass = 'GreenColor';
+    CssClass = '#00b400';
   }
   if (contextData.SelectedColor === 'redColor') {
-    CssClass = 'RedColor';
+    CssClass = '#ff8080';
   }
-  console.log ('hello', CssClass);
 
-  
   return (
     <div>
       <div
@@ -322,27 +321,31 @@ function LanguageInnerSection (props) {
                 </div>}
             </div>
           </div>
-          {/* lll
-          <InputRange
-           allowSameValues={true}
-            className="input-range__track--active"
-            maxValue={20}
-            minValue={0}
-            value={ValueRange}
-            onChange={value => setValueRange (value)}
-          /> */}
-
           {props.list[props.index].toggleSwitch[1].selected &&
             <div>
               <Slider
-                className={` ${CssClass} rangeslider__fill`}
-                min={1}
-                max={5}
-                tooltip={false}
-                value={value}
-                onChange={handleChangeSlider}
+                axis="x"
+                x={state}
+                onChange={({x}) => handleChangeSlider (x)}
+                styles={{
+                  track: {
+                    backgroundColor: '#EEEEEE',
+                  },
+                  active: {
+                    backgroundColor:CssClass,
+                  },
+                  thumb: {
+                    width: 0,
+                    height: 0,
+                  },
+                  disabled: {
+                    opacity: 0.5,
+                  },
+                }}
               />
-            </div>}
+            </div>
+            }
+
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>

@@ -137,8 +137,8 @@ function Home () {
   const override = css`
   display: block;
   margin: 0 auto;
-  border-color: red;
-`;
+  border-color: red`;
+
   if (displayPreLoader) {
     return (
       <div
@@ -281,15 +281,13 @@ function Home () {
           </CSSTransition>
           <div style={{position: 'relative'}}>
             <Resume />
-            {contextData.DisplayDropDownAlertMessage && 
+            {contextData.DisplayDropDownAlertMessage &&
               <div className="OuterWrapperDropDownAlertMessage">
                 <DropDown ContentDisplay={true} />
               </div>}
             {contextData.DisplayNaveBarDropDown &&
-              <div
-                className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar"
+              <div className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar">
                 // style={{right: '0px', top: '0px'}}
-              >
                 <DropDown ContentDisplay={false} />
               </div>}
           </div>

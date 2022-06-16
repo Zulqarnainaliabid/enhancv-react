@@ -1,7 +1,6 @@
 import React from 'react';
 import FindMeInnerSection from './FindMeInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-
 export default function FindMeOuterSection (props) {
   return (
     <div>

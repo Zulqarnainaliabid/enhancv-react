@@ -23,9 +23,12 @@ function CertificationInnerSection (props) {
             >
                <TextareaAutosize
                 className="InputFieldBachUpCv"
-                placeHolder={'Certification Name'}
+                placeholder='Certification Name'
                 draggable="false"
                 value={props.list[props.index].title}
+                onChange={() => {
+                  console.log ('onchange');
+                }}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>

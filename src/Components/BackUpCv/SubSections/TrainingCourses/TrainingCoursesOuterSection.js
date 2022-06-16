@@ -1,7 +1,6 @@
 import React from 'react';
 import TrainingInnerSection from './TrainingCoursesInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-
 export default function TrainingOuterSection (props) {
   return (
     <div>

@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
 import {HiPlus} from 'react-icons/hi';
@@ -43,18 +43,24 @@ function BookInnerSection (props) {
                 <div>
                   <TextareaAutosize
                     className="InputFieldBachUpCv"
-                    placeHolder={'Title'}
+                    placeholder='Title'
                     draggable="false"
                     value={props.list[props.index].value.title}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
                 </div>}
               {props.list[props.index].toggleSwitch[1].selected &&
                 <div>
                   <TextareaAutosize
                     className="InputFieldBachUpCv"
-                    placeHolder={'Author(s)'}
+                    placeholder='Author(s)'
                     draggable="false"
                     value={props.list[props.index].value.author}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
                 </div>}
             </div>

@@ -92,6 +92,9 @@ function VolunteeringInnerSection (props) {
                   placeholder="Title"
                   draggable="false"
                   value={props.list[props.index].value.title}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />}
               {props.list[props.index].toggleSwitch[1].selected &&
                 <TextareaAutosize
@@ -99,6 +102,9 @@ function VolunteeringInnerSection (props) {
                   placeholder="Organization Name"
                   draggable="false"
                   value={props.list[props.index].value.companyName}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />}
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
@@ -135,6 +141,9 @@ function VolunteeringInnerSection (props) {
                       placeholder="Location"
                       draggable="false"
                       value={props.list[props.index].value.location}
+                      onChange={() => {
+                        console.log ('onchange');
+                      }}
                     />
                   </div>}
               </div>
@@ -149,6 +158,9 @@ function VolunteeringInnerSection (props) {
                     placeholder="URL"
                     draggable="false"
                     value={props.list[props.index].value.url}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
                 </div>}
             </div>
@@ -159,6 +171,9 @@ function VolunteeringInnerSection (props) {
               placeholder="Description"
               draggable="false"
               value={props.list[props.index].value.companyDescription}
+              onChange={() => {
+                console.log ('onchange');
+              }}
             />}
           {props.list[props.index].toggleSwitch[3].selected &&
             <div style={{marginLeft: '13px'}}>
@@ -172,6 +187,9 @@ function VolunteeringInnerSection (props) {
                     },
                   }}
                   text={props.list[props.index].value.bullets}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />
               </div>
             </div>}

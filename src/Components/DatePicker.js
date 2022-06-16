@@ -85,7 +85,6 @@ function DatePicker (props) {
                     disabled={DisabledLeftArrowYearTo}
                     className="ArrowsButtons"
                     onClick={() => {
-                      console.log("hello",FirstYearTo)
                       if (FirstYearTo < 60) {
                         setFirstYearTo (FirstYearTo + 12);
                         setLastYearTo (LastYearTo + 12);
@@ -218,7 +217,6 @@ function DatePicker (props) {
                     disabled={DisabledLeftArrowYearFrom}
                     className="ArrowsButtons"
                     onClick={() => {
-                      console.log ('length = ', FirstYearFrom);
                       if (FirstYearFrom < 60) {
                         setFirstYearFrom (FirstYearFrom + 12);
                         setLastYearFrom (LastYearFrom + 12);
@@ -235,7 +233,6 @@ function DatePicker (props) {
                     disabled={DisabledRightArrowYearFrom}
                     className="ArrowsButtons"
                     onClick={() => {
-                      console.log ('length = ', FirstYearFrom);
                       if (FirstYearFrom >= 12) {
                         setFirstYearFrom (FirstYearFrom - 12);
                         setLastYearFrom (LastYearFrom - 12);

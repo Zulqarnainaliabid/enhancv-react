@@ -132,10 +132,8 @@ function SummaryInnerSection (props) {
       }
     }
   }
-  console.log ('hello.....', props.list[props.index].title);
 
   function HandleGetPlaceHolder (item) {
-    console.log("heiiiiii===---",item)
     if (item === '<p><br></p>' || item === undefined || item==="") {
       return "What's the one thing you want someone to remember after reading your resume?";
     } else {

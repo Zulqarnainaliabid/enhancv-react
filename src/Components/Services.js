@@ -31,7 +31,7 @@ export async function HandleSignInPostRequest (data) {
 function GetToken () {
   let token = localStorage.getItem ('Users');
   token = JSON.parse (token);
-  return token;
+  return token.token;
 }
 
 export async function HandleGetCvBackUp () {

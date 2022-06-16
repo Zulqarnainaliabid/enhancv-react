@@ -7,11 +7,9 @@ function IndustryExperienceInnerSection (props) {
   const [RangesValue, setRangesValue] = useState (
     props.list[props.index].Range
   );
-
   const STEP = 0.1;
   const MIN = 0;
   const MAX = 100;
-
   let Color = '#686868';
   if (props.Colors === 'darkColor') {
     Color = '#686868';
@@ -46,6 +44,9 @@ function IndustryExperienceInnerSection (props) {
                   placeholder="Area of expertise"
                   draggable="false"
                   value={props.list[props.index].value.title}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />
               </div>
             </div>

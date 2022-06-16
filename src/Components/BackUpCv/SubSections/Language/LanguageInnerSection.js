@@ -1,24 +1,24 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React from 'react';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
-import Slider from 'react-rangeslider';
-import 'react-rangeslider/lib/index.css';
+import Slider from 'react-input-slider';
 import '../../../index.css';
 import TextareaAutosize from 'react-autosize-textarea';
 function LanguageInnerSection (props) {
-  let CssClass = 'Dark';
+  let CssClass = '#686868';
   if (props.Colors === 'darkColor') {
-    CssClass = 'Dark';
+    CssClass = '#686868';
   }
   if (props.Colors === 'blueColor') {
-    CssClass = 'Blue';
+    CssClass = '#008cffb0';
   }
   if (props.Colors === 'greenColor') {
-    CssClass = 'Green';
+    CssClass = '#00b400';
   }
   if (props.Colors === 'redColor') {
-    CssClass = 'Red';
+    CssClass = '#ff8080';
   }
+
   return (
     <div>
       <div>
@@ -36,10 +36,13 @@ function LanguageInnerSection (props) {
             >
               <div style={{width: '80px'}}>
                 <TextareaAutosize
-                  className="InputFieldBachUpCv" 
+                  className="InputFieldBachUpCv"
                   placeholder="Language"
                   draggable="false"
                   value={props.list[props.index].value.language}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />
               </div>
               {props.list[props.index].toggleSwitch[0].selected &&
@@ -48,16 +51,33 @@ function LanguageInnerSection (props) {
                     className="InputFieldBachUpCv"
                     draggable="false"
                     value={props.list[props.index].language}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
-                </div>} 
+                </div>}
             </div>
           </div>
           {props.list[props.index].toggleSwitch[1].selected &&
-            <Slider 
-            style={{width:"200px"}}
-            value={props.list[props.index].proficiencyValue}
-            className={CssClass}
-            min={1} max={5} tooltip={false} />}
+            <Slider
+              axis="x"
+              x={props.list[props.index].proficiencyValue}
+              styles={{
+                track: {
+                  backgroundColor: '#EEEEEE',
+                },
+                active: {
+                  backgroundColor: {CssClass},
+                },
+                thumb: {
+                  width: 0,
+                  height: 0,
+                },
+                disabled: {
+                  opacity: 0.5,
+                },
+              }}
+            />}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>

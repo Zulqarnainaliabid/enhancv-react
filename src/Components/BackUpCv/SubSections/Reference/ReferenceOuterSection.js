@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
 import ReferenceInnerSection from './ReferenceInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 export default function ReferenceOuterSection (props) {

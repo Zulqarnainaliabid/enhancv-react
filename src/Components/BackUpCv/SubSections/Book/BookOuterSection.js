@@ -1,6 +1,6 @@
 
  
-import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
 import BookInnerSection from './BookInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 export default function BookOuterSection (props) {

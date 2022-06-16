@@ -60,6 +60,9 @@ function AchievementsInnerSection (props) {
                 placeholder="What are you most proud of?"
                 draggable="false"
                 value={props.item.title}
+                onChange={() => {
+                  console.log ('onchange');
+                }}
               />
               <div
                 style={{width: HandleEditorWidth ()}}

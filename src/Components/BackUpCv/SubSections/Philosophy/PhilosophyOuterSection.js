@@ -1,6 +1,6 @@
 
   
- import React, {useState, useEffect, useContext} from 'react';
+ import React from 'react';
  import PhilosophyInnerSection from './PhilosophyInnerSection';
  import TextareaAutosize from 'react-autosize-textarea';
  export default function PhilosophyOuterSection (props) {

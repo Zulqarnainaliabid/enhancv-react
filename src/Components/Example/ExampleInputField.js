@@ -17,7 +17,6 @@ function ExampleInputField (props) {
       [name]: value,
     });
   };
-console.log("value===",values)
   return (
     <div>
       <form>

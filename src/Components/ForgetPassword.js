@@ -117,7 +117,6 @@ function ForgetPassword (props) {
             email: Email,
           };
           let data = await HandleForgetPassword (userData);
-          console.log ('hellokala', data);
           if (data) {
             contextData.HandleDisplayLoading (false);
             if (data === 200) {

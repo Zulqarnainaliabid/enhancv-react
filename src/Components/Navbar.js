@@ -13,30 +13,20 @@ export default function Navbar (props) {
 
   useEffect (
     () => {
-      if (localStorage.getItem ('Account') !== null) {
-        console.log("hello")
-        let value = localStorage.getItem ('Account');
+      if (localStorage.getItem ('Users') !== null) {
+        let value = localStorage.getItem ('Users');
         value = JSON.parse (value);
-        setUserName (value.userFname);
-      } else {
-        setToggleSignUpButton (false);
-      }
-
-     
-
-      if (localStorage.getItem ('leLoginSuccess') !== null) {
-        let value = localStorage.getItem ('leLoginSuccess');
-        value = JSON.parse (value);
+        setUserName (value.user.firstName);
         setToggleLoginButton (true);
         setToggleSignUpButton (true);
       } else {
+        setToggleSignUpButton (false);
         setToggleLoginButton (false);
       }
     },
     [contextData.UpdateAccountSuccess, contextData.UpdateLoginSuccess]
   );
-  
-console.log("oo",ToggleSignUpButton)
+
   return (
     <div
       className="d-flex align-items-center"

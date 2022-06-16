@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React  from 'react';
 import {Date, Location, LinkHeader} from '../../../JasonData';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
@@ -14,7 +14,6 @@ function PublicationInnerSection (props) {
       return <div />;
     }
   };
-
   const Minus = () => {
     if (
       !props.list[props.index].date.monthFrom &&
@@ -27,7 +26,6 @@ function PublicationInnerSection (props) {
       return <div>-</div>;
     }
   };
-
   const ShowDatePeriod = () => {
     if (
       !props.list[props.index].date.monthFrom &&
@@ -40,7 +38,6 @@ function PublicationInnerSection (props) {
       return false;
     }
   };
-
   const SlashTo = () => {
     if (
       props.list[props.index].date.monthOngoing &&
@@ -51,7 +48,6 @@ function PublicationInnerSection (props) {
       return <div />;
     }
   };
-
   return (
     <div>
       <div>
@@ -72,6 +68,9 @@ function PublicationInnerSection (props) {
                   placeHolder={'Name Of Article'}
                   draggable="false"
                   value={props.list[props.index].value.title}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />}
               {props.list[props.index].toggleSwitch[1].selected &&
                 <TextareaAutosize
@@ -79,6 +78,9 @@ function PublicationInnerSection (props) {
                   placeHolder={'Publishing Company / Journal'}
                   draggable="false"
                   value={props.list[props.index].value.companyName}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />}
               {props.list[props.index].toggleSwitch[6].selected &&
                 <TextareaAutosize
@@ -86,6 +88,9 @@ function PublicationInnerSection (props) {
                   placeHolder={'Authors / Co-authors'}
                   draggable="false"
                   value={props.list[props.index].value.CoAuthors}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />}
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
@@ -122,6 +127,9 @@ function PublicationInnerSection (props) {
                       placeHolder={'Location'}
                       draggable="false"
                       value={props.list[props.index].value.location}
+                      onChange={() => {
+                        console.log ('onchange');
+                      }}
                     />
                   </div>}
               </div>
@@ -136,6 +144,9 @@ function PublicationInnerSection (props) {
                     placeHolder={'URL'}
                     draggable="false"
                     value={props.list[props.index].value.url}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
                 </div>}
             </div>
@@ -143,9 +154,12 @@ function PublicationInnerSection (props) {
           {props.list[props.index].toggleSwitch[2].selected &&
             <TextareaAutosize
               className="InputFieldBachUpCv"
-              placeHolder={'Publication Description'}
+              placeholder='Publication Description'
               draggable="false"
               value={props.list[props.index].value.companyDescription}
+              onChange={() => {
+                console.log ('onchange');
+              }}
             />}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}

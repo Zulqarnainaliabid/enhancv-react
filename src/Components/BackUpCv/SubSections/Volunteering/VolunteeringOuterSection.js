@@ -1,7 +1,6 @@
 import React from 'react';
 import VolunteeringInnerSection from './VolunteeringInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-
 export default function VolunteeringOuterSection (props) {
   return (
     <div>

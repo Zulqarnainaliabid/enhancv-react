@@ -1,7 +1,6 @@
 import React from 'react';
 import IndustryExperienceInnerSection from './IndustryExperienceInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-
 export default function IndustryExperienceOuterSection (props) {
   return (
     <div>

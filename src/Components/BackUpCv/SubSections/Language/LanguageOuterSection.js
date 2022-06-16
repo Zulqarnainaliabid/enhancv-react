@@ -1,14 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
 import LanguageInnerSection from './LanguageInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-
 export default function LanguageOuterSection (props) {
-  const [HighLighter, setHighLighter] = useState (false);
   return (
     <div>
       <div className="outerWrapperCompleteBox">
         <div
-          style={{backgroundColor: HighLighter ? 'white' : '', width: '100%'}}
           className="HeadingNameBox BorderRadius"
         >
           <TextareaAutosize

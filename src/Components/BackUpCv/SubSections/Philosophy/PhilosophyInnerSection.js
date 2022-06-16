@@ -17,17 +17,23 @@ function PhilosophyInnerSection (props) {
             <div style={{width: '100%'}}>
               <TextareaAutosize
                 className="InputFieldBachUpCv"
-                placeHolder={"What's your philosophy?"}
+                placeholder="What's your philosophy?"
                 draggable="false"
                 value={props.list[props.index].title}
+                onChange={() => {
+                  console.log ('onchange');
+                }}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div className="d-flex text-end justify-content-end">
                   <TextareaAutosize
                     className="InputFieldBachUpCv"
-                    placeHolder={'Author'}
+                    placeholder='Author'
                     draggable="false"
                     value={props.list[props.index].username}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
                 </div>}
             </div>

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React from 'react';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
 import Editor from 'react-medium-editor';
@@ -49,6 +49,9 @@ function SummaryInnerSection (props) {
                     },
                   }}
                   text={props.list[props.index].title}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />
               </div>
             </div>

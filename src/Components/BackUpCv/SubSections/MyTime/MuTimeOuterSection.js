@@ -1,7 +1,6 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
 import ApexChart from './MyTimeInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-
 export default function MyTimeOuterSection (props) {
   return (
     <div>

@@ -6,7 +6,6 @@ import Editor from 'react-medium-editor';
 require ('medium-editor/dist/css/medium-editor.css');
 require ('medium-editor/dist/css/themes/default.css');
 function TrainingInnerSection (props) {
-
   function HandleEditorWidth () {
     if (!props.Template) {
       return '355px';
@@ -42,6 +41,9 @@ function TrainingInnerSection (props) {
                 placeholder="Course Title"
                 draggable="false"
                 value={props.list[props.index].title}
+                onChange={() => {
+                  console.log ('onchange');
+                }}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
@@ -55,6 +57,9 @@ function TrainingInnerSection (props) {
                         },
                       }}
                       text={props.list[props.index].username}
+                      onChange={() => {
+                        console.log ('onchange');
+                      }}
                     />
                   </div>
                 </div>}

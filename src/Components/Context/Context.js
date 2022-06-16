@@ -37,12 +37,7 @@ export const ContextProvider = ({children}) => {
   const [DisplayLoading, setDisplayLoading] = useState(false)
   const [DisplayNaveBarDropDown, setDisplayNaveBarDropDown] = useState(false)
   const [UpdateLoginSuccess, setUpdateLoginSuccess] = useState(false)
-  const [UpdateAccountSuccess, setUpdateAccountSuccess] = useState(false)
 
-
-  function UpdateHandleAccountSuccess(data){
-    setUpdateAccountSuccess(data)
-  }
 
   function UpdateHandleLoginSuccess(data){
     setUpdateLoginSuccess(data)
@@ -248,8 +243,6 @@ export const ContextProvider = ({children}) => {
         BackImageModal,
         DisplayNaveBarDropDown,
         HandleDisplayNaveBarDropDown,
-        UpdateHandleAccountSuccess,
-        UpdateAccountSuccess,
         UpdateHandleLoginSuccess,
         UpdateLoginSuccess,
       }}

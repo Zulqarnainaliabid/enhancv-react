@@ -55,6 +55,9 @@ function PassionInnerSection (props) {
                 placeholder="Career Interest / Passion"
                 draggable="false"
                 value={props.list[props.index].value.title}
+                onChange={() => {
+                  console.log ('onchange');
+                }}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
@@ -68,6 +71,9 @@ function PassionInnerSection (props) {
                         },
                       }}
                       text={props.list[props.index].value.username}
+                      onChange={() => {
+                        console.log ('onchange');
+                      }}
                     />
                   </div>
                 </div>}

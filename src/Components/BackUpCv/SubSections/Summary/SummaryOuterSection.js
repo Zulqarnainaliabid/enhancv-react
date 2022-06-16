@@ -1,18 +1,8 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
 import SummaryInnerSection from './SummaryInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 
 export default function SummaryOuterSection (props) {
-  const [array, setState] = useState ([
-    {
-      selected: false,
-      toggleSwitch: [{name: 'Show Bullets', selected: true}],
-      value: {
-        title: '',
-      },
-    },
-  ]);
-
   return (
     <div>
       <div className="outerWrapperCompleteBox">

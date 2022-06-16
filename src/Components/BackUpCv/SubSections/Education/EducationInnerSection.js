@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React from 'react';
 import {Date, Location} from '../../../JasonData';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
@@ -52,7 +52,6 @@ function EducationInnerSection (props) {
       return <div />;
     }
   };
-
   function HandleEditorWidth () {
     if (!props.Template) {
       return '355px';
@@ -71,7 +70,6 @@ function EducationInnerSection (props) {
       }
     }
   }
-
   return (
     <div>
       <div>
@@ -82,15 +80,21 @@ function EducationInnerSection (props) {
                 <div className="d-flex flex-column">
                   <TextareaAutosize
                     className="InputFieldBachUpCv"
-                    placeholder={'Degree and Field of Study'}
+                    placeholder='Degree and Field of Study'
                     draggable="false"
                     value={props.list[props.index].value.degree}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
                   <TextareaAutosize
                     className={`InputFieldBachUpCv ${props.Colors}`}
-                    placeholder={'School or University'}
+                    placeholder='School or University'
                     draggable="false"
                     value={props.list[props.index].value.university}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
                   <div
                     className="d-flex align-items-center"
@@ -128,7 +132,7 @@ function EducationInnerSection (props) {
                         <Location className="IconsFontSize12" />
                         <TextareaAutosize
                           className="InputFieldBachUpCv"
-                          placeholder={'Location'}
+                          placeholder='Location'
                           draggable="false"
                           value={props.list[props.index].value.location}
                         />
@@ -167,7 +171,7 @@ function EducationInnerSection (props) {
                 <div className="d-flex flex-column justify-content-center align-items-center">
                   <TextareaAutosize
                     className="InputFieldBachUpCv w-25"
-                    placeholder={'GPA'}
+                    placeholder='GPA'
                     draggable="false" 
                     value={props.list[props.index].value.gpa}
                   />
@@ -177,7 +181,7 @@ function EducationInnerSection (props) {
                   >
                     <TextareaAutosize
                       className={`InputFieldBachUpCv  ${props.Colors}`}
-                      placeholder={'4.0'}
+                      placeholder='4.0'
                       draggable="false"
                       value={props.list[props.index].value.gpaTotal}
                       style={{textAlign:"right"}}
@@ -185,7 +189,7 @@ function EducationInnerSection (props) {
                     <p>/</p>
                     <TextareaAutosize
                       className="InputFieldBachUpCv"
-                      placeholder={'4.0'}
+                      placeholder='4.0'
                       draggable="false"
                       value={props.list[props.index].value.gpaObtain}
                       

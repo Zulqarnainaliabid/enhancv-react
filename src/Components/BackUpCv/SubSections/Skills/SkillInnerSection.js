@@ -22,6 +22,9 @@ function SkillsInnerSection (props) {
                   placeholder="Group Title"
                   draggable="false"
                   value={props.list[props.index].value.groupName}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />
               </div>}
           </div>

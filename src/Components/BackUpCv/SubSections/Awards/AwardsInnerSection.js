@@ -40,9 +40,12 @@ function AwardsInnerSection (props) {
             <div style={{width: '100%'}} className="d-flex flex-column ms-2">
               <TextareaAutosize
                 className="InputFieldBachUpCv"
-                placeHolder={'Awards'}
+                placeholder='Awards'
                 draggable="false"
                 value={props.list[props.index].value.title}
+                onChange={() => {
+                  console.log ('onchange');
+                }}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>

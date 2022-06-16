@@ -1,5 +1,5 @@
   
- import React, {useState, useEffect, useContext} from 'react';
+ import React from 'react';
  import PublicationInnerSection from './PublicationInnerSection';
  import TextareaAutosize from 'react-autosize-textarea';
  export default function PublicationOuterSection (props) {

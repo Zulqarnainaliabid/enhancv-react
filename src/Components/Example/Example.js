@@ -14,8 +14,6 @@ export default class LoginExample extends React.Component {
   }
 
   render () {
-      console.log("kkk", this.state ,this.state.email)
-      console.log("kkk===",this.state,this.state.password)
     return (
       <form>
 

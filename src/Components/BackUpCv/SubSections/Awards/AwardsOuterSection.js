@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
 import AwardsInnerSection from './AwardsInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 export default function AwardsOuterSection (props) {
@@ -8,7 +8,8 @@ export default function AwardsOuterSection (props) {
         <div className="HeadingNameBox BorderRadius">
         <TextareaAutosize
             className='outerWrapperSectionsHeadingValue'
-            placeholder="Award" value={props.HeadingValue}
+            placeholder="Award" 
+            value={props.HeadingValue}
             onChange={() => {
               console.log ('onchange');
             }}

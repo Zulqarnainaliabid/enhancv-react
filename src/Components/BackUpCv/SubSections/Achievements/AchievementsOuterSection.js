@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import AchievementsInnerSection from './AchievementsInnerSection';
 export default function AchievementsOuterSection (props) {

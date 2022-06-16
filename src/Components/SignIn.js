@@ -49,10 +49,8 @@ function SignIn (props) {
               contextData.UpdateHandleLoginSuccess (
                 !contextData.UpdateLoginSuccess
               );
-              localStorage.setItem ('leLoginSuccess', JSON.stringify (data));
             } else {
               setErrorMessage (data);
-              localStorage.setItem ('leLoginSuccess', JSON.stringify (null));
               if (data.includes (Email)) {
                 setValidationEmail (true);
                 setValidationPassword (false);

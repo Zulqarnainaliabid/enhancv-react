@@ -34,7 +34,7 @@ function Header (props) {
                 className={`InputFieldBachUpCv ${props.Colors}`}
                
                 style={{width: '270px', fontSize: '11px'}}
-                placeholder={'Your next desired role?'}
+                placeholder='Your next desired role?'
                 value={props.HeaderInputValue.title}
                 draggable="false"
                 onChange={() => {
@@ -51,7 +51,7 @@ function Header (props) {
                 <PhoneHeader className={`HeaderIcons ${props.Colors}`} />
                 <TextareaAutosize
                   style={{width: '110px', fontSize: '11px'}}
-                  placeholder={'phone'}
+                  placeholder='phone'
                   value={props.HeaderInputValue.phone}
                   className="InputFieldBachUpCv"
                   draggable="false"
@@ -70,7 +70,7 @@ function Header (props) {
                 </div>
                 <TextareaAutosize
                   style={{width: '100px', fontSize: '11px'}}
-                  placeholder={'Email'}
+                  placeholder='Email'
                   value={props.HeaderInputValue.email}
                   className="InputFieldBachUpCv"
                   draggable="false"
@@ -89,7 +89,7 @@ function Header (props) {
                 <LinkHeader className={`HeaderIcons ${props.Colors}`} />
                 <TextareaAutosize
                   style={{width: '110px', fontSize: '11px'}}
-                  placeholder={'Website/Link'}
+                  placeholder='Website/Link'
                   value={props.HeaderInputValue.webLink}
                   className="InputFieldBachUpCv"
                   draggable="false"
@@ -106,7 +106,7 @@ function Header (props) {
                 <LocationHeader className={`HeaderIcons ${props.Colors}`} />
                 <TextareaAutosize
                   style={{width: '100px', fontSize: '11px'}}
-                  placeholder={'Location'}
+                  placeholder='Location'
                   value={props.HeaderInputValue.location}
                   className="InputFieldBachUpCv"
                   draggable="false"

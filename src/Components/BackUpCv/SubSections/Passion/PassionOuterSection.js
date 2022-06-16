@@ -1,7 +1,6 @@
 import React from 'react';
 import PassionInnerSection from './PassionInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
-
 export default function PassionOuterSection (props) {
   return (
     <div>

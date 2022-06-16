@@ -1279,12 +1279,3 @@ a {
 .input-range__slider {
     display: none !important;
 }
-
-
-@media print {
-    .page-break {
-      margin-top: 10rem;
-      display: block;
-      page-break-after: always;
-    }
-  }

@@ -91,6 +91,9 @@ function ProjectsInnerSection (props) {
                   placeholder="Project Name"
                   draggable="false"
                   value={props.list[props.index].value.title}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />}
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[4].selected &&
@@ -130,6 +133,9 @@ function ProjectsInnerSection (props) {
                       placeholder="Location"
                       draggable="false"
                       value={props.list[props.index].value.location}
+                      onChange={() => {
+                        console.log ('onchange');
+                      }}
                     />
                   </div>}
               </div>
@@ -141,6 +147,9 @@ function ProjectsInnerSection (props) {
                     placeholder="URL"
                     draggable="false"
                     value={props.list[props.index].value.url}
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                   />
                 </div>}
             </div>
@@ -151,6 +160,9 @@ function ProjectsInnerSection (props) {
               placeholder="Short summary of your work"
               draggable="false"
               value={props.list[props.index].value.companyDescription}
+              onChange={() => {
+                console.log ('onchange');
+              }}
             />}
           {props.list[props.index].toggleSwitch[2].selected &&
             <div style={{marginLeft: '13px'}}>
@@ -164,6 +176,9 @@ function ProjectsInnerSection (props) {
                         },
                       }}
                       text={props.list[props.index].value.bullets}
+                      onChange={() => {
+                        console.log ('onchange');
+                      }}
                     />
               </div>
             </div>}

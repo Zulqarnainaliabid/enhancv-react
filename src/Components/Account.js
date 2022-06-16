@@ -19,9 +19,7 @@ function Account (props) {
   const [ValidationFName, setValidationFName] = useState (false);
   const [ValidationLName, setValidationLName] = useState (false);
   const [ValidationEmail, setValidationEmail] = useState (false);
-  const [ValidationPassword, setValidationPassword] = useState (false);
   const [ErrorMessage, setErrorMessage] = useState ('');
-  const [PasswordType, setPasswordType] = useState ('password');
   const [CheckOnline, setCheckOnline] = useState (false);
   const [CheckMArk, setCheckMArk] = useState (false);
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
@@ -32,30 +30,28 @@ function Account (props) {
     FistName: '',
     LastName: '',
     Email: '',
-    Password: '',
   };
 
-  if (localStorage.getItem ('Account') !== null) {
-    let value = localStorage.getItem ('Account');
+  if (localStorage.getItem ('Users') !== null) {
+    let value = localStorage.getItem ('Users');
+
     value = JSON.parse (value);
-    initialValues.FistName = value.userFname;
-    initialValues.LastName = value.userLname;
-    initialValues.Email = value.userEmail;
-    initialValues.Password = value.userPassword;
+    initialValues.FistName = value.user.firstName;
+    initialValues.LastName = value.user.lastName;
+    initialValues.Email = value.user.email;
   }
   const [values, setValues] = useState (initialValues);
 
   useEffect (
     () => {
       const timer = setTimeout (() => {
-        setValidationPassword (false);
         setValidationEmail (false);
         setValidationLName (false);
         setValidationFName (false);
       }, 2000);
       return () => clearTimeout (timer);
     },
-    [ValidationPassword, ValidationEmail, ValidationLName, ValidationFName]
+    [ValidationEmail, ValidationLName, ValidationFName]
   );
 
   useEffect (
@@ -76,11 +72,9 @@ function Account (props) {
       if (
         values.FistName === '' &&
         values.LastName === '' &&
-        values.Email === '' &&
-        values.Password === ''
+        values.Email === ''
       ) {
         setToggleDisabledLoginButton (true);
-        console.log ('calling');
       } else {
         setToggleDisabledLoginButton (false);
       }
@@ -104,26 +98,10 @@ function Account (props) {
     }
     return <div />;
   };
-  function start (e) {
-    console.log ('START');
-    setPasswordType ('text');
-  }
 
-  function end (e, enough) {
-    console.log ('END');
-    setPasswordType ('password');
-    console.log (
-      enough ? 'Click released after enough time' : 'Click released too soon'
-    );
-  }
-
-  function clickNHold (e) {
-    console.log ('CLICK AND HOLD');
-  }
-
-  async function handleSubmit (fName, lName, Email, Password) {
+  async function handleSubmit (fName, lName, Email) {
     if (CheckOnline) {
-      if (fName !== '' && lName !== '' && Email !== '' && Password !== '') {
+      if (fName !== '' && lName !== '' && Email !== '') {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test (Email)) {
           contextData.HandleDisplayLoading (true);
@@ -131,7 +109,6 @@ function Account (props) {
             email: Email,
             firstName: fName,
             lastName: lName,
-            password: Password,
           };
           let data = await HandleSignUpPostRequest (userData);
           if (data) {
@@ -150,9 +127,7 @@ function Account (props) {
               setErrorMessage (data);
               if (data.includes (Email)) {
                 setValidationEmail (true);
-                setValidationPassword (false);
               } else {
-                setValidationPassword (true);
                 setValidationEmail (false);
               }
             }
@@ -177,11 +152,6 @@ function Account (props) {
         } else {
           setValidationEmail (false);
         }
-        if (Password === '') {
-          setValidationPassword (true);
-        } else {
-          setValidationPassword (false);
-        }
       }
     } else {
       // playOn ();
@@ -195,7 +165,6 @@ function Account (props) {
       });
     }
   }
-  console.log ('hello', contextData.DisplayColorsDropDown);
   function BackColor () {
     if (
       contextData.DisplayBackImageModal ||
@@ -353,34 +322,6 @@ function Account (props) {
                   onChange={handleInputChange}
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="fname"
-                  className="text-left"
-                  style={{fontSize: '18px', fontWeight: '500'}}
-                >
-                  Password:
-                </label>
-                <div className="SignUPName BorderRadius  justify-content-between d-flex align-items-center">
-                  <input
-                    className="w-100"
-                    placeholder="Password*"
-                    style={{borderColor: ValidationPassword ? 'red' : ''}}
-                    value={values.Password}
-                    type={PasswordType}
-                    name="Password"
-                    onChange={handleInputChange}
-                  />
-                  <ClickNHold
-                    time={2} // Time to keep pressing. Default is 2
-                    onStart={start} // Start callback
-                    onClickNHold={clickNHold} //Timeout callback
-                    onEnd={end}
-                  >
-                    <BsEye />
-                  </ClickNHold>
-                </div>
-              </div>
               {ErrorMessage && <div style={{color: 'red'}}>{ErrorMessage}</div>}
             </div>
             <div
@@ -397,7 +338,6 @@ function Account (props) {
                     values.FistName,
                     values.LastName,
                     values.Email,
-                    values.Password
                   );
                 }}
               >

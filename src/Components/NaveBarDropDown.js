@@ -1,4 +1,4 @@
-import React, {useContext,useState,useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {Context} from './Context/Context';
 import {Link} from 'react-router-dom';
 function NaveBarDropDown (props) {
@@ -6,21 +6,23 @@ function NaveBarDropDown (props) {
   const [ToggleLoginButton, setToggleLoginButton] = useState (false);
   useEffect (
     () => {
-      if (localStorage.getItem ('leLoginSuccess') !== null) {
-        let value = localStorage.getItem ('leLoginSuccess');
-        value = JSON.parse (value);
+      if (localStorage.getItem ('Users') !== null) {
         setToggleLoginButton (true);
       } else {
         setToggleLoginButton (false);
       }
     },
-    [contextData.UpdateAccountSuccess, contextData.UpdateLoginSuccess]
+    [contextData.UpdateLoginSuccess]
   );
   return (
     <div>
       <p className="NaveBarDropDown BorderBottomNaveBarDropDown">Plans</p>
       <Link
         onClick={() => {
+          contextData.HandleBackGroundColorOfModal (false);
+          contextData.HandleShowModal (false);
+          contextData.handleDisplayBackgroundTransparent (false);
+          contextData.HandleDisplayNaveBarDropDown (false);
           window.scrollTo (0, 0);
         }}
         className="text-decoration-none"
@@ -31,19 +33,23 @@ function NaveBarDropDown (props) {
 
       <p className="NaveBarDropDown BorderBottomNaveBarDropDown">Billing</p>
       {ToggleLoginButton
-        ?  <Link
-        onClick={() => {
-          window.scrollTo (0, 0);
-          localStorage.removeItem('leLoginSuccess');
-          localStorage.removeItem('Account');
-          contextData.UpdateHandleAccountSuccess(!contextData.UpdateAccountSuccess)
-          contextData.UpdateHandleLoginSuccess(!contextData.UpdateLoginSuccess)
-        }}
-        className="text-decoration-none"
-        to="/"
-      >
-        <p  className="NaveBarDropDown">Log out</p>
-      </Link> 
+        ? <Link
+            onClick={() => {
+              window.scrollTo (0, 0);
+              localStorage.removeItem ('Users');
+              contextData.HandleBackGroundColorOfModal (false);
+              contextData.HandleShowModal (false);
+              contextData.handleDisplayBackgroundTransparent (false);
+              contextData.HandleDisplayNaveBarDropDown (false);
+              contextData.UpdateHandleLoginSuccess (
+                !contextData.UpdateLoginSuccess
+              );
+            }}
+            className="text-decoration-none"
+            to="/"
+          >
+            <p className="NaveBarDropDown">Log out</p>
+          </Link>
         : <p
             className="NaveBarDropDown"
             onClick={() => {

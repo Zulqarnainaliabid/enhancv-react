@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React from 'react';
 import {Date, Location, LinkHeader} from '../../../JasonData';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
@@ -95,6 +95,9 @@ function ExperienceInnerSection (props) {
                   placeholder="Title"
                   draggable="false"
                   value={props.list[props.index].value.title}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />}
               {props.list[props.index].toggleSwitch[1].selected &&
                 <TextareaAutosize
@@ -102,6 +105,9 @@ function ExperienceInnerSection (props) {
                   placeholder="Company Name"
                   draggable="false"
                   value={props.list[props.index].value.companyName}
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                 />}
               <div className="d-flex align-items-center " style={{gap: '12px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
@@ -110,7 +116,8 @@ function ExperienceInnerSection (props) {
                     style={{gap: '5px'}}
                   >
                     <Date className="IconsFontSize12" />
-                    {ShowDatePeriod () && <p className='InputFieldBachUpCv'>Date Period</p>}
+                    {ShowDatePeriod () &&
+                      <p className="InputFieldBachUpCv">Date Period</p>}
                     <div className="d-flex TextHolderSectionLocationAndTime">
                       <div>{props.list[props.index].date.monthFrom}</div>
                       {SlashFrom ()}
@@ -165,10 +172,7 @@ function ExperienceInnerSection (props) {
           </div>
           {props.list[props.index].toggleSwitch[3].selected &&
             <div style={{marginLeft: '13px'}}>
-              <div
-                className="summary"
-                style={{width: HandleEditorWidth ()}}
-              >
+              <div className="summary" style={{width: HandleEditorWidth ()}}>
 
                 <Editor
                   className="InputFieldBachUpCv"

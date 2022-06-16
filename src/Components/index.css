@@ -1664,14 +1664,10 @@ border-bottom: 1px solid #e6e6e6;
   color: #384347!important;;
 }
 /*# sourceMappingURL=index.css.map */
-
-
-
-
-@media print {
-  .page-break {
-    margin-top: 10rem;
-    display: block;
-    page-break-after: always;
-  }
+.css-o8mmbg-Slider{
+  display: none !important;
+}
+.css-hg5j73-Slider{
+  width:100% !important;
+  height: 12px !important;
 }
