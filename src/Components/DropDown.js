@@ -2,18 +2,15 @@ import React, {useContext, useEffect, useState} from 'react';
 import {bounceInDown} from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import {Context} from './Context/Context';
-import SelectedColors from './SelectedColors'
 import NaveBarDropDown from './NaveBarDropDown'
 export default function DropDown (props) {
   const contextData = useContext (Context);
-
   const styles = {
     bounceInDown: {
       animation: 'x 1s',
       animationName: Radium.keyframes (bounceInDown, 'fadeInRight'),
     },
   };
-  // let SelectColors =  <SelectedColors  />
   let alert = (
     <div className="d-flex flex-column p-3">
       <p style={{fontSize: '30px', textAlign: 'center'}}>

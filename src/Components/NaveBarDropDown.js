@@ -30,7 +30,6 @@ function NaveBarDropDown (props) {
       >
         <p className="NaveBarDropDown BorderBottomNaveBarDropDown">Account</p>
       </Link>
-
       <p className="NaveBarDropDown BorderBottomNaveBarDropDown">Billing</p>
       {ToggleLoginButton
         ? <Link
@@ -63,7 +62,6 @@ function NaveBarDropDown (props) {
           >
             Log In
           </p>}
-
     </div>
   );
 }

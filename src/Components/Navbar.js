@@ -3,11 +3,9 @@ import {Container, Row, Col} from 'react-bootstrap';
 import logo from './Images/Logo.svg';
 import {Link} from 'react-router-dom';
 import {Context} from './Context/Context';
-import DropDown from './DropDown';
 export default function Navbar (props) {
   const [ToggleSignUpButton, setToggleSignUpButton] = useState (false);
   const [ToggleLoginButton, setToggleLoginButton] = useState (false);
-
   const contextData = useContext (Context);
   const [UserName, setUserName] = useState ('');
 
@@ -24,7 +22,7 @@ export default function Navbar (props) {
         setToggleLoginButton (false);
       }
     },
-    [contextData.UpdateAccountSuccess, contextData.UpdateLoginSuccess]
+    [contextData.UpdateLoginSuccess]
   );
 
   return (
@@ -132,6 +130,7 @@ export default function Navbar (props) {
                       style={{gap: '2px'}}
                       onClick={() => {
                         contextData.HandleBackGroundColorOfModal (true);
+                        
                         contextData.HandleDisplayNaveBarDropDown (
                           !contextData.DisplayNaveBarDropDown
                         );

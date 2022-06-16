@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect, useRef} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {Context} from './Context/Context';
 import Resume from './Resume';
 import Navbar from './Navbar';
@@ -134,6 +134,7 @@ function Home () {
     localStorage.removeItem ('HeadingValueReference');
     localStorage.removeItem ('HeadingValueAwards');
   }
+
   const override = css`
   display: block;
   margin: 0 auto;
@@ -287,7 +288,6 @@ function Home () {
               </div>}
             {contextData.DisplayNaveBarDropDown &&
               <div className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar">
-                // style={{right: '0px', top: '0px'}}
                 <DropDown ContentDisplay={false} />
               </div>}
           </div>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {Context} from './Context/Context';
 import {FaCloudUploadAlt} from 'react-icons/fa';
 import {GoEyeClosed} from 'react-icons/go';

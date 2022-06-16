@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import Navbar from './Navbar';
 import backImage from './Images/BackImage.jpg';
 import Modal from './Modal';
-import {CSSTransition, SwitchTransition} from 'react-transition-group';
+import {CSSTransition} from 'react-transition-group';
 import {BallTriangle} from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import DropDown from './DropDown'
@@ -97,7 +97,7 @@ function LandingPage (props) {
           {contextData.DisplayNaveBarDropDown &&
             <div
               className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar"
-              style={{top: '18%'}}
+              style={{top: '10%'}}
             >
 
               <DropDown ContentDisplay={false} />

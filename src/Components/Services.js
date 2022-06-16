@@ -561,11 +561,8 @@ export async function HandlePatchCvBackUp (InputValueSubjectName, id) {
 
 export async function HandleForgetPassword (Email) {
   let data1 = null;
-  const AuthStr = 'Bearer '.concat (GetToken ());
  await axios
-    .post (`${BaseURL}/api/Auth/ForgotPassword`, Email, {
-      headers: {Authorization: AuthStr},
-    })
+    .post (`${BaseURL}/api/Auth/ForgotPassword`, Email)
     .then (function (response) {
       console.log ('res...................oooo', response);
       data1 = response.status;

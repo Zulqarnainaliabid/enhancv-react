@@ -29,8 +29,6 @@ function SignIn (props) {
     true
   );
 
-  console.log ('hello', Values);
-
   async function handleSubmit (Email, Password) {
     if (CheckOnline) {
       if (Email !== '' && Password !== '') {
@@ -230,6 +228,8 @@ function SignIn (props) {
         </Button>
         <Link
           onClick={() => {
+            contextData.HandleBackGroundColorOfModal (false);
+            contextData.HandleShowModal (false);
             window.scrollTo (0, 0);
           }}
           className="text-decoration-none text-white"

@@ -1,8 +1,6 @@
-// import Example from './Example';
 import React, {
   useState,
   useEffect,
-  useRef,
   useContext,
   useImperativeHandle,
 } from 'react';
@@ -27,7 +25,6 @@ import TrainingOuterSection
   from './Sections/TrainingCourses/TrainingCoursesOuterSection';
 import VolunteeringOuterSection
   from './Sections/Volunteering/VolunteeringOuterSection';
-
 import AwardsOuterSection from './Sections/Awards/AwardsOuterSection';
 import BookOuterSection from './Sections/Book/BookOuterSection';
 import CertificationOuterSection
@@ -46,7 +43,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
   const [ShowLeftSection, setShowLeftSection] = useState (false);
   const [ShowRightSection, setShowRightSection] = useState (false);
   const [DisplayBottomCurve, setDisplayBottomCurve] = useState ('flex');
-
   const [DisplayShadow, setDisplayShadow] = useState (true);
 
   let header = (
@@ -114,7 +110,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let FindMe = (
     <FindMeOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -131,7 +126,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Education = (
     <EducationOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -140,7 +134,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Experience = (
     <ExperienceOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -149,7 +142,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let IndustryExperience = (
     <IndustryExperienceOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -158,7 +150,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Language = (
     <LanguageOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -167,7 +158,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let MyTime = (
     <MyTimeOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -176,7 +166,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Passion = (
     <PassionOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -185,7 +174,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Project = (
     <ProjectsOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -194,7 +182,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Skill = (
     <SkillsOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -203,7 +190,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Strength = (
     <StrengthOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -212,7 +198,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Summary = (
     <SummaryOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -221,7 +206,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let TrainingCourses = (
     <TrainingOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -230,7 +214,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   let Volunteering = (
     <VolunteeringOuterSection
       setDisplayBackGroundColor={setDisplayBackGroundColor}
@@ -239,17 +222,14 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       HandleState={props.HandleState}
     />
   );
-
   const [Resume, setResume] = useState ({
     Left: [],
     Right: [],
   });
-
   const [AlternateResume, setAlternateResume] = useState ({
     Left: [],
     Right: [],
   });
-
   useEffect (
     () => {
       if (contextData.AddSectionInArray) {
@@ -259,7 +239,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     },
     [contextData.AddSectionInArray]
   );
-
   function handleLRBAddSection () {
     let value = localStorage.getItem ('SectionsArray');
     value = JSON.parse (value);
@@ -290,11 +269,9 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       }
     }
   }
-
   useEffect (() => {
     handleLRBAddSection ();
   });
-
   useImperativeHandle (ref2, () => ({
     getAlert () {
       HandleBackGroundColor ();
@@ -304,7 +281,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       setDisplayShadow (true);
     },
   }));
-
   useEffect (
     () => {
       const timer = setTimeout (() => {
@@ -315,7 +291,6 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     },
     [DisplayBottomCurve, DisplayShadow]
   );
-
   function HandleBackGroundColor () {
     setDisplayBackGroundColor (false);
     contextData.handleUpdateBachGroundHighLitter ();

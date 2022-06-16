@@ -3,14 +3,12 @@ import {Context} from './Context/Context';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import {Button} from 'react-bootstrap';
-import ClickNHold from 'react-click-n-hold';
-import {BsEye} from 'react-icons/bs';
 import CheckMarkImage from './Images/CheckMark.gif';
 import NetworkStatus from './NetWorkStatus';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Modal from './Modal';
-import {CSSTransition, SwitchTransition} from 'react-transition-group';
+import {CSSTransition} from 'react-transition-group';
 import {HandleSignUpPostRequest} from './Services';
 import DropDown from './DropDown';
 function Account (props) {
@@ -154,7 +152,6 @@ function Account (props) {
         }
       }
     } else {
-      // playOn ();
       confirmAlert ({
         title: 'Your Are Currently Off Line',
         buttons: [
@@ -212,7 +209,6 @@ function Account (props) {
               className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar"
               style={{top: '18%'}}
             >
-
               <DropDown ContentDisplay={false} />
             </div>}
         </div>
@@ -327,7 +323,6 @@ function Account (props) {
             <div
               style={{
                 paddingLeft: '40px',
-                // paddingRight:"40px"
               }}
             >
               <Button

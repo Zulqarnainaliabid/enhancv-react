@@ -2,7 +2,6 @@ import React,{useContext,useState} from 'react';
 import Header from './Header';
 import {Context} from './Context/Context';
 import SummaryCoverLetter from './SummaryCoverLetter'
-
  const CoverLetterPrint = React.forwardRef ((props, ref) => {
   const contextData = useContext (Context);
   const [displayBackGroundColor, setDisplayBackGroundColor] = useState (false);

@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Context} from './Context/Context';
-
 import Achievements from './SectionImages/Achievements.png';
 import Education from './SectionImages/Education.png';
 import Experience from './SectionImages/Experience.png';
@@ -15,7 +14,6 @@ import time from './SectionImages/time.png';
 import training from './SectionImages/training.png';
 import volunteering from './SectionImages/volunteering.png';
 import industry from './SectionImages/industry.png';
-
 import Philosophy from './SectionImages/Philosophy.JPG';
 import Certification from './SectionImages/Certification.JPG';
 import Publication from './SectionImages/Publications.JPG';
@@ -23,7 +21,6 @@ import Book from './SectionImages/Book.JPG';
 import Custom from './SectionImages/Custom.JPG';
 import Awards from './SectionImages/Awards.JPG';
 import Reference from './SectionImages/Reference.JPG';
-
 import {MdHeight, MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
 let data = [

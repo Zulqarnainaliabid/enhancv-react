@@ -9,7 +9,6 @@ import BackImg0 from './Images/BackImg0.jpg';
 import BackImg2 from './Images/BackImg2.jpg';
 import BackImg3 from './Images/BackImg3.jpg';
 function ModalLeftToRight (props) {
-  const [SelectImage, setsSelectImage] = useState ();
   const [ImgSource, setImgSource] = useState ([BackImg0, BackImg2, BackImg3]);
   const contextData = useContext (Context);
 

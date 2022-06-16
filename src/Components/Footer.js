@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {FaFacebookF} from 'react-icons/fa';
 import {FaTwitter} from 'react-icons/fa';
 import {BsInstagram} from 'react-icons/bs';
-function Footer (props) {
+function Footer () {
   return (
     <div className="d-flex align-items-center justify-content-between">
       <p className="FooterLeftHeading">© 2022 Perfect Cv All Right Reserved</p>

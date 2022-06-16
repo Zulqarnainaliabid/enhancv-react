@@ -20,7 +20,6 @@ const InputField = React.forwardRef ((props, ref) => {
       textTransform: props.UpperCaseHeaderInputField ? 'uppercase' : 'lower',
       textAlign: props.CursorCenter ? 'center' : '',
       width: props.CustomWidth,
-      // backgroundColor:"black"
     };
   } else {
     Style = {

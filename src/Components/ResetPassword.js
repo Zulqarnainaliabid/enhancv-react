@@ -10,17 +10,15 @@ import NetworkStatus from './NetWorkStatus';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Modal from './Modal';
-import {CSSTransition, SwitchTransition} from 'react-transition-group';
-import {HandleSignUpPostRequest} from './Services';
+import {CSSTransition} from 'react-transition-group';
 import DropDown from './DropDown';
-function ResetPassword (props) {
+function ResetPassword () {
   const contextData = useContext (Context);
   let initialValues = {
     Password: '',
     ConfirmPassword: '',
   };
   const [values, setValues] = useState (initialValues);
-
   const [ValidationConfirmPassword, setValidationConfirmPassword] = useState (
     false
   );
@@ -39,11 +37,11 @@ function ResetPassword (props) {
       const timer = setTimeout (() => {
         setValidationPassword (false);
         setValidationConfirmPassword (false);
-        setErrorMessage(false)
+        setErrorMessage (false);
       }, 2000);
       return () => clearTimeout (timer);
     },
-    [ValidationPassword, ValidationConfirmPassword,ErrorMessage]
+    [ValidationPassword, ValidationConfirmPassword, ErrorMessage]
   );
 
   useEffect (
@@ -208,7 +206,6 @@ function ResetPassword (props) {
               className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar"
               style={{top: '18%'}}
             >
-
               <DropDown ContentDisplay={false} />
             </div>}
         </div>
@@ -255,12 +252,14 @@ function ResetPassword (props) {
           </main>
         </main>
         <div className="mb-5 ps-5 pe-5 pb-2 mt-2">
-          <div className="HeadingTextHolderSignIn mb-3 mt-3">Reset Password</div>
+          <div className="HeadingTextHolderSignIn mb-3 mt-3">
+            Reset Password
+          </div>
           <div className="bg-white mb-5 mt-3 ps-5 pe-5 pt-2 pb-4 rounded">
             <div
               style={{
                 display: 'flex',
-                flexDirection: 'column', 
+                flexDirection: 'column',
                 gap: '12px',
                 marginTop: '20px',
                 paddingLeft: '40px',

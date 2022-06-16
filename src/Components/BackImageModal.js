@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Context} from './Context/Context';
 
-function BackImage (props) {
+function BackImage () {
   const contextData = useContext (Context);
   return (
     <div>

@@ -3,12 +3,10 @@ import {Context} from './Context/Context';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import {Button} from 'react-bootstrap';
-import ClickNHold from 'react-click-n-hold';
-import {BsEye} from 'react-icons/bs';
 import NetworkStatus from './NetWorkStatus';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Modal from './Modal';
-import {CSSTransition, SwitchTransition} from 'react-transition-group';
+import {CSSTransition} from 'react-transition-group';
 import {HandleForgetPassword} from './Services';
 import DropDown from './DropDown';
 import {confirmAlert} from 'react-confirm-alert';
@@ -35,19 +33,6 @@ function ForgetPassword (props) {
     },
     [ValidationEmail, ErrorMessage]
   );
-
-  // useEffect (
-  //   () => {
-  //     if (CheckMArk) {
-  //       const timer = setTimeout (() => {
-  //         contextData.HandleBackGroundColorOfModal (false);
-  //         contextData.HandleShowModal (false);
-  //       }, 3000);
-  //       return () => clearTimeout (timer);
-  //     }
-  //   },
-  //   [CheckMArk]
-  // );
 
   useEffect (
     () => {
@@ -127,7 +112,7 @@ function ForgetPassword (props) {
                     label: 'OK',
                   },
                 ],
-              });  
+              });
             } else {
               setErrorMessage (data);
               if (data.includes (Email)) {
@@ -159,6 +144,7 @@ function ForgetPassword (props) {
       });
     }
   }
+
   return (
     <div style={{position: 'relative'}}>
       {BackColor ()}
@@ -169,7 +155,6 @@ function ForgetPassword (props) {
             className="CommonCssClassAbsolutePosition OuterWrapperDropDownNaveBar"
             style={{top: '18%'}}
           >
-
             <DropDown ContentDisplay={false} />
           </div>}
       </div>
@@ -218,7 +203,7 @@ function ForgetPassword (props) {
       <div className="mb-5 ps-5 pe-5 pb-2 pt-5">
         <div className="HeadingTextHolderSignIn mb-3 mt-3">Forget Password</div>
         <div className="bg-white mb-5 mt-3 ps-5 pb-5 pe-4 pt-2  rounded">
-          <div 
+          <div
             style={{
               display: 'flex',
               flexDirection: 'column',

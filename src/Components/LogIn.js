@@ -6,7 +6,6 @@ import NetworkStatus from './NetWorkStatus';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {Button} from 'react-bootstrap';
-import ExampleInputField from './Example/ExampleInputField';
 import ClickNHold from 'react-click-n-hold';
 import {BsEye} from 'react-icons/bs';
 
