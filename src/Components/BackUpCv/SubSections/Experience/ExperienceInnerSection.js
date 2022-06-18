@@ -144,6 +144,9 @@ function ExperienceInnerSection (props) {
                       className="InputFieldBachUpCv"
                       placeholder="Location"
                       draggable="false"
+                      onChange={() => {
+                        console.log ('onchange');
+                      }}
                       value={props.list[props.index].value.location}
                     />
                   </div>}
@@ -158,6 +161,9 @@ function ExperienceInnerSection (props) {
                     className="InputFieldBachUpCv"
                     placeholder="URL"
                     draggable="false"
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
                     value={props.list[props.index].value.url}
                   />
                 </div>}
@@ -166,6 +172,9 @@ function ExperienceInnerSection (props) {
                   className="InputFieldBachUpCv"
                   placeholder="Company Description"
                   draggable="false"
+                  onChange={() => {
+                    console.log ('onchange');
+                  }}
                   value={props.list[props.index].value.companyDescription}
                 />}
             </div>
