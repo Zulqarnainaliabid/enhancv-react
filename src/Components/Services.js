@@ -573,3 +573,22 @@ export async function HandleForgetPassword (Email) {
     });
   return data1;
 }
+
+// http://perfactcv.com/reset-password?token=CfDJ8AGRSgrwtIdHgR8lpNtEDLY9jDccwnD+FIW9ZG6PU7xsDcp5H5QyyTlWNBfruT+QyXUwo1xoCLFqfUTG7TGyIEZzwalGzjj80FtKaCtpdehL8Eidqts6Y864LV5fte/rZdoqok4lEksoZQxTK+iThEDrX8LFsEXTlTZAgLEWHSpwPZCg42q/X3Hf5KpIpPOA5I5xJgAWqPfUjZ9Ep5D6DMKXBbw80lPxhW5qQQTI011m
+
+// http://perfactcv.com/reset-password?token=CfDJ8AGRSgrwtIdHgR8lpNtEDLY9jDccwnD+FIW9ZG6PU7xsDcp5H5QyyTlWNBfruT+QyXUwo1xoCLFqfUTG7TGyIEZzwalGzjj80FtKaCtpdehL8Eidqts6Y864LV5fte/rZdoqok4lEksoZQxTK+iThEDrX8LFsEXTlTZAgLEWHSpwPZCg42q/X3Hf5KpIpPOA5I5xJgAWqPfUjZ9Ep5D6DMKXBbw80lPxhW5qQQTI011m
+
+export async function HandleResetPassword (Password,Token,email) {
+  let data1 = null;
+ await axios
+    .post (`${BaseURL}/api/Auth/ResetPassword`,{"token":Token,"password":Password,"email":email})
+    .then (function (response) {
+      console.log ('res...................oooo', response);
+      data1 = response.status;
+    })
+    .catch (error => {
+      console.log ('error............', error);
+      data1 = error.response.data.detail;
+    });
+  return data1;
+}

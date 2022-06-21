@@ -12,17 +12,21 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import Modal from './Modal';
 import {CSSTransition} from 'react-transition-group';
 import DropDown from './DropDown';
-function ResetPassword () {
+import {HandleResetPassword} from './Services';
+import {useLocation} from 'react-router-dom';
+function ResetPassword (props) {
   const contextData = useContext (Context);
   let initialValues = {
     Password: '',
     ConfirmPassword: '',
+    Email:"",
   };
   const [values, setValues] = useState (initialValues);
   const [ValidationConfirmPassword, setValidationConfirmPassword] = useState (
     false
   );
   const [ValidationPassword, setValidationPassword] = useState (false);
+  const [ValidationEmail, setValidationEmail] = useState (false);
   const [ErrorMessage, setErrorMessage] = useState ('');
   const [PasswordType, setPasswordType] = useState ('password');
   const [ConfirmPasswordType, setConfirmPasswordType] = useState ('password');
@@ -31,17 +35,24 @@ function ResetPassword () {
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
     true
   );
-
+  const search = useLocation ().search;
+  const id = new URLSearchParams (search).get ('token');
   useEffect (
     () => {
       const timer = setTimeout (() => {
         setValidationPassword (false);
         setValidationConfirmPassword (false);
+        setValidationEmail (false);
         setErrorMessage (false);
       }, 2000);
       return () => clearTimeout (timer);
     },
-    [ValidationPassword, ValidationConfirmPassword, ErrorMessage]
+    [
+      ValidationPassword,
+      ValidationConfirmPassword,
+      ErrorMessage,
+      ValidationEmail,
+    ]
   );
 
   useEffect (
@@ -59,7 +70,7 @@ function ResetPassword () {
 
   useEffect (
     () => {
-      if (values.ConfirmPassword === '' && values.Password === '') {
+      if (values.ConfirmPassword === '' && values.Password === '' && values.Email === '') {
         setToggleDisabledLoginButton (true);
       } else {
         setToggleDisabledLoginButton (false);
@@ -115,23 +126,29 @@ function ResetPassword () {
     console.log ('CLICK AND HOLD');
   }
 
-  async function handleSubmit (Password, ConfirmPassword) {
+  async function handleSubmit (Password, ConfirmPassword, Email) {
     if (CheckOnline) {
-      if (ConfirmPassword !== '' && Password !== '') {
+      let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (ConfirmPassword !== '' && Password !== '' && Email !== '') {
         if (ConfirmPassword !== Password) {
           setErrorMessage ('Password don not match.');
         } else {
-          contextData.HandleDisplayLoading (true);
-          let data = '00';
-          if (data) {
-            contextData.HandleDisplayLoading (false);
-            if (data === 201) {
-              setCheckMArk (true);
-            } else {
-              setErrorMessage (data);
-              setValidationPassword (true);
-              setValidationConfirmPassword (false);
+          if (re.test (Email)) {
+            contextData.HandleDisplayLoading (true);
+            let data = await HandleResetPassword (Password, id,Email);
+            if (data) { 
+              contextData.HandleDisplayLoading (false);
+              if (data === 201) {
+                setCheckMArk (true);
+              } else {
+                setErrorMessage (data);
+                setValidationPassword (true);
+                setValidationConfirmPassword (false);
+              }
             }
+          } else {
+            setErrorMessage ('invalid Email');
+            setValidationEmail (true);
           }
         }
       } else {
@@ -141,10 +158,14 @@ function ResetPassword () {
           setValidationConfirmPassword (false);
         }
         if (Password === '') {
-          console.log ('hello', Password);
           setValidationPassword (true);
         } else {
           setValidationPassword (false);
+        }
+        if (Email === '') {
+          setValidationEmail (true);
+        } else {
+          setValidationEmail (false);
         }
       }
     } else {
@@ -272,6 +293,28 @@ function ResetPassword () {
                   className="text-left mb-2"
                   style={{fontSize: '18px', fontWeight: '500'}}
                 >
+                  Email:
+                </label>
+                <div
+                  className="SignUPName BorderRadius  justify-content-between d-flex align-items-center"
+                  style={{borderColor: ValidationEmail ? 'red' : ''}}
+                >
+                  <input
+                    className="w-100"
+                    placeholder="Email*"
+                    value={values.Email}
+                    type="text"
+                    name="Email"
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="fname"
+                  className="text-left mb-2"
+                  style={{fontSize: '18px', fontWeight: '500'}}
+                >
                   New Password:
                 </label>
                 <div
@@ -339,7 +382,11 @@ function ResetPassword () {
                 disabled={ToggleDisabledLoginButton}
                 className="SubmitButtons  FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
                 onClick={() => {
-                  handleSubmit (values.Password, values.ConfirmPassword);
+                  handleSubmit (
+                    values.Password,
+                    values.ConfirmPassword,
+                    values.Email
+                  );
                 }}
               >
                 SUBMIT

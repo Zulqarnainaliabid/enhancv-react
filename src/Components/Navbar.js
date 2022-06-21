@@ -17,14 +17,13 @@ export default function Navbar (props) {
         setUserName (value.user.firstName);
         setToggleLoginButton (true);
         setToggleSignUpButton (true);
-      } else {
+      } else { 
         setToggleSignUpButton (false);
         setToggleLoginButton (false);
       }
     },
     [contextData.UpdateLoginSuccess]
   );
-
   return (
     <div
       className="d-flex align-items-center"
@@ -40,6 +39,21 @@ export default function Navbar (props) {
         <Row>
           <Col>
             <div className="d-flex ">
+
+            {/* <Link
+                  onClick={() => {
+                    window.scrollTo (0, 0);
+                  }}
+                  className="text-decoration-none"
+                  to="/reset-password?token=CfDJ8AGRSgrwtIdHgR8lpNtEDLY9jDccwnD+FIW9ZG6PU7xsDcp5H5QyyTlWNBfruT+QyXUwo1xoCLFqfUTG7TGyIEZzwalGzjj80FtKaCtpdehL8Eidqts6Y864LV5fte/rZdoqok4lEksoZQxTK+iThEDrX8LFsEXTlTZAgLEWHSpwPZCg42q/X3Hf5KpIpPOA5I5xJgAWqPfUjZ9Ep5D6DMKXBbw80lPxhW5qQQTI011m"
+                >
+                  <img
+                    src={logo}
+                    alt="logo"
+                    style={{width: '100%', height: '60px'}}
+                  />
+                </Link> */}
+
               <div className="" style={{width: '90px'}}>
                 <Link
                   onClick={() => {
