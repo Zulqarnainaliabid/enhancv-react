@@ -2,8 +2,10 @@ import React, {useState, useContext, useEffect} from 'react';
 import ImagePicker from './ImagePicker';
 import {Context} from './Context/Context';
 import {RiCloseFill} from 'react-icons/ri';
-import LoginIn from './LogIn';
+
 import SignIn from './SignIn';
+import LoginAccount from './Login/LoginAccount';
+
 import AddSection from './AddSection';
 import BackImage from './BackImageModal'
 function Modal (props) {
@@ -42,16 +44,16 @@ function Modal (props) {
       </div>
     </div>
   );
-
+  
   useEffect (() => {
     if (props.contentDisplay === 'AddSection') {
       setShowContent (AddItem);
     } else if (props.contentDisplay === 'ImagePicker') {
       setShowContent (<ImagePicker handleClosModal={handleClosModal} />);
     } else if (props.contentDisplay === 'Login') {
-      setShowContent (<LoginIn />);
-    } else if (props.contentDisplay === 'SignIn') {
       setShowContent (<SignIn />);
+    } else if (props.contentDisplay === 'SignIn') {
+      setShowContent (<LoginAccount />);
     } else if (props.contentDisplay === 'AddSubjectName') {
       setShowContent (SubJectName);
     } else if (props.contentDisplay === 'BackImage') {

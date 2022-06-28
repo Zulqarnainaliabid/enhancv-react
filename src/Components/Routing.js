@@ -4,7 +4,6 @@ import Home from '../Components/Home';
 import LandingPage from './LandingPage';
 import CoverLetter from './CoverLetter';
 import Account from './Account';
-import ForgetPassword from './ForgetPassword';
 import ResetPassword from './ResetPassword';
 function Routing () {
   return (
@@ -13,7 +12,6 @@ function Routing () {
       <Route exact path="/" element={<LandingPage />} />
       <Route exact path="/cover-letter" element={<CoverLetter />} />
       <Route exact path="/account" element={<Account />} />
-      <Route exact path="/forget-password" element={<ForgetPassword />} />
       <Route exact path="/reset-password" element={<ResetPassword />} />
     </Routes>
   );

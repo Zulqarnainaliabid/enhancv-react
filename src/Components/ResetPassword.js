@@ -16,11 +16,13 @@ import {HandleResetPassword} from './Services';
 import {useLocation} from 'react-router-dom';
 function ResetPassword (props) {
   const contextData = useContext (Context);
+
   let initialValues = {
     Password: '',
     ConfirmPassword: '',
     Email:"",
   };
+  
   const [values, setValues] = useState (initialValues);
   const [ValidationConfirmPassword, setValidationConfirmPassword] = useState (
     false
