@@ -14,15 +14,17 @@ import {CSSTransition} from 'react-transition-group';
 import DropDown from './DropDown';
 import {HandleResetPassword} from './Services';
 import {useLocation} from 'react-router-dom';
+import BeatLoader from 'react-spinners/BeatLoader';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 function ResetPassword (props) {
   const contextData = useContext (Context);
 
   let initialValues = {
     Password: '',
     ConfirmPassword: '',
-    Email:"",
+    Email: '',
   };
-  
+
   const [values, setValues] = useState (initialValues);
   const [ValidationConfirmPassword, setValidationConfirmPassword] = useState (
     false
@@ -34,6 +36,7 @@ function ResetPassword (props) {
   const [ConfirmPasswordType, setConfirmPasswordType] = useState ('password');
   const [CheckOnline, setCheckOnline] = useState (false);
   const [CheckMArk, setCheckMArk] = useState (false);
+  const [Loading, setLoading] = useState (false);
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
     true
   );
@@ -72,7 +75,11 @@ function ResetPassword (props) {
 
   useEffect (
     () => {
-      if (values.ConfirmPassword === '' && values.Password === '' && values.Email === '') {
+      if (
+        values.ConfirmPassword === '' &&
+        values.Password === '' &&
+        values.Email === ''
+      ) {
         setToggleDisabledLoginButton (true);
       } else {
         setToggleDisabledLoginButton (false);
@@ -137,13 +144,16 @@ function ResetPassword (props) {
         } else {
           if (re.test (Email)) {
             contextData.HandleDisplayLoading (true);
-            let data = await HandleResetPassword (Password, id,Email);
-            if (data) { 
+            setLoading (true);
+            let data = await HandleResetPassword (Password, id, Email);
+            if (data) {
               contextData.HandleDisplayLoading (false);
               if (data === 201) {
                 setCheckMArk (true);
+                setLoading (false);
               } else {
                 setErrorMessage (data);
+                setLoading (false);
                 setValidationPassword (true);
                 setValidationConfirmPassword (false);
               }
@@ -391,7 +401,7 @@ function ResetPassword (props) {
                   );
                 }}
               >
-                SUBMIT
+                {Loading ? <BeatLoader loading={Loading} /> : <p>SUBMIT</p>}
               </Button>
             </div>
           </div>

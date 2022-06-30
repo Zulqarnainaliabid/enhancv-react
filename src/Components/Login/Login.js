@@ -3,26 +3,27 @@ import {Context} from '../Context/Context';
 import {HandleSignInPostRequest} from '../Services';
 import CheckMarkImage from '../Images/CheckMark.gif';
 import NetworkStatus from '../NetWorkStatus';
-import {Link} from 'react-router-dom';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {Button} from 'react-bootstrap';
 import ClickNHold from 'react-click-n-hold';
 import {BsEye} from 'react-icons/bs';
+import BeatLoader from 'react-spinners/BeatLoader';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 function Login (props) {
   const initialValues = {
     Email: '',
-    Password: '',
+    Password: '',   
   };
   const contextData = useContext (Context);
   const [Values, setValues] = useState (initialValues);
-  const [Password, setPassword] = useState ('');
   const [CheckMArk, setCheckMArk] = useState (false);
   const [ValidationEmail, setValidationEmail] = useState (false);
   const [ValidationPassword, setValidationPassword] = useState (false);
   const [ErrorMessage, setErrorMessage] = useState ('');
   const [CheckOnline, setCheckOnline] = useState (false);
   const [PasswordType, setPasswordType] = useState ('password');
+  const [Loading, setLoading] = useState (false);
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
     true
   );
@@ -32,6 +33,7 @@ function Login (props) {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test (Email)) {
           contextData.HandleDisplayLoading (true);
+          setLoading(true)
           let userData = {
             email: Email,
             password: Password,
@@ -40,11 +42,13 @@ function Login (props) {
           if (data) {
             contextData.HandleDisplayLoading (false);
             if (data === 200) {
+              setLoading(false)
               setCheckMArk (true);
               contextData.UpdateHandleLoginSuccess (
                 !contextData.UpdateLoginSuccess
               );
             } else {
+              setLoading(false)
               setErrorMessage (data);
               if (data.includes (Email)) {
                 setValidationEmail (true);
@@ -203,7 +207,7 @@ function Login (props) {
             />
             <ClickNHold
               time={1}
-              onStart={start}
+              onStart={start} 
               onClickNHold={clickNHold}
               onEnd={end}
             >
@@ -213,6 +217,7 @@ function Login (props) {
           </div>
           {ErrorMessage && <div>{ErrorMessage}</div>}
         </div>
+
         <Button
           disabled={ToggleDisabledLoginButton}
           className="SubmitButtons w-100 FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
@@ -220,14 +225,20 @@ function Login (props) {
             handleSubmit (Values.Email, Values.Password);
           }}
         >
-          LogIn
+          {Loading ?
+            
+              <BeatLoader
+                loading={Loading}
+              />
+            :
+            <p>LogIn</p>}
         </Button>
 
         <div
           onClick={() => {
             // contextData.HandleBackGroundColorOfModal (false);
             // contextData.HandleShowModal (false);
-            props.setState(false)
+            props.setState (false);
             window.scrollTo (0, 0);
           }}
         >

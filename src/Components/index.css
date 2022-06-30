@@ -356,13 +356,11 @@ h1 {
 
 .outerWrapperModalImagePicker {
   width: 32%;
-  left: 35%;
   top: 67px;
 }
 
 .outerWrapperModalSignIn {
   width: 33%;
-  left: 32%;
   top: 95px;
   padding-bottom: 30px;
 }

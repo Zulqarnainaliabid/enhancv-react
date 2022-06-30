@@ -8,7 +8,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import {Button} from 'react-bootstrap';
 import ClickNHold from 'react-click-n-hold';
 import {BsEye} from 'react-icons/bs';
-
+import BeatLoader from 'react-spinners/BeatLoader';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 const initialValues = {
   FistName: '',
   LastName: '',
@@ -27,6 +28,7 @@ export default function SignIn (props) {
   const [ErrorMessage, setErrorMessage] = useState ('');
   const [CheckOnline, setCheckOnline] = useState (false);
   const [PasswordType, setPasswordType] = useState ('password');
+  const [Loading, setLoading] = useState (false);
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
     true
   );
@@ -36,6 +38,7 @@ export default function SignIn (props) {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test (Email)) {
           contextData.HandleDisplayLoading (true);
+          setLoading (true);
           let userData = {
             email: Email,
             firstName: fName,
@@ -47,18 +50,21 @@ export default function SignIn (props) {
             contextData.HandleDisplayLoading (false);
             if (data === 201) {
               setCheckMArk (true);
+              setLoading (false);
               localStorage.setItem (
                 'Account',
                 JSON.stringify ({
                   userFname: values.FistName,
                   userLname: values.LastName,
                   userEmail: values.Email,
-                  userPassword:values.Password
+                  userPassword: values.Password,
                 })
-                
               );
-              contextData.UpdateHandleAccountSuccess(!contextData.UpdateAccountSuccess)
+              contextData.UpdateHandleAccountSuccess (
+                !contextData.UpdateAccountSuccess
+              );
             } else {
+              setLoading (false);
               setErrorMessage (data);
               if (data.includes (Email)) {
                 setValidationEmail (true);
@@ -302,7 +308,7 @@ export default function SignIn (props) {
             <input
               className="CheckBox CommonCssClassCursorPointer BorderRadius"
               type="checkbox"
-            />
+            /> 
             <div style={{color: 'black', color: '#576064'}}>
               Send me resume examples and updates
             </div>
@@ -316,11 +322,14 @@ export default function SignIn (props) {
               values.FistName,
               values.LastName,
               values.Email,
-              values.Password
+              values.Password   
             );
           }}
         >
-          CREATE AN ACCOUNT
+          {Loading
+            ? <BeatLoader loading={Loading} />
+            : <p> CREATE AN ACCOUNT</p>}
+
         </Button>
       </div>
     );

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext } from 'react';
 import {Context} from '../Context/Context';
 import {Button} from 'react-bootstrap'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -6,6 +6,9 @@ import {HandleForgetPassword} from '../Services';
 import {confirmAlert} from 'react-confirm-alert';
 import {AiOutlineArrowLeft} from 'react-icons/ai';
 import NetworkStatus from '../NetWorkStatus';
+import BeatLoader from 'react-spinners/BeatLoader';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 function ForgetPassword (props) {
   const contextData = useContext (Context);
   let initialValues = {
@@ -18,6 +21,7 @@ function ForgetPassword (props) {
   const [ToggleDisabledLoginButton, setToggleDisabledLoginButton] = useState (
     true
   );
+  const [Loading, setLoading] = useState (false);
 
   useEffect (
     () => {
@@ -55,6 +59,7 @@ function ForgetPassword (props) {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test (Email)) {
           contextData.HandleDisplayLoading (true);
+          setLoading (true);
           let userData = {
             email: Email,
           };
@@ -62,6 +67,7 @@ function ForgetPassword (props) {
           if (data) {
             contextData.HandleDisplayLoading (false);
             if (data === 200) {
+              setLoading (false);
               confirmAlert ({
                 title: 'Please Check Your Email',
                 buttons: [
@@ -71,6 +77,7 @@ function ForgetPassword (props) {
                 ],
               });
             } else {
+              setLoading (false);
               setErrorMessage (data);
               if (data.includes (Email)) {
                 setValidationEmail (true);
@@ -165,12 +172,13 @@ function ForgetPassword (props) {
         <div>
           <Button
             disabled={ToggleDisabledLoginButton}
-            className="SubmitButtons w-25 d-flex justify-content-center  FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
+            className="SubmitButtons  d-flex justify-content-center  FontWeight BorderRadius CommonCssClassWhiteColor CommonCssClassCursorPointer"
             onClick={() => {
               handleSubmit (values.Email);
             }}
           >
-            SUBMIT
+            {Loading ?<BeatLoader loading={Loading} />:
+            <p>SUBMIT</p>}
           </Button>
         </div>
       </div>
