@@ -213,7 +213,7 @@ function DragAndDropComponent (props) {
                           );
                         }
                       })}
-                      <div style={{width:"160px",height:"1px"}} className="DNDItems CommonCssClassWhiteColor">kk</div>
+                      {/* <div style={{width:"160px",height:"1px"}} className="DNDItems CommonCssClassWhiteColor">kk</div> */}
                       {provided.placeholder}
                     </div>
                   )}

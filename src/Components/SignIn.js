@@ -121,7 +121,7 @@ export default function SignIn (props) {
         setValidationLName (false);
         setValidationFName (false);
         setErrorMessage ('');
-      }, 2000);
+      }, 4000);
       return () => clearTimeout (timer);
     },
     [

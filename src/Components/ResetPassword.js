@@ -49,7 +49,7 @@ function ResetPassword (props) {
         setValidationConfirmPassword (false);
         setValidationEmail (false);
         setErrorMessage (false);
-      }, 2000);
+      }, 4000);
       return () => clearTimeout (timer);
     },
     [

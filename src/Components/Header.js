@@ -76,26 +76,58 @@ export function HeaderContent () {
   );
 
   function handleInputData (data) {
+    let value = localStorage.getItem ('HeaderInputValue');
+    value = JSON.parse (value);
+    if (value === null) {
+      value = {
+        email: '',
+        location: '',
+        name: '',
+        phone: '',
+        title: '',
+        webLink: '',
+      };
+      localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
+    }
     if (data.name === 'HeaderValues_name') {
       setName (data.value);
       InputData.name = data.value;
+
+      value.name = data.value;
+      localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
     } else if (data.name === 'HeaderValues_title') {
       setTitle (data.value);
       InputData.title = data.value;
+
+      console.log ('heuu', data);
+      value.title = data.value;
+      localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
     } else if (data.name === 'HeaderValues_phone') {
       setPhone (data.value);
       InputData.phone = data.value;
+
+      value.phone = data.value;
+      localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
     } else if (data.name === 'HeaderValues_email') {
       setEmail (data.value);
       InputData.email = data.value;
+
+      value.email = data.value;
+      localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
     } else if (data.name === 'HeaderValues_link') {
       setWebLink (data.value);
       InputData.webLink = data.value;
+
+      value.webLink = data.value;
+      localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
     } else if (data.name === 'HeaderValues_location') {
       setLocation (data.value);
       InputData.location = data.value;
+
+      value.location = data.value;
+      localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
     }
-    localStorage.setItem ('HeaderInputValue', JSON.stringify (InputData));
+    // localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
   }
   return (
     <div>

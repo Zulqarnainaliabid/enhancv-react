@@ -151,7 +151,7 @@ function Login (props) {
         setValidationPassword (false);
         setValidationEmail (false);
         setErrorMessage ('');
-      }, 3000);
+      }, 4000);
       return () => clearTimeout (timer);
     },
     [ValidationPassword, ValidationEmail]

@@ -46,7 +46,7 @@ function Account (props) {
         setValidationEmail (false);
         setValidationLName (false);
         setValidationFName (false);
-      }, 2000);
+      }, 4000);
       return () => clearTimeout (timer);
     },
     [ValidationEmail, ValidationLName, ValidationFName]

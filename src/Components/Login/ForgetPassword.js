@@ -28,7 +28,7 @@ function ForgetPassword (props) {
       const timer = setTimeout (() => {
         setValidationEmail (false);
         setErrorMessage (false);
-      }, 2000);
+      }, 4000);
       return () => clearTimeout (timer);
     },
     [ValidationEmail, ErrorMessage]
