@@ -203,7 +203,7 @@ function ResetPassword (props) {
           className="backGroundOfModal CommonCssClassAbsolutePosition"
           style={{
             backgroundColor: contextData.Transparent ? 'transparent' : 'black',
-            opacity: '0.8',
+            opacity: '0.5',
             zIndex: '7',
           }}
           onClick={() => {
