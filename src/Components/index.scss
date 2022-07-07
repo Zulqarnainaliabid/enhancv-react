@@ -64,7 +64,7 @@ p {
     font-size: 14px;
 }
 .IconsFontSize12 {
-    font-size: 12px;
+    font-size: 14px;
     color: #384347;
 }
 .FontWeight {
@@ -111,6 +111,7 @@ p {
     font-size: 42px;
     line-height: 50px;
     color: $ColorBlack;
+    font-weight: 700 !important;
 }
 .textareaHeaderSubTitle {
     font-size: 21px;
@@ -773,11 +774,10 @@ input {
     font-size: 15px;
     color: #808080;
     font-weight: 700;
-    margin-bottom: 4px;
 }
 .TextHolderSectionLocationAndTime {
-    font-size: 11px;
-    color: #808080;
+    font-size: 12px;
+    color: rgba(71,72,75,.81)!important;
     font-weight: unset !important;
 }
 .OuterWrapperDatePicker:hover {
@@ -878,8 +878,8 @@ input {
 }
 .summary p::before {
     content: "\A";
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.479);
     margin: 8px 0px 0px -10px;

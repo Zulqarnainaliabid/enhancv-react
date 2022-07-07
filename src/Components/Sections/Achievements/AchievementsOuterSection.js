@@ -11,7 +11,7 @@ export default function AchievementsOuterSection (props) {
     {
       selected: false,
       toggleSwitch: [
-        {name: 'Show UserName', selected: true},
+        {name: 'Show Bullets', selected: true},
         {name: 'Show Icons', selected: true},
       ],
       iconName: '',
@@ -68,39 +68,34 @@ export default function AchievementsOuterSection (props) {
 
   function HandlerAddItemInArray () {
     setHighLighter (false);
-    if (array.length <= 4) {
-      if (array === [] || array.length === 0) {
-        setToggleArrowDown (false);
-        setToggleArrowUp (false);
-      } else {
-        setToggleArrowDown (false);
-        setToggleArrowUp (true);
-      }
-      array.push ({
-        selected: false,
-        toggleSwitch: [
-          {name: 'Show UserName', selected: true},
-          {name: 'Show Icons', selected: true},
-        ],
-        iconName: '',
-        value: {
-          title: '',
-          username: '',
-        },
-      });
-      let temp = [];
-      temp = array;
-      temp.map ((item, index) => {
-        item.selected = false;
-      });
-      let index = temp.length - 1;
-      temp[index].selected = true;
-      setState ([...temp]);
-      localStorage.setItem ('Achievements', JSON.stringify (array));
+    if (array === [] || array.length === 0) {
+      setToggleArrowDown (false);
+      setToggleArrowUp (false);
     } else {
-      contextData.HandleBackGroundColorOfModal (true);
-      contextData.HandleDisplayDropDownAlertMessage (true);
+      setToggleArrowDown (false);
+      setToggleArrowUp (true);
     }
+    array.push ({
+      selected: false,
+      toggleSwitch: [
+        {name: 'Show Bullets', selected: true},
+        {name: 'Show Icons', selected: true},
+      ],
+      iconName: '',
+      value: {
+        title: '',
+        username: '',
+      },
+    });
+    let temp = [];
+    temp = array;
+    temp.map ((item, index) => {
+      item.selected = false;
+    });
+    let index = temp.length - 1;
+    temp[index].selected = true;
+    setState ([...temp]);
+    localStorage.setItem ('Achievements', JSON.stringify (array));
   }
 
   function DeleteOneItemInArray (index) {

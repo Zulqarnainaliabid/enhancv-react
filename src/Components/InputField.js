@@ -20,11 +20,13 @@ const InputField = React.forwardRef ((props, ref) => {
       textTransform: props.UpperCaseHeaderInputField ? 'uppercase' : 'lower',
       textAlign: props.CursorCenter ? 'center' : '',
       width: props.CustomWidth,
+      height:"25px"
     };
   } else {
     Style = {
       textAlign: props.CursorCenter ? 'center' : '',
       width: props.CustomWidth,
+      height:"25px"
     };
   }
   return (
@@ -34,7 +36,7 @@ const InputField = React.forwardRef ((props, ref) => {
       style={Style}
       onFocus={HandleFocus}
       onBlur={HandleBlur}
-      className={`textarea s
+      className={`textarea 
         ${ActiveOpacity ? 'OpacityInPlaceHolder' : ''}
 
         ${props.selectedColor ? contextData.SelectedColor : ''}

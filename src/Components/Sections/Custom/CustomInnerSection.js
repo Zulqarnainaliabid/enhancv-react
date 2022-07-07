@@ -541,7 +541,7 @@ function CustomInnerSection (props) {
                 >
                   {props.list[props.index].toggleSwitch[2].selected &&
                     <div
-                      className="d-flex align-items-center OuterWrapperDatePicker"
+                      className="d-flex  OuterWrapperDatePicker"
                       style={{gap: '5px'}}
                       onBlur={() => {
                         setShowDate (false);
@@ -552,8 +552,8 @@ function CustomInnerSection (props) {
                     >
                       <Date className="IconsFontSize12" />
                       {ShowDatePeriod () &&
-                        <p className="DatePeriodCustomSection">Date Period</p>}
-                      <div className="d-flex TextHolderSectionLocationAndTime">
+                        <p className="DatePeriodCustomSection" style={{marginTop:"-4px"}}>Date Period</p>}
+                      <div className="d-flex TextHolderSectionLocationAndTime" style={{marginTop:"-2px"}}>
                         <div>{props.list[props.index].date.monthFrom}</div>
                         {SlashFrom ()}
                         <div>{props.list[props.index].date.yearFrom}</div>

@@ -1,9 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {Context} from './Components/Context/Context';
 import {BrowserRouter} from 'react-router-dom';
 import Routing from './Components/Routing';
 function App (props) {
+  const contextData = useContext (Context);
+  const [FontFamily, setFontFamily] = useState ('fontFamilyFaustina');
+
+  useEffect (
+    () => {
+      console.log("calling")
+      let value = localStorage.getItem ('FontFamily');
+      value = JSON.parse (value);
+      if (value !== null) {
+        setFontFamily (value);
+      }
+    },
+    [contextData.UpdateFontFamily]
+  );
+console.log("hhh",FontFamily)
   return (
-    <div>
+    <div className={FontFamily}>
       <BrowserRouter>
         <Routing />
       </BrowserRouter>

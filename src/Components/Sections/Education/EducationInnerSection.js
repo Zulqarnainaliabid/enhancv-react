@@ -237,7 +237,7 @@ function EducationInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined || item==="") {
+    if (item === '<p><br></p>' || item === undefined || item === '') {
       return 'What knowledge or experience did you acquire during your studies there? (e.g. Delivered a comprehensive marketing strategy)';
     } else {
       return ' ';
@@ -420,11 +420,11 @@ function EducationInnerSection (props) {
                   />
                   <div
                     className="d-flex align-items-center"
-                    style={{gap: '10px'}}
+                    style={{gap: '10px',}}
                   >
                     {props.list[props.index].toggleSwitch[2].selected &&
                       <div
-                        className="d-flex align-items-center OuterWrapperDatePicker"
+                        className="d-flex  OuterWrapperDatePicker"
                         style={{gap: '5px'}}
                         onBlur={() => {
                           setShowDate (false);
@@ -434,8 +434,9 @@ function EducationInnerSection (props) {
                         }}
                       >
                         <Date className="IconsFontSize12" />
-                        {ShowDatePeriod () && <p>Date Period</p>}
-                        <div className="d-flex TextHolderSectionLocationAndTime">
+                        {ShowDatePeriod () &&
+                          <p style={{marginTop: '-4px'}}>Date Period</p>}
+                        <div className="d-flex TextHolderSectionLocationAndTime" style={{marginTop:"-2px"}}>
                           <div>{props.list[props.index].date.monthFrom}</div>
                           {SlashFrom ()}
                           <div>{props.list[props.index].date.yearFrom}</div>
@@ -455,18 +456,21 @@ function EducationInnerSection (props) {
                         </div>
                       </div>}
                     {props.list[props.index].toggleSwitch[1].selected &&
-                      <div className="d-flex align-items-center">
+                      <div className="d-flex " style={{marginTop:"5px"}}>
                         <Location className="IconsFontSize12" />
-                        <InputField
-                          placeHolder={'Location'}
-                          otherStyle={'TextHolderSectionLocationAndTime'}
-                          value={props.list[props.index].value.location}
-                          index={props.index}
-                          name={'location'}
-                          handleInputData={handleInputData}
-                          useUpperCase={false}
-                          UpperCaseHeaderInputField={false}
-                        />
+                        <div style={{marginTop:"-2px"}}>
+                          <InputField
+                            placeHolder={'Location'}
+                            otherStyle={'TextHolderSectionLocationAndTime'}
+                            value={props.list[props.index].value.location}
+                            index={props.index}
+                            name={'location'}
+                            handleInputData={handleInputData}
+                            useUpperCase={false}
+                            UpperCaseHeaderInputField={false}
+                          />
+                        </div>
+
                       </div>}
                   </div>
                 </div>
@@ -475,9 +479,9 @@ function EducationInnerSection (props) {
                 <div style={{marginLeft: '13px'}}>
                   <div className="summary">
                     <RichTextEditor
-                     placeHolder= {HandleGetPlaceHolder (
-                      props.list[props.index].value.bullets
-                     )}
+                      placeHolder={HandleGetPlaceHolder (
+                        props.list[props.index].value.bullets
+                      )}
                       otherStyle={'Bullets'}
                       value={props.list[props.index].value.bullets}
                       index={props.index}

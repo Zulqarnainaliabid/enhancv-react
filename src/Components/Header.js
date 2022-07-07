@@ -137,8 +137,11 @@ export function HeaderContent () {
           contextData.HandleDisplaySettings (false);
         }}
       >
+        {/* <div className='textareaHeaderTitle' style={{fontWeight:"700"}}
+        contentEditable='true'>
+          lkklklklk
+        </div> */}
         <div style={{width: '100%'}}>
-
           <InputField
             UpperCaseHeaderInputField={UpperCase}
             useUpperCase={true}

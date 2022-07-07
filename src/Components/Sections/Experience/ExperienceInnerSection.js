@@ -18,11 +18,15 @@ import injectSheet from 'react-jss';
 import InputField from '../../InputField';
 import RichTextEditor from '../../RichTextEditor';
 import DatePicker from '../../DatePicker';
+import {FaPlusSquare} from 'react-icons/fa';
+import {FaMinusSquare} from 'react-icons/fa';
 function ExperienceInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
   const [ShowDate, setShowDate] = useState (false);
+  const [pointEvent, setpointEvent] = useState ('none');
+  const [CursurPointer, setCursurPointer] = useState ('not-allowed');
   const {classes} = props;
   function handleCloseToggleSwitch () {
     setDisplayToggleSwitch (false);
@@ -227,10 +231,32 @@ function ExperienceInnerSection (props) {
     }
   }
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined || item==="") {
+    if (item === '<p><br></p>' || item === undefined || item === '') {
       return 'What did you achieve in this role?';
     } else {
       return ' ';
+    }
+  }
+  function CssClass () {
+    return 'summary';
+  }
+  function HandlerAddingDescription () {
+    let temp = props.list;
+    temp[props.index].DescriptionArray.push (1);
+    props.setList ([...temp]);
+    localStorage.setItem ('Volunteering', JSON.stringify (temp));
+    setCursurPointer ('pointer');
+    setpointEvent ('');
+  }
+  function HandlerDeletingDescription () {
+    let temp = props.list;
+    if (temp[props.index].DescriptionArray.length > 1) {
+      temp[props.index].DescriptionArray.pop (1);
+      props.setList ([...temp]);
+      localStorage.setItem ('Volunteering', JSON.stringify (temp));
+    } else {
+      setpointEvent ('none');
+      setCursurPointer ('not-allowed');
     }
   }
   return (
@@ -282,12 +308,19 @@ function ExperienceInnerSection (props) {
             />
           </div>
           <div className="outerWrapperHeaderIcons">
-            <Text
-              style={{
-                color: '#D7D9DA',
-                cursor: 'no-drop',
-              }}
-              className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer"
+            <FaPlusSquare
+              className="DeleteIcon CommonCssClassCursorPointer"
+              onClick={HandlerAddingDescription}
+            />
+          </div>
+          <div
+            className="outerWrapperHeaderIcons"
+            style={{cursor: CursurPointer}}
+          >
+            <FaMinusSquare
+              className="DeleteIcon CommonCssClassCursorPointer"
+              style={{pointerEvents: pointEvent}}
+              onClick={HandlerDeletingDescription}
             />
           </div>
           <div className="outerWrapperHeaderIcons" style={{border: 'unset'}}>
@@ -407,10 +440,10 @@ function ExperienceInnerSection (props) {
                   useUpperCase={false}
                   UpperCaseHeaderInputField={false}
                 />}
-              <div className="d-flex align-items-center " style={{gap: '12px'}}>
+              <div className="d-flex  " style={{gap: '12px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
                   <div
-                    className="d-flex align-items-center OuterWrapperDatePicker"
+                    className="d-flex  OuterWrapperDatePicker"
                     style={{gap: '5px'}}
                     onBlur={() => {
                       setShowDate (false);
@@ -419,9 +452,16 @@ function ExperienceInnerSection (props) {
                       setShowDate (!ShowDate);
                     }}
                   >
-                    <Date className="IconsFontSize12" />
-                    {ShowDatePeriod () && <p>Date Period</p>}
-                    <div className="d-flex TextHolderSectionLocationAndTime">
+                    <Date
+                      className="IconsFontSize12"
+                      style={{marginTop: '0px'}}
+                    />
+                    {ShowDatePeriod () &&
+                      <p style={{marginTop: '-4px'}}>Date Period</p>}
+                    <div
+                      className="d-flex TextHolderSectionLocationAndTime"
+                      style={{marginTop: '-2px'}}
+                    >
                       <div>{props.list[props.index].date.monthFrom}</div>
                       {SlashFrom ()}
                       <div>{props.list[props.index].date.yearFrom}</div>
@@ -441,18 +481,24 @@ function ExperienceInnerSection (props) {
                     </div>
                   </div>}
                 {props.list[props.index].toggleSwitch[4].selected &&
-                  <div className="d-flex align-items-center">
-                    <Location className="IconsFontSize12" />
-                    <InputField
-                      placeHolder={'Location'}
-                      otherStyle={'TextHolderSectionLocationAndTime'}
-                      value={props.list[props.index].value.location}
-                      index={props.index}
-                      name={'location'}
-                      handleInputData={handleInputData}
-                      useUpperCase={false}
-                      UpperCaseHeaderInputField={false}
+                  <div className="d-flex ">
+                    <Location
+                      className="IconsFontSize12"
+                      style={{marginTop: '0px'}}
                     />
+                    <div style={{marginTop: '-2px'}}>
+                      <InputField
+                        placeHolder={'Location'}
+                        otherStyle={'TextHolderSectionLocationAndTime'}
+                        value={props.list[props.index].value.location}
+                        index={props.index}
+                        name={'location'}
+                        handleInputData={handleInputData}
+                        useUpperCase={false}
+                        UpperCaseHeaderInputField={false}
+                      />
+
+                    </div>
                   </div>}
               </div>
               {props.list[props.index].toggleSwitch[6].selected &&
@@ -472,36 +518,43 @@ function ExperienceInnerSection (props) {
                     UpperCaseHeaderInputField={false}
                   />
                 </div>}
-              {props.list[props.index].toggleSwitch[2].selected &&
-                <InputField
-                  placeHolder={'Company Description'}
-                  otherStyle={'Bullets'}
-                  value={props.list[props.index].value.companyDescription}
-                  index={props.index}
-                  name={'companyDescription'}
-                  handleInputData={handleInputData}
-                  useUpperCase={false}
-                  UpperCaseHeaderInputField={false}
-                />}
-            </div>
+              {props.item.DescriptionArray.map ((item, index) => {
+                return (
+                  <div key={index}>
+                    {props.list[props.index].toggleSwitch[2].selected &&
+                      <InputField
+                        placeHolder={'Company Description'}
+                        otherStyle={'Bullets'}
+                        value={props.list[props.index].value.companyDescription}
+                        index={props.index}
+                        name={'companyDescription'}
+                        handleInputData={handleInputData}
+                        useUpperCase={false}
+                        UpperCaseHeaderInputField={false}
+                      />}
+                    {props.list[props.index].toggleSwitch[3].selected &&
+                      <div style={{marginLeft: '13px'}}>
+                        <div className={CssClass ()}>
+                          <RichTextEditor
+                            placeHolder={HandleGetPlaceHolder (
+                              props.list[props.index].value.bullets
+                            )}
+                            otherStyle={'Bullets'}
+                            value={props.list[props.index].value.bullets}
+                            index={props.index}
+                            name={'bullets'}
+                            handleInputData={handleInputData}
+                            EditorWidth={HandleEditorWidth ()}
+                          />
+                        </div>
+                      </div>}
+                  </div>
+                );
+              })}
 
+            </div>
           </div>
-          {props.list[props.index].toggleSwitch[3].selected &&
-            <div style={{marginLeft: '13px'}}>
-              <div className="summary">
-                <RichTextEditor
-                  placeHolder={HandleGetPlaceHolder (
-                    props.list[props.index].value.bullets
-                  )}
-                  otherStyle={'Bullets'}
-                  value={props.list[props.index].value.bullets}
-                  index={props.index}
-                  name={'bullets'}
-                  handleInputData={handleInputData}
-                  EditorWidth={HandleEditorWidth ()}
-                />
-              </div>
-            </div>}
+
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>

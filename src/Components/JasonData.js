@@ -1,10 +1,9 @@
 import {AiOutlineSearch} from 'react-icons/ai';
 import {FaRegThumbsUp} from 'react-icons/fa';
-import {MdLocationOn} from 'react-icons/md';
+import {ImLocation2} from 'react-icons/im';
 import {BsFillEyeFill} from 'react-icons/bs';
 import {FaMapMarkerAlt} from 'react-icons/fa';
 import {ImCheckmark} from 'react-icons/im';
-import {FcFlashOn} from 'react-icons/fc';
 import {MdEmail} from 'react-icons/md';
 import {AiFillFolderOpen} from 'react-icons/ai';
 import {RiToolsFill} from 'react-icons/ri';
@@ -86,7 +85,6 @@ import {DiReact} from 'react-icons/di';
 import {GiGraduateCap} from 'react-icons/gi';
 import {FaUserGraduate} from 'react-icons/fa';
 import {FaGraduationCap} from 'react-icons/fa';
-import {FcGraduationCap} from 'react-icons/fc';
 import {CgShoppingCart} from 'react-icons/cg';
 import {MdRemoveShoppingCart} from 'react-icons/md';
 import {FiShoppingCart} from 'react-icons/fi';
@@ -99,13 +97,11 @@ import {AiOutlineBarChart} from 'react-icons/ai';
 import {AiOutlineDotChart} from 'react-icons/ai';
 import {BsFillBarChartFill} from 'react-icons/bs';
 import {AiFillPieChart} from 'react-icons/ai';
-import {FcGenericSortingAsc} from 'react-icons/fc';
 import {BsCursorText} from 'react-icons/bs';
 import {AiOutlineSortDescending} from 'react-icons/ai';
 import {AiOutlineSortAscending} from 'react-icons/ai';
 import {TiBatteryCharge} from 'react-icons/ti';
-import {GrDiamond} from 'react-icons/gr';
-
+import {BiDiamond} from 'react-icons/bi';
 import {RiSettings5Fill} from 'react-icons/ri';
 import {FaPlus} from 'react-icons/fa';
 import {RiDeleteBin6Line} from 'react-icons/ri';
@@ -133,23 +129,24 @@ export let Close = RiCloseCircleFill;
 export let Template = HiTemplate
 export let PhoneHeader = FaPhoneAlt
 export let LinkHeader = BiLinkAlt
-export let LocationHeader = MdLocationOn
+export let LocationHeader = ImLocation2
 export let SettingHeader = IoMdSettings
 export let CameraHeader = ImCamera
 export let Date = BsCalendar3
-export let Location = MdLocationOn
+export let Location = ImLocation2
 
 export let iconList = [
-  {icon: <GrDiamond />, name: 'Diamond'},
+  {icon: <BiDiamond />, name: 'Diamond'},
+
   {icon: <AiOutlineSearch />, name: 'Search'},
   {icon: <FaRegThumbsUp />, name: 'ThumbUp'},
   {icon: <ImCheckmark />, name: 'CheckMark'},
   {icon: <FaMapMarkerAlt />, name: 'MapMarker'},
   {icon: <BsFillEyeFill />, name: 'Eye'},
-  {icon: <MdLocationOn />, name: 'Location'},
+  {icon: <Location />, name: 'Location'},
   {icon: <AiFillFolderOpen />, name: 'FolderOpen'},
   {icon: <MdEmail />, name: 'Email'},
-  {icon: <FcFlashOn />, name: 'FalseOn'},
+
   {icon: <TiInfinity />, name: 'Infinity'},
   {icon: <FiPaperclip />, name: 'Paperclip'},
   {icon: <BsFillChatFill />, name: 'ChatFill'},
@@ -230,7 +227,6 @@ export let iconList = [
   {icon: <GiGraduateCap />, name: 'GraduateCap'},
   {icon: <FaUserGraduate />, name: 'Graduate'},
   {icon: <FaGraduationCap />, name: 'Graduate'},
-  {icon: <FcGraduationCap />, name: 'Graduate'},
   {icon: <CgShoppingCart />, name: 'ShoppingCart'},
   {icon: <MdRemoveShoppingCart />, name: 'ShoppingCart'},
   {icon: <FiShoppingCart />, name: 'ShoppingCart'},
@@ -243,7 +239,6 @@ export let iconList = [
   {icon: <AiOutlineBarChart />, name: 'Chart'},
   {icon: <BsFillBarChartFill />, name: 'Chart'},
   {icon: <AiFillPieChart />, name: 'Chart'},
-  {icon: <FcGenericSortingAsc />, name: 'GenericSortingAsc'},
   {icon: <BsCursorText />, name: 'CursorText'},
   {icon: <AiOutlineSortDescending />, name: 'Descending'},
   {icon: <AiOutlineSortAscending />, name: 'Ascending'},

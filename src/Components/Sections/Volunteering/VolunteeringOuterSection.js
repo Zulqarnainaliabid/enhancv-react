@@ -11,6 +11,7 @@ export default function VolunteeringOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
+      DescriptionArray:[1],
       toggleSwitch: [
         {name: 'Show Title', selected: true},
         {name: 'Show CompanyName', selected: true},
@@ -115,7 +116,6 @@ export default function VolunteeringOuterSection (props) {
 
   function HandlerAddItemInArray () {
     setHighLighter (false);
-    if (array.length <= 4) {
       if (array === [] || array.length === 0) {
         setToggleArrowDown (false);
         setToggleArrowUp (false);
@@ -125,6 +125,7 @@ export default function VolunteeringOuterSection (props) {
       }
       array.push ({
         selected: false,
+        DescriptionArray:[1],
         toggleSwitch: [
           {name: 'Show Title', selected: true},
           {name: 'Show CompanyName', selected: true},
@@ -192,10 +193,6 @@ export default function VolunteeringOuterSection (props) {
       temp[index].selected = true;
       setState ([...temp]);
       localStorage.setItem ('Volunteering', JSON.stringify (array));
-    } else {
-      contextData.HandleBackGroundColorOfModal (true);
-      contextData.HandleDisplayDropDownAlertMessage (true);
-    }
   }
 
   function DeleteOneItemInArray (index) {

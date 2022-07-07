@@ -175,7 +175,7 @@ function SkillsInnerSection (props) {
               className="DeleteIcon CommonCssClassCursorPointer"
               onClick={HandlerAddingToolAndTechnology}
             />
-          </div>
+          </div> 
           <div
             className="outerWrapperHeaderIcons"
             style={{cursor: CursurPointer}}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter&family=Chivo&family=Exo+2:wght@300&family=Faustina:wght@300&family=Karla:wght@300;400&family=Lato&family=Montserrat+Alternates:wght@500&family=Oswald&family=Poppins:wght@300&family=Raleway&family=Rubik:wght@500&family=Volkhov&display=swap');
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -5,15 +7,74 @@
   padding: 0;
   -webkit-transition: opacity 1.3s;
   transition: opacity 1.3s;
+  /* font-family: 'Rubik', sans-serif; */
+}
+.fontFamilyFaustina{
   font-family: 'Faustina', serif;
+
+}
+.fontFamilyKarla{
+  font-family: 'Karla', sans-serif;
+  
+}
+.fontFamilyPoppins{
+  font-family: 'Poppins', sans-serif;
+  
+}
+.fontFamilyRubik{
+  font-family: 'Rubik', sans-serif;
+}
+.fontFamilyReleway{
+  font-family: 'Raleway', sans-seri
 }
 
+.fontFamilyLato{
+  font-family: 'Lato', sans-serif;
+}
+.fontFamilyBitter{
+  font-family: 'Bitter', serif;
+}
+.fontFamilyEXO2{
+  font-family: 'Exo 2', sans-serif;
+}
+.fontFamilyChivo{
+  font-family: 'Chivo', sans-serif;
+}
+.fontFamilyMontserrat{
+  font-family: 'Chivo', sans-serif;
+}
+.fontFamilyOswald{
+  font-family: 'Oswald', sans-serif;
+}
+.fontFamilyVolkhov{
+  font-family: 'Volkhov', serif;
+}
+
+
+.MessageBosIcon {
+  width: 1.25rem;
+}
+.outerWrapperServerDropDown {
+  border: 1px solid #d1d5db !important;
+}
+.BorderRadius0rem {
+  border-radius: 0.375rem !important;
+}
+.FontSize {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem;
+}
+.DarkColor {
+  color: #6b7280 !important;
+}
 p {
   padding: 0;
   margin: 0;
   margin-bottom: 0rem !important;
 }
-
+svg {
+  vertical-align: unset;
+}
 .OuterContainer {
   position: relative;
 }
@@ -152,7 +213,7 @@ display: none !important;
 }
 
 .IconsFontSize12 {
-  font-size: 12px;
+  font-size: 14px;
   color: #384347;
 }
 
@@ -201,12 +262,14 @@ display: none !important;
   width: 100%;
   font-weight: 700;
   background-color: transparent;
+  /* height: unset !important; */
 }
 
 .textareaHeaderTitle {
   font-size: 42px;
   line-height: 50px;
   color: black;
+  font-weight: 700 !important;
 }
 
 .textareaHeaderSubTitle {
@@ -903,11 +966,23 @@ input {
   position: fixed;
   right: 42%;
   top: 123px;
-  width: 15%;
+  width: 20%;
   -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
+.PositionRelative {
+  position: relative;
+}
+.TransFormDropDown{
+  transform: translate(1px, 2px) !important;
+}
+.FieldTypeDropDownList:hover {
+  background-color: #1e90ff;
+  color: white;
+}
+.CursorPointer {
+  cursor: pointer;
+}
 .OuterWrapperDropDownAlertMessage {
   position: fixed;
   right: 35%;
@@ -1143,12 +1218,11 @@ input {
   font-size: 15px;
   color: #808080;
   font-weight: 700;
-  margin-bottom: 4px;
 }
 
 .TextHolderSectionLocationAndTime {
-  font-size: 11px;
-  color: #808080;
+  font-size: 12px;
+  color:rgba(71,72,75,.81)!important;
   font-weight: unset !important;
 }
 
@@ -1322,8 +1396,8 @@ input {
 
 .summary p::before {
   content: "\A";
-  width: 5px;
-  height: 5px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.479);
   margin: 8px 0px 0px -10px;

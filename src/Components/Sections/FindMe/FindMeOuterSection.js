@@ -12,7 +12,7 @@ export default function FindMeOuterSection (props) {
     {
       selected: false,
       toggleSwitch: [
-        {name: 'Show UserName', selected: true},
+        {name: 'Show Bullets', selected: true},
         {name: 'Show Icons', selected: true},
       ],
       iconName: '',
@@ -66,7 +66,6 @@ export default function FindMeOuterSection (props) {
 
   function HandlerAddItemInArray () {
     setHighLighter (false);
-    if (array.length <= 4) {
       if (array === [] || array.length === 0) {
         setToggleArrowDown (false);
         setToggleArrowUp (false);
@@ -77,7 +76,7 @@ export default function FindMeOuterSection (props) {
       array.push ({
         selected: false,
         toggleSwitch: [
-          {name: 'Show UserName', selected: true},
+          {name: 'Show Bullets', selected: true},
           {name: 'Show Icons', selected: true},
         ],
         iconName: '',
@@ -95,10 +94,6 @@ export default function FindMeOuterSection (props) {
       temp[index].selected = true;
       setState ([...temp]);
       localStorage.setItem ('FindMeOnline', JSON.stringify (array));
-    } else {
-      contextData.HandleBackGroundColorOfModal (true);
-      contextData.HandleDisplayDropDownAlertMessage (true);
-    }
   }
 
   function DeleteOneItemInArray (index) {

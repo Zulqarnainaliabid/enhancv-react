@@ -10,9 +10,10 @@ export default function SummaryOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
-      toggleSwitch: [{name: 'Show Bullets', selected: true}],
+      toggleSwitch: [{name: 'Show Bullets', selected: true},{name: 'Show Description', selected: true}],
       value: {
         title: '',
+        description:'',
       },
     },
   ]);
@@ -60,7 +61,6 @@ export default function SummaryOuterSection (props) {
 
   function HandlerAddItemInArray () {
     setHighLighter (false);
-    if (array.length <= 4) {
       if (array === [] || array.length === 0) {
         setToggleArrowDown (false);
         setToggleArrowUp (false);
@@ -82,10 +82,6 @@ export default function SummaryOuterSection (props) {
       array[index].selected = true;
       setState ([...array]);
       localStorage.setItem ('Summary', JSON.stringify (array));
-    } else {
-      contextData.HandleBackGroundColorOfModal (true);
-      contextData.HandleDisplayDropDownAlertMessage (true);
-    }
   }
 
   function DeleteOneItemInArray (index) {

@@ -396,7 +396,7 @@ function ProjectsInnerSection (props) {
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[4].selected &&
                   <div
-                    className="d-flex align-items-center OuterWrapperDatePicker"
+                    className="d-flex OuterWrapperDatePicker"
                     style={{gap: '5px'}}
                     onBlur={() => {
                       setShowDate (false);
@@ -406,8 +406,8 @@ function ProjectsInnerSection (props) {
                     }}
                   >
                     <Date className="IconsFontSize12" />
-                    {ShowDatePeriod () && <p>Date Period</p>}
-                    <div className="d-flex TextHolderSectionLocationAndTime">
+                    {ShowDatePeriod () && <p style={{marginTop:"-4px"}}>Date Period</p>}
+                    <div className="d-flex TextHolderSectionLocationAndTime" style={{marginTop:"-2px"}}>
                       <div>{props.list[props.index].date.monthFrom}</div>
                       {SlashFrom ()}
                       <div>{props.list[props.index].date.yearFrom}</div>
@@ -429,10 +429,11 @@ function ProjectsInnerSection (props) {
                   </div>}
                 {props.list[props.index].toggleSwitch[3].selected &&
                   <div
-                    className="d-flex align-items-center"
+                    className="d-flex "
                     style={{gap: '5px'}}
                   >
                     <Location className="IconsFontSize12" />
+                    <div style={{marginTop:"-2px"}}>
                     <InputField
                       placeHolder={'Location'}
                       otherStyle={'TextHolderSectionLocationAndTime'}
@@ -443,6 +444,7 @@ function ProjectsInnerSection (props) {
                       useUpperCase={false}
                       UpperCaseHeaderInputField={false}
                     />
+                    </div>
                   </div>}
               </div>
               {props.list[props.index].toggleSwitch[5].selected &&

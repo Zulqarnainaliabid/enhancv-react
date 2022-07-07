@@ -12,7 +12,7 @@ export default function CustomOuterSection (props) {
     {
       selected: false,
       toggleSwitch: [
-        {name: 'Show UserName', selected: true},
+        {name: 'Show Bullets', selected: true},
         {name: 'Show Icons', selected: true},
         {name: 'Show Date', selected: true},
       ],
@@ -107,7 +107,6 @@ export default function CustomOuterSection (props) {
 
   function HandlerAddItemInArray () {
     setHighLighter (false);
-    if (array.length <= 4) {
       if (array === [] || array.length === 0) {
         setToggleArrowDown (false);
         setToggleArrowUp (false);
@@ -118,7 +117,7 @@ export default function CustomOuterSection (props) {
       array.push ({
         selected: false,
         toggleSwitch: [
-          {name: 'Show UserName', selected: true},
+          {name: 'Show Bullets', selected: true},
           {name: 'Show Icons', selected: true},
           {name: 'Show Date', selected: true},
         ],
@@ -177,10 +176,7 @@ export default function CustomOuterSection (props) {
       temp[index].selected = true;
       setState ([...temp]);
       localStorage.setItem ('Custom', JSON.stringify (array));
-    } else {
-      contextData.HandleBackGroundColorOfModal (true);
-      contextData.HandleDisplayDropDownAlertMessage (true);
-    }
+   
   }
 
   function DeleteOneItemInArray (index) {

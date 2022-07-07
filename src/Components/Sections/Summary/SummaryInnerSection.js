@@ -6,6 +6,7 @@ import {CSSTransition} from 'react-transition-group';
 import styles from '../../Style';
 import injectSheet from 'react-jss';
 import RichTextEditor from '../../RichTextEditor';
+import InputField from '../../InputField';
 function SummaryInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
@@ -90,6 +91,7 @@ function SummaryInnerSection (props) {
     }
     props.list[props.index].toggleSwitch = temp;
     props.setList ([...props.list]);
+    console.log("calling,,,",props.list)
     localStorage.setItem ('Summary', JSON.stringify (props.list));
   }
 
@@ -97,6 +99,8 @@ function SummaryInnerSection (props) {
     let temp = props.list;
     if (data.name === 'title') {
       temp[data.index].title = data.value;
+    } else if (data.name === 'description') {
+      temp[data.index].description = data.value;
     }
     props.setList ([...temp]);
     localStorage.setItem ('Summary', JSON.stringify (temp));
@@ -134,7 +138,7 @@ function SummaryInnerSection (props) {
   }
 
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined || item==="") {
+    if (item === '<p><br></p>' || item === undefined || item === '') {
       return "What's the one thing you want someone to remember after reading your resume?";
     } else {
       return ' ';
@@ -259,6 +263,17 @@ function SummaryInnerSection (props) {
             position: 'relative',
           }}
         >
+          {props.list[props.index].toggleSwitch[1].selected &&
+            <InputField
+              placeHolder={'Description'}
+              otherStyle={'TextHolderSectionOuterHeader'}
+              value={props.list[props.index].title}
+              index={props.index}
+              name={'description'}
+              handleInputData={handleInputData}
+              useUpperCase={false}
+              UpperCaseHeaderInputField={false}
+            />}
           <div style={{position: 'relative', display: 'flex'}}>
             <div
               style={{width: '100%'}}

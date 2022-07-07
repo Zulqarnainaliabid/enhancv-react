@@ -18,11 +18,17 @@ import injectSheet from 'react-jss';
 import InputField from '../../InputField';
 import RichTextEditor from '../../RichTextEditor';
 import DatePicker from '../../DatePicker';
+import {FaPlusSquare} from 'react-icons/fa';
+import {FaMinusSquare} from 'react-icons/fa';
 function VolunteeringInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
   const [DisplayToggleSwitch, setDisplayToggleSwitch] = useState (false);
   const [ShowDate, setShowDate] = useState (false);
+
+  const [pointEvent, setpointEvent] = useState ('none');
+  const [CursurPointer, setCursurPointer] = useState ('not-allowed');
+
   const {classes} = props;
   function handleCloseToggleSwitch () {
     setDisplayToggleSwitch (false);
@@ -131,7 +137,6 @@ function VolunteeringInnerSection (props) {
   function HandleSetting () {
     setDisplayToggleSwitch (!DisplayToggleSwitch);
   }
-
   function handleYearFrom (yearFrom) {
     props.list[props.index].date.yearFrom = yearFrom;
     props.setList ([...props.list]);
@@ -152,7 +157,6 @@ function VolunteeringInnerSection (props) {
     props.setList ([...props.list]);
     localStorage.setItem ('Volunteering', JSON.stringify (props.list));
   }
-
   function HandleOngoing (toggle) {
     props.list[props.index].date.onGoing = toggle;
     props.setList ([...props.list]);
@@ -168,7 +172,6 @@ function VolunteeringInnerSection (props) {
       return <div />;
     }
   };
-
   const Minus = () => {
     if (
       !props.list[props.index].date.monthFrom &&
@@ -181,7 +184,6 @@ function VolunteeringInnerSection (props) {
       return <div>-</div>;
     }
   };
-
   const ShowDatePeriod = () => {
     if (
       !props.list[props.index].date.monthFrom &&
@@ -194,7 +196,6 @@ function VolunteeringInnerSection (props) {
       return false;
     }
   };
-
   const SlashTo = () => {
     if (
       props.list[props.index].date.monthOngoing &&
@@ -202,7 +203,7 @@ function VolunteeringInnerSection (props) {
     ) {
       return <div>/</div>;
     } else {
-      return <div />;  
+      return <div />;
     }
   };
   function HandleEditorWidth () {
@@ -225,14 +226,35 @@ function VolunteeringInnerSection (props) {
       }
     }
   }
-
   function HandleGetPlaceHolder (item) {
-    if (item === '<p><br></p>' || item === undefined || item==="") {
+    if (item === '<p><br></p>' || item === undefined || item === '') {
       return 'What was the impact of your efforts? (e.g. Brought on 12 corporate sponsors)';
     } else {
       return ' ';
     }
   }
+
+
+  function HandlerAddingDescription () {
+    let temp = props.list;
+    temp[props.index].DescriptionArray.push (1);
+    props.setList ([...temp]);
+    localStorage.setItem ('Volunteering', JSON.stringify (temp));
+    setCursurPointer ('pointer');
+    setpointEvent ('');
+  }
+  function HandlerDeletingDescription () {
+    let temp = props.list;
+    if (temp[props.index].DescriptionArray.length > 1) {
+      temp[props.index].DescriptionArray.pop (1);
+      props.setList ([...temp]);
+      localStorage.setItem ('Volunteering', JSON.stringify (temp));
+    } else {
+      setpointEvent ('none');
+      setCursurPointer ('not-allowed');
+    }
+  }
+
   return (
     <div>
       {ShowDate &&
@@ -282,12 +304,19 @@ function VolunteeringInnerSection (props) {
             />
           </div>
           <div className="outerWrapperHeaderIcons">
-            <Text
-              style={{
-                color: '#D7D9DA',
-                cursor: 'no-drop',
-              }}
-              className="DeleteIcon ArrangeIcon CommonCssClassCursorPointer"
+            <FaPlusSquare
+              className="DeleteIcon CommonCssClassCursorPointer"
+              onClick={HandlerAddingDescription}
+            />
+          </div>
+          <div
+            className="outerWrapperHeaderIcons"
+            style={{cursor: CursurPointer}}
+          >
+            <FaMinusSquare
+              className="DeleteIcon CommonCssClassCursorPointer"
+              style={{pointerEvents: pointEvent}}
+              onClick={HandlerDeletingDescription}
             />
           </div>
           <div className="outerWrapperHeaderIcons" style={{border: 'unset'}}>
@@ -410,7 +439,7 @@ function VolunteeringInnerSection (props) {
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
                   <div
-                    className="d-flex align-items-center OuterWrapperDatePicker"
+                    className="d-flex  OuterWrapperDatePicker"
                     style={{gap: '5px'}}
                     onBlur={() => {
                       setShowDate (false);
@@ -420,8 +449,12 @@ function VolunteeringInnerSection (props) {
                     }}
                   >
                     <Date className="IconsFontSize12" />
-                    {ShowDatePeriod () && <p>Date Period</p>}
-                    <div className="d-flex TextHolderSectionLocationAndTime">
+                    {ShowDatePeriod () &&
+                      <p style={{marginTop: '-4px'}}>Date Period</p>}
+                    <div
+                      className="d-flex TextHolderSectionLocationAndTime"
+                      style={{marginTop: '-2px'}}
+                    >
                       <div>{props.list[props.index].date.monthFrom}</div>
                       {SlashFrom ()}
                       <div>{props.list[props.index].date.yearFrom}</div>
@@ -441,18 +474,20 @@ function VolunteeringInnerSection (props) {
                     </div>
                   </div>}
                 {props.list[props.index].toggleSwitch[4].selected &&
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex">
                     <Location className="IconsFontSize12" />
-                    <InputField
-                      placeHolder={'Location'}
-                      otherStyle={'TextHolderSectionLocationAndTime'}
-                      value={props.list[props.index].value.location}
-                      index={props.index}
-                      name={'location'}
-                      handleInputData={handleInputData}
-                      useUpperCase={false}
-                      UpperCaseHeaderInputField={false}
-                    />
+                    <div style={{marginTop: '-2px'}}>
+                      <InputField
+                        placeHolder={'Location'}
+                        otherStyle={'TextHolderSectionLocationAndTime'}
+                        value={props.list[props.index].value.location}
+                        index={props.index}
+                        name={'location'}
+                        handleInputData={handleInputData}
+                        useUpperCase={false}
+                        UpperCaseHeaderInputField={false}
+                      />
+                    </div>
                   </div>}
               </div>
               {props.list[props.index].toggleSwitch[6].selected &&
@@ -474,33 +509,40 @@ function VolunteeringInnerSection (props) {
                 </div>}
             </div>
           </div>
-          {props.list[props.index].toggleSwitch[2].selected &&
-            <InputField
-              placeHolder={'Description'}
-              otherStyle={'Bullets'}
-              value={props.list[props.index].value.companyDescription}
-              index={props.index}
-              name={'companyDescription'}
-              handleInputData={handleInputData}
-              useUpperCase={false}
-              UpperCaseHeaderInputField={false}
-            />}
-          {props.list[props.index].toggleSwitch[3].selected &&
-            <div style={{marginLeft: '13px'}}>
-              <div className="summary" style={{width: '100%'}}>
-                <RichTextEditor
-                  placeHolder={HandleGetPlaceHolder (
-                    props.list[props.index].value.bullets
-                  )}
-                  otherStyle={'Bullets'}
-                  value={props.list[props.index].value.bullets}
-                  index={props.index}
-                  name={'bullets'}
-                  handleInputData={handleInputData}
-                  EditorWidth={HandleEditorWidth ()}
-                />
+          {props.item.DescriptionArray.map ((item, index) => {
+            return (
+              <div key={index}>
+                {props.list[props.index].toggleSwitch[2].selected &&
+                  <InputField
+                    placeHolder={'Description'}
+                    otherStyle={'Bullets'}
+                    value={props.list[props.index].value.companyDescription}
+                    index={props.index}
+                    name={'companyDescription'}
+                    handleInputData={handleInputData}
+                    useUpperCase={false}
+                    UpperCaseHeaderInputField={false}
+                  />}
+                {props.list[props.index].toggleSwitch[3].selected &&
+                  <div style={{marginLeft: '13px'}}>
+                    <div className="summary" style={{width: '100%'}}>
+                      <RichTextEditor
+                        placeHolder={HandleGetPlaceHolder (
+                          props.list[props.index].value.bullets
+                        )}
+                        otherStyle={'Bullets'}
+                        value={props.list[props.index].value.bullets}
+                        index={props.index}
+                        name={'bullets'}
+                        handleInputData={handleInputData}
+                        EditorWidth={HandleEditorWidth ()}
+                      />
+                    </div>
+                  </div>}
               </div>
-            </div>}
+            );
+          })}
+
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>

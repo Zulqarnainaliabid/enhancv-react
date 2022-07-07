@@ -115,7 +115,6 @@ export default function PublicationOuterSection (props) {
 
   function HandlerAddItemInArray () {
     setHighLighter (false);
-    if (array.length <= 4) {
       if (array === [] || array.length === 0) {
         setToggleArrowDown (false);
         setToggleArrowUp (false);
@@ -192,10 +191,6 @@ export default function PublicationOuterSection (props) {
       temp[index].selected = true;
       setState ([...temp]);
       localStorage.setItem ('Publication', JSON.stringify (array));
-    } else {
-      contextData.HandleBackGroundColorOfModal (true);
-      contextData.HandleDisplayDropDownAlertMessage (true);
-    }
   }
 
   function DeleteOneItemInArray (index) {

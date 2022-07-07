@@ -4,12 +4,11 @@ import './Components/index.scss';
 import reportWebVitals from './reportWebVitals';
 import {ContextProvider} from './Components/Context/Context';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
 import App from './App';
 
 ReactDOM.render (
   <ContextProvider>
-      <App />
+    <div><App /></div>
   </ContextProvider>,
   document.getElementById ('root')
 );

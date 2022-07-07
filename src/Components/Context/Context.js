@@ -37,10 +37,15 @@ export const ContextProvider = ({children}) => {
   const [DisplayLoading, setDisplayLoading] = useState(false)
   const [DisplayNaveBarDropDown, setDisplayNaveBarDropDown] = useState(false)
   const [UpdateLoginSuccess, setUpdateLoginSuccess] = useState(false)
+  const [UpdateFontFamily, setUpdateFontFamily] = useState(false)
 
 
   function UpdateHandleLoginSuccess(data){
     setUpdateLoginSuccess(data)
+  }
+
+  function HandleUpdateFontFamily(toggle){
+    setUpdateFontFamily(toggle)
   }
 
   function HandleBackGroundColorOfModal (toggle) {
@@ -245,6 +250,8 @@ export const ContextProvider = ({children}) => {
         HandleDisplayNaveBarDropDown,
         UpdateHandleLoginSuccess,
         UpdateLoginSuccess,
+        HandleUpdateFontFamily,
+        UpdateFontFamily,
       }}
     >
       {children}

@@ -9,10 +9,10 @@ import {Context} from '../Components/Context/Context';
 import {SwitchTransition, CSSTransition} from 'react-transition-group';
 import DragAndDropComponent from './DragAndDropComponent';
 import {HiTemplate} from 'react-icons/hi';
-import {IoIosColorPalette} from 'react-icons/io';
+import {AiOutlineAntDesign} from 'react-icons/ai';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import {confirmAlert} from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import 'react-confirm-alert/src/react-confirm-alert.css';   
 import {HandleUpdateCV, HandlePutCvBackUp} from './Services';
 import Footer from './Footer';
 export default function Resume (props) {
@@ -187,8 +187,8 @@ export default function Resume (props) {
                 contextData.handleDisplayBackgroundTransparent (true);
               }}
             >
-              <IoIosColorPalette style={{fontSize: '17px'}} />
-              <p>Color</p>
+              <AiOutlineAntDesign style={{fontSize: '17px'}} />
+              <p>Design</p>
             </div>
             <div
               className="d-flex align-items-center FontWeight RearrangeButtons CommonCssClassCursorPointer"
@@ -213,7 +213,7 @@ export default function Resume (props) {
               <p>Edit CV</p>
             </div>
             <ReactToPrint
-              pageStyle="@page { size: auto; margin: 18mm; } },"
+              pageStyle="@page { size: auto; margin: 15mm; } },"
               content={reactToPrintContent}
               documentTitle={ResumeName}
               onAfterPrint={handleAfterPrint}

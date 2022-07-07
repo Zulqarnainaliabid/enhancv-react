@@ -61,7 +61,6 @@ export default function SkillsOuterSection (props) {
 
   function HandlerAddItemInArray () {
     setHighLighter (false);
-    if (array.length <= 4) {
       if (array === [] || array.length === 0) {
         setToggleArrowDown (false);
         setToggleArrowUp (false);
@@ -86,10 +85,6 @@ export default function SkillsOuterSection (props) {
       temp[index].selected = true;
       setState ([...temp]);
       localStorage.setItem ('Skills', JSON.stringify (array));
-    } else {
-      contextData.HandleBackGroundColorOfModal (true);
-      contextData.HandleDisplayDropDownAlertMessage (true);
-    }
   }
 
   function DeleteOneItemInArray (index) {

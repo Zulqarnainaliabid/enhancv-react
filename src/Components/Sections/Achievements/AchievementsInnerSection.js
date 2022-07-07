@@ -236,7 +236,7 @@ function AchievementsInnerSection (props) {
           </div>
           <div className="outerWrapperHeaderIcons">
             <div
-              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mb-1"
+              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mt-1"
               onClick={HandleIcon}
             >
               {Icon}
@@ -397,6 +397,7 @@ function AchievementsInnerSection (props) {
                 style={{
                   color: '#008CFF',
                   fontSize: '25px',
+                  verticalAlign:"unset"
                 }}
               >
                 {Icon}

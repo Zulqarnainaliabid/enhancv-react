@@ -414,7 +414,7 @@ function PublicationInnerSection (props) {
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
                   <div
-                    className="d-flex align-items-center OuterWrapperDatePicker"
+                    className="d-flex OuterWrapperDatePicker"
                     style={{gap: '5px'}}
                     onBlur={() => {
                       setShowDate (false);
@@ -424,8 +424,9 @@ function PublicationInnerSection (props) {
                     }}
                   >
                     <Date className="IconsFontSize12" />
-                    {ShowDatePeriod () && <p>Date Period</p>}
-                    <div className="d-flex TextHolderSectionLocationAndTime">
+                    {ShowDatePeriod () &&
+                      <p style={{marginTop: '-4px'}}>Date Period</p>}
+                    <div className="d-flex TextHolderSectionLocationAndTime" style={{marginTop:"-2px"}}>
                       <div>{props.list[props.index].date.monthFrom}</div>
                       {SlashFrom ()}
                       <div>{props.list[props.index].date.yearFrom}</div>
@@ -445,18 +446,20 @@ function PublicationInnerSection (props) {
                     </div>
                   </div>}
                 {props.list[props.index].toggleSwitch[4].selected &&
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex ">
                     <Location className="IconsFontSize12" />
-                    <InputField
-                      placeHolder={'Location'}
-                      otherStyle={'TextHolderSectionLocationAndTime'}
-                      value={props.list[props.index].value.location}
-                      index={props.index}
-                      name={'location'}
-                      handleInputData={handleInputData}
-                      useUpperCase={false}
-                      UpperCaseHeaderInputField={false}
-                    />
+                    <div style={{marginTop: '-2px'}}>
+                      <InputField
+                        placeHolder={'Location'}
+                        otherStyle={'TextHolderSectionLocationAndTime'}
+                        value={props.list[props.index].value.location}
+                        index={props.index}
+                        name={'location'}
+                        handleInputData={handleInputData}
+                        useUpperCase={false}
+                        UpperCaseHeaderInputField={false}
+                      />
+                    </div>
                   </div>}
               </div>
               {props.list[props.index].toggleSwitch[6].selected &&
