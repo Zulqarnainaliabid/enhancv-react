@@ -236,7 +236,7 @@ function AchievementsInnerSection (props) {
           </div>
           <div className="outerWrapperHeaderIcons">
             <div
-              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mt-1"
+              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mt-2"
               onClick={HandleIcon}
             >
               {Icon}

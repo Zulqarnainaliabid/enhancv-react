@@ -42,11 +42,11 @@ export async function HandleGetCvBackUp () {
       headers: {Authorization: AuthStr},
     })
     .then (function (response) {
-      console.log ('res', response);
+      console.log ('res,,,,,,', response);
       data = response;
     })
     .catch (error => {
-      console.log ('error', error);
+      console.log ('errormmmm,,,,,', error);
       data = error;
     });
   return data;
@@ -337,7 +337,7 @@ function GetPreviousData () {
     CVData.HeaderInputValue = {
       email: '',
       location: '',
-      name: 'z',
+      name: '',
       phone: '',
       title: '',
       webLink: '',
@@ -552,10 +552,10 @@ export async function HandlePatchCvBackUp (InputValueSubjectName, id) {
       }
     )
     .then (function (response) {
-      console.log ('res', response);
+      console.log ('res....12', response);
     })
     .catch (error => {
-      console.log ('error', error);
+      console.log ('error...', error);
     });
 }
 
@@ -573,11 +573,6 @@ export async function HandleForgetPassword (Email) {
     });
   return data1;
 }
-
-// http://perfactcv.com/reset-password?token=CfDJ8AGRSgrwtIdHgR8lpNtEDLY9jDccwnD+FIW9ZG6PU7xsDcp5H5QyyTlWNBfruT+QyXUwo1xoCLFqfUTG7TGyIEZzwalGzjj80FtKaCtpdehL8Eidqts6Y864LV5fte/rZdoqok4lEksoZQxTK+iThEDrX8LFsEXTlTZAgLEWHSpwPZCg42q/X3Hf5KpIpPOA5I5xJgAWqPfUjZ9Ep5D6DMKXBbw80lPxhW5qQQTI011m
-
-// http://perfactcv.com/reset-password?token=CfDJ8AGRSgrwtIdHgR8lpNtEDLY9jDccwnD+FIW9ZG6PU7xsDcp5H5QyyTlWNBfruT+QyXUwo1xoCLFqfUTG7TGyIEZzwalGzjj80FtKaCtpdehL8Eidqts6Y864LV5fte/rZdoqok4lEksoZQxTK+iThEDrX8LFsEXTlTZAgLEWHSpwPZCg42q/X3Hf5KpIpPOA5I5xJgAWqPfUjZ9Ep5D6DMKXBbw80lPxhW5qQQTI011m
-
 export async function HandleResetPassword (Password,Token,email) {
   let data1 = null;
  await axios

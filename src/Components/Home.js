@@ -163,7 +163,7 @@ function Home () {
         className="BackGroundImage"
         style={{
           backgroundImage: `url(${backImage})`,
-          padding: '12px',
+          padding: '5px',
         }}
       >
         {loading &&
@@ -176,7 +176,7 @@ function Home () {
               top: '0',
               bottom: '0',
               backgroundColor: 'black',
-              opacity: '0.5',
+              opacity: '0.3',
               zIndex: '10',
             }}
           >
@@ -201,16 +201,18 @@ function Home () {
             );
           })}
           <div
+           className='outerWrapperAddNewCv'
             onClick={() => {
               HandleRemovePreviousData ();
             }}
           >
-            <p
+            {/* <p
               className="text-center text-white mb-2"
               style={{fontSize: '30px', fontWeight: 'bolder'}}
             >
               Add New CV
-            </p> <div className="outerWrapperBackUpCvSection AddNewCv">
+            </p>  */}
+            <div className="outerWrapperBackUpCvSection AddNewCv">
               <ImPlus className="AddNewCvIcons" />
             </div>
           </div>
@@ -231,7 +233,7 @@ function Home () {
               top: '0',
               bottom: '0',
               backgroundColor: 'black',
-              opacity: '0.5',
+              opacity: '0.3',
               zIndex: '10',
             }}
           >
@@ -267,7 +269,7 @@ function Home () {
                 backgroundColor: contextData.Transparent
                   ? 'transparent'
                   : 'black',
-                opacity: '0.8',
+                opacity: '0.3',
               }}
               onClick={() => {
                 contextData.HandleBackGroundColorOfModal (false);

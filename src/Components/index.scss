@@ -139,7 +139,7 @@ p {
     color: #808080;
 }
 .OpacityInPlaceHolder::placeholder {
-    opacity: 0.5;
+    opacity: 0.3;
 }
 textarea:focus {
     outline: none;
@@ -782,7 +782,7 @@ input {
 }
 .OuterWrapperDatePicker:hover {
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.3;
 }
 .TextHolderSectionLocationAndTime:focus::placeholder {
     color: #808080;
@@ -955,7 +955,7 @@ input[type="number"] {
     top: 0;
     bottom: 0;
     background-color: black;
-    opacity: 0.5;
+    opacity: 0.3;
     z-index: 3;
 }
 
@@ -997,7 +997,7 @@ input[type="number"] {
 }
 .BackGroundColorSectionBackupCv {
     background: black;
-    opacity: 0.5;
+    opacity: 0.3;
     position: absolute;
     left: 0;
     right: 0;
@@ -1021,13 +1021,13 @@ input[type="number"] {
 }
 .outerContainerBachUpCv {
     overflow-y: scroll;
-    height: 590px;
+    height: 615px;
     display: flex;
-    gap: 12px;
+    // gap: 12px;
     flex-wrap: wrap;
 }
 .outerContainerBachUpCv::-webkit-scrollbar {
-    width: 10px;
+    width: 3px;
     background-color: white;
 }
 
@@ -1050,7 +1050,7 @@ input[type="number"] {
 }
 .outerWrapperBackUpCvSection {
     background-color: white;
-    padding: 12px;
+    padding: 8px;
     border-radius: 9px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     position: relative;
@@ -1116,7 +1116,7 @@ input[type="number"] {
 }
 .FooterLeftHeading {
     color: #384347;
-    opacity: 0.4;
+    opacity: 0.3;
     font-size: 14px;
 }
 .IconFacebookInFooter:hover {

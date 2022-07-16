@@ -97,10 +97,10 @@ function SummaryInnerSection (props) {
 
   function handleInputData (data) {
     let temp = props.list;
-    if (data.name === 'title') {
-      temp[data.index].title = data.value;
+    if (data.name === 'bullets') {
+      temp[data.index].value.bullets = data.value;
     } else if (data.name === 'description') {
-      temp[data.index].description = data.value;
+      temp[data.index].value.description = data.value;
     }
     props.setList ([...temp]);
     localStorage.setItem ('Summary', JSON.stringify (temp));
@@ -267,14 +267,14 @@ function SummaryInnerSection (props) {
             <InputField
               placeHolder={'Description'}
               otherStyle={'TextHolderSectionOuterHeader'}
-              value={props.list[props.index].title}
+              value={props.list[props.index].value.description}
               index={props.index}
               name={'description'}
-              handleInputData={handleInputData}
+              handleInputData={handleInputData} 
               useUpperCase={false}
               UpperCaseHeaderInputField={false}
             />}
-          <div style={{position: 'relative', display: 'flex'}}>
+          <div style={{position: 'relative', display: 'flex',marginLeft:"12px"}}>
             <div
               style={{width: '100%'}}
               className="d-flex flex-column"
@@ -285,14 +285,15 @@ function SummaryInnerSection (props) {
               <div
                 className={`${props.list[props.index].toggleSwitch[0].selected ? 'summary' : ''}`}
               >
+                 
                 <RichTextEditor
                   placeHolder={HandleGetPlaceHolder (
-                    props.list[props.index].title
+                    props.list[props.index].value.bullets
                   )}
                   otherStyle={'Bullets'}
-                  value={props.list[props.index].title}
+                  value={props.list[props.index].value.bullets}
                   index={props.index}
-                  name={'title'}
+                  name={'bullets'}  
                   handleInputData={handleInputData}
                   EditorWidth={HandleEditorWidth ()}
                 />

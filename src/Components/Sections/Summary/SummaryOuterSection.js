@@ -10,10 +10,13 @@ export default function SummaryOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
-      toggleSwitch: [{name: 'Show Bullets', selected: true},{name: 'Show Description', selected: true}],
+      toggleSwitch: [
+        {name: 'Show Bullets', selected: true},
+        {name: 'Show Description', selected: true},
+      ],
       value: {
-        title: '',
-        description:'',
+        bullets: '',
+        description: '',
       },
     },
   ]);
@@ -61,27 +64,31 @@ export default function SummaryOuterSection (props) {
 
   function HandlerAddItemInArray () {
     setHighLighter (false);
-      if (array === [] || array.length === 0) {
-        setToggleArrowDown (false);
-        setToggleArrowUp (false);
-      } else {
-        setToggleArrowDown (false);
-        setToggleArrowUp (true);
-      }
-      array.push ({
-        selected: false,
-        toggleSwitch: [{name: 'Show Bullets', selected: true}],
-        value: {
-          title: '',
-        },
-      });
-      array.map ((item, index) => {
-        item.selected = false;
-      });
-      let index = array.length - 1;
-      array[index].selected = true;
-      setState ([...array]);
-      localStorage.setItem ('Summary', JSON.stringify (array));
+    if (array === [] || array.length === 0) {
+      setToggleArrowDown (false);
+      setToggleArrowUp (false);
+    } else {
+      setToggleArrowDown (false);
+      setToggleArrowUp (true);
+    }
+    array.push ({
+      selected: false,
+      toggleSwitch: [
+        {name: 'Show Bullets', selected: true},
+        {name: 'Show Description', selected: true},
+      ],
+      value: {
+        bullets: '',
+        description: '',
+      },
+    });
+    array.map ((item, index) => {
+      item.selected = false;
+    });
+    let index = array.length - 1;
+    array[index].selected = true;
+    setState ([...array]);
+    localStorage.setItem ('Summary', JSON.stringify (array));
   }
 
   function DeleteOneItemInArray (index) {

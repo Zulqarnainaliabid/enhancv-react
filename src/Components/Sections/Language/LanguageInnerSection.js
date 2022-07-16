@@ -167,6 +167,12 @@ function LanguageInnerSection (props) {
   if (contextData.SelectedColor === 'redColor') {
     CssClass = '#ff8080';
   }
+  if (contextData.SelectedColor === 'yellowDark') {
+    CssClass = '#FF6E01';
+  }
+  if (contextData.SelectedColor === 'yellowLight') {
+    CssClass = '#E29E1A';
+  }
 
   return (
     <div>
@@ -339,7 +345,7 @@ function LanguageInnerSection (props) {
                     height: 0,
                   },
                   disabled: {
-                    opacity: 0.5,
+                    opacity: 0.3,
                   },
                 }}
               />

@@ -233,7 +233,7 @@ function FindMeInnerSection (props) {
           </div>
           <div className="outerWrapperHeaderIcons">
             <div
-              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mb-1"
+              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mb-2"
               onClick={HandleIcon}
             >
               {Icon}

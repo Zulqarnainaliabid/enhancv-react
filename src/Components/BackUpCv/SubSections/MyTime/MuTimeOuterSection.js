@@ -2,6 +2,7 @@ import React from 'react';
 import ApexChart from './MyTimeInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 export default function MyTimeOuterSection (props) {
+  console.log("hello salice",props.list)
   return (
     <div>
       <div className="outerWrapperCompleteBox">

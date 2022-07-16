@@ -396,7 +396,7 @@ function ProjectsInnerSection (props) {
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
                 {props.list[props.index].toggleSwitch[4].selected &&
                   <div
-                    className="d-flex OuterWrapperDatePicker"
+                    className="d-flex OuterWrapperDatePicker align-items-center"
                     style={{gap: '5px'}}
                     onBlur={() => {
                       setShowDate (false);
@@ -429,11 +429,11 @@ function ProjectsInnerSection (props) {
                   </div>}
                 {props.list[props.index].toggleSwitch[3].selected &&
                   <div
-                    className="d-flex "
+                    className="d-flex align-items-center"
                     style={{gap: '5px'}}
                   >
                     <Location className="IconsFontSize12" />
-                    <div style={{marginTop:"-2px"}}>
+                    <div >
                     <InputField
                       placeHolder={'Location'}
                       otherStyle={'TextHolderSectionLocationAndTime'}

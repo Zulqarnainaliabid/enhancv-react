@@ -32,7 +32,7 @@ function Login (props) {
       if (Email !== '' && Password !== '') {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test (Email)) {
-          contextData.HandleDisplayLoading (true);
+        
           setLoading(true)
           let userData = {
             email: Email,
@@ -40,7 +40,7 @@ function Login (props) {
           };
           let data = await HandleSignInPostRequest (userData);
           if (data) {
-            contextData.HandleDisplayLoading (false);
+         
             if (data === 200) {
               setLoading(false)
               setCheckMArk (true);

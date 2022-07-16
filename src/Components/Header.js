@@ -21,7 +21,6 @@ export function HeaderContent () {
   const [ShowLocation, setShowLocation] = useState (true);
   const [UpperCase, setUpperCase] = useState (true);
   const [ShowPhoto, setShowPhoto] = useState (true);
-  const [Color, setColor] = useState ('blueColor');
   const [Name, setName] = useState ('');
   const [Title, setTitle] = useState ('');
   const [Phone, setPhone] = useState ('');
@@ -127,7 +126,6 @@ export function HeaderContent () {
       value.location = data.value;
       localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
     }
-    // localStorage.setItem ('HeaderInputValue', JSON.stringify (value));
   }
   return (
     <div>
@@ -137,10 +135,6 @@ export function HeaderContent () {
           contextData.HandleDisplaySettings (false);
         }}
       >
-        {/* <div className='textareaHeaderTitle' style={{fontWeight:"700"}}
-        contentEditable='true'>
-          lkklklklk
-        </div> */}
         <div style={{width: '100%'}}>
           <InputField
             UpperCaseHeaderInputField={UpperCase}

@@ -443,7 +443,7 @@ function ExperienceInnerSection (props) {
               <div className="d-flex  " style={{gap: '12px'}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
                   <div
-                    className="d-flex  OuterWrapperDatePicker"
+                    className="d-flex  OuterWrapperDatePicker align-items-center"
                     style={{gap: '5px'}}
                     onBlur={() => {
                       setShowDate (false);
@@ -481,12 +481,12 @@ function ExperienceInnerSection (props) {
                     </div>
                   </div>}
                 {props.list[props.index].toggleSwitch[4].selected &&
-                  <div className="d-flex ">
+                  <div className="d-flex align-items-center">
                     <Location
                       className="IconsFontSize12"
                       style={{marginTop: '0px'}}
                     />
-                    <div style={{marginTop: '-2px'}}>
+                    <div >
                       <InputField
                         placeHolder={'Location'}
                         otherStyle={'TextHolderSectionLocationAndTime'}

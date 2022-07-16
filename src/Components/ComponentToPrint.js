@@ -628,7 +628,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
                 className="HoverBackgroundColor CommonCssClassAbsolutePosition LeftRightTopBottomZero"
                 style={{
                   backgroundColor: 'black',
-                  opacity: displayBackGroundColor ? '0.6' : '0',
+                  opacity: displayBackGroundColor ? '0.3' : '0',
                 }}
                 onClick={() => {
                   HandleBackGroundColor ();

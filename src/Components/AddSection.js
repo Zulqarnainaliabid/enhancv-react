@@ -4,7 +4,7 @@ import Achievements from './SectionImages/Achievements.png';
 import Education from './SectionImages/Education.png';
 import Experience from './SectionImages/Experience.png';
 import findme from './SectionImages/findme.png';
-import language from './SectionImages/language.png';
+import language from './SectionImages/language.JPG';
 import passion from './SectionImages/passion.png';
 import project from './SectionImages/project.png';
 import skill from './SectionImages/skill.png';

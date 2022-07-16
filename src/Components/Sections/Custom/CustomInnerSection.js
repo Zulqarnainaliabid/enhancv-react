@@ -334,7 +334,7 @@ function CustomInnerSection (props) {
           </div>
           <div className="outerWrapperHeaderIcons">
             <div
-              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mb-1"
+              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mb-2"
               onClick={HandleIcon}
             >
               {Icon}
@@ -541,7 +541,7 @@ function CustomInnerSection (props) {
                 >
                   {props.list[props.index].toggleSwitch[2].selected &&
                     <div
-                      className="d-flex  OuterWrapperDatePicker"
+                      className="d-flex  OuterWrapperDatePicker align-items-center"
                       style={{gap: '5px'}}
                       onBlur={() => {
                         setShowDate (false);

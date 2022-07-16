@@ -116,7 +116,7 @@ export default function MyTimeOuterSection (props) {
             UpperCaseHeaderInputField={false}
           />
         </div>
-        <div>
+        <div> 
           <div>
             <MyTimeInnerSection
               setHighLighter={setHighLighter}

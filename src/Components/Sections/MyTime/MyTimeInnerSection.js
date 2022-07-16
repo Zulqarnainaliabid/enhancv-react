@@ -27,6 +27,7 @@ function MyTimeInnerSection (props) {
   const [NumberOfSlice3, setNumberOfSlice3] = useState ('#00c091');
   const [NumberOfSlice6, setNumberOfSlice6] = useState ('#ccc');
   const [NumberOfSlice9, setNumberOfSlice9] = useState ('#ccc');
+  const [UpdateData, setUpdateData] = useState(false)
   const [Series, setSeries] = useState ([5, 5, 5]);
   const [Labels, setLabels] = useState (['A', 'B', 'C']);
   const [InputFieldChart, setInputFieldChart] = useState ([
@@ -51,6 +52,7 @@ function MyTimeInnerSection (props) {
         temp[i] = result[i];
       }
       setSeries (temp);
+      localStorage.setItem ('arraySeries', JSON.stringify (temp));
     } else {
       setSeries ([5, 5, 5]);
     }
@@ -63,6 +65,7 @@ function MyTimeInnerSection (props) {
         temp[i] = value[i];
       }
       setInputFieldChart ([...temp]);
+      localStorage.setItem ('InputFieldCartMyTime', JSON.stringify (temp));
     } else {
       setInputFieldChart ([
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'A'},
@@ -77,9 +80,11 @@ function MyTimeInnerSection (props) {
       labels: ['A', 'B', 'C'],
     };
     localStorage.setItem ('arraySlice', JSON.stringify (slice));
+    setUpdateData(!UpdateData)
   }
 
   function HandleNumberOfSlice6 () {
+    let size = null
     setSliceNumber (6);
     setNumberOfSlice6 ('#00c091');
     setNumberOfSlice3 ('#ccc');
@@ -87,15 +92,25 @@ function MyTimeInnerSection (props) {
     setLabels (['A', 'B', 'C', 'D', 'E', 'F']);
     if (localStorage.getItem ('arraySeries') !== null) {
       let value = localStorage.getItem ('arraySeries');
-      let temp = [];
+      let temp = [5,5,5,5,5,5];
       value = JSON.parse (value);
       var result = value.map (function (x) {
         return parseInt (x);
       });
-      for (let i = 0; i < 6; i++) {
+      
+      if(value.length===3){
+        size=3
+      }else if(value.length===9){
+        size=6
+      }
+      else{
+        size= result.length
+      }
+      for (let i = 0; i < size; i++) {
         temp[i] = result[i];
       }
       setSeries (temp);
+      localStorage.setItem ('arraySeries', JSON.stringify (temp));
     } else {
       setSeries ([5, 5, 5, 5, 5, 5]);
     }
@@ -110,10 +125,11 @@ function MyTimeInnerSection (props) {
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'E'},
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'F'},
       ];
-      for (let i = 0; i <3; i++) {
+      for (let i = 0; i < size; i++) {
         temp[i] = value[i];
       }
       setInputFieldChart ([...temp]);
+      localStorage.setItem ('InputFieldCartMyTime', JSON.stringify (temp));
     } else {
       setInputFieldChart ([
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'A'},
@@ -131,17 +147,19 @@ function MyTimeInnerSection (props) {
       labels: ['A', 'B', 'C', 'D', 'E', 'F'],
     };
     localStorage.setItem ('arraySlice', JSON.stringify (slice));
+
+    setUpdateData(!UpdateData)
   }
+
   function HandleNumberOfSlice9 () {
     setSliceNumber (9);
     setNumberOfSlice6 ('#ccc');
     setNumberOfSlice3 ('#ccc');
     setNumberOfSlice9 ('#00c091');
     setLabels (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
-
     if (localStorage.getItem ('arraySeries') !== null) {
       let value = localStorage.getItem ('arraySeries');
-      let temp = [];
+      let temp = [5,5,5,5,5,5,5,5,5];
       value = JSON.parse (value);
       var result = value.map (function (x) {
         return parseInt (x);
@@ -150,6 +168,7 @@ function MyTimeInnerSection (props) {
         temp[i] = result[i];
       }
       setSeries (temp);
+      localStorage.setItem ('arraySeries', JSON.stringify (temp));
     } else {
       setSeries ([5, 5, 5, 5, 5, 5, 5, 5]);
     }
@@ -165,12 +184,14 @@ function MyTimeInnerSection (props) {
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'E'},
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'F'},
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'G'},
-        {InputFieldActivity: '', InputFieldPercentage: '', label: 'F'},
+        {InputFieldActivity: '', InputFieldPercentage: '', label: 'h'},
+        {InputFieldActivity: '', InputFieldPercentage: '', label: 'i'},
       ];
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < value.length; i++) {
         temp[i] = value[i];
       }
       setInputFieldChart ([...temp]);
+      localStorage.setItem ('InputFieldCartMyTime', JSON.stringify (temp));
     } else {
       setInputFieldChart ([
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'A'},
@@ -180,7 +201,8 @@ function MyTimeInnerSection (props) {
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'E'},
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'F'},
         {InputFieldActivity: '', InputFieldPercentage: '', label: 'G'},
-        {InputFieldActivity: '', InputFieldPercentage: '', label: 'F'},
+        {InputFieldActivity: '', InputFieldPercentage: '', label: 'h'},
+        {InputFieldActivity: '', InputFieldPercentage: '', label: 'i'},
       ]);
     }
 
@@ -188,9 +210,10 @@ function MyTimeInnerSection (props) {
       NumberOfSlice6: '#ccc',
       NumberOfSlice3: '#ccc',
       NumberOfSlice9: '#00c091',
-      labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+      labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G','h','i'],
     };
     localStorage.setItem ('arraySlice', JSON.stringify (slice));
+    setUpdateData(!UpdateData)
   }
 
   function handleInputFiled (index, inputField) {
@@ -211,12 +234,13 @@ function MyTimeInnerSection (props) {
   }
 
   function HandleSeries (array) {
+    console.log("jj==",array,"===",SliceNumber)
     var result = array.map (function (x) {
       return parseInt (x);
     });
     let temp4 = [];
     if (SliceNumber === 3) {
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 3; i++) {
         temp4[i] = result[i];
       }
     } else if (SliceNumber === 6) {
@@ -229,19 +253,30 @@ function MyTimeInnerSection (props) {
       }
     }
     setSeries ([...temp4]);
+    console.log("res",temp4)
     localStorage.setItem ('arraySeries', JSON.stringify (temp4));
   }
 
   useEffect (() => {
     if (localStorage.getItem ('arraySlice') !== null) {
       let value = localStorage.getItem ('arraySlice');
+      console.log ('arrrseries', value);
       value = JSON.parse (value);
       setNumberOfSlice6 (value.NumberOfSlice6);
       setNumberOfSlice3 (value.NumberOfSlice3);
       setNumberOfSlice9 (value.NumberOfSlice9);
       setLabels (value.labels);
+    } else {
+      localStorage.setItem (
+        'arraySlice',
+        JSON.stringify ({
+          NumberOfSlice3: '#00c091',
+          NumberOfSlice6: '#ccc',
+          NumberOfSlice9: '#ccc',
+          labels: ['A', 'B', 'C'],
+        })
+      );
     }
-
     if (localStorage.getItem ('arraySeries') !== null) {
       let value = localStorage.getItem ('arraySeries');
       let temp = [];
@@ -249,18 +284,31 @@ function MyTimeInnerSection (props) {
       var result = value.map (function (x) {
         return parseInt (x);
       });
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < result.length; i++) {
         temp[i] = result[i];
       }
       setSeries (temp);
+    } else {
+      localStorage.setItem ('arraySeries', JSON.stringify ([5, 5, 5]));
     }
-
     if (localStorage.getItem ('InputFieldCartMyTime') !== null) {
       let value = localStorage.getItem ('InputFieldCartMyTime');
       value = JSON.parse (value);
       setInputFieldChart ([...value]);
+    } else {
+      localStorage.setItem (
+        'InputFieldCartMyTime',
+        JSON.stringify ([
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'A'},
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'B'},
+          {InputFieldActivity: '', InputFieldPercentage: '', label: 'C'},
+        ])
+      );
     }
-  }, []);
+  }, [UpdateData]);
+
+console.log("log==",InputFieldChart)
+
 
   return (
     <div>

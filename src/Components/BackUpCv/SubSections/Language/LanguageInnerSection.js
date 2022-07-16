@@ -74,7 +74,7 @@ function LanguageInnerSection (props) {
                   height: 0,
                 },
                 disabled: {
-                  opacity: 0.5,
+                  opacity: 0.3,
                 },
               }}
             />}

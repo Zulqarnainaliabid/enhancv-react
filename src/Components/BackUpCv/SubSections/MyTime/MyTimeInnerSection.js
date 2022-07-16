@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Chart from 'react-apexcharts';
 
 export function InputFieldSlice (props) {
+  console.log ('hello sb', props.item);
   return (
     <div className="d-flex mb-1" style={{position: 'relative'}}>
       <div>
@@ -35,6 +36,8 @@ const {forwardRef} = React;
 
 const ApexChart = forwardRef ((props, ref) => {
   const [Series, setSeries] = useState ([5, 5, 5]);
+  const [Labels, setLabels] = useState (['A', 'B', 'C']);
+  console.log ('j=', props.list.arraySlice.labels);
   useEffect (() => {
     let temp = [];
     var result = props.list.arraySeries.map (function (x) {
@@ -43,6 +46,8 @@ const ApexChart = forwardRef ((props, ref) => {
     for (let i = 0; i < result.length; i++) {
       temp[i] = result[i];
     }
+    console.log("....==",props.list.arraySlice.labels)
+    setLabels (props.list.arraySlice.labels);
     setSeries ([...temp]);
   }, []);
 
@@ -59,12 +64,12 @@ const ApexChart = forwardRef ((props, ref) => {
   if (props.Colors === 'redColor') {
     Color = '#ff0001';
   }
-
+  console.log ('hello props.list.arraySlice.labels', props.list.arraySlice);
   let options = {
     fill: {
       colors: [Color, Color, Color],
     },
-    labels: props.list.arraySlice.labels,
+    labels: Labels,
     dataLabels: {
       enabled: true,
       formatter: function (val, e) {
@@ -75,7 +80,8 @@ const ApexChart = forwardRef ((props, ref) => {
       show: false,
     },
   };
-
+  console.log ('series', Series);
+  console.log ('options', options);
   return (
     <div style={{width: '100%'}}>
       <div className="d-flex align-items-center">

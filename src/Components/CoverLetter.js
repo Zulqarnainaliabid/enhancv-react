@@ -105,7 +105,7 @@ function CoverLetter (props) {
           className="backGroundOfModal CommonCssClassAbsolutePosition"
           style={{
             backgroundColor: contextData.Transparent ? 'transparent' : 'black',
-            opacity: '0.5',
+            opacity: '0.3',
             zIndex: '7',
           }}
           onClick={() => {

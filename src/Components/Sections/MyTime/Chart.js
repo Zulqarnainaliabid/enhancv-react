@@ -3,6 +3,7 @@ import Chart from 'react-apexcharts';
 import {Context} from '../../Context/Context';
 
 export function InputFieldSlice (props) {
+  console.log("jjj==",props.list[props.index].InputFieldPercentage)
   return (
     <div className="d-flex mb-1" style={{position: 'relative'}}>
       <div>
@@ -25,13 +26,22 @@ export function InputFieldSlice (props) {
         value={props.list[props.index].InputFieldPercentage}
         style={{width: '25px'}}
         onChange={e => {
-          let array = props.Temp;
-          array[props.index] = e.target.value;
-
-          props.setTemp ([...array]);
-          props.HandleSeries (array);
-          props.handleInputFiledTypePercentage (props.index, e.target.value);
-          localStorage.setItem ('arraySeries', JSON.stringify (array));
+          if(1<=e.target.value){ 
+            let value = localStorage.getItem ('arraySeries');
+            value = JSON.parse (value);
+            var result = value.map (function (x) {
+              return parseInt (x);
+            });
+            let array = result;
+            console.log("kala",array)
+            array[props.index] = e.target.value;
+            props.setTemp ([...array]);
+            props.HandleSeries (array);
+            props.handleInputFiledTypePercentage (props.index, e.target.value);
+          }else{
+            console.log("hello6666")
+          }
+        
         }}
       />
       <div>%</div>
@@ -39,6 +49,7 @@ export function InputFieldSlice (props) {
   );
 }
 const {forwardRef} = React;
+
 const ApexChart = forwardRef ((props, ref) => {
   const contextData = useContext (Context);
   const [Temp, setTemp] = useState ([5, 5, 5, 5, 5, 5, 5, 5]);
@@ -56,6 +67,12 @@ const ApexChart = forwardRef ((props, ref) => {
   if (contextData.SelectedColor === 'redColor') {
     Color = '#ff0001';
   }
+  if (contextData.SelectedColor === 'yellowDark') {
+    Color = '#FF6E01';
+  }
+  if (contextData.SelectedColor === 'yellowLight') {
+    Color = '#E29E1A';
+  }
 
   let options = {
     fill: {
@@ -72,7 +89,6 @@ const ApexChart = forwardRef ((props, ref) => {
       show: false,
     },
   };
-
   return (
     <div style={{width: '100%'}}>
       <div

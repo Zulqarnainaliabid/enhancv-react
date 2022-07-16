@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext,useCallback } from 'react';
 import Header from './Header';
 import {Context} from '../Context/Context';
 import AchievementsOuterSection
@@ -40,8 +40,16 @@ import ReferenceOuterSection
 function Section (props) {
   let CVBackUpData = JSON.parse (props.list);
   const contextData = useContext (Context);
+  const [hovering, setHovering] = useState (false);
   const [DisplayBackgroundColor, setDisplayBackgroundColor] = useState (false);
   const [SubjectName, setSubjectName] = useState ('');
+
+  const handleMouseOver = useCallback (() => {
+    setHovering (true);
+  }, []);
+  const handleMouseOut = useCallback (() => {
+    setHovering (false);
+  }, []);
 
   function LeftSection () {
     if (CVBackUpData.SectionArray.Left.length === 0 && CVBackUpData.Template) {
@@ -350,7 +358,6 @@ function Section (props) {
       return (
         <div>
           {CVBackUpData.SectionArray.Right.map ((item, index) => {
-
             if (item === 'Book') {
               return (
                 <div key={index}>
@@ -637,11 +644,7 @@ function Section (props) {
   return (
     <div>
       <div>
-        <div
-          style={{
-            width: '515px',
-          }}
-        >
+        <div>
           <p
             className="text-center text-white mb-2"
             style={{fontSize: '30px', fontWeight: 'bolder'}}
@@ -660,8 +663,10 @@ function Section (props) {
             />
 
           </p>
+          <div   className="outerWrapperEditCv"
+          >
           <div
-            className="outerWrapperBackUpCvSection"
+            className="outerWrapperBackUpCvSection scroll-bar"
             style={{
               backgroundImage: `url(${CVBackUpData.BackImage})`,
             }}
@@ -1003,6 +1008,7 @@ function Section (props) {
 
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

@@ -132,7 +132,12 @@ function IndustryExperienceInnerSection (props) {
   if (contextData.SelectedColor === 'redColor') {
     Color = '#ff0001';
   }
-
+  if (contextData.SelectedColor === 'yellowDark') {
+    Color = '#FF6E01';
+  }
+  if (contextData.SelectedColor === 'yellowLight') {
+    Color = '#E29E1A';
+  } 
   return (
     <div>
       <div
