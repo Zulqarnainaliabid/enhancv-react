@@ -232,7 +232,7 @@ function PassionInnerSection (props) {
           </div>
           <div className="outerWrapperHeaderIcons">
             <div
-              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mb-2"
+              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mt-1"
               onClick={HandleIcon}
             >
               {Icon}
@@ -415,7 +415,7 @@ function PassionInnerSection (props) {
                 UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
-                <div style={{marginLeft: '13px'}}>
+                <div style={{marginLeft: '13px',marginTop:"-9px"}}>
                   <div className="summary">
                     <RichTextEditor
                       placeHolder={HandleGetPlaceHolder (

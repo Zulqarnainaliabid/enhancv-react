@@ -5,7 +5,45 @@ import TextareaAutosize from 'react-autosize-textarea';
 import Editor from 'react-medium-editor';
 require ('medium-editor/dist/css/medium-editor.css');
 require ('medium-editor/dist/css/themes/default.css');
+
 function CertificationInnerSection (props) {
+  console.log("hello...00",props.Sections)
+    function HandleEditorWidth () {
+    if (!props.Template) {
+      return '367px';
+    } else {
+      if (props.Sections !== null) {
+        for (let i = 0; i < props.Sections.Left.length; i++) {
+          if (props.Sections.Left[i] === 'Certification') {
+            return '179px';
+          }
+        }
+        for (let i = 0; i < props.Sections.Right.length; i++) {
+          if (props.Sections.Right[i] === 'Certification') {
+            return '103px';
+          }
+        }
+      }
+    }
+  }
+  function HandleEditorWidth () {
+    if (!props.Template) {
+      return '355px';
+    } else {
+      if (props.Sections !== null) {
+        for (let i = 0; i < props.Sections.Left.length; i++) {
+          if (props.Sections.Left[i] === 'Achievements') {
+            return '179px';
+          }
+        } 
+        for (let i = 0; i < props.Sections.Right.length; i++) {
+          if (props.Sections.Right[i] === 'Achievements') {
+            return '114px';
+          }
+        }
+      }
+    }
+  }
   return (
     <div>
       <div>
@@ -32,7 +70,7 @@ function CertificationInnerSection (props) {
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
-                  <div className="summary">
+                  <div className="summary" style={{width: HandleEditorWidth ()}}>
                   <Editor
                     className="InputFieldBachUpCv"
                     options={{

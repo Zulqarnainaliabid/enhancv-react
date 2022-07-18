@@ -180,7 +180,7 @@ export default function ReferenceOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('ReferenceOuterSection');
-                    contextData.HandleRemoveElement ('ReferenceOuterSection');
+                    contextData.HandleRemoveElement ('Reference');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

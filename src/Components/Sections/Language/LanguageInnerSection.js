@@ -330,7 +330,7 @@ function LanguageInnerSection (props) {
           {props.list[props.index].toggleSwitch[1].selected &&
             <div>
               <Slider
-                axis="x"
+                axis="x" 
                 x={state}
                 onChange={({x}) => handleChangeSlider (x)}
                 styles={{

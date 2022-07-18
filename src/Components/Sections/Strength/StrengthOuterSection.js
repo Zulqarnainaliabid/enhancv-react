@@ -188,7 +188,7 @@ export default function StrengthOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('StrengthOuterSection');
-                    contextData.HandleRemoveElement ('StrengthOuterSection');
+                    contextData.HandleRemoveElement ('Strength');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

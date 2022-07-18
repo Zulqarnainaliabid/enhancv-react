@@ -236,7 +236,7 @@ function AchievementsInnerSection (props) {
           </div>
           <div className="outerWrapperHeaderIcons">
             <div
-              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mt-2"
+              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mt-1"
               onClick={HandleIcon}
             >
               {Icon}
@@ -421,7 +421,7 @@ function AchievementsInnerSection (props) {
                 UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
-                <div style={{marginLeft: '13px'}}>
+                <div style={{marginLeft: '13px',marginTop:"-9px"}}>
                   <div className="summary">
                     <RichTextEditor
                     placeHolder=

@@ -476,8 +476,6 @@ function VolunteeringInnerSection (props) {
                 {props.list[props.index].toggleSwitch[4].selected &&
                   <div className="d-flex align-items-center">
                     <Location className="IconsFontSize12" />
-                    
-                    <div >
                       <InputField
                         placeHolder={'Location'}
                         otherStyle={'TextHolderSectionLocationAndTime'}
@@ -488,7 +486,6 @@ function VolunteeringInnerSection (props) {
                         useUpperCase={false}
                         UpperCaseHeaderInputField={false}
                       />
-                    </div>
                   </div>}
               </div>
 
@@ -528,7 +525,7 @@ function VolunteeringInnerSection (props) {
                   />}
                 {props.list[props.index].toggleSwitch[3].selected &&
                   <div style={{marginLeft: '13px'}}>
-                    <div className="summary" style={{width: '100%'}}>
+                    <div className="summary" style={{width: '100%',marginTop:"-9px"}}>
                       <RichTextEditor
                         placeHolder={HandleGetPlaceHolder (
                           props.list[props.index].value.bullets

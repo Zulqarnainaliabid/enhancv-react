@@ -412,7 +412,7 @@ function PublicationInnerSection (props) {
                   UpperCaseHeaderInputField={false}
                 />}
               <div className="d-flex align-items-center" style={{gap: '10px'}}>
-                {props.list[props.index].toggleSwitch[5].selected &&
+                {props.list[props.index].toggleSwitch[4].selected &&
                   <div
                     className="d-flex OuterWrapperDatePicker align-items-center"
                     style={{gap: '5px'}}
@@ -445,10 +445,9 @@ function PublicationInnerSection (props) {
                           </div>}
                     </div>
                   </div>}
-                {props.list[props.index].toggleSwitch[4].selected &&
+                {props.list[props.index].toggleSwitch[3].selected &&
                   <div className="d-flex align-items-center">
-                    <Location className="IconsFontSize12" />
-                    <div >
+                    <Location className="IconsFontSize12" /> 
                       <InputField
                         placeHolder={'Location'}
                         otherStyle={'TextHolderSectionLocationAndTime'}
@@ -459,10 +458,9 @@ function PublicationInnerSection (props) {
                         useUpperCase={false}
                         UpperCaseHeaderInputField={false}
                       />
-                    </div>
                   </div>}
               </div>
-              {props.list[props.index].toggleSwitch[6].selected &&
+              {props.list[props.index].toggleSwitch[5].selected &&
                 <div
                   className="d-flex align-items-center"
                   style={{gap: '10px'}}

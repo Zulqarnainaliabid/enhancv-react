@@ -5,11 +5,12 @@ import Slider from 'react-input-slider';
 import '../../../index.css';
 import TextareaAutosize from 'react-autosize-textarea';
 function LanguageInnerSection (props) {
+  console.log("newValue",props.list[props.index].proficiencyValue)
   let CssClass = '#686868';
   if (props.Colors === 'darkColor') {
     CssClass = '#686868';
   }
-  if (props.Colors === 'blueColor') {
+  if (props.Colors=== 'blueColor') {
     CssClass = '#008cffb0';
   }
   if (props.Colors === 'greenColor') {
@@ -17,6 +18,12 @@ function LanguageInnerSection (props) {
   }
   if (props.Colors === 'redColor') {
     CssClass = '#ff8080';
+  }
+  if (props.Colors === 'yellowDark') {
+    CssClass = '#FF6E01';
+  }
+  if (props.Colors === 'yellowLight') {
+    CssClass = '#E29E1A';
   }
 
   return (
@@ -58,6 +65,7 @@ function LanguageInnerSection (props) {
                 </div>}
             </div>
           </div>
+          
           {props.list[props.index].toggleSwitch[1].selected &&
             <Slider
               axis="x"
@@ -67,7 +75,7 @@ function LanguageInnerSection (props) {
                   backgroundColor: '#EEEEEE',
                 },
                 active: {
-                  backgroundColor: {CssClass},
+                  backgroundColor:CssClass,
                 },
                 thumb: {
                   width: 0,

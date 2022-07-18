@@ -190,7 +190,7 @@ export default function BookOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('BookOuterSection');
-                    contextData.HandleRemoveElement ('BookOuterSection');
+                    contextData.HandleRemoveElement ('Book');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

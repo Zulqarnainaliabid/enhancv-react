@@ -287,7 +287,7 @@ function BookInnerSection (props) {
               selectImage (e);
             }}
           />
-          <div style={{position: 'relative', display: 'flex'}}>
+          <div style={{position: 'relative', display: 'flex',width:"100%"}}>
             <div
               style={{width: '100%'}}
               className=""

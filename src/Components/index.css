@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitter&family=Chivo&family=Exo+2:wght@300&family=Faustina:wght@300&family=Karla:wght@300;400&family=Lato&family=Montserrat+Alternates:wght@500&family=Oswald&family=Poppins:wght@300&family=Raleway&family=Rubik:wght@500&family=Volkhov&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter&family=Chivo&family=Exo+2:wght@300&family=Faustina:wght@300&family=Karla:wght@300;400&family=Lato&family=Montserrat+Alternates:wght@500&family=Oswald&family=Poppins:wght@300&family=Raleway&family=Rubik:wght@700&family=Volkhov&display=swap');
 
 * {
   -webkit-box-sizing: border-box;
@@ -12,6 +12,11 @@
 .fontFamilyFaustina{
   font-family: 'Faustina', serif;
 
+}
+.outerWrapperHeaderFieldsLinks{
+  padding-bottom: 4px;
+  gap: 6px;
+    width: 44%;
 }
 .fontFamilyKarla{
   font-family: 'Karla', sans-serif;
@@ -293,7 +298,6 @@ display: none !important;
   width: 100%;
   font-weight: 700;
   background-color: transparent;
-  /* height: unset !important; */
 }
 
 .textareaHeaderTitle {
@@ -316,10 +320,10 @@ display: none !important;
 }
 
 .textareaHeaderLinksTitle {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 16px;
   color: #384347;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .textareaHeaderLinksTitle::-webkit-input-placeholder {
@@ -519,8 +523,8 @@ h1 {
 }
 
 .UserImg {
-  height: 140px;
-  width: 140px;
+  height: 150px;
+  width: 150px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -1157,8 +1161,8 @@ input {
 
 .HeadingNameBox {
   position: relative;
-  padding-left: 14px;
-  padding-right: 14px;
+  padding-left: 16px;
+  padding-right: 16px;
   z-index: 1;
 }
 
@@ -1169,6 +1173,9 @@ input {
   text-transform: uppercase !important;
   font-weight: 700;
   margin-bottom: -6px;
+  height: 40px !important;
+  resize: none;
+  overflow: hidden !important;
 }
 
 .SectionHeaderTextHolder::-webkit-input-placeholder {
@@ -1209,7 +1216,7 @@ input {
   z-index: 1;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 8px 16px;
+  padding: 4px 16px;
 }
 
 .outerWrapperBox:hover {
@@ -1249,6 +1256,7 @@ input {
   font-size: 15px;
   color: #808080;
   font-weight: 700;
+  margin-top: -6px;
 }
 
 .TextHolderSectionLocationAndTime {
@@ -1581,7 +1589,15 @@ input[type="number"] {
   cursor: pointer;
   color: white;
 }
-
+.outerWrapperDeleteCvBackupCv{
+  display: flex;
+  gap: 12px;
+  z-index: 9;
+  margin-top: 134px;
+  justify-content: center;
+  position: sticky;
+  top: 12px;
+}
 .BackGroundColorSectionBackupCv {
   background: black;
   opacity: 0.3;
@@ -1591,17 +1607,8 @@ input[type="number"] {
   top: 0;
   bottom: 0;
   border-radius: 9px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 12px;
-  z-index: 9;
+  z-index: 8;
+ 
 }
 
 .BorderOuterSectionBackUpCv {
@@ -1811,3 +1818,9 @@ border-bottom: 1px solid #e6e6e6;
 .outerWrapperEditCv::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+/* .DisplayBackgroundColor{
+  display: none;
+}
+.DisplayBackgroundColor:hover{
+display: block;
+} */

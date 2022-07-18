@@ -75,7 +75,7 @@ export default function ProjectsOuterSection (props) {
   const [ValueFindMeMeOnline, setValueFindMeMeOnline] = useState ('');
 
   function GetItemFindMeOnline () {
-    let value = localStorage.getItem ('Projects');
+    let value = localStorage.getItem ('Project');
     value = JSON.parse (value);
     return value;
   }
@@ -187,13 +187,13 @@ export default function ProjectsOuterSection (props) {
       let index = temp.length - 1;
       temp[index].selected = true;
       setState ([...temp]);
-      localStorage.setItem ('Projects', JSON.stringify (array));
+      localStorage.setItem ('Project', JSON.stringify (array));
   }
 
   function DeleteOneItemInArray (index) {
     array.splice (index, 1);
     setState ([...array]);
-    localStorage.setItem ('Projects', JSON.stringify (array));
+    localStorage.setItem ('Project', JSON.stringify (array));
     setDisplayLoader (true);
   }
 
@@ -239,7 +239,7 @@ export default function ProjectsOuterSection (props) {
   );
 
   function handleInputData (data) {
-    if (data.name === 'Projects') {
+    if (data.name === 'Project') {
       setValueFindMeMeOnline (data.value);
     }
     localStorage.setItem ('HeadingValueProjects', JSON.stringify (data.value));
@@ -248,7 +248,7 @@ export default function ProjectsOuterSection (props) {
   useEffect (
     () => {
       if (contextData.AddSectionName === 'ProjectsOuterSection') {
-        localStorage.setItem ('Projects', JSON.stringify (array));
+        localStorage.setItem ('Project', JSON.stringify (array));
         contextData.HandleAddSectionName (null);
       }
     },
@@ -283,7 +283,7 @@ export default function ProjectsOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('ProjectsOuterSection');
-                    contextData.HandleRemoveElement ('ProjectsOuterSection');
+                    contextData.HandleRemoveElement ('Projects');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

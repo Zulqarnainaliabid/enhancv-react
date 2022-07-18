@@ -84,7 +84,7 @@ export default function MyTimeOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('MyTimeOuterSection');
-                    contextData.HandleRemoveElement ('MyTimeOuterSection');
+                    contextData.HandleRemoveElement ('MyTime');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

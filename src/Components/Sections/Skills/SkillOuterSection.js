@@ -23,7 +23,7 @@ export default function SkillsOuterSection (props) {
   const [ValueFindMeMeOnline, setValueFindMeMeOnline] = useState ('');
 
   function GetItemFindMeOnline () {
-    let value = localStorage.getItem ('Skills');
+    let value = localStorage.getItem ('Skill');
     value = JSON.parse (value);
     return value;
   }
@@ -84,13 +84,13 @@ export default function SkillsOuterSection (props) {
       let index = temp.length - 1;
       temp[index].selected = true;
       setState ([...temp]);
-      localStorage.setItem ('Skills', JSON.stringify (array));
+      localStorage.setItem ('Skill', JSON.stringify (array));
   }
 
   function DeleteOneItemInArray (index) {
     array.splice (index, 1);
     setState ([...array]);
-    localStorage.setItem ('Skills', JSON.stringify (array));
+    localStorage.setItem ('Skill', JSON.stringify (array));
     setDisplayLoader (true);
   }
 
@@ -145,7 +145,7 @@ export default function SkillsOuterSection (props) {
   useEffect (
     () => {
       if (contextData.AddSectionName === 'SkillsOuterSection') {
-        localStorage.setItem ('Skills', JSON.stringify (array));
+        localStorage.setItem ('Skill', JSON.stringify (array));
         contextData.HandleAddSectionName (null);
       }
     },
@@ -180,7 +180,7 @@ export default function SkillsOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('SkillsOuterSection');
-                    contextData.HandleRemoveElement ('SkillsOuterSection');
+                    contextData.HandleRemoveElement ('Skills');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

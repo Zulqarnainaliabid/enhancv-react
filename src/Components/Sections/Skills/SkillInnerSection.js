@@ -100,7 +100,7 @@ function SkillsInnerSection (props) {
     }
     props.list[props.index].toggleSwitch = temp;
     props.setList ([...props.list]);
-    localStorage.setItem ('Skills', JSON.stringify (props.list));
+    localStorage.setItem ('Skill', JSON.stringify (props.list));
   }
   function handleInputData (data) {
     let temp = props.list;
@@ -108,7 +108,7 @@ function SkillsInnerSection (props) {
       temp[data.index].value.groupName = data.value;
     }
     props.setList ([...temp]);
-    localStorage.setItem ('Skills', JSON.stringify (temp));
+    localStorage.setItem ('Skill', JSON.stringify (temp));
   }
   function HandleAddNewItem () {
     handleCloseToggleSwitch ();
@@ -124,7 +124,7 @@ function SkillsInnerSection (props) {
     let temp = [];
     temp = props.list;
     temp[props.index].value.ToolAndTechnology.push ({text: ''});
-    localStorage.setItem ('Skills', JSON.stringify (temp));
+    localStorage.setItem ('Skill', JSON.stringify (temp));
     props.setList ([...temp]);
     setpointEvent ('');
     setCursurPointer ('pointer');
@@ -137,7 +137,7 @@ function SkillsInnerSection (props) {
       setCursurPointer ('not-allowed');
     } else {
       temp[props.index].value.ToolAndTechnology.pop ({text: ''});
-      localStorage.setItem ('Skills', JSON.stringify (temp));
+      localStorage.setItem ('Skill', JSON.stringify (temp));
       props.setList ([...temp]);
     }
   }
@@ -349,7 +349,7 @@ function SkillsInnerSection (props) {
                 />
               </div>}
           </div>
-          <div style={{display: 'flex', flexWrap: 'wrap',gap:"12px",marginTop:"12px",marginBottom:"12px"}}>
+          <div style={{display: 'flex', flexWrap: 'wrap',gap:"9px",marginTop:"12px",marginBottom:"12px"}}>
             {props.list[
               props.index
             ].value.ToolAndTechnology.map ((item, index) => {
@@ -363,7 +363,7 @@ function SkillsInnerSection (props) {
                       ].selected = true;
                       props.setList ([...props.list]);
                       localStorage.setItem (
-                        'Skills',
+                        'Skill',
                         JSON.stringify (props.list)
                       );
                     }}
@@ -373,7 +373,7 @@ function SkillsInnerSection (props) {
                       ].selected = false;
                       props.setList ([...props.list]);
                       localStorage.setItem (
-                        'Skills',
+                        'Skill',
                         JSON.stringify (props.list)
                       );
                     }}
@@ -404,7 +404,8 @@ function SkillsInnerSection (props) {
                             // textAlign: 'center',
                             borderBottom: '1px solid #A9A9A9',
                             display:"block",
-                            padding: '5px',
+                            paddingLeft: '5px',
+                            paddingRight:"5px",
                             color: 'black',
                             fontSize: '14px',
                             fontWeight: '700',
@@ -426,7 +427,7 @@ function SkillsInnerSection (props) {
                       ].text =
                         event.target.value;
                       localStorage.setItem (
-                        'Skills',
+                        'Skill',
                         JSON.stringify (props.list)
                       );
                       props.setList ([...props.list]);

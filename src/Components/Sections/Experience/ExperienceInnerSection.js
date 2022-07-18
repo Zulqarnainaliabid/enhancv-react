@@ -244,7 +244,7 @@ function ExperienceInnerSection (props) {
     let temp = props.list;
     temp[props.index].DescriptionArray.push (1);
     props.setList ([...temp]);
-    localStorage.setItem ('Volunteering', JSON.stringify (temp));
+    localStorage.setItem ('Experience', JSON.stringify (temp));
     setCursurPointer ('pointer');
     setpointEvent ('');
   }
@@ -253,7 +253,7 @@ function ExperienceInnerSection (props) {
     if (temp[props.index].DescriptionArray.length > 1) {
       temp[props.index].DescriptionArray.pop (1);
       props.setList ([...temp]);
-      localStorage.setItem ('Volunteering', JSON.stringify (temp));
+      localStorage.setItem ('Experience', JSON.stringify (temp));
     } else {
       setpointEvent ('none');
       setCursurPointer ('not-allowed');
@@ -409,7 +409,7 @@ function ExperienceInnerSection (props) {
             position: 'relative',
           }}
         >
-          <div style={{position: 'relative', display: 'flex'}}>
+          <div style={{position: 'relative', display: 'flex',alignItems:"center"}}>
             <div
               style={{width: '100%'}}
               className="d-flex flex-column"
@@ -440,7 +440,7 @@ function ExperienceInnerSection (props) {
                   useUpperCase={false}
                   UpperCaseHeaderInputField={false}
                 />}
-              <div className="d-flex  " style={{gap: '12px'}}>
+              <div className="d-flex  " style={{gap: '12px',alignItems:"center"}}>
                 {props.list[props.index].toggleSwitch[5].selected &&
                   <div
                     className="d-flex  OuterWrapperDatePicker align-items-center"
@@ -484,9 +484,8 @@ function ExperienceInnerSection (props) {
                   <div className="d-flex align-items-center">
                     <Location
                       className="IconsFontSize12"
-                      style={{marginTop: '0px'}}
+                      style={{marginTop: '0px',alignItems:"center"}}
                     />
-                    <div >
                       <InputField
                         placeHolder={'Location'}
                         otherStyle={'TextHolderSectionLocationAndTime'}
@@ -497,8 +496,6 @@ function ExperienceInnerSection (props) {
                         useUpperCase={false}
                         UpperCaseHeaderInputField={false}
                       />
-
-                    </div>
                   </div>}
               </div>
               {props.list[props.index].toggleSwitch[6].selected &&
@@ -533,7 +530,7 @@ function ExperienceInnerSection (props) {
                         UpperCaseHeaderInputField={false}
                       />}
                     {props.list[props.index].toggleSwitch[3].selected &&
-                      <div style={{marginLeft: '13px'}}>
+                      <div style={{marginLeft: '13px',marginTop:"-9px"}}>
                         <div className={CssClass ()}>
                           <RichTextEditor
                             placeHolder={HandleGetPlaceHolder (

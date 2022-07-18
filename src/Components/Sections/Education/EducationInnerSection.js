@@ -458,7 +458,7 @@ function EducationInnerSection (props) {
                     {props.list[props.index].toggleSwitch[1].selected &&
                       <div className="d-flex align-items-center" >
                         <Location className="IconsFontSize12" />
-                        <div style={{marginTop:"-2px"}}>
+                       
                           <InputField
                             placeHolder={'Location'}
                             otherStyle={'TextHolderSectionLocationAndTime'}
@@ -469,14 +469,13 @@ function EducationInnerSection (props) {
                             useUpperCase={false}
                             UpperCaseHeaderInputField={false}
                           />
-                        </div>
 
                       </div>}
                   </div>
                 </div>
               </div>
               {props.list[props.index].toggleSwitch[3].selected &&
-                <div style={{marginLeft: '13px'}}>
+                <div style={{marginLeft: '13px',marginTop:"-9px"}}>
                   <div className="summary">
                     <RichTextEditor
                       placeHolder={HandleGetPlaceHolder (

@@ -292,7 +292,7 @@ export default function VolunteeringOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('VolunteeringOuterSection');
                     contextData.HandleRemoveElement (
-                      'VolunteeringOuterSection'
+                      'Volunteering'
                     );
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"

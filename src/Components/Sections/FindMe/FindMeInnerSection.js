@@ -113,7 +113,7 @@ function FindMeInnerSection (props) {
     }
     props.list[props.index].toggleSwitch = temp;
     props.setList ([...props.list]);
-    localStorage.setItem ('FindMeOnline', JSON.stringify (props.list));
+    localStorage.setItem ('FindMe', JSON.stringify (props.list));
   }
   function handleInputData (data) {
     let temp = props.list;
@@ -123,7 +123,7 @@ function FindMeInnerSection (props) {
       temp[data.index].value.username = data.value;
     }
     props.setList ([...temp]);
-    localStorage.setItem ('FindMeOnline', JSON.stringify (temp));
+    localStorage.setItem ('FindMe', JSON.stringify (temp));
   }
   function HandleAddNewItem () {
     HandleCloseIconList ();
@@ -162,7 +162,7 @@ function FindMeInnerSection (props) {
   }
 
   useEffect (() => {
-    let value = localStorage.getItem ('FindMeOnline');
+    let value = localStorage.getItem ('FindMe');
     value = JSON.parse (value);
     if (value) {
       for (let i = 0; i < iconList.length; i++) {
@@ -233,7 +233,7 @@ function FindMeInnerSection (props) {
           </div>
           <div className="outerWrapperHeaderIcons">
             <div
-              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mb-2"
+              className="DeleteIcon CommonCssClassCursorPointer ArrangeIcon mt-1"
               onClick={HandleIcon}
             >
               {Icon}
@@ -358,7 +358,7 @@ function FindMeInnerSection (props) {
                             props.list[props.index].iconName = item.name;
                             props.setList (props.list);
                             localStorage.setItem (
-                              'FindMeOnline',
+                              'FindMe',
                               JSON.stringify (props.list)
                             );
                           }}
@@ -416,7 +416,7 @@ function FindMeInnerSection (props) {
                 UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
-                <div style={{marginLeft: '13px'}}>
+                <div style={{marginLeft: '13px',marginTop:"-9px"}}>
                   <div className="summary">
                     <RichTextEditor
                       placeHolder={HandleGetPlaceHolder (

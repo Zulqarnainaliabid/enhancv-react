@@ -118,7 +118,7 @@ function ProjectsInnerSection (props) {
       temp[data.index].value.bullets = data.value;
     }
     props.setList ([...temp]);
-    localStorage.setItem ('Projects', JSON.stringify (temp));
+    localStorage.setItem ('Project', JSON.stringify (temp));
   }
   function HandleAddNewItem () {
     handleCloseToggleSwitch ();
@@ -133,28 +133,28 @@ function ProjectsInnerSection (props) {
   function handleYearFrom (yearFrom) {
     props.list[props.index].date.yearFrom = yearFrom;
     props.setList ([...props.list]);
-    localStorage.setItem ('Projects', JSON.stringify (props.list));
+    localStorage.setItem ('Project', JSON.stringify (props.list));
   }
   function handleMonthFrom (monthFrom) {
     props.list[props.index].date.monthFrom = monthFrom;
     props.setList ([...props.list]);
-    localStorage.setItem ('Projects', JSON.stringify (props.list));
+    localStorage.setItem ('Project', JSON.stringify (props.list));
   }
   function HandleMonthOngoing (MonthOnGoing) {
     props.list[props.index].date.monthOngoing = MonthOnGoing;
     props.setList ([...props.list]);
-    localStorage.setItem ('Projects', JSON.stringify (props.list));
+    localStorage.setItem ('Project', JSON.stringify (props.list));
   }
   function handleYearOngoing (yearOnGoing) {
     props.list[props.index].date.yearOngoing = yearOnGoing;
     props.setList ([...props.list]);
-    localStorage.setItem ('Projects', JSON.stringify (props.list));
+    localStorage.setItem ('Project', JSON.stringify (props.list));
   }
 
   function HandleOngoing (toggle) {
     props.list[props.index].date.onGoing = toggle;
     props.setList ([...props.list]);
-    localStorage.setItem ('Projects', JSON.stringify (props.list));
+    localStorage.setItem ('Project', JSON.stringify (props.list));
   }
   const SlashFrom = () => {
     if (
@@ -359,7 +359,7 @@ function ProjectsInnerSection (props) {
               HandleMonthOngoing={HandleMonthOngoing}
               handleYearOngoing={handleYearOngoing}
               HandleOngoing={HandleOngoing}
-              localStorageSection={'Projects'}
+              localStorageSection={'Project'}
             />
           </div>}
       </div>
@@ -433,7 +433,6 @@ function ProjectsInnerSection (props) {
                     style={{gap: '5px'}}
                   >
                     <Location className="IconsFontSize12" />
-                    <div >
                     <InputField
                       placeHolder={'Location'}
                       otherStyle={'TextHolderSectionLocationAndTime'}
@@ -444,7 +443,6 @@ function ProjectsInnerSection (props) {
                       useUpperCase={false}
                       UpperCaseHeaderInputField={false}
                     />
-                    </div>
                   </div>}
               </div>
               {props.list[props.index].toggleSwitch[5].selected &&
@@ -475,7 +473,7 @@ function ProjectsInnerSection (props) {
               UpperCaseHeaderInputField={false}
             />}
           {props.list[props.index].toggleSwitch[2].selected &&
-            <div style={{marginLeft: '13px'}}>
+            <div style={{marginLeft: '13px',marginTop:"-9px"}}>
               <div className="summary">
 
                 <RichTextEditor

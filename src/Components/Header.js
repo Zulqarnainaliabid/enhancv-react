@@ -159,8 +159,8 @@ export function HeaderContent () {
           <div className="d-flex align-items-center">
             {ShowPhone &&
               <div
-                className="d-flex align-items-center mb-2"
-                style={{gap: '12px', width: '50%'}}
+                className="d-flex align-items-center outerWrapperHeaderFieldsLinks"
+                
               >
                 <PhoneHeader
                   className={`HeaderIcons ${contextData.SelectedColor}`}
@@ -177,8 +177,8 @@ export function HeaderContent () {
               </div>}
             {ShowEmail &&
               <div
-                className="d-flex align-items-center mb-2"
-                style={{gap: '12px', width: '50%'}}
+                className="d-flex align-items-center outerWrapperHeaderFieldsLinks"
+               
               >
                 <div className={`HeaderIcons ${contextData.SelectedColor}`}>
                   @
@@ -197,8 +197,8 @@ export function HeaderContent () {
           <div className="d-flex align-items-center">
             {ShowLink &&
               <div
-                className="d-flex align-items-center mb-2"
-                style={{gap: '12px', width: '50%'}}
+                className="d-flex align-items-center  outerWrapperHeaderFieldsLinks"
+                
               >
                 <LinkHeader
                   className={`HeaderIcons ${contextData.SelectedColor}`}
@@ -215,8 +215,8 @@ export function HeaderContent () {
               </div>}
             {ShowLocation &&
               <div
-                className="d-flex align-items-center mb-2"
-                style={{gap: '12px', width: '50%'}}
+                className="d-flex align-items-center outerWrapperHeaderFieldsLinks"
+             
               >
                 <LocationHeader
                   className={`HeaderIcons ${contextData.SelectedColor}`}

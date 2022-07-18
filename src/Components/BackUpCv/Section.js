@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext,useCallback } from 'react';
+import React, {useState, useEffect, useContext, useCallback} from 'react';
 import Header from './Header';
 import {Context} from '../Context/Context';
 import AchievementsOuterSection
@@ -640,7 +640,7 @@ function Section (props) {
   useEffect (() => {
     setSubjectName (props.Subject.replace (/['"]+/g, ''));
   }, []);
-
+  console.log("=========================",CVBackUpData)
   return (
     <div>
       <div>
@@ -663,352 +663,452 @@ function Section (props) {
             />
 
           </p>
-          <div   className="outerWrapperEditCv"
-          >
-          <div
-            className="outerWrapperBackUpCvSection scroll-bar"
-            style={{
-              backgroundImage: `url(${CVBackUpData.BackImage})`,
-            }}
-            onMouseEnter={() => {
-              setDisplayBackgroundColor (true);
-            }}
-          >
-            {DisplayBackgroundColor &&
-              <div
-                className="BackGroundColorSectionBackupCv"
-                onMouseLeave={() => {
-                  setDisplayBackgroundColor (false);
-                }}
-              >
-                <BiPencil
-                  className="DeleteIconBackUpCV backGroundColorEditIconBackUpCV  "
-                  onClick={() => {
-                    contextData.HandleUpdateBackUpCv (props.id);
-                    props.HandleRemovePreviousData ();
-                    if (CVBackUpData.Achievements) {
-                      localStorage.setItem (
-                        'Achievements',
-                        JSON.stringify (CVBackUpData.Achievements)
-                      );
-                    }
-                    if (CVBackUpData.ArrayLower) {
-                      localStorage.setItem (
-                        'ArrayLower',
-                        JSON.stringify (CVBackUpData.ArrayLower)
-                      );
-                    }
-
-                    if (CVBackUpData.UserImageShape) {
-                      localStorage.setItem (
-                        'UserImageShape',
-                        JSON.stringify (CVBackUpData.UserImageShape)
-                      );
-                    }
-
-                    if (CVBackUpData.Skills) {
-                      localStorage.setItem (
-                        'Skills',
-                        JSON.stringify (CVBackUpData.Skills)
-                      );
-                    }
-
-                    if (CVBackUpData.HeadingValueSkills) {
-                      localStorage.setItem (
-                        'HeadingValueSkills',
-                        JSON.stringify (CVBackUpData.HeadingValueSkills)
-                      );
-                    }
-
-                    if (CVBackUpData.Summary) {
-                      localStorage.setItem (
-                        'Summary',
-                        JSON.stringify (CVBackUpData.Summary)
-                      );
-                    }
-
-                    if (CVBackUpData.ArrayUper) {
-                      localStorage.setItem (
-                        'ArrayUper',
-                        JSON.stringify (CVBackUpData.ArrayUper)
-                      );
-                    }
-                    if (CVBackUpData.indexOfUserImageShape) {
-                      localStorage.setItem (
-                        'indexOfUserImageShape',
-                        JSON.stringify (CVBackUpData.indexOfUserImageShape)
-                      );
-                    }
-                    if (CVBackUpData.HeaderInputValue) {
-                      localStorage.setItem (
-                        'HeaderInputValue',
-                        JSON.stringify (CVBackUpData.HeaderInputValue)
-                      );
-                    }
-                    if (CVBackUpData.SelectedColorIndex) {
-                      localStorage.setItem (
-                        'SelectedColorIndex',
-                        JSON.stringify (CVBackUpData.SelectedColorIndex)
-                      );
-                    }
-                    if (CVBackUpData.BorderStyle) {
-                      localStorage.setItem (
-                        'BorderStyle',
-                        JSON.stringify (CVBackUpData.BorderStyle)
-                      );
-                    }
-
-                    if (CVBackUpData.UserImage) {
-                      localStorage.setItem (
-                        'UserImage',
-                        JSON.stringify (CVBackUpData.UserImage)
-                      );
-                    }
-                    if (CVBackUpData.BackImage) {
-                      localStorage.setItem (
-                        'BackImage',
-                        JSON.stringify (CVBackUpData.BackImage)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueAchievements) {
-                      localStorage.setItem (
-                        'HeadingValueAchievements',
-                        JSON.stringify (CVBackUpData.HeadingValueAchievements)
-                      );
-                    }
-                    if (CVBackUpData.Colors) {
-                      localStorage.setItem (
-                        'Colors',
-                        JSON.stringify (CVBackUpData.Colors)
-                      );
-                    }
-                    if (CVBackUpData.Language) {
-                      localStorage.setItem (
-                        'Language',
-                        JSON.stringify (CVBackUpData.Language)
-                      );
-                    }
-
-                    if (CVBackUpData.Education) {
-                      localStorage.setItem (
-                        'Education',
-                        JSON.stringify (CVBackUpData.Education)
-                      );
-                    }
-                    if (CVBackUpData.Experience) {
-                      localStorage.setItem (
-                        'Experience',
-                        JSON.stringify (CVBackUpData.Experience)
-                      );
-                    }
-                    if (CVBackUpData.Training) {
-                      localStorage.setItem (
-                        'Training',
-                        JSON.stringify (CVBackUpData.Training)
-                      );
-                    }
-                    if (CVBackUpData.Projects) {
-                      localStorage.setItem (
-                        'Projects',
-                        JSON.stringify (CVBackUpData.Projects)
-                      );
-                    }
-                    if (CVBackUpData.Passion) {
-                      localStorage.setItem (
-                        'Passion',
-                        JSON.stringify (CVBackUpData.Passion)
-                      );
-                    }
-
-                    if (CVBackUpData.Volunteering) {
-                      localStorage.setItem (
-                        'Volunteering',
-                        JSON.stringify (CVBackUpData.Volunteering)
-                      );
-                    }
-                    if (CVBackUpData.IndustryExperience) {
-                      localStorage.setItem (
-                        'IndustryExperience',
-                        JSON.stringify (CVBackUpData.IndustryExperience)
-                      );
-                    }
-                    if (CVBackUpData.Strength) {
-                      localStorage.setItem (
-                        'Strength',
-                        JSON.stringify (CVBackUpData.Strength)
-                      );
-                    }
-                    if (CVBackUpData.FindMeOnline) {
-                      localStorage.setItem (
-                        'FindMeOnline',
-                        JSON.stringify (CVBackUpData.FindMeOnline)
-                      );
-                    }
-                    if (CVBackUpData.Template) {
-                      localStorage.setItem (
-                        'Template',
-                        JSON.stringify (CVBackUpData.Template)
-                      );
-                    }
-
-                    if (CVBackUpData.HeadingValueEducation) {
-                      localStorage.setItem (
-                        'HeadingValueEducation',
-                        JSON.stringify (CVBackUpData.HeadingValueEducation)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueExperience) {
-                      localStorage.setItem (
-                        'HeadingValueExperience',
-                        JSON.stringify (CVBackUpData.HeadingValueExperience)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueFindMeOnline) {
-                      localStorage.setItem (
-                        'HeadingValueFindMeOnline',
-                        JSON.stringify (CVBackUpData.HeadingValueFindMeOnline)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueIndustryExperience) {
-                      localStorage.setItem (
-                        'HeadingValueIndustryExperience',
-                        JSON.stringify (
-                          CVBackUpData.HeadingValueIndustryExperience
-                        )
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueLanguage) {
-                      localStorage.setItem (
-                        'HeadingValueLanguage',
-                        JSON.stringify (CVBackUpData.HeadingValueLanguage)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueMyTime) {
-                      localStorage.setItem (
-                        'HeadingValueMyTime',
-                        JSON.stringify (CVBackUpData.HeadingValueMyTime)
-                      );
-                    }
-
-                    if (CVBackUpData.HeadingValuePassion) {
-                      localStorage.setItem (
-                        'HeadingValuePassion',
-                        JSON.stringify (CVBackUpData.HeadingValuePassion)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueProjects) {
-                      localStorage.setItem (
-                        'HeadingValueProjects',
-                        JSON.stringify (CVBackUpData.HeadingValueProjects)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueSkills) {
-                      localStorage.setItem (
-                        'HeadingValueSkills',
-                        JSON.stringify (CVBackUpData.HeadingValueSkills)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueStrength) {
-                      localStorage.setItem (
-                        'HeadingValueStrength',
-                        JSON.stringify (CVBackUpData.HeadingValueStrength)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueSummary) {
-                      localStorage.setItem (
-                        'HeadingValueSummary',
-                        JSON.stringify (CVBackUpData.HeadingValueSummary)
-                      );
-                    }
-
-                    if (CVBackUpData.HeadingValueTraining) {
-                      localStorage.setItem (
-                        'HeadingValueTraining',
-                        JSON.stringify (CVBackUpData.HeadingValueTraining)
-                      );
-                    }
-                    if (CVBackUpData.HeadingValueVolunteering) {
-                      localStorage.setItem (
-                        'HeadingValueVolunteering',
-                        JSON.stringify (CVBackUpData.HeadingValueVolunteering)
-                      );
-                    }
-                    if (CVBackUpData.ChartData.arraySlice) {
-                      localStorage.setItem (
-                        'arraySlice',
-                        JSON.stringify (CVBackUpData.ChartData.arraySlice)
-                      );
-                    }
-                    if (CVBackUpData.ChartData.InputFieldCartMyTime) {
-                      localStorage.setItem (
-                        'InputFieldCartMyTime',
-                        JSON.stringify (
-                          CVBackUpData.ChartData.InputFieldCartMyTime
-                        )
-                      );
-                    }
-                    if (CVBackUpData.ChartData.arraySeries) {
-                      localStorage.setItem (
-                        'arraySeries',
-                        JSON.stringify (CVBackUpData.ChartData.arraySeries)
-                      );
-                    }
-
-                    if (CVBackUpData.indexOfUserImageShape) {
-                      localStorage.setItem (
-                        'indexOfUserImageShape',
-                        JSON.stringify (CVBackUpData.indexOfUserImageShape)
-                      );
-                    }
-
-                    if (CVBackUpData.SectionArray) {
-                      localStorage.setItem (
-                        'SectionsArray',
-                        JSON.stringify (CVBackUpData.SectionArray)
-                      );
-                    }
-                  }}
-                />
-                <RiDeleteBinLine
-                  className="DeleteIconBackUpCV backGroundColorDeleteIconBackUpCV "
-                  onClick={() => {
-                    HandleDeleteCvBackUp (props.id);
-                  }}
-                />
-              </div>}
-            <Header
-              HeaderSettingsList={CVBackUpData.HeaderSettingsList}
-              HeaderInputValue={CVBackUpData.HeaderInputValue}
-              image={CVBackUpData.UserImage}
-              Colors={CVBackUpData.Colors}
-              ImageShape={CVBackUpData.indexOfUserImageShape}
-            />
+          <div className="outerWrapperEditCv">
             <div
+              className="outerWrapperBackUpCvSection scroll-bar"
               style={{
-                width: '100%',
-                paddingTop: '12px',
-                display: CVBackUpData.Template ? 'flex' : 'block',
-                gap: '10px',
+                backgroundImage: `url(${CVBackUpData.BackImage})`,
+              }}
+              onMouseEnter={() => {
+                setDisplayBackgroundColor (true);
               }}
             >
+              {DisplayBackgroundColor &&
+                <div
+                  className="BackGroundColorSectionBackupCv"
+                  onMouseLeave={() => {
+                    setDisplayBackgroundColor (false);
+                  }}
+                >
+
+                  <div className="outerWrapperDeleteCvBackupCv">
+                    <BiPencil
+                      className="DeleteIconBackUpCV backGroundColorEditIconBackUpCV  "
+                      onClick={() => {
+                        contextData.HandleUpdateBackUpCv (props.id);
+                        props.HandleRemovePreviousData ();
+                        if (CVBackUpData.Achievements) {
+                          localStorage.setItem (
+                            'Achievements',
+                            JSON.stringify (CVBackUpData.Achievements)
+                          );
+                        }
+                        if (CVBackUpData.ArrayLower) {
+                          localStorage.setItem (
+                            'ArrayLower',
+                            JSON.stringify (CVBackUpData.ArrayLower)
+                          );
+                        }
+
+                        if (CVBackUpData.UserImageShape) {
+                          localStorage.setItem (
+                            'UserImageShape',
+                            JSON.stringify (CVBackUpData.UserImageShape)
+                          );
+                        }
+
+                        if (CVBackUpData.Skills) {
+                          localStorage.setItem (
+                            'Skills',
+                            JSON.stringify (CVBackUpData.Skills)
+                          );
+                        }
+
+                        if (CVBackUpData.HeadingValueSkills) {
+                          localStorage.setItem (
+                            'HeadingValueSkills',
+                            JSON.stringify (CVBackUpData.HeadingValueSkills)
+                          );
+                        }
+
+                        if (CVBackUpData.Summary) {
+                          localStorage.setItem (
+                            'Summary',
+                            JSON.stringify (CVBackUpData.Summary)
+                          );
+                        }
+
+                        if (CVBackUpData.ArrayUper) {
+                          localStorage.setItem (
+                            'ArrayUper',
+                            JSON.stringify (CVBackUpData.ArrayUper)
+                          );
+                        }
+                        if (CVBackUpData.indexOfUserImageShape) {
+                          localStorage.setItem (
+                            'indexOfUserImageShape',
+                            JSON.stringify (CVBackUpData.indexOfUserImageShape)
+                          );
+                        }
+                        if (CVBackUpData.HeaderInputValue) {
+                          localStorage.setItem (
+                            'HeaderInputValue',
+                            JSON.stringify (CVBackUpData.HeaderInputValue)
+                          );
+                        }
+                        if (CVBackUpData.SelectedColorIndex) {
+                          localStorage.setItem (
+                            'SelectedColorIndex',
+                            JSON.stringify (CVBackUpData.SelectedColorIndex)
+                          );
+                        }
+                        if (CVBackUpData.BorderStyle) {
+                          localStorage.setItem (
+                            'BorderStyle',
+                            JSON.stringify (CVBackUpData.BorderStyle)
+                          );
+                        }
+
+                        if (CVBackUpData.UserImage) {
+                          localStorage.setItem (
+                            'UserImage',
+                            JSON.stringify (CVBackUpData.UserImage)
+                          );
+                        }
+                        if (CVBackUpData.BackImage) {
+                          localStorage.setItem (
+                            'BackImage',
+                            JSON.stringify (CVBackUpData.BackImage)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueAchievements) {
+                          localStorage.setItem (
+                            'HeadingValueAchievements',
+                            JSON.stringify (
+                              CVBackUpData.HeadingValueAchievements
+                            )
+                          );
+                        }
+                        if (CVBackUpData.Colors) {
+                          localStorage.setItem (
+                            'Colors',
+                            JSON.stringify (CVBackUpData.Colors)
+                          );
+                        }
+                        if (CVBackUpData.Language) {
+                          localStorage.setItem (
+                            'Language',
+                            JSON.stringify (CVBackUpData.Language)
+                          );
+                        }
+
+                        if (CVBackUpData.Education) {
+                          localStorage.setItem (
+                            'Education',
+                            JSON.stringify (CVBackUpData.Education)
+                          );
+                        }
+                        if (CVBackUpData.Experience) {
+                          localStorage.setItem (
+                            'Experience',
+                            JSON.stringify (CVBackUpData.Experience)
+                          );
+                        }if (CVBackUpData.Reference) {
+                          localStorage.setItem (
+                            'Reference',
+                            JSON.stringify (CVBackUpData.Reference)
+                          );
+                        }
+                        if (CVBackUpData.Training) {
+                          localStorage.setItem (
+                            'Training',
+                            JSON.stringify (CVBackUpData.Training)
+                          );
+                        }
+                        if (CVBackUpData.Projects) {
+                          localStorage.setItem (
+                            'Projects',
+                            JSON.stringify (CVBackUpData.Projects)
+                          );
+                        }
+                        if (CVBackUpData.Passion) {
+                          localStorage.setItem (
+                            'Passion',
+                            JSON.stringify (CVBackUpData.Passion)
+                          );
+                        }
+
+                        if (CVBackUpData.Volunteering) {
+                          localStorage.setItem (
+                            'Volunteering',
+                            JSON.stringify (CVBackUpData.Volunteering)
+                          );
+                        }
+                        if (CVBackUpData.IndustryExperience) {
+                          localStorage.setItem (
+                            'IndustryExperience',
+                            JSON.stringify (CVBackUpData.IndustryExperience)
+                          );
+                        }
+                        if (CVBackUpData.Strength) {
+                          localStorage.setItem (
+                            'Strength',
+                            JSON.stringify (CVBackUpData.Strength)
+                          );
+                        }
+                        if (CVBackUpData.FindMeOnline) {
+                          localStorage.setItem (
+                            'FindMeOnline',
+                            JSON.stringify (CVBackUpData.FindMeOnline)
+                          );
+                        }
+                        if (CVBackUpData.Template) {
+                          localStorage.setItem (
+                            'Template',
+                            JSON.stringify (CVBackUpData.Template)
+                          );
+                        }
+
+                        if (CVBackUpData.HeadingValueEducation) {
+                          localStorage.setItem (
+                            'HeadingValueEducation',
+                            JSON.stringify (CVBackUpData.HeadingValueEducation)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueExperience) {
+                          localStorage.setItem (
+                            'HeadingValueExperience',
+                            JSON.stringify (CVBackUpData.HeadingValueExperience)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueFindMeOnline) {
+                          localStorage.setItem (
+                            'HeadingValueFindMeOnline',
+                            JSON.stringify (
+                              CVBackUpData.HeadingValueFindMeOnline
+                            )
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueIndustryExperience) {
+                          localStorage.setItem (
+                            'HeadingValueIndustryExperience',
+                            JSON.stringify (
+                              CVBackUpData.HeadingValueIndustryExperience
+                            )
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueLanguage) {
+                          localStorage.setItem (
+                            'HeadingValueLanguage',
+                            JSON.stringify (CVBackUpData.HeadingValueLanguage)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueMyTime) {
+                          localStorage.setItem (
+                            'HeadingValueMyTime',
+                            JSON.stringify (CVBackUpData.HeadingValueMyTime)
+                          );
+                        }
+
+                        if (CVBackUpData.HeadingValuePassion) {
+                          localStorage.setItem (
+                            'HeadingValuePassion',
+                            JSON.stringify (CVBackUpData.HeadingValuePassion)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueProjects) {
+                          localStorage.setItem (
+                            'HeadingValueProjects',
+                            JSON.stringify (CVBackUpData.HeadingValueProjects)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueSkills) {
+                          localStorage.setItem (
+                            'HeadingValueSkills',
+                            JSON.stringify (CVBackUpData.HeadingValueSkills)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueStrength) {
+                          localStorage.setItem (
+                            'HeadingValueStrength',
+                            JSON.stringify (CVBackUpData.HeadingValueStrength)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueSummary) {
+                          localStorage.setItem (
+                            'HeadingValueSummary',
+                            JSON.stringify (CVBackUpData.HeadingValueSummary)
+                          );
+                        }
+
+                        if (CVBackUpData.HeadingValueTraining) {
+                          localStorage.setItem (
+                            'HeadingValueTraining',
+                            JSON.stringify (CVBackUpData.HeadingValueTraining)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueVolunteering) {
+                          localStorage.setItem (
+                            'HeadingValueVolunteering',
+                            JSON.stringify (
+                              CVBackUpData.HeadingValueVolunteering
+                            )
+                          );
+                        }
+                        if (CVBackUpData.ChartData.arraySlice) {
+                          localStorage.setItem (
+                            'arraySlice',
+                            JSON.stringify (CVBackUpData.ChartData.arraySlice)
+                          );
+                        }
+                        if (CVBackUpData.ChartData.InputFieldCartMyTime) {
+                          localStorage.setItem (
+                            'InputFieldCartMyTime',
+                            JSON.stringify (
+                              CVBackUpData.ChartData.InputFieldCartMyTime
+                            )
+                          );
+                        }
+                        if (CVBackUpData.ChartData.arraySeries) {
+                          localStorage.setItem (
+                            'arraySeries',
+                            JSON.stringify (CVBackUpData.ChartData.arraySeries)
+                          );
+                        }
+
+                        if (CVBackUpData.indexOfUserImageShape) {
+                          localStorage.setItem (
+                            'indexOfUserImageShape',
+                            JSON.stringify (CVBackUpData.indexOfUserImageShape)
+                          );
+                        }
+
+                        if (CVBackUpData.SectionArray) {
+                          localStorage.setItem (
+                            'SectionsArray',
+                            JSON.stringify (CVBackUpData.SectionArray)
+                          );
+                        }
+
+
+
+
+
+
+
+                        if (CVBackUpData.Awards) {
+                          localStorage.setItem (
+                            'Awards',
+                            JSON.stringify (CVBackUpData.Awards)
+                          );
+                        }
+                        if (CVBackUpData.Book) {
+                          localStorage.setItem (
+                            'Book',
+                            JSON.stringify (CVBackUpData.Book)
+                          );
+                        }
+                        if (CVBackUpData.Certification) {
+                          localStorage.setItem (
+                            'Certification',
+                            JSON.stringify (CVBackUpData.Certification)
+                          );
+                        }
+                        if (CVBackUpData.Custom) {
+                          localStorage.setItem (
+                            'Custom',
+                            JSON.stringify (CVBackUpData.Custom)
+                          );
+                        }
+                        if (CVBackUpData.Philosophy) {
+                          localStorage.setItem (
+                            'Philosophy',
+                            JSON.stringify (CVBackUpData.Philosophy)
+                          );
+                        }
+                        if (CVBackUpData.Publication) {
+                          localStorage.setItem (
+                            'Publication',
+                            JSON.stringify (CVBackUpData.Publication)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueAwards) {
+                          localStorage.setItem (
+                            'HeadingValueAwards',
+                            JSON.stringify (CVBackUpData.HeadingValueAwards)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueBook) {
+                          localStorage.setItem (
+                            'HeadingValueBook',
+                            JSON.stringify (CVBackUpData.HeadingValueBook)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueCertification) {
+                          localStorage.setItem (
+                            'HeadingValueCertification',
+                            JSON.stringify (CVBackUpData.HeadingValueCertification)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueCustom) {
+                          localStorage.setItem (
+                            'HeadingValueCustom',
+                            JSON.stringify (CVBackUpData.HeadingValueCustom)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValuePhilosophy) {
+                          localStorage.setItem (
+                            'HeadingValuePhilosophy',
+                            JSON.stringify (CVBackUpData.HeadingValuePhilosophy)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValuePublication) {
+                          localStorage.setItem (
+                            'HeadingValuePublication',
+                            JSON.stringify (CVBackUpData.HeadingValuePublication)
+                          );
+                        }
+                        if (CVBackUpData.HeadingValueReference) {
+                          localStorage.setItem (
+                            'HeadingValueReference',
+                            JSON.stringify (CVBackUpData.HeadingValueReference)
+                          );
+                        }
+
+                      }}
+                    />
+                    <RiDeleteBinLine
+                      className="DeleteIconBackUpCV backGroundColorDeleteIconBackUpCV "
+                      onClick={() => {
+                        HandleDeleteCvBackUp (props.id);
+                      }}
+                    />
+                  </div>
+
+                </div>}
+              <Header
+                HeaderSettingsList={CVBackUpData.HeaderSettingsList}
+                HeaderInputValue={CVBackUpData.HeaderInputValue}
+                image={CVBackUpData.UserImage}
+                Colors={CVBackUpData.Colors}
+                ImageShape={CVBackUpData.indexOfUserImageShape}
+              />
               <div
                 style={{
-                  width: CVBackUpData.Template ? '60%' : '100%',
+                  width: '100%',
+                  paddingTop: '12px',
+                  display: CVBackUpData.Template ? 'flex' : 'block',
+                  gap: '10px',
                 }}
               >
-                {LeftSection ()}
+                <div
+                  style={{
+                    width: CVBackUpData.Template ? '60%' : '100%',
+                  }}
+                >
+                  {LeftSection ()}
 
-              </div>
-              <div
-                style={{
-                  width: CVBackUpData.Template ? '40%' : '100%',
-                }}
-              >
-                {RightSection ()}
+                </div>
+                <div
+                  style={{
+                    width: CVBackUpData.Template ? '40%' : '100%',
+                  }}
+                >
+                  {RightSection ()}
 
+                </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

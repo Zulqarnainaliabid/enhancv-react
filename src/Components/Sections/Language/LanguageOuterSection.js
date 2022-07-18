@@ -186,7 +186,7 @@ export default function LanguageOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('LanguageOuterSection');
-                    contextData.HandleRemoveElement ('LanguageOuterSection');
+                    contextData.HandleRemoveElement ('Language');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

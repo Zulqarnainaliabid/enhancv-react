@@ -31,7 +31,7 @@ function AchievementsInnerSection (props) {
         }
         for (let i = 0; i < props.Sections.Right.length; i++) {
           if (props.Sections.Right[i] === 'Achievements') {
-            return '114px';
+            return '110px';
           }
         }
       }

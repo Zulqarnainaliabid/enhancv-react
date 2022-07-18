@@ -291,7 +291,7 @@ export default function EducationOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('EducationOuterSection');
-                    contextData.HandleRemoveElement ('EducationOuterSection');
+                    contextData.HandleRemoveElement ('Education');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

@@ -191,34 +191,34 @@ function CustomInnerSection (props) {
       temp[data.index].value.bullets = data.value;
     }
     props.setList ([...temp]);
-    localStorage.setItem ('Experience', JSON.stringify (temp));
+    localStorage.setItem ('Custom', JSON.stringify (temp));
   }
 
   function handleYearFrom (yearFrom) {
     props.list[props.index].date.yearFrom = yearFrom;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Custom', JSON.stringify (props.list));
   }
   function handleMonthFrom (monthFrom) {
     props.list[props.index].date.monthFrom = monthFrom;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Custom', JSON.stringify (props.list));
   }
   function HandleMonthOngoing (MonthOnGoing) {
     props.list[props.index].date.monthOngoing = MonthOnGoing;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Custom', JSON.stringify (props.list));
   }
   function handleYearOngoing (yearOnGoing) {
     props.list[props.index].date.yearOngoing = yearOnGoing;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Custom', JSON.stringify (props.list));
   }
 
   function HandleOngoing (toggle) {
     props.list[props.index].date.onGoing = toggle;
     props.setList ([...props.list]);
-    localStorage.setItem ('Experience', JSON.stringify (props.list));
+    localStorage.setItem ('Custom', JSON.stringify (props.list));
   }
   const SlashFrom = () => {
     if (
@@ -576,7 +576,7 @@ function CustomInnerSection (props) {
               </div>
 
               {props.list[props.index].toggleSwitch[0].selected &&
-                <div style={{marginLeft: '13px'}}>
+                <div style={{marginLeft: '13px',marginTop:"-9px"}}>
                   <div className="summary">
                     <RichTextEditor
                      placeHolder= {HandleGetPlaceHolder (

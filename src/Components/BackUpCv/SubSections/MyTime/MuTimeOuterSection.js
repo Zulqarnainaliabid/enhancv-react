@@ -19,7 +19,7 @@ export default function MyTimeOuterSection (props) {
         </div>
         <div>
           <div>
-            <ApexChart list={props.list} Colors={props.Colors} />
+            <ApexChart list={props.list} Colors={props.Colors} Sections={props.Sections}  Template={props.Template}/>
           </div>
         </div>
       </div>

@@ -124,10 +124,10 @@ p {
     font-size: 14px;
 }
 .textareaHeaderLinksTitle {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 16px;
     color: #384347;
-    font-weight: 500;
+    font-weight: 700;
 }
 .textareaHeaderLinksTitle::placeholder {
     color: #9ca1a3;
@@ -239,8 +239,8 @@ h1 {
     margin: 47px 0px 0px 0px;
 }
 .UserImg {
-    height: 140px;
-    width: 140px;
+    height: 150px;
+    width: 150px;
     object-fit: cover;
 }
 .backButtonsUserUploadPhoto {
@@ -717,8 +717,8 @@ input {
 }
 .HeadingNameBox {
     position: relative;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 16px;
+    padding-right: 16px;
     z-index: 1;
 }
 .SectionHeaderTextHolder {
@@ -728,6 +728,9 @@ input {
     text-transform: uppercase !important;
     font-weight: 700;
     margin-bottom: -6px;
+    height: 40px !important;
+    resize: none;
+    overflow: hidden !important;
 }
 .SectionHeaderTextHolder::placeholder {
     color: black;
@@ -751,7 +754,7 @@ input {
     border: 1px solid transparent;
     z-index: 1;
     box-sizing: border-box;
-    padding: 8px 16px;
+    padding: 4px 16px;
 }
 .outerWrapperBox:hover {
     border: 1px solid rgb(96, 213, 186);
@@ -774,6 +777,7 @@ input {
     font-size: 15px;
     color: #808080;
     font-weight: 700;
+    margin-top: -6px;
 }
 .TextHolderSectionLocationAndTime {
     font-size: 12px;
@@ -1004,11 +1008,6 @@ input[type="number"] {
     top: 0;
     bottom: 0;
     border-radius: 9px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    z-index: 9;
 }
 .BorderOuterSectionBackUpCv {
     border: 1px solid rgb(96, 213, 186);

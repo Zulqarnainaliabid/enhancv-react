@@ -196,7 +196,7 @@ export default function AchievementsOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('AchievementsOuterSection');
                     contextData.HandleRemoveElement (
-                      'AchievementsOuterSection'
+                      'Achievements'
                     );
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"

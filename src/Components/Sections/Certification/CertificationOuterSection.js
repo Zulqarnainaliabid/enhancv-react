@@ -185,7 +185,7 @@ export default function CertificationOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('CertificationOuterSection');
                     contextData.HandleRemoveElement (
-                      'CertificationOuterSection'
+                      'Certification'
                     );
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"

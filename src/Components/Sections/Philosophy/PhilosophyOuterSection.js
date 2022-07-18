@@ -183,7 +183,7 @@ export default function PhilosophyOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('PhilosophyOuterSection');
-                    contextData.HandleRemoveElement ('PhilosophyOuterSection');
+                    contextData.HandleRemoveElement ('Philosophy');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

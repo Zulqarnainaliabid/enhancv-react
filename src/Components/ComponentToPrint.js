@@ -618,7 +618,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
             style={{
               backgroundImage: `url(${contextData.BackImage})`,
               backgroundPosition: 'center',
-              backgroundSize: 'contain',
+              backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               boxShadow: DisplayShadow ? '' : '0 0 2px 0 #d4d4d4',
             }}

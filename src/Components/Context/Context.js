@@ -159,13 +159,28 @@ export const ContextProvider = ({children}) => {
 
   function HandleRemoveElement (data) {
     setRemoveSectionInArray (data);
+    console.log("hello kala====",data)
+    if(data==="Skill"){
+      data =  "SkillsOuterSection"
+    }else if(data==="TrainingCourses"){
+      data = "TrainingOuterSection"
+    }else if(data==="Project"){
+      data="ProjectsOuterSection"
+    }
+    else{
+      data = data + "OuterSection"
+    }
+   
+
     let UpperArray = localStorage.getItem ('ArrayUper');
     UpperArray = JSON.parse (UpperArray);
     let LowerArray = localStorage.getItem ('ArrayLower');
     LowerArray = JSON.parse (LowerArray);
     let TempData = null;
+
     if (LowerArray !== null) {
       for (let i = 0; i < LowerArray.length; i++) {
+        console.log("hrrrr===",LowerArray[i].name,"====",data)
         if (LowerArray[i].name === data) {
           TempData = LowerArray.splice (i, 1);
           break;

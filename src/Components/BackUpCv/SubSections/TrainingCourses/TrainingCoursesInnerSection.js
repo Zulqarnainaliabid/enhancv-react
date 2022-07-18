@@ -18,7 +18,7 @@ function TrainingInnerSection (props) {
         }
         for (let i = 0; i < props.Sections.Right.length; i++) {
           if (props.Sections.Right[i] === 'TrainingCourses') {
-            return '114px';
+            return '110px';
           }
         }
       }

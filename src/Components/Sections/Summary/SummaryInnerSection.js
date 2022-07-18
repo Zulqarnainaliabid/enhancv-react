@@ -274,7 +274,8 @@ function SummaryInnerSection (props) {
               useUpperCase={false}
               UpperCaseHeaderInputField={false}
             />}
-          <div style={{position: 'relative', display: 'flex',marginLeft:"12px"}}>
+          <div style={{position: 'relative', display: 'flex',
+          marginLeft:props.list[props.index].toggleSwitch[0].selected?"12px":"unset"}}>
             <div
               style={{width: '100%'}}
               className="d-flex flex-column"
@@ -284,6 +285,7 @@ function SummaryInnerSection (props) {
             >
               <div
                 className={`${props.list[props.index].toggleSwitch[0].selected ? 'summary' : ''}`}
+                // style={{marginTop:"-5px"}}
               >
                  
                 <RichTextEditor

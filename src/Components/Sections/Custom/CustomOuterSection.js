@@ -272,7 +272,7 @@ export default function CustomOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('CustomOuterSection');
-                    contextData.HandleRemoveElement ('CustomOuterSection');
+                    contextData.HandleRemoveElement ('Custom');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

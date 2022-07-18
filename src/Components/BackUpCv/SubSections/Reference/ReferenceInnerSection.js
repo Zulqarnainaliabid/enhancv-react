@@ -6,6 +6,25 @@ import Editor from 'react-medium-editor';
 require ('medium-editor/dist/css/medium-editor.css');
 require ('medium-editor/dist/css/themes/default.css');
 function ReferenceInnerSection (props) {
+
+  function HandleEditorWidth () {
+    if (!props.Template) {
+      return '355px';
+    } else {
+      if (props.Sections !== null) {
+        for (let i = 0; i < props.Sections.Left.length; i++) {
+          if (props.Sections.Left[i] === 'Volunteering') {
+            return '179px';
+          }
+        }
+        for (let i = 0; i < props.Sections.Right.length; i++) {
+          if (props.Sections.Right[i] === 'Volunteering') {
+            return '110px';
+          }
+        }
+      }
+    }
+  }
   return (
     <div>
       <div>
@@ -29,7 +48,7 @@ function ReferenceInnerSection (props) {
               />
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
-                  <div className="summary">
+                  <div className="summary" style={{width: HandleEditorWidth ()}}>
                     <Editor
                       className="InputFieldBachUpCv"
                       options={{

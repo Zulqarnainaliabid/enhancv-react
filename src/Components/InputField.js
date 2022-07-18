@@ -38,9 +38,7 @@ const InputField = React.forwardRef ((props, ref) => {
       onBlur={HandleBlur}
       className={`textarea 
         ${ActiveOpacity ? 'OpacityInPlaceHolder' : ''}
-
         ${props.selectedColor ? contextData.SelectedColor : ''}
-
         ${props.otherStyle}
         ${props.color}
         `}

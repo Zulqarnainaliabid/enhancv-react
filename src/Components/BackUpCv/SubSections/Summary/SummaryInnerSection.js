@@ -2,10 +2,12 @@ import React from 'react';
 import styles from '../../../Style';
 import injectSheet from 'react-jss';
 import Editor from 'react-medium-editor';
+import TextareaAutosize from 'react-autosize-textarea';
 require ('medium-editor/dist/css/medium-editor.css');
 require ('medium-editor/dist/css/themes/default.css');
 
 function SummaryInnerSection (props) {
+  console.log("value...",props.list[props.index])
   function HandleEditorWidth () {
     if (!props.Template) {
       return '355px';
@@ -18,7 +20,7 @@ function SummaryInnerSection (props) {
         }
         for (let i = 0; i < props.Sections.Right.length; i++) {
           if (props.Sections.Right[i] === 'Summary') {
-            return '114px';
+            return '110px';
           }
         }
       }
@@ -34,6 +36,15 @@ function SummaryInnerSection (props) {
             position: 'relative',
           }}
         >
+          <TextareaAutosize
+                className="InputFieldBachUpCv"
+                placeholder="Your Unique Talent"
+                draggable="false"
+                value={props.list[props.index].value.description}
+                onChange={() => {
+                  console.log ('onchange');
+                }}
+              />
           <div style={{position: 'relative', display: 'flex'}}>
             <div style={{width: '100%'}} className="d-flex flex-column">
               <div
@@ -48,7 +59,7 @@ function SummaryInnerSection (props) {
                       hideOnClick: true,
                     },
                   }}
-                  text={props.list[props.index].title}
+                  text={props.list[props.index].value.bullets}
                   onChange={() => {
                     console.log ('onchange');
                   }}
