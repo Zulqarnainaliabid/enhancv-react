@@ -525,7 +525,7 @@ function VolunteeringInnerSection (props) {
                   />}
                 {props.list[props.index].toggleSwitch[3].selected &&
                   <div style={{marginLeft: '13px'}}>
-                    <div className="summary" style={{width: '100%',marginTop:"-9px"}}>
+                    <div className="summary" style={{width: '100%',marginTop:"-7px"}}>
                       <RichTextEditor
                         placeHolder={HandleGetPlaceHolder (
                           props.list[props.index].value.bullets

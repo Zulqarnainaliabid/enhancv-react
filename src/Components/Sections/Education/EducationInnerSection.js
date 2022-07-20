@@ -475,7 +475,7 @@ function EducationInnerSection (props) {
                 </div>
               </div>
               {props.list[props.index].toggleSwitch[3].selected &&
-                <div style={{marginLeft: '13px',marginTop:"-9px"}}>
+                <div style={{marginLeft: '13px',marginTop:"-7px"}}>
                   <div className="summary">
                     <RichTextEditor
                       placeHolder={HandleGetPlaceHolder (

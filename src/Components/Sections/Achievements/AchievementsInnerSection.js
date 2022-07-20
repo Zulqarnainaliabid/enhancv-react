@@ -18,6 +18,9 @@ import injectSheet from 'react-jss';
 import InputField from '../../InputField';
 import {SlideDown} from 'react-slidedown';
 import RichTextEditor from '../../RichTextEditor';
+import Editor from 'react-medium-editor';
+require ('medium-editor/dist/css/medium-editor.css');
+require ('medium-editor/dist/css/themes/default.css');
 function AchievementsInnerSection (props) {
   const contextData = useContext (Context);
   const [UpdateNumber, setUpdateNumber] = useState (0);
@@ -421,8 +424,9 @@ function AchievementsInnerSection (props) {
                 UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
-                <div style={{marginLeft: '13px',marginTop:"-9px"}}>
-                  <div className="summary">
+                <div style={{marginLeft: '13px',marginTop:"-7px"}}>
+                  <div className="summary"> 
+                  
                     <RichTextEditor
                     placeHolder=
                     {HandleGetPlaceHolder (

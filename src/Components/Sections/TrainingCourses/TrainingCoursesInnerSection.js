@@ -276,7 +276,7 @@ function TrainingInnerSection (props) {
                 UpperCaseHeaderInputField={false}
               />
               {props.list[props.index].toggleSwitch[0].selected &&
-                <div style={{marginLeft: '13px',marginTop:"-9px"}}>
+                <div style={{marginLeft: '13px',marginTop:"-7px"}}>
                   <div className="summary">
                     <RichTextEditor
                       placeHolder={HandleGetPlaceHolder (
