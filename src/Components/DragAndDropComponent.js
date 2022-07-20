@@ -98,10 +98,6 @@ function DragAndDropComponent (props) {
 
   function HandleRemoveElement (data) {
     contextData.HandleRemoveElement (data);
-    console.log("before hi",data)
-   
-    
-    console.log("hi",data)
     let value = localStorage.getItem ('SectionsArray');
     localStorage.removeItem(data)
     value = JSON.parse (value);
@@ -109,7 +105,6 @@ function DragAndDropComponent (props) {
       if (value.Left.length !== 0) {
        
         for (let j = 0; j < value.Left.length; j++) {
-          console.log("hi--",value.Left[j],"==",data)
           if (value.Left[j] === data) {
             value.Left.splice (j, 1);
             break;
@@ -118,9 +113,7 @@ function DragAndDropComponent (props) {
         localStorage.setItem ('SectionsArray', JSON.stringify (value));
       } else if (value.Right.length !== 0) {
         for (let i = 0; i < value.Right.length; i++) {
-          console.log("hi--===",value.Right[i],"==",data)
           if (value.Right[i] === data) {
-            console.log("right")
             value.Right.splice (i, 1);
             break;
           }

@@ -2,6 +2,7 @@ import React from 'react';
 import SkillsInnerSection from './SkillInnerSection';
 import TextareaAutosize from 'react-autosize-textarea';
 export default function SkillsOuterSection (props) {
+  console.log("hello Lakala====",props.list)
   return (
     <div>
       <div className="outerWrapperCompleteBox">

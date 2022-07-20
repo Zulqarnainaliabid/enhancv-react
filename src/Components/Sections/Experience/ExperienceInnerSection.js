@@ -109,7 +109,7 @@ function ExperienceInnerSection (props) {
     props.setList ([...props.list]);
     localStorage.setItem ('Experience', JSON.stringify (props.list));
   }
-  function handleInputData (data) {
+  function handleInputData (data,innerIndex) {
     let temp = props.list;
     if (data.name === 'title') {
       temp[data.index].value.title = data.value;
@@ -120,9 +120,9 @@ function ExperienceInnerSection (props) {
     } else if (data.name === 'url') {
       temp[data.index].value.url = data.value;
     } else if (data.name === 'companyDescription') {
-      temp[data.index].value.companyDescription = data.value;
+      temp[data.index].DescriptionArray[innerIndex].companyDescription = data.value;
     } else if (data.name === 'bullets') {
-      temp[data.index].value.bullets = data.value;
+      temp[data.index].DescriptionArray[innerIndex].bullets = data.value;
     }
     props.setList ([...temp]);
     localStorage.setItem ('Experience', JSON.stringify (temp));
@@ -242,7 +242,10 @@ function ExperienceInnerSection (props) {
   }
   function HandlerAddingDescription () {
     let temp = props.list;
-    temp[props.index].DescriptionArray.push (1);
+    temp[props.index].DescriptionArray.push ( {
+      companyDescription: '',
+      bullets: '',
+    });
     props.setList ([...temp]);
     localStorage.setItem ('Experience', JSON.stringify (temp));
     setCursurPointer ('pointer');
@@ -251,7 +254,7 @@ function ExperienceInnerSection (props) {
   function HandlerDeletingDescription () {
     let temp = props.list;
     if (temp[props.index].DescriptionArray.length > 1) {
-      temp[props.index].DescriptionArray.pop (1);
+      temp[props.index].DescriptionArray.pop ();
       props.setList ([...temp]);
       localStorage.setItem ('Experience', JSON.stringify (temp));
     } else {
@@ -522,8 +525,9 @@ function ExperienceInnerSection (props) {
                       <InputField
                         placeHolder={'Company Description'}
                         otherStyle={'Bullets'}
-                        value={props.list[props.index].value.companyDescription}
+                        value={props.list[props.index].DescriptionArray[index].companyDescription}
                         index={props.index}
+                        innerIndex={index}
                         name={'companyDescription'}
                         handleInputData={handleInputData}
                         useUpperCase={false}
@@ -537,8 +541,9 @@ function ExperienceInnerSection (props) {
                               props.list[props.index].value.bullets
                             )}
                             otherStyle={'Bullets'}
-                            value={props.list[props.index].value.bullets}
+                            value={props.list[props.index].DescriptionArray[index].bullets}
                             index={props.index}
+                            innerIndex={index}
                             name={'bullets'}
                             handleInputData={handleInputData}
                             EditorWidth={HandleEditorWidth ()}

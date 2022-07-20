@@ -180,7 +180,7 @@ export function HeaderContent () {
                 className="d-flex align-items-center outerWrapperHeaderFieldsLinks"
                
               >
-                <div className={`HeaderIcons ${contextData.SelectedColor}`}>
+                <div className={`HeaderIcons ${contextData.SelectedColor}`} style={{fontWeight:"bolder"}}>
                   @
                 </div>
                 <InputField
@@ -202,6 +202,7 @@ export function HeaderContent () {
               >
                 <LinkHeader
                   className={`HeaderIcons ${contextData.SelectedColor}`}
+                  style={{fontSize:"16px"}}
                 />
                 <InputField
                   placeHolder={'Website/Link'}

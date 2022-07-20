@@ -108,6 +108,7 @@ p {
     background-color: transparent;
 }
 .textareaHeaderTitle {
+    margin-left:-2px;
     font-size: 42px;
     line-height: 50px;
     color: $ColorBlack;
@@ -172,7 +173,7 @@ textarea:focus {
     background-color: #92051a;
 }
 .outerWrapperModal {
-    padding: 0px 36px 0px 36px;
+    // padding: 0px 36px 0px 36px;
     border-radius: 10px;
     background-color: $WhiteColor;
     z-index: 9;
@@ -192,7 +193,7 @@ h1 {
     padding-bottom: 30px;
 }
 .outerWrapperModalAddSections {
-    width: 1293px;
+    width: 1170px;
 }
 .facebookIconModal {
     margin: 4px 0px 0px 8px;
@@ -203,9 +204,6 @@ h1 {
     top: -80px;
     bottom: 0;
     z-index: 7;
-}
-.outerWrapperCloseIconModal {
-    margin: 20px 0 0 0;
 }
 .PhotoLabelModal {
     color: #b2b4b6;
@@ -839,11 +837,11 @@ input {
     font-weight: 700;
 }
 .outerContainerSection {
-    padding: 0px 30px 51px 30px;
+    // padding: 0px 30px 51px 30px;
 }
 .HeadingSection {
     text-align: center;
-    font-size: 33px;
+    font-size: 25px;
 }
 .subHeadingSection {
     text-align: center;

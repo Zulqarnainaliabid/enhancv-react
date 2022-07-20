@@ -48,9 +48,35 @@ function Home () {
   //     contextData.HandleToggleModal ('SignIn');
   //     contextData.HandleShowModal (true);
   //     contextData.HandleBackGroundColorOfModal (true);
-  //   }
+  //   } 
   // }, []);
 
+ async function handleBackUpv(){
+  console.log("i888==")
+  setLoading (true);
+  setBackUpCvToggle (false);
+    let value = localStorage.getItem ('Users');
+      value = JSON.parse (value);
+      if (value) {
+        let data = await HandleGetCvBackUp ();
+        setBackUpCvToggle (true);
+        if (data.data) {
+          setLoading (false);
+        }
+        setBackUpCV ([...data.data]);
+      } else {
+        contextData.HandleToggleModal ('SignIn');
+        contextData.HandleShowModal (true);
+        contextData.HandleBackGroundColorOfModal (true);
+      } 
+  }
+ useEffect(() => {
+   if(contextData.DeleteBackUpCv){
+    handleBackUpv()
+   }
+   contextData.handleDeleteBackUpCv(null)
+ }, [contextData.DeleteBackUpCv])
+ 
   function HandleRemovePreviousData () {
     setBackUpCvToggle (false);
 
@@ -283,7 +309,9 @@ function Home () {
             />
           </CSSTransition>
           <div style={{position: 'relative'}}>
-            <Resume />
+
+            <Resume  handleBackUpv={handleBackUpv}/>
+
             {contextData.DisplayDropDownAlertMessage &&
               <div className="OuterWrapperDropDownAlertMessage">
                 <DropDown ContentDisplay={true} />

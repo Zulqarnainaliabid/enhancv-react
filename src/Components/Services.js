@@ -291,19 +291,19 @@ function GetPreviousData () {
     CVData.Summary = Summary;
   }
 
-  let Training = localStorage.getItem ('Training');
+  let Training = localStorage.getItem ('TrainingCourses');
   Training = JSON.parse (Training);
   if (Training) {
     CVData.Training = Training;
   }
 
-  let FindMeOnline = localStorage.getItem ('FindMeOnline');
+  let FindMeOnline = localStorage.getItem ('FindMe');
   FindMeOnline = JSON.parse (FindMeOnline);
   if (FindMeOnline) {
     CVData.FindMeOnline = FindMeOnline;
   }
 
-  let Projects = localStorage.getItem ('Projects');
+  let Projects = localStorage.getItem ('Project');
   Projects = JSON.parse (Projects);
   if (Projects) {
     CVData.Projects = Projects;
@@ -480,7 +480,7 @@ function GetPreviousData () {
     CVData.Passion = Passion;
   }
 
-  let Skills = localStorage.getItem ('Skills');
+  let Skills = localStorage.getItem ('Skill');
   Skills = JSON.parse (Skills);
   if (Skills) {
     CVData.Skills = Skills;
@@ -512,17 +512,20 @@ export async function HandleUpdateCV () {
 
 export async function HandleDeleteCvBackUp (id) {
   const AuthStr = 'Bearer '.concat (GetToken ());
+  let Res = null
   axios
     .delete (`${BaseURL}/api/CVBackup/${id}`, {
       headers: {Authorization: AuthStr},
     })
     .then (() => {
       console.log ('success');
-      window.location.reload (false);
+      Res = "success"
     })
     .catch (error => {
       console.log ('error', error);
+      Res = "error"
     });
+    return Res
 }
 
 export async function HandlePutCvBackUp (id) {

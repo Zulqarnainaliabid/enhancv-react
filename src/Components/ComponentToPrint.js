@@ -290,7 +290,7 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
       return () => clearTimeout (timer);
     },
     [DisplayBottomCurve, DisplayShadow]
-  );
+  ); 
   function HandleBackGroundColor () {
     setDisplayBackGroundColor (false);
     contextData.handleUpdateBachGroundHighLitter ();
@@ -305,6 +305,13 @@ export const ComponentToPrint = React.forwardRef ((props, ref) => {
     e.stopPropagation ();
     console.log ('child');
   }
+ 
+  useEffect(() => {
+    if(contextData.RemoveBackGround){
+      HandleBackGroundColor()
+    }
+    contextData.handleRemoveBackGround(null)
+  }, [contextData.RemoveBackGround])
 
   function HandleRemoveElement (data) {
     let value = localStorage.getItem ('SectionsArray');

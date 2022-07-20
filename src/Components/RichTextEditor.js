@@ -15,7 +15,7 @@ function RichTextEditor (props) {
             name: props.name,
             value: text,
           };
-          props.handleInputData (data);
+          props.handleInputData (data,props.innerIndex);
         }}
       />
     </div>

@@ -51,7 +51,7 @@ const InputField = React.forwardRef ((props, ref) => {
           name: props.name,
           value: ev.target.value,
         };
-        props.handleInputData (data);
+        props.handleInputData (data,props.innerIndex);
       }}
     />
   );

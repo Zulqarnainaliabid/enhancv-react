@@ -50,7 +50,7 @@ function Section (props) {
   const handleMouseOut = useCallback (() => {
     setHovering (false);
   }, []);
-
+console.log("kaoooo-=============================",CVBackUpData)
   function LeftSection () {
     if (CVBackUpData.SectionArray.Left.length === 0 && CVBackUpData.Template) {
       return (
@@ -1069,12 +1069,13 @@ function Section (props) {
                     />
                     <RiDeleteBinLine
                       className="DeleteIconBackUpCV backGroundColorDeleteIconBackUpCV "
-                      onClick={() => {
-                        HandleDeleteCvBackUp (props.id);
+                      onClick={async () => { 
+                        contextData.handleDeleteBackUpCv(true)
+                       let res = await HandleDeleteCvBackUp (props.id);
+                       
                       }}
                     />
                   </div>
-
                 </div>}
               <Header
                 HeaderSettingsList={CVBackUpData.HeaderSettingsList}

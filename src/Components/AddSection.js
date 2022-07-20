@@ -28,6 +28,87 @@ let data = [
     labelLowerArray: 'Remove section',
     label: 'Add to resume',
     Hover: false,
+    imag: Education,
+    name: 'EducationOuterSection',
+    labelName: 'Education',
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Achievements,
+    name: 'AchievementsOuterSection',
+    labelName: 'Achievements',
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: skill,
+    name: 'SkillsOuterSection',
+    labelName: 'skill',
+  },
+  {
+    labelLowerArray: 'Remove  section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: findme,
+    name: 'FindMeOuterSection',
+    labelName: 'FindMe',
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: summary,
+    name: 'SummaryOuterSection',
+    labelName: 'Summary',
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: strength,
+    name: 'StrengthOuterSection',
+    labelName: 'Strength',
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: Experience,
+    name: 'ExperienceOuterSection',
+    labelName: 'Experience',
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: volunteering,
+    name: 'VolunteeringOuterSection',
+    labelName: 'Volunteering',
+  },
+
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: project,
+    name: 'ProjectsOuterSection',
+    labelName: 'Project',
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
+    imag: training,
+    name: 'TrainingOuterSection',
+    labelName: 'Training',
+  },
+  {
+    labelLowerArray: 'Remove section',
+    label: 'Add to resume',
+    Hover: false,
     imag: Philosophy,
     name: 'PhilosophyOuterSection',
     labelName: 'Philosophy',
@@ -80,39 +161,6 @@ let data = [
     name: 'ReferenceOuterSection',
     labelName: 'Reference',
   },
-
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: Achievements,
-    name: 'AchievementsOuterSection',
-    labelName: 'Achievements',
-  },
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: skill,
-    name: 'SkillsOuterSection',
-    labelName: 'skill',
-  },
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: project,
-    name: 'ProjectsOuterSection',
-    labelName: 'Project',
-  },
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: training,
-    name: 'TrainingOuterSection',
-    labelName: 'Training',
-  },
   {
     labelLowerArray: 'Remove section',
     label: 'Add to resume',
@@ -145,55 +193,6 @@ let data = [
     name: 'IndustryExperienceOuterSection',
     labelName: 'Industry',
   },
-  {
-    labelLowerArray: 'Remove  section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: findme,
-    name: 'FindMeOuterSection',
-    labelName: 'FindMe',
-  },
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: summary,
-    name: 'SummaryOuterSection',
-    labelName: 'Summary',
-  },
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: strength,
-    name: 'StrengthOuterSection',
-    labelName: 'Strength',
-  },
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: volunteering,
-    name: 'VolunteeringOuterSection',
-    labelName: 'Volunteering',
-  },
-
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: Experience,
-    name: 'ExperienceOuterSection',
-    labelName: 'Experience',
-  },
-  {
-    labelLowerArray: 'Remove section',
-    label: 'Add to resume',
-    Hover: false,
-    imag: Education,
-    name: 'EducationOuterSection',
-    labelName: 'Education',
-  },
 ];
 
 export function Section2ndBox (props) {
@@ -213,19 +212,19 @@ export function Section2ndBox (props) {
   }
 
   return (
-    <div style={{position: 'relative'}} className="Section">
-      <div  
+    <div style={{position: 'relative'}} className="Sections">
+      <div
         onMouseEnter={() => {
-          let temp = []; 
+          let temp = [];
           temp = props.ArrayLower;
           temp[props.index].Hover = true;
           props.setArrayLower ([...temp]);
         }}
       >
-        <div style={{width: '282px', height: '150px',}}>
+        <div style={{width: '282px', height: '150px'}}>
           <img
             src={props.item.imag}
-            style={{width: '100%',height:"100%", objectFit: 'contain'}}
+            style={{width: '100%', height: '100%', objectFit: 'contain'}}
           />
         </div>
         {props.item.Hover &&
@@ -260,7 +259,7 @@ export function SectionBox (props) {
     localStorage.setItem ('ArrayLower', JSON.stringify (ArrayLower));
   }
   return (
-    <div style={{position: 'relative'}} className="Section">
+    <div style={{position: 'relative'}} className="Sections">
       <div
         onMouseEnter={() => {
           let temp = [];
@@ -269,10 +268,10 @@ export function SectionBox (props) {
           props.setArrayUper ([...temp]);
         }}
       >
-        <div style={{width: '282px', height: '150px'}}>
+        <div style={{width: '247px', height: '150px'}}>
           <img
             src={props.item.imag}
-            style={{width: '100%',height:"100%", objectFit: 'contain'}}
+            style={{width: '100%', height: '100%', objectFit: 'contain'}}
             alt="Logo"
           />
         </div>
@@ -301,6 +300,8 @@ export function SectionBox (props) {
                 HandlePopEvent ();
                 contextData.HandleAddSectionName (props.item.name);
                 contextData.handleAddSection (props.item.name);
+                contextData.HandleBackGroundColorOfModal (false);
+                contextData.HandleShowModal (false);
               }}
             >
               {props.item.label}
@@ -326,6 +327,10 @@ export default function AddSection (props) {
     if (localStorage.getItem ('ArrayUper') !== null) {
       let value = localStorage.getItem ('ArrayUper');
       value = JSON.parse (value);
+      console.log ('h999===', value);
+      let temp = [];
+
+      console.log ('hei', temp);
       setArrayUper (value);
     }
     if (localStorage.getItem ('ArrayLower') !== null) {
@@ -340,7 +345,7 @@ export default function AddSection (props) {
       setMidButton (true);
     }
   }, []);
-  
+
   function HandleRemoveSection (name) {
     contextData.HandleRemoveElement (name);
   }
@@ -354,10 +359,11 @@ export default function AddSection (props) {
         </div>
         <div className="outerWraperSection">
           <div
-            className="d-flex flex-wrap justify-content-center"
-            style={{gap: '25px'}}
+            className="d-flex flex-wrap"
+            style={{gap: '24px'}}
           >
             {ArrayUper.map ((item, index) => {
+              // console.log("hello==]]]===",item)
               return (
                 <SectionBox
                   key={index}

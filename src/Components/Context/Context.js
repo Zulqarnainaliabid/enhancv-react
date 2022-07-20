@@ -38,6 +38,8 @@ export const ContextProvider = ({children}) => {
   const [DisplayNaveBarDropDown, setDisplayNaveBarDropDown] = useState(false)
   const [UpdateLoginSuccess, setUpdateLoginSuccess] = useState(false)
   const [UpdateFontFamily, setUpdateFontFamily] = useState(false)
+  const [RemoveBackGround, setRemoveBackGround] = useState(null)
+  const [DeleteBackUpCv, setDeleteBackUpCv] = useState(null)
 
 
   function UpdateHandleLoginSuccess(data){
@@ -208,6 +210,13 @@ export const ContextProvider = ({children}) => {
   function HandleDisplayLoading(Toggle){
          setDisplayLoading(Toggle)
   }
+
+  function handleRemoveBackGround(toggle){
+    setRemoveBackGround(toggle)
+  }
+  function handleDeleteBackUpCv(toggle){
+    setDeleteBackUpCv(toggle)
+  }
   return (
     <Context.Provider
       value={{
@@ -267,6 +276,10 @@ export const ContextProvider = ({children}) => {
         UpdateLoginSuccess,
         HandleUpdateFontFamily,
         UpdateFontFamily,
+        handleRemoveBackGround,
+        RemoveBackGround,
+        handleDeleteBackUpCv,
+        DeleteBackUpCv
       }}
     >
       {children}

@@ -8,7 +8,6 @@ function App (props) {
 
   useEffect (
     () => {
-      console.log ('calling');
       let value = localStorage.getItem ('FontFamily');
       value = JSON.parse (value);
       if (value !== null) {
@@ -17,21 +16,12 @@ function App (props) {
     },
     [contextData.UpdateFontFamily]
   );
-  {
-    /* <div
-        contentEditable={true}
-        type="text"
-        placeholder="hello"
-        onSelect={(e) => {
-          console.log ('hello,,',e);
-        }}
-      >
-
-        kkkk
-      </div> */
-  }
   return (
-    <div className={FontFamily}>
+    <div className={FontFamily}
+    onClick={()=>{
+      console.log("hrrrrr--==")
+      contextData.handleRemoveBackGround (true);
+    }}>
       <BrowserRouter>
         <Routing />
       </BrowserRouter>

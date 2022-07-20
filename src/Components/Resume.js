@@ -205,8 +205,9 @@ export default function Resume (props) {
             <div
               className="d-flex align-items-center FontWeight RearrangeButtons CommonCssClassCursorPointer"
               style={{gap: '6px'}}
-              onClick={() => {
-                window.location.reload();
+              onClick={() => { 
+                // window.location.reload();
+                props.handleBackUpv()
               }}
             >
               <BsPencil style={{fontSize: '17px'}} />

@@ -175,7 +175,7 @@ function SkillsInnerSection (props) {
               className="DeleteIcon CommonCssClassCursorPointer"
               onClick={HandlerAddingToolAndTechnology}
             />
-          </div> 
+          </div>
           <div
             className="outerWrapperHeaderIcons"
             style={{cursor: CursurPointer}}
@@ -349,14 +349,46 @@ function SkillsInnerSection (props) {
                 />
               </div>}
           </div>
-          <div style={{display: 'flex', flexWrap: 'wrap',gap:"9px",marginTop:"12px",marginBottom:"12px"}}>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '9px',
+              marginTop: '12px',
+              marginBottom: '12px',
+            }}
+          >
             {props.list[
               props.index
             ].value.ToolAndTechnology.map ((item, index) => {
+              let autoFocus = true
               return (
                 <div key={index}>
                   <AutosizeInput
+                    autoFocus={autoFocus}
+                    
                     value={item.text}
+                    onKeyUp={event => {
+                      if (event.keyCode === 8) {
+                        if (event.target.value) {
+                          console.log ('yes');
+                        } else {
+                          console.log ('no');
+                          HandlerMinusToolAndTechnology ();
+                        }
+                      }
+                    }}
+                    onKeyDown={event => {
+                      if (event.key === 'Enter') {
+                        if (event.target.value) {
+                          console.log ('yes');
+                          // item.textInput.focus();
+                          HandlerAddingToolAndTechnology ();
+                        } else {
+                          console.log ('no');
+                        }
+                      }
+                    }}
                     onFocus={() => {
                       props.list[props.index].value.ToolAndTechnology[
                         index
@@ -382,7 +414,7 @@ function SkillsInnerSection (props) {
                         ? {
                             // textAlign: 'center',
                             border: '1px solid #A9A9A9',
-                            display:"block",
+                            display: 'block',
                             paddingTop: '3px',
                             paddingBottom: '3px',
                             paddingLeft: '8px',
@@ -391,10 +423,10 @@ function SkillsInnerSection (props) {
                             color: 'black',
                             fontWeight: '700',
                             overflow: 'hidden',
-                            minWidth: '20px', 
+                            minWidth: '20px',
                             maxWidth: '350px',
-                            lineHeight:"12px",
-                            margin:"auto",
+                            lineHeight: '12px',
+                            margin: 'auto',
                             opacity: props.list[props.index].value
                               .ToolAndTechnology[index].selected
                               ? '0.5'
@@ -403,16 +435,16 @@ function SkillsInnerSection (props) {
                         : {
                             // textAlign: 'center',
                             borderBottom: '1px solid #A9A9A9',
-                            display:"block",
+                            display: 'block',
                             paddingLeft: '5px',
-                            paddingRight:"5px",
+                            paddingRight: '5px',
                             color: 'black',
                             fontSize: '14px',
                             fontWeight: '700',
                             overflow: 'hidden',
                             minWidth: '20px',
                             maxWidth: '350px',
-                            margin:"auto",
+                            margin: 'auto',
                             opacity: props.list[props.index].value
                               .ToolAndTechnology[index].selected
                               ? '0.5'

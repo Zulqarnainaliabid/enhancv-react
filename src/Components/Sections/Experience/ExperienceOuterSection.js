@@ -11,7 +11,12 @@ export default function ExperienceOuterSection (props) {
   const [array, setState] = useState ([
     {
       selected: false,
-      DescriptionArray:[1],
+      DescriptionArray:[
+        {
+        companyDescription: '',
+        bullets: '',
+      }
+    ],
       toggleSwitch: [
         {name: 'Show Title', selected: true},
         {name: 'Show CompanyName', selected: true},
@@ -27,8 +32,6 @@ export default function ExperienceOuterSection (props) {
         timePeriod: '',
         location: '',
         url: '',
-        companyDescription: '',
-        bullets: '',
       },
       date: {
         monthFrom: '',
@@ -125,7 +128,12 @@ export default function ExperienceOuterSection (props) {
       }
       array.push ({
         selected: false,
-        DescriptionArray:[1],
+        DescriptionArray:[
+          {
+            companyDescription: '',
+            bullets: '',
+          }
+        ],
         toggleSwitch: [
           {name: 'Show Title', selected: true},
           {name: 'Show CompanyName', selected: true},
@@ -141,8 +149,6 @@ export default function ExperienceOuterSection (props) {
           timePeriod: '',
           location: '',
           url: '',
-          companyDescription: '',
-          bullets: '',
         },
         date: {
           monthFrom: '',
