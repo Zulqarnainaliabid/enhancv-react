@@ -181,6 +181,7 @@ export default function ReferenceOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('ReferenceOuterSection');
                     contextData.HandleRemoveElement ('Reference');
+                    localStorage.removeItem("Reference")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

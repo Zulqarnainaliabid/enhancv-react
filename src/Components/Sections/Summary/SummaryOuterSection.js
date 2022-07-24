@@ -189,6 +189,7 @@ export default function SummaryOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('SummaryOuterSection');
                     contextData.HandleRemoveElement ('Summary');
+                    localStorage.removeItem("Summary")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

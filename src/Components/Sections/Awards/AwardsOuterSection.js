@@ -189,6 +189,7 @@ export default function AwardsOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('AwardsOuterSection');
+                    localStorage.removeItem("Awards")
                     contextData.HandleRemoveElement ('Awards');
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"

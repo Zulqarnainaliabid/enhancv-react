@@ -187,6 +187,7 @@ export default function CertificationOuterSection (props) {
                     contextData.HandleRemoveElement (
                       'Certification'
                     );
+                    localStorage.removeItem("Certification")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

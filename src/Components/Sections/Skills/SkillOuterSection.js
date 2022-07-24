@@ -181,6 +181,7 @@ export default function SkillsOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('SkillsOuterSection');
                     contextData.HandleRemoveElement ('Skills');
+                    localStorage.removeItem("Skill")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

@@ -33,37 +33,16 @@ function Home () {
     }, 1000);
     return () => clearTimeout (timer);
   }, []);
-
-  // useEffect (async () => {
-  //   let value = localStorage.getItem ('Users');
-  //   value = JSON.parse (value);
-  //   if (value) {
-  //     setBackUpCvToggle (true);
-  //     let data = await HandleGetCvBackUp ();
-  //     if (data.data) {
-  //       setLoading (false);
-  //     }
-  //     setBackUpCV ([...data.data]);
-  //   } else {
-  //     contextData.HandleToggleModal ('SignIn');
-  //     contextData.HandleShowModal (true);
-  //     contextData.HandleBackGroundColorOfModal (true);
-  //   } 
-  // }, []);
-
  async function handleBackUpv(){
-  console.log("i888==")
   setLoading (true);
-  setBackUpCvToggle (false);
+  setBackUpCvToggle (true);
     let value = localStorage.getItem ('Users');
       value = JSON.parse (value);
       if (value) {
         let data = await HandleGetCvBackUp ();
-        setBackUpCvToggle (true);
-        if (data.data) {
-          setLoading (false);
-        }
         setBackUpCV ([...data.data]);
+        setLoading (false);
+        setdisplayPreLoader(false)
       } else {
         contextData.HandleToggleModal ('SignIn');
         contextData.HandleShowModal (true);
@@ -72,6 +51,7 @@ function Home () {
   }
  useEffect(() => {
    if(contextData.DeleteBackUpCv){
+    setdisplayPreLoader(true)
     handleBackUpv()
    }
    contextData.handleDeleteBackUpCv(null)
@@ -79,7 +59,6 @@ function Home () {
  
   function HandleRemovePreviousData () {
     setBackUpCvToggle (false);
-
     localStorage.setItem (
       'HeaderSettingsList',
       JSON.stringify ([

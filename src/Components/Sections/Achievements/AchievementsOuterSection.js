@@ -195,6 +195,7 @@ export default function AchievementsOuterSection (props) {
                 <Delete
                   onClick={() => {
                     props.HandleRemoveElement ('AchievementsOuterSection');
+                    localStorage.removeItem("Achievements")
                     contextData.HandleRemoveElement (
                       'Achievements'
                     );

@@ -123,7 +123,7 @@ function CustomInnerSection (props) {
     if (data.name === 'title') {
       temp[data.index].value.title = data.value;
     } else {
-      temp[data.index].value.username = data.value;
+      temp[data.index].value.bullets = data.value;
     }
     props.setList ([...temp]);
     localStorage.setItem ('Custom', JSON.stringify (temp));
@@ -580,12 +580,12 @@ function CustomInnerSection (props) {
                   <div className="summary">
                     <RichTextEditor
                      placeHolder= {HandleGetPlaceHolder (
-                      props.list[props.index].value.username
+                      props.list[props.index].value.bullets
                      )}
                       otherStyle={'Bullets'}
-                      value={props.list[props.index].value.username}
+                      value={props.list[props.index].value.bullets}
                       index={props.index}
-                      name={'username'}
+                      name={'bullets'}
                       handleInputData={handleInputData}
                       EditorWidth={HandleEditorWidth ()}
                     />

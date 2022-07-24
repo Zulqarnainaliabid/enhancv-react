@@ -334,7 +334,7 @@ console.log("kaoooo-=============================",CVBackUpData)
                     Colors={CVBackUpData.Colors}
                     Template={CVBackUpData.Template}
                     Sections={CVBackUpData.SectionArray}
-                    HeadingValue={CVBackUpData.HeadingValueAchievement}
+                    HeadingValue={CVBackUpData.HeadingValuePassion}
                   />
                 </div>
               );
@@ -626,7 +626,7 @@ console.log("kaoooo-=============================",CVBackUpData)
                     Colors={CVBackUpData.Colors}
                     Template={CVBackUpData.Template}
                     Sections={CVBackUpData.SectionArray}
-                    HeadingValue={CVBackUpData.HeadingValueAchievement}
+                    HeadingValue={CVBackUpData.HeadingValuePassion}
                   />
                 </div>
               );
@@ -679,8 +679,7 @@ console.log("kaoooo-=============================",CVBackUpData)
                   onMouseLeave={() => {
                     setDisplayBackgroundColor (false);
                   }}
-                >
-
+                > 
                   <div className="outerWrapperDeleteCvBackupCv">
                     <BiPencil
                       className="DeleteIconBackUpCV backGroundColorEditIconBackUpCV  "
@@ -699,7 +698,6 @@ console.log("kaoooo-=============================",CVBackUpData)
                             JSON.stringify (CVBackUpData.ArrayLower)
                           );
                         }
-
                         if (CVBackUpData.UserImageShape) {
                           localStorage.setItem (
                             'UserImageShape',
@@ -1070,9 +1068,8 @@ console.log("kaoooo-=============================",CVBackUpData)
                     <RiDeleteBinLine
                       className="DeleteIconBackUpCV backGroundColorDeleteIconBackUpCV "
                       onClick={async () => { 
-                        contextData.handleDeleteBackUpCv(true)
                        let res = await HandleDeleteCvBackUp (props.id);
-                       
+                       contextData.handleDeleteBackUpCv(true)
                       }}
                     />
                   </div>

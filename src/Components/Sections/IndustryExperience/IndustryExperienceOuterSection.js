@@ -189,6 +189,7 @@ export default function IndustryExperienceOuterSection (props) {
                     contextData.HandleRemoveElement (
                       'IndustryExperience'
                     );
+                    localStorage.removeItem("IndustryExperience")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

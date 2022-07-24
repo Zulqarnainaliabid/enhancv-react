@@ -284,6 +284,7 @@ export default function ProjectsOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('ProjectsOuterSection');
                     contextData.HandleRemoveElement ('Projects');
+                    localStorage.removeItem("Project")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />
@@ -309,7 +310,7 @@ export default function ProjectsOuterSection (props) {
             otherStyle={'SectionHeaderTextHolder'}
             value={ValueFindMeMeOnline}
             index={0}
-            name={'Projects'}
+            name={'Project'}
             handleInputData={handleInputData}
             useUpperCase={false}
             UpperCaseHeaderInputField={false}

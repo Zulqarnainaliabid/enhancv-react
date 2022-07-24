@@ -85,6 +85,9 @@ export default function MyTimeOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('MyTimeOuterSection');
                     contextData.HandleRemoveElement ('MyTime');
+                    localStorage.removeItem("arraySlice")
+                    localStorage.removeItem("InputFieldCartMyTime")
+                    localStorage.removeItem("arraySeries")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

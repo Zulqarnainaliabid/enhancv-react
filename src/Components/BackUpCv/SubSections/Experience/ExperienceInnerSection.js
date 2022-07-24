@@ -179,22 +179,44 @@ function ExperienceInnerSection (props) {
                 />}
             </div>
           </div>
-          {props.list[props.index].toggleSwitch[3].selected &&
-            <div style={{marginLeft: '13px'}}>
-              <div className="summary" style={{width: HandleEditorWidth ()}}>
-
-                <Editor
-                  className="InputFieldBachUpCv"
-                  options={{
-                    placeholder: {
-                      text: 'What did you achieve in this role?',
-                      hideOnClick: true,
-                    },
-                  }}
-                  text={props.list[props.index].value.bullets}
-                />
+          {props.item.DescriptionArray.map ((item, index) => {
+            return (
+              <div key={index}>
+                {props.list[props.index].toggleSwitch[2].selected &&
+                  <TextareaAutosize
+                    value={
+                      props.list[props.index].DescriptionArray[index]
+                        .companyDescription
+                    }
+                    className="InputFieldBachUpCv"
+                    placeholder="Company Description"
+                    draggable="false"
+                    onChange={() => {
+                      console.log ('onchange');
+                    }}
+                  />}
+                {props.list[props.index].toggleSwitch[3].selected &&
+                  <div className="summary" style={{marginLeft: '13px'}}>
+                    <div style={{width: HandleEditorWidth ()}}>
+                      <Editor
+                        className="InputFieldBachUpCv"
+                        options={{
+                          placeholder: {
+                            text: 'What did you achieve in this role?',
+                            hideOnClick: true,
+                          },
+                        }}
+                        EditorWidth={HandleEditorWidth ()}
+                        text={
+                          props.list[props.index].DescriptionArray[index]
+                            .companyDescription
+                        }
+                      />
+                    </div>
+                  </div>}
               </div>
-            </div>}
+            );
+          })}
           {props.display_dashesLine &&
             <div className="SectionBorderBottom CommonCssClassAbsolutePosition" />}
         </div>

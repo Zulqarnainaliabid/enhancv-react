@@ -19,7 +19,7 @@ export default function CustomOuterSection (props) {
       iconName: '',
       value: {
         title: '',
-        username: '',
+         bullets: '',
       },
       date: {
         monthFrom: '',
@@ -124,7 +124,7 @@ export default function CustomOuterSection (props) {
         iconName: '',
         value: {
           title: '',
-          username: '',
+          bullets: '',
         },
         date: {
           monthFrom: '',
@@ -273,6 +273,7 @@ export default function CustomOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('CustomOuterSection');
                     contextData.HandleRemoveElement ('Custom');
+                    localStorage.removeItem("Custom")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

@@ -426,7 +426,6 @@ function AchievementsInnerSection (props) {
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px',marginTop:"-7px"}}>
                   <div className="summary"> 
-                  
                     <RichTextEditor
                     placeHolder=
                     {HandleGetPlaceHolder (

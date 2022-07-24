@@ -299,6 +299,7 @@ export default function ExperienceOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('ExperienceOuterSection');
                     contextData.HandleRemoveElement ('Experience');
+                    localStorage.removeItem("Experience")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

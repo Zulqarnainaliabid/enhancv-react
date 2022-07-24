@@ -294,6 +294,7 @@ export default function VolunteeringOuterSection (props) {
                     contextData.HandleRemoveElement (
                       'Volunteering'
                     );
+                    localStorage.removeItem("Volunteering")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

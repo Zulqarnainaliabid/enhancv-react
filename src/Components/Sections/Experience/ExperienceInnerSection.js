@@ -538,7 +538,7 @@ function ExperienceInnerSection (props) {
                         <div className={CssClass ()}>
                           <RichTextEditor
                             placeHolder={HandleGetPlaceHolder (
-                              props.list[props.index].value.bullets
+                              props.list[props.index].DescriptionArray[index].bullets
                             )}
                             otherStyle={'Bullets'}
                             value={props.list[props.index].DescriptionArray[index].bullets}

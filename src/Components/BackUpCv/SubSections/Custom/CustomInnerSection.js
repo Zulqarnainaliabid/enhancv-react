@@ -55,6 +55,25 @@ function CustomInnerSection (props) {
     }
   };
 
+  function HandleEditorWidth () {
+    if (!props.Template) {
+      return '344px';
+    } else {
+      if (props.Sections !== null) {
+        for (let i = 0; i < props.Sections.Left.length; i++) {
+          if (props.Sections.Left[i] === 'Achievements') {
+            return '179px';
+          }
+        }
+        for (let i = 0; i < props.Sections.Right.length; i++) {
+          if (props.Sections.Right[i] === 'Achievements') {
+            return '110px';
+          }
+        }
+      }
+    }
+  }
+
   return (
     <div>
       <div>
@@ -112,7 +131,7 @@ function CustomInnerSection (props) {
               </div>
               {props.list[props.index].toggleSwitch[0].selected &&
                 <div style={{marginLeft: '13px'}}>
-                  <div className="summary">
+                  <div className="summary" style={{width: HandleEditorWidth ()}}>
                     <Editor
                       className="InputFieldBachUpCv"
                       options={{
@@ -121,7 +140,7 @@ function CustomInnerSection (props) {
                           hideOnClick: true,
                         },
                       }}
-                      text={props.list[props.index].value.username}
+                      text={props.list[props.index].value.bullets}
                     />
                   </div>
                 </div>}

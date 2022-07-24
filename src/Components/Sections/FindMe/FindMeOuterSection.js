@@ -193,6 +193,7 @@ export default function FindMeOuterSection (props) {
                   onClick={() => {
                     props.HandleRemoveElement ('FindMeOuterSection');
                     contextData.HandleRemoveElement ('FindMe');
+                    localStorage.removeItem("FindMe")
                   }}
                   className="DeleteIcon CommonCssClassCursorPointer"
                 />

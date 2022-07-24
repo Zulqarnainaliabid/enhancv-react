@@ -283,6 +283,7 @@ function BookInnerSection (props) {
             type="file"
             id="uploadFile"
             accept="image/png, image/jpeg"
+            value={""}
             onChange={e => {
               selectImage (e);
             }}
