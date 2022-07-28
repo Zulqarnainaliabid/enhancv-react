@@ -34,11 +34,11 @@ function Home () {
     return () => clearTimeout (timer);
   }, []);
  async function handleBackUpv(){
-  setLoading (true);
-  setBackUpCvToggle (true);
     let value = localStorage.getItem ('Users');
       value = JSON.parse (value);
       if (value) {
+        setLoading (true);
+        setBackUpCvToggle (true);
         let data = await HandleGetCvBackUp ();
         setBackUpCV ([...data.data]);
         setLoading (false);
@@ -267,7 +267,6 @@ function Home () {
             classNames="alert"
             unmountOnExit
           >
-
             <div
               className="backGroundOfModal CommonCssClassAbsolutePosition"
               style={{

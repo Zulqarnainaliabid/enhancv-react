@@ -19,8 +19,8 @@ function App (props) {
   return (
     <div className={FontFamily}
     onClick={()=>{
-      console.log("hrrrrr--==")
-      contextData.handleRemoveBackGround (true);
+      console.log("call")
+      // contextData.handleRemoveBackGround (true);
     }}>
       <BrowserRouter>
         <Routing />

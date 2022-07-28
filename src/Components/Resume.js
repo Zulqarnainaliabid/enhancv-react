@@ -211,7 +211,7 @@ export default function Resume (props) {
               }}
             >
               <BsPencil style={{fontSize: '17px'}} />
-              <p>Edit CV</p>
+              <p>All CV</p>
             </div>
             <ReactToPrint
               pageStyle="@page { size: auto; margin: 15mm; } },"
